@@ -1,0 +1,8 @@
+org/smartloli/kafka/eagle/api/email/MailFactory.class
+org/smartloli/kafka/eagle/api/sms/SmsFactory.class
+org/smartloli/kafka/eagle/api/sms/SmsService.class
+org/smartloli/kafka/eagle/api/email/MailProvider.class
+org/smartloli/kafka/eagle/api/email/MailService.class
+org/smartloli/kafka/eagle/api/sms/SmsProvider.class
+org/smartloli/kafka/eagle/api/sms/SmsServiceImpl.class
+org/smartloli/kafka/eagle/api/email/MailServiceImpl.class

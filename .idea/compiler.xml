@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="kafka-eagle-api" />
+        <module name="kafka-eagle-common" />
+        <module name="kafka-eagle-core" />
+        <module name="kafka-eagle-elasticsearch" />
+        <module name="kafka-eagle-grafana" />
+        <module name="kafka-eagle-plugin" />
+        <module name="kafka-eagle-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="kafka-eagle" target="1.8" />
+      <module name="kafka-eagle-api" target="1.8" />
+      <module name="kafka-eagle-common" target="1.8" />
+      <module name="kafka-eagle-core" target="1.8" />
+      <module name="kafka-eagle-elasticsearch" target="1.8" />
+      <module name="kafka-eagle-grafana" target="1.8" />
+      <module name="kafka-eagle-plugin" target="1.8" />
+      <module name="kafka-eagle-web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

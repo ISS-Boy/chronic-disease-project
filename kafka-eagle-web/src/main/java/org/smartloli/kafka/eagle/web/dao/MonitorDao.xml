@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.smartloli.kafka.eagle.web.dao.MonitorDao">
+    <resultMap type="org.smartloli.kafka.eagle.web.pojo.Monitor" id="monitor">
+        <result property="monitorId" column="monitor_id" />
+        <result property="monitorGroupId" column="monitor_group_id" />
+        <result property="json" column="json" />
+        <result property="metricName" column="metric_name" />
+        <result property="jar" column="jar" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        monitor_id,monitor_group_id,json,metric_name,jar
+    </sql>
+
+    <select id="getAllMonitorByGroupId" parameterType="String" resultMap="monitor">
+        select
+          <include refid="Base_Column_List"/>
+        from
+          monitor
+        where
+          monitor_group_id = #{monitorGroupId}
+    </select>
+
+    <insert id="addMonitor" parameterType="org.smartloli.kafka.eagle.web.pojo.Monitor" >
+        insert into
+        monitor(
+          <include refid="Base_Column_List"/>
+        )
+        values(
+            #{monitorId},
+            #{monitorGroupId},
+            #{json},
+            #{metricName},
+            #{jar}
+        )
+    </insert>
+
+    <delete id="deleteMonitorByGroupId" parameterType="String">
+        delete
+        FROM
+          monitor
+        where
+          monitor_group_id = #{monitorGroupId}
+    </delete>
+
+</mapper>

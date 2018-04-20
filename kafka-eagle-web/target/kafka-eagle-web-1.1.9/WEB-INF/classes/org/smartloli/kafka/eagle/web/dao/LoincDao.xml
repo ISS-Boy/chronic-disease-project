@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.smartloli.kafka.eagle.web.dao.LoincDao">
+    <resultMap type="org.smartloli.kafka.eagle.web.pojo.Loinc" id="loinc">
+        <result property="id" column="id" />
+        <result property="loincCode" column="loincCode" />
+        <result property="loincComponent" column="loincComponent" />
+        <result property="loincProperty" column="loincProperty" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,loincCode,loincComponent,loincProperty
+    </sql>
+
+    <sql id="BASE_COLUMN_WHERE">
+        <if test="loincCode != null and loincCode.length() !=0">
+            AND loincCode = #{loincCode}
+        </if>
+    </sql>
+
+    <select id="getAllLoincs" resultMap="loinc">
+        select
+        <include refid="Base_Column_List"/>
+        from loinc
+
+    </select>
+
+    <select id="loincOf" resultMap="loinc">
+        select
+        <include refid="Base_Column_List"/>
+        from loinc
+        <where>
+            <include refid="BASE_COLUMN_WHERE"/>
+        </where>
+    </select>
+
+    <select id="findloincComponent" parameterType="String" resultMap="loinc">
+        select
+        <include refid="Base_Column_List"/>
+        from loinc
+        <where>
+            loincCode = #{lcode}
+        </where>
+    </select>
+
+    <insert id="insertLoinc" parameterType="org.smartloli.kafka.eagle.web.pojo.Loinc">
+        insert into
+        loinc(loincCode,loincComponent,loincProperty)
+        values(#{loincCode},#{loincComponent},#{loincProperty})
+    </insert>
+
+    <delete id="deleteLoincByLoincCode" parameterType="org.smartloli.kafka.eagle.web.pojo.Loinc">
+        delete FROM
+        loinc where loincCode=#{loincCode}
+    </delete>
+
+    <select id="findLoincByLoincCode" parameterType="String" resultMap="loinc">
+        select
+        <include refid="Base_Column_List"/>
+        from loinc where loincCode=#{loincCode}
+    </select>
+
+    <update id="modifyLoinc" parameterType="org.smartloli.kafka.eagle.web.pojo.Loinc">
+        update icd_10 set
+        loincCode=#{loincCode},loincComponent=#{loincComponent},loincProperty=#{loincProperty} where id=#{id}
+    </update>
+
+</mapper>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="kafka-eagle-web:war">
+    <output-path>$PROJECT_DIR$/kafka-eagle-web/target</output-path>
+    <root id="archive" name="ke.war">
+      <element id="artifact" artifact-name="kafka-eagle-web:war exploded" />
+    </root>
+  </artifact>
+</component>

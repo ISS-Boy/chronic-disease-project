@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.smartloli.kafka.eagle.web.dao.MonitorGroupDao">
+    <!-- 返回结果集 -->
+    <resultMap type="org.smartloli.kafka.eagle.web.pojo.MonitorGroup" id="monitorGroup">
+        <result property="monitorGroupId" column="monitor_group_id" />
+        <result property="createTime" column="create_time" />
+        <result property="creator" column="creator" />
+        <result property="state" column="state" />
+        <result property="imageId" column="image_id" />
+        <result property="serviceId" column="service_id" />
+    </resultMap>
+
+    <!-- 共享部分数据 -->
+    <sql id="Base_Column_List">
+        monitor_group_id,create_time,creator,state,image_id,service_id
+    </sql>
+
+    <sql id="BASE_COLUMN_WHERE">
+        <if test="monitorGroupId != null and monitorGroupId.length() !=0">
+            AND monitor_group_id = #{monitorGroupId}
+        </if>
+    </sql>
+
+
+    <select id="getAllMonitorGroups" resultMap="monitorGroup">
+        select
+        <include refid="Base_Column_List"/>
+        from monitor_group
+    </select>
+
+    <select id="getMonitorGroupById" resultMap="monitorGroup">
+        select
+        <include refid="Base_Column_List"/>
+        from
+          monitor_group
+        where
+          monitor_group_id = #{monitorGroupId}
+    </select>
+
+    <insert id="insertMonitorGroup" parameterType="org.smartloli.kafka.eagle.web.pojo.MonitorGroup" >
+        insert into
+        monitor_group(
+        <include refid="Base_Column_List"/>
+        )
+        values(#{monitorGroupId},#{createTime},#{creator},#{state},#{imageId},#{serviceId})
+    </insert>
+
+
+    <delete id="deleteMonitorGroupById" parameterType="String">
+        delete
+        FROM
+          monitor_group
+        where
+          monitor_group_id=#{monitorGroupId}
+    </delete>
+
+    <update id="updateMonitorGroup">
+        update
+          monitor_group
+        set
+          state=#{state}
+        where
+          monitor_group_id=#{monitorGroupId}
+    </update>
+
+</mapper>

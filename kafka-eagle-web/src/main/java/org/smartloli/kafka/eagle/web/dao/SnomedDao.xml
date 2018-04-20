@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.smartloli.kafka.eagle.web.dao.SnomedDao">
+    <resultMap type="org.smartloli.kafka.eagle.web.pojo.Snomed" id="snomed">
+        <result property="snomedCode" column="icdCode" />
+        <result property="snomedCnomen" column="snomedCnomen" />
+        <result property="helpCode" column="helpCode" />
+        <result property="id" column="id" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,snomedCode,snomedCnomen,helpCode
+    </sql>
+    <sql id="BASE_COLUMN_WHERE">
+      <if test="snomedCode != null and snomedCode.length() !=0">
+          AND snomedCode = #{snomedCode}
+      </if>
+    </sql>
+
+    <select id="getAllSnomeds" resultMap="snomed">
+        select
+        <include refid="Base_Column_List"/>
+        from snomed
+    </select>
+
+    <select id="snomesOf" resultMap="snomed">
+        select
+        <include refid="Base_Column_List"/>
+        from snomed
+        <where>
+            <include refid="BASE_COLUMN_WHERE"/>
+        </where>
+    </select>
+
+    <select id="findSnomedCnomen" parameterType="String" resultMap="snomed">
+        select
+        <include refid="Base_Column_List"/>
+        from snomed
+        <where>
+            snomedCode = #{scode}
+        </where>
+    </select>
+
+
+    <insert id="insertSnomed" parameterType="org.smartloli.kafka.eagle.web.pojo.Snomed" >
+        insert into
+        snomed(snomedCode,snomedCnomen,helpCode)
+        values(#{snomedCode},#{snomedCnomen},#{helpCode})
+    </insert>
+    <delete id="deleteSnomedByCode" parameterType="org.smartloli.kafka.eagle.web.pojo.Snomed">
+        delete FROM
+        snomed where snomedCode=#{code}
+    </delete>
+    <select id="findSnomedBySnomedCode" parameterType="String" resultMap="snomed">
+        select
+        <include refid="Base_Column_List"/>
+        from snomed where snomedCode=#{snomedCode}
+    </select>
+    <update id="updateSnomed" parameterType="org.smartloli.kafka.eagle.web.pojo.Snomed">
+        update snomed set
+        snomedCode=#{snomedCode},snomedCnomen=#{snomedCnomen},helpCode=#{helpCode} where id=#{id}
+    </update>
+
+</mapper>

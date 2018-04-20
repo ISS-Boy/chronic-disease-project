@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.smartloli.kafka.eagle.web.dao.IcdDao">
+    <resultMap type="org.smartloli.kafka.eagle.web.pojo.Icd" id="icd">
+        <result property="id" column="id" />
+        <result property="icdCode" column="icdCode" />
+        <result property="diseaseName" column="diseaseName" />
+        <result property="helpCode" column="helpCode" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,icdCode, diseaseName,helpCode
+    </sql>
+    <select id="getAllicds" resultMap="icd">
+        select
+        <include refid="Base_Column_List"/>
+        from icd_10
+
+    </select>
+    <insert id="insertIcd" parameterType="org.smartloli.kafka.eagle.web.pojo.Icd" >
+        insert into
+        icd_10(icdCode,diseaseName,helpCode)
+        values(#{icdCode},#{diseaseName},#{helpCode})
+    </insert>
+    <delete id="deleteIcdByIcdCode" parameterType="org.smartloli.kafka.eagle.web.pojo.Icd">
+        delete FROM
+        icd_10 where icdCode=#{icdCode}
+    </delete>
+    <select id="findIcdByIcdCode" parameterType="String" resultMap="icd">
+        select
+        <include refid="Base_Column_List"/>
+        from icd_10 where icdCode=#{icdCode}
+    </select>
+    <update id="modifyIcd" parameterType="org.smartloli.kafka.eagle.web.pojo.Icd">
+        update icd_10 set
+        icdCode=#{icdCode},diseaseName=#{diseaseName},helpCode=#{helpCode} where id=#{id}
+    </update>
+
+</mapper>

@@ -1,0 +1,20 @@
+#status_info{
+    border:2px outset rgba(0, 0, 0, 0.04);
+    /* float:right; */
+    position:absolute;
+    display: block;
+    top:10px;
+    right:10px;
+    width:20%;
+    background: rgba(255, 255, 255, 0.9);;
+    z-index:10;
+}
+.status_detail{
+    height:20%;
+    /* background-color:#e6fcde; */
+    //background-color:#fff;
+    padding-left:10px;
+    font-size:20px;
+    color:#000;
+    /* background-color:rgba(0,0,0,0.3); */
+}
