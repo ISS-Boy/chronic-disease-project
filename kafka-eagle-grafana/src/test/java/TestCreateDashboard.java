@@ -15,18 +15,16 @@ import java.util.Optional;
 public class TestCreateDashboard {
     @Test
     public void createDashboardTest(){
-        boolean res = createDashboard("a", new ArrayList<>(), new Date(), null);
+        boolean res = createDashboard("a", new ArrayList<>(), new Date(), null) == 200;
         System.out.println(res);
     }
 
-    public boolean createDashboard(String dashboardName,
+    public int createDashboard(String dashboardName,
                                    List<PARMOfPanel> panels,
                                    Date from,
                                    Date to) {
         Dashboard dashboard = new Dashboard();
         dashboard.setDashboardName(dashboardName);
-
-
 
         //创建体温panel
         PARMOfPanel panel1 = new PARMOfPanel();

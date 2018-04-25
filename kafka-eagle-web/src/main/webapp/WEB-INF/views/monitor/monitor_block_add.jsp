@@ -14,7 +14,7 @@
 
 		<jsp:include page="../public/css.jsp"></jsp:include>
 		<jsp:include page="../public/tcss.jsp"></jsp:include>
-		<link rel="stylesheet" type="text/css" media="all" href="/ke/media/css/chronicD/monitor_block.css">
+		<%--<link rel="stylesheet" type="text/css" media="all" href="/ke/media/css/chronicD/monitor_block.css">--%>
 	<title>多条件搜索</title>
 
 	<!-- jquery 引入-->
@@ -42,6 +42,13 @@
 			border-radius: 5px;
 			margin-bottom: 10px;
 		}
+		.aggregation_item_templ{
+			margin-bottom: 5px;
+		}
+		.delAggregation{
+			margin-top: 58px;
+			margin-left: 20px;
+		}
 		.filter_row{
 			float: left;
 			padding-left:15px;
@@ -62,11 +69,38 @@
 			float: left;
 			padding-left:15px;
 		}
+		.aggregation_item{
+			/*float: left;*/
+			border: 1px solid #eee;
+			margin-bottom: 10px;
+			margin-right: 20px;
+			margin-top: 10px;
+		}
+		.aggregation_row{
+			float: left;
+			margin: 10px;
+
+		}
+		.groupfla{
+			margin-top: 10px;
+		}
+		.aggregation_group{
+			/*float: left;*/
+			border: 1px solid #eee;
+			/*width:90%;*/
+			margin-bottom: 10px;
+
+		}
+		.aggregation_group_filter{
+			float: left;
+
+			margin: 5px;
+		}
 		.select_row{
 			float: left;
 			padding-left:15px;
 			margin-top: 10px;
-			width: 50%;
+
 		}
 		.loading{
 			width:160px;
@@ -86,224 +120,413 @@
 			border-radius:20px;
 			filter:progid:DXImageTransform.Microsoft.Alpha(opacity=70);
 		}
+
 	</style>
 
 <script id="blockTmpl" type="text/x-jquery-tmpl">
 <div class="block_tmpl col-md-12">
-    <div class="row">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="input-group">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span>source</span>
-                            <span onclick="add_source()"><img src="/ke/media/img/01.gif"/></span>
-                            <span onclick="remove_source()"><img src="/ke/media/img/02.gif"/></span>
-                        </div>
-                    </div>
-                    <div class="row source">
-                        <div class="col-md-3 source_cow"> 
-                            <select class="selectpicker" name="source" multiple data-live-search="true">
-                                <option >source</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+	 <div class="row" style="padding: 5px 0 5px 10px;background-color: #eee">
+		 <label>请为查询仪表命名:</label>
+		 <input type="text"  name="monitorName" class="monitorName" required/>
+	 </div>
+
+	 <div class="row">
+		 <div class="panel panel-default">
+			 <div class="panel-body">
+				 <div class="input-group">
+					 <div class="row">
+									   <div class="col-md-12">
+								<span>数据源</span>
+								<%--<span onclick="add_source()"><img src="/ke/media/img/01.gif"/></span>--%>
+								<%--<span onclick="remove_source()"><img src="/ke/media/img/02.gif"/></span>--%>
+							</div>
+						</div>
+						<div class="row source">
+							<div class="col-md-3 source_cow">
+								<select class="selectpicker" name="source" multiple data-live-search="true">
+									<option >source</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 	</div>
-    <div class="row">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="input-group">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span>calculation</span>
-                            <span onclick="add_calculation(this)"><img src="/ke/media/img/01.gif"/></span>
-                            <span onclick="remove_calculation(this)"><img src="/ke/media/img/02.gif"/></span>
+	<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="input-group">
+						<div class="row">
+							<div class="col-md-12">
+								<span>聚集</span>
+								<%--<span onclick="add_aggregation_predicate(this)"><img src="/ke/media/img/01.gif"/></span>--%>
+								<%--<span onclick="remove_aggregation_predicate(this)"><img src="/ke/media/img/02.gif"/></span>--%>
 
-                            <div class="panel window_">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">window</h3>
-                                </div>
-                                <div class="window_row"> 
-                                    <select class="selectpicker" data-live-search="true" name="w_type">
-                                        <option>type</option>
-                                    </select>
-                                </div>
+								<div class="panel window_">
+									<div class="panel-heading">
+										<h3 class="panel-title">时间窗口</h3>
+									</div>
+									<div class="window_row">
+									   <span>窗口类型</span> <select class="selectpicker" data-live-search="true" name="w_type">
+											<option>sliding window</option>
+											<option>tumbling window</option>
+											<option>hopping window</option>
+										</select>
+									</div>
 
-                                <div class="window_row"> 
-                                    <input type="number" min="0" class="form-control" name="w_interval" placeholder="interval" aria-describedby="basic-addon1" required>
-                                </div>
+									<div class="window_row">
+										<input type="number" min="0" class="form-control" name="w_interval" placeholder="interval" aria-describedby="basic-addon1" required>
+									</div>
 
-                                <div class="window_row"> 
-                                    <input type="number" min="0" class="form-control" name="w_length" placeholder="length" aria-describedby="basic-addon1" required>
-                                </div>
+									<div class="window_row">
+										<input type="number" min="0" class="form-control" name="w_length" placeholder="length" aria-describedby="basic-addon1" required>
+									</div>
 
-                            </div>
-                        </div>
-                        </div>
-                        <div class="row calculation">
-                            <div class="calculation_templ">    
-                                <div class="col-md-3"> 
-                                    <input type="text" name="c_name" class="form-control cal_interval" placeholder="name" value="" required>
-                                </div>
-                                <div class="col-md-3"> 
-                                    <select class="selectpicker" data-live-search="true" name="c_source">
-                                        <option>source</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3"> 
-                                    <select class="selectpicker" data-live-search="true" name="c_measure">
-                                        <option>measure</option>
-                                    </select>
-                                </div>
-                               
-                                <div class="col-md-3 calcu_interval">
-                                    <select class="selectpicker" data-live-search="true" name="c_type">
-                                        <option>min</option>
-										<option>max</option>
-										<option>average</option>
-										<option>count</option>
-										<option>sum</option>
-										<option>amplitude</option>
-										<option>incrementary ratio</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </div>
-    <div class="row">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="input-group">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span>filter</span>
-                            <span onclick="add_filter(this)"><img src="/ke/media/img/01.gif"/></span>
-                            <span onclick="remove_filter(this)"><img src="/ke/media/img/02.gif"/></span>
-                        </div>
-                    </div>
-                    <div class="row filter">
-                        <div class="filter_templ">
-                            <div class="filter_row"> 
-                                <select class="selectpicker"  data-live-search="true" name="f_source">
-                                    <option>source</option>
-                                </select>
-                            </div>
-                            <div class="filter_row"> 
-                                <select class="selectpicker"  data-live-search="true" name="f_measure">
-                                    <option>measure</option>
-                                </select>
-                            </div>
-                           
-                            <div class="filter_row"> 
-                                <select class="selectpicker"  data-live-search="true" name="f_op">
-                                    <option>></option>
+								</div>
+							</div>
+						</div>
+						<div class="row aggregation">
+							<div class="col-md-1">
+								<h6>聚集项</h6>
+								<span onclick="add_aggregation(this)"><img src="/ke/media/img/01.gif"/></span>
+							</div>
+							<%--aggregation_item_outpanel--%>
+							<div class="aggregation_item_outpanel col-md-11">
+								<%--aggregation_item_templ--%>
+								<div class="aggregation_item_templ col-md-11">
+									<div class="row calculation col-md-11" style="border: 1px solid #eee">
+											<%--<div style="float: left;margin-left: 20px;"><h6>聚集项</h6></div>--%>
+											<div class="aggregation_item col-md-11 col-md-offset-1">
+
+													<div class="aggregation_row col-xs-2">
+														<input type="text" name="a_name" class="form-control cal_interval" placeholder="name" required>
+													</div>
+													<div class="aggregation_row" >
+														<select class="selectpicker"  data-live-search="true" name="a_source" data-width="fit">
+															<option>source</option>
+														</select>
+													</div>
+													<div class="aggregation_row">
+														<select class="selectpicker"  data-live-search="true" name="a_measure" data-width="auto">
+															<option>measure</option>
+														</select>
+													</div>
+
+													<div class="aggregation_row">
+														<select class="selectpicker"  data-live-search="true" name="a_type" data-width="100%">
+															<option>min</option>
+															<option>max</option>
+															<option>average</option>
+															<option>count</option>
+															<option>sum</option>
+															<option>amplitude</option>
+															<option>incrementary ratio</option>
+														</select>
+													</div>
+													<%--<div class="aggregation_row" style="padding-top: 4px;">--%>
+														<%--<span onclick="add_aggregation(this)"><img src="/ke/media/img/01.gif"/></span>--%>
+														<%--<span onclick="remove_aggregation(this)"><img src="/ke/media/img/02.gif"/></span>--%>
+													<%--</div>--%>
+											</div>
+											<!--aggregation_group_panel-->
+											<div class="aggregation_group_panel col-md-12" >
+												<div  class="col-md-2 groupfla">组内过滤</div>
+												<div class="aggregation_group col-md-10 ">
+													<div class="aggregation_group_templ col-md-12">
+														<div class="aggregation_group_filter" >
+															<select class="selectpicker"  data-live-search="true" name="g_source" data-width="fit">
+																<option>source</option>
+															</select>
+														</div>
+														<div class="aggregation_group_filter">
+															<select class="selectpicker"  data-live-search="true" name="g_measure" data-width="fit">
+																<option>measure</option>
+															</select>
+														</div>
+
+														<div class="aggregation_group_filter">
+															<select class="selectpicker"  data-live-search="true" name="g_op" data-width="100%">
+																<option>></option>
+																<option><</option>
+																<option>>=</option>
+																<option><=</option>
+																<option>=</option>
+															</select>
+														</div>
+
+														<div class="aggregation_group_filter col-xs-3">
+															<input type="number" min="0" class="form-control" name="g_threshold" placeholder="threshold" aria-describedby="basic-addon1"  required />
+														</div>
+
+														<div class="aggregation_group_filter">
+															<select class="selectpicker"  data-live-search="true" name="g_boolExp" data-width="100%">
+																<option>And</option>
+																<option>Or</option>
+															</select>
+														</div>
+														<div class="aggregation_group_filter" style="padding-top: 4px;">
+															<span onclick="add_aggregation_predicate(this)"><img src="/ke/media/img/01.gif"/></span>
+															<span onclick="remove_aggregation_predicate(this)"><img src="/ke/media/img/02.gif"/></span>
+														</div>
+
+
+													</div>
+												</div>
+
+											</div>
+											<!--aggregation_group_panel-->
+									</div>
+									<div class="col-md-1 delAggregation">
+										<span onclick="remove_aggregation(this)"><img src="/ke/media/img/02.gif"/></span>
+									</div>
+								</div>
+									<%--aggregation_item_templ--%>
+							</div>
+							<%--aggregation_item_outpanel--%>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+	<div class="row">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="input-group">
+					<div class="row">
+						<div class="col-md-12">
+							<span>过滤</span>
+							<%--<span onclick="add_filter(this)"><img src="/ke/media/img/01.gif"/></span>--%>
+							<%--<span onclick="remove_filter(this)"><img src="/ke/media/img/02.gif"/></span>--%>
+						</div>
+					</div>
+					<div class="row filter">
+						<div class="filter_templ">
+							<div class="filter_row">
+								<select class="selectpicker"  data-live-search="true" name="f_source" data-width="auto">
+									<option>source</option>
+								</select>
+							</div>
+							<div class="filter_row">
+								<select class="selectpicker"  data-live-search="true" name="f_measure" data-width="auto">
+									<option>measure</option>
+								</select>
+							</div>
+
+							<div class="filter_row">
+								<select class="selectpicker"  data-live-search="true" name="f_op" data-width="auto">
+									<option>></option>
 									<option><</option>
 									<option>>=</option>
 									<option><=</option>
 									<option>=</option>
-                                </select>
-                            </div>
+								</select>
+							</div>
 
-                            <div class="filter_row"> 
-                                  <input type="number" min="0" class="form-control" name="f_threshold" placeholder="threshold" aria-describedby="basic-addon1" required>
-                            </div>
+							<div class="filter_row col-xs-2" >
+								  <input type="number" min="0" class="form-control" name="f_threshold" placeholder="threshold" aria-describedby="basic-addon1" required />
+							</div>
 
-                            <div class="filter_row"> 
-                                <select class="selectpicker"  data-live-search="true" name="f_boolExp">
+							<div class="filter_row">
+								<select class="selectpicker"  data-live-search="true" name="f_boolExp" data-width="auto">
 									<option>And</option>
 									<option>Or</option>
-                                </select>
-                            </div> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-   
-    <div class="row">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="input-group">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span>select</span>
-                            <span onclick="add_select(this)"><img src="/ke/media/img/01.gif"/></span>
-                            <span onclick="remove_select(this)"><img src="/ke/media/img/02.gif"/></span>
-                        </div>
-                    </div>
-                    <div class="row select">
-                        <div class="select_templ">
-                            <div class="select_row"> 
-                                <select class="selectpicker"  data-live-search="true" name="s_source">
-                                    <option>source</option>
-                                </select>
-                            </div>
+								</select>
+							</div>
+							<div class="filter_row" style="padding-top: 4px;">
+								<span onclick="add_filter(this)"><img src="/ke/media/img/01.gif"/></span>
+								<span onclick="remove_filter(this)"><img src="/ke/media/img/02.gif"/></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-                            <div class="select_row"> 
-                                <select class="selectpicker"  data-live-search="true" name="s_meaOrCal">
-                                    <option>measureOrCalculation</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> 
+	<div class="row">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="input-group">
+					<div class="row">
+						<div class="col-md-12">
+							<span>选择</span>
+							<%--<span onclick="add_select(this)"><img src="/ke/media/img/01.gif"/></span>--%>
+							<%--<span onclick="remove_select(this)"><img src="/ke/media/img/02.gif"/></span>--%>
+						</div>
+					</div>
+					<div class="row select">
+						<div class="select_templ">
+							<div class="select_row">
+								<select class="selectpicker"  data-live-search="true" name="s_source">
+									<option>source</option>
+								</select>
+							</div>
+
+							<div class="select_row">
+								<select class="selectpicker"  data-live-search="true" name="s_meaOrCal">
+									<option>measureOrCalculation</option>
+								</select>
+							</div>
+							<div class="select_row" style="padding-top: 4px">
+								<span onclick="add_select(this)"><img src="/ke/media/img/01.gif"/></span>
+								<span onclick="remove_select(this)"><img src="/ke/media/img/02.gif"/></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</script>
+<script id="aggregationTmpl" type="text/x-jquery-tmpl">
+<div class="aggregation_item_templ col-md-11">
+	<div class="row calculation col-md-11" style="border: 1px solid #eee">
+
+
+			<%--<div style="float: left;margin-left: 20px;"><h6>聚集项</h6></div>--%>
+			<div class="aggregation_item col-md-11 col-md-offset-1">
+
+					<div class="aggregation_row col-xs-2">
+						<input type="text" name="a_name" class="form-control cal_interval" placeholder="name" required>
+					</div>
+					<div class="aggregation_row" >
+						<select class="selectpicker"  data-live-search="true" name="a_source" data-width="fit">
+							<option>source</option>
+						</select>
+					</div>
+					<div class="aggregation_row">
+						<select class="selectpicker"  data-live-search="true" name="a_measure" data-width="auto">
+							<option>measure</option>
+						</select>
+					</div>
+
+					<div class="aggregation_row">
+						<select class="selectpicker"  data-live-search="true" name="a_type" data-width="100%">
+							<option>min</option>
+							<option>max</option>
+							<option>average</option>
+							<option>count</option>
+							<option>sum</option>
+							<option>amplitude</option>
+							<option>incrementary ratio</option>
+						</select>
+					</div>
+					<%--<div class="aggregation_row" style="padding-top: 4px;">--%>
+						<%--<span onclick="add_aggregation(this)"><img src="/ke/media/img/01.gif"/></span>--%>
+						<%--<span onclick="remove_aggregation(this)"><img src="/ke/media/img/02.gif"/></span>--%>
+					<%--</div>--%>
+			</div>
+			<!--aggregation_group_panel-->
+			<div class="aggregation_group_panel col-md-12" >
+				<div class="col-md-2 groupfla">组内过滤</div>
+				<div class="aggregation_group col-md-10 ">
+					<div class="aggregation_group_templ col-md-12">
+						<div class="aggregation_group_filter" >
+							<select class="selectpicker"  data-live-search="true" name="g_source" data-width="fit">
+								<option>source</option>
+							</select>
+						</div>
+						<div class="aggregation_group_filter">
+							<select class="selectpicker"  data-live-search="true" name="g_measure" data-width="fit">
+								<option>measure</option>
+							</select>
+						</div>
+
+						<div class="aggregation_group_filter">
+							<select class="selectpicker"  data-live-search="true" name="g_op" data-width="100%">
+								<option>></option>
+								<option><</option>
+								<option>>=</option>
+								<option><=</option>
+								<option>=</option>
+							</select>
+						</div>
+
+						<div class="aggregation_group_filter col-xs-3">
+							<input type="number" min="0" class="form-control" name="g_threshold" placeholder="threshold" aria-describedby="basic-addon1"  required />
+						</div>
+
+						<div class="aggregation_group_filter">
+							<select class="selectpicker"  data-live-search="true" name="g_boolExp" data-width="100%">
+								<option>And</option>
+								<option>Or</option>
+							</select>
+						</div>
+						<div class="aggregation_group_filter" style="padding-top: 4px;">
+							<span onclick="add_aggregation_predicate(this)"><img src="/ke/media/img/01.gif"/></span>
+							<span onclick="remove_aggregation_predicate(this)"><img src="/ke/media/img/02.gif"/></span>
+						</div>
+
+
+					</div>
+				</div>
+
+			</div>
+			<!--aggregation_group_panel-->
+	</div>
+	<div class="col-md-1 delAggregation">
+		<span onclick="remove_aggregation(this)"><img src="/ke/media/img/02.gif"/></span>
+	</div>
+
+</div>
 </script>
 
 <script id="calculationTmpl" type="text/x-jquery-tmpl"> 
-    <div class="calculation_templ">
-        <div class="col-md-3 calculation_row"> 
-            <input type="text" name="c_name" class="form-control cal_interval" placeholder="name" value="" required>
-        </div>
-        <div class="col-md-3 calculation_row"> 
-            <select class="selectpicker" data-live-search="true" name="c_source">
-                <option>source</option>
-            </select>
-        </div>
-        <div class="col-md-3 calculation_row"> 
-            <select class="selectpicker" data-live-search="true" name="c_measure">
-                <option>measure</option>
-            </select>
-        </div> 
-        
-        <div class="col-md-3 calculation_row">
-            <select class="selectpicker" data-live-search="true" name="c_type">
-                <option>min</option>
-				<option>max</option>
-				<option>average</option>
-				<option>count</option>
-				<option>sum</option>
-				<option>amplitude</option>
-				<option>incrementary ratio</option>
-            </select>
-        </div>
-    </div>
+    <div class="aggregation_group_templ col-md-12">
+		<div class="aggregation_group_filter" >
+			<select class="selectpicker"  data-live-search="true" name="g_source" data-width="fit">
+				<option>source</option>
+			</select>
+		</div>
+		<div class="aggregation_group_filter">
+			<select class="selectpicker"  data-live-search="true" name="g_measure" data-width="fit">
+				<option>measure</option>
+			</select>
+		</div>
+
+		<div class="aggregation_group_filter">
+			<select class="selectpicker"  data-live-search="true" name="g_op" data-width="100%">
+				<option>></option>
+				<option><</option>
+				<option>>=</option>
+				<option><=</option>
+				<option>=</option>
+			</select>
+		</div>
+
+		<div class="aggregation_group_filter col-xs-3">
+			<input type="number" min="0" class="form-control" name="g_threshold" placeholder="threshold" aria-describedby="basic-addon1"  required />
+		</div>
+
+		<div class="aggregation_group_filter">
+			<select class="selectpicker"  data-live-search="true" name="g_boolExp" data-width="100%">
+				<option>And</option>
+				<option>Or</option>
+			</select>
+		</div>
+		<div class="aggregation_group_filter" style="padding-top: 4px;">
+			<span onclick="add_aggregation_predicate(this)"><img src="/ke/media/img/01.gif"/></span>
+			<span onclick="remove_aggregation_predicate(this)"><img src="/ke/media/img/02.gif"/></span>
+		</div>
+	</div>
 </script>
 <script id="filterTempl" type="text/x-jquery-tmpl">
     <div class="filter_templ" >
         <div class="filter_row"> 
-            <select class="selectpicker"  data-live-search="true" name="f_source">
+            <select class="selectpicker"  data-live-search="true" name="f_source" data-width="auto">
                 <option>source</option>
             </select>
         </div>
         <div class="filter_row"> 
-            <select class="selectpicker"  data-live-search="true" name="f_measure">
+            <select class="selectpicker"  data-live-search="true" name="f_measure" data-width="auto">
                 <option>measure</option>
             </select>
         </div>
        
         <div class="filter_row"> 
-            <select class="selectpicker" data-live-search="true" name="f_op">
+            <select class="selectpicker" data-live-search="true" name="f_op" data-width="auto">
                 <option>></option>
                 <option><</option>
                 <option>>=</option>
@@ -312,16 +535,20 @@
             </select>
         </div>
 
-        <div class="filter_row"> 
+        <div class="filter_row col-xs-2">
               <input type="number" min="0" class="form-control" name="f_threshold" placeholder="threshold" aria-describedby="basic-addon1" required>
         </div>
 
         <div class="filter_row"> 
-            <select class="selectpicker"  data-live-search="true" name="f_boolExp">
+            <select class="selectpicker"  data-live-search="true" name="f_boolExp" data-width="auto">
                 <option>And</option>
                 <option>Or</option>
             </select>
         </div>
+        <div class="filter_row" style="padding-top: 4px;">
+			<span onclick="add_filter(this)"><img src="/ke/media/img/01.gif"/></span>
+			<span onclick="remove_filter(this)"><img src="/ke/media/img/02.gif"/></span>
+		</div>
     </div>
 </script>
 <script  id="selectTempl" type="text/x-jquery-tmpl">
@@ -337,6 +564,10 @@
                 <option>measureOrCalculation</option>
             </select>
         </div>
+        <div class="select_row" style="padding-top: 4px">
+			<span onclick="add_select(this)"><img src="/ke/media/img/01.gif"/></span>
+			<span onclick="remove_select(this)"><img src="/ke/media/img/02.gif"/></span>
+		</div>
     </div>
 </script>
 </head>
@@ -347,26 +578,40 @@
     <div class="container">
     <form>
         <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6 col-md-offset-2">
-            	<span style="font-size: 30px">block</span>
-            	<span onclick="add_block()"><img src="/ke/media/img/01.gif" width="20px" height="20px" /></span>
-        		<span onclick="remove_block()"><img src="/ke/media/img/02.gif" width="20px" height="20px"/></span>
+            <div class="col-md-3">
+
+			</div>
+			<label style="font-size: 22px">请为当前查询命名:</label>
+			<input type="text" class="blockGroupName" required/>
+			<span onclick="add_block()"><img src="/ke/media/img/01.gif" width="20px" height="20px" /></span>
+			<span onclick="remove_block()"><img src="/ke/media/img/02.gif" width="20px" height="20px"/></span>
+            <div class="col-md-6">
+            	<%--<span style="font-size: 30px">block</span>--%>
+            	<%--<span onclick="add_block()"><img src="/ke/media/img/01.gif" width="20px" height="20px" /></span>--%>
+        		<%--<span onclick="remove_block()"><img src="/ke/media/img/02.gif" width="20px" height="20px"/></span>--%>
+
             </div>
-            <div class="col-md-3"></div>
+
         </div>
 
         <div class="row block">
+			<!--block_tmpl -->
          <div class="block_tmpl col-md-12">
-	        <div class="row">
-	                <div class="panel panel-default">
-	                    <div class="panel-body">
-	                        <div class="input-group">
-	                            <div class="row">
-	                                <div class="col-md-12">
-	                                    <span>source</span>
-	                                    <span onclick="add_source()"><img src="/ke/media/img/01.gif"/></span>
-	                                    <span onclick="remove_source()"><img src="/ke/media/img/02.gif"/></span>
+
+			 <div class="row" style="padding: 5px 0 5px 10px;background-color: #eee">
+				 <label>请为查询仪表命名:</label>
+				 <input type="text"  name="monitorName" class="monitorName" required/>
+			 </div>
+
+			 <div class="row">
+				 <div class="panel panel-default">
+					 <div class="panel-body">
+						 <div class="input-group">
+							 <div class="row">
+								 <div class="col-md-12">
+	                                    <span>数据源</span>
+	                                    <%--<span onclick="add_source()"><img src="/ke/media/img/01.gif"/></span>--%>
+	                                    <%--<span onclick="remove_source()"><img src="/ke/media/img/02.gif"/></span>--%>
 	                                </div>
 	                            </div>
 	                            <div class="row source">
@@ -386,16 +631,16 @@
 	                        <div class="input-group">
 	                            <div class="row">
 	                                <div class="col-md-12">
-	                                    <span>calculation</span>
-	                                    <span onclick="add_calculation(this)"><img src="/ke/media/img/01.gif"/></span>
-	                                    <span onclick="remove_calculation(this)"><img src="/ke/media/img/02.gif"/></span>
+	                                    <span>聚集</span>
+	                                    <%--<span onclick="add_aggregation_predicate(this)"><img src="/ke/media/img/01.gif"/></span>--%>
+	                                    <%--<span onclick="remove_aggregation_predicate(this)"><img src="/ke/media/img/02.gif"/></span>--%>
 
 	                                    <div class="panel window_">
 	                                        <div class="panel-heading">
-	                                            <h3 class="panel-title">window</h3>
+	                                            <h3 class="panel-title">时间窗口</h3>
 	                                        </div>
 	                                        <div class="window_row">
-	                                            <select class="selectpicker" data-live-search="true" name="w_type">
+	                                           <span>窗口类型</span> <select class="selectpicker" data-live-search="true" name="w_type">
 													<option>sliding window</option>
 													<option>tumbling window</option>
 													<option>hopping window</option>
@@ -413,35 +658,105 @@
 	                                    </div>
 	                                </div>
 	                            </div>
-	                            <div class="row calculation">
-	                                <div class="calculation_templ">    
-	                                    <div class="col-md-3"> 
-	                                        <input type="text" name="c_name" class="form-control cal_interval" placeholder="name" required>
-	                                    </div>
-	                                    <div class="col-md-3"> 
-	                                        <select class="selectpicker" data-live-search="true" name="c_source">
-	                                            <option>source</option>
-	                                        </select>
-	                                    </div>
-	                                    <div class="col-md-3"> 
-	                                        <select class="selectpicker" data-live-search="true" name="c_measure">
-	                                            <option>measure</option>
-	                                        </select>
-	                                    </div>
-	                                   
-	                                    <div class="col-md-3 calcu_interval">
-	                                        <select class="selectpicker" data-live-search="true" name="c_type">
-												<option>min</option>
-												<option>max</option>
-												<option>average</option>
-												<option>count</option>
-												<option>sum</option>
-												<option>amplitude</option>
-												<option>incrementary ratio</option>
-	                                        </select>
-	                                    </div>
-	                                </div>
-	                            </div>
+								<div class="row aggregation">
+									<div class="col-md-1">
+										聚集项
+										<span onclick="add_aggregation(this)"><img src="/ke/media/img/01.gif"/></span>
+									</div>
+									<%--aggregation_item_outpanel--%>
+									<div class="aggregation_item_outpanel col-md-11">
+										<%--aggregation_item_templ--%>
+										<div class="aggregation_item_templ col-md-11">
+											<div class="row calculation col-md-11" style="border: 1px solid #eee">
+													<%--<div style="float: left;margin-left: 20px;"><h6>聚集项</h6></div>--%>
+													<div class="aggregation_item col-md-11 col-md-offset-1">
+															<div class="aggregation_row col-xs-2">
+																<input type="text" name="a_name" class="form-control cal_interval" placeholder="name" required>
+															</div>
+															<div class="aggregation_row" >
+																<select class="selectpicker"  data-live-search="true" name="a_source" data-width="fit">
+																	<option>source</option>
+																</select>
+															</div>
+															<div class="aggregation_row">
+																<select class="selectpicker"  data-live-search="true" name="a_measure" data-width="auto">
+																	<option>measure</option>
+																</select>
+															</div>
+
+															<div class="aggregation_row">
+																<select class="selectpicker"  data-live-search="true" name="a_type" data-width="100%">
+																	<option>min</option>
+																	<option>max</option>
+																	<option>average</option>
+																	<option>count</option>
+																	<option>sum</option>
+																	<option>amplitude</option>
+																	<option>incrementary ratio</option>
+																</select>
+															</div>
+															<%--<div class="aggregation_row" style="padding-top: 4px;">--%>
+																<%--<span onclick="add_aggregation(this)"><img src="/ke/media/img/01.gif"/></span>--%>
+																<%--<span onclick="remove_aggregation(this)"><img src="/ke/media/img/02.gif"/></span>--%>
+															<%--</div>--%>
+													</div>
+													<!--aggregation_group_panel-->
+													<div class="aggregation_group_panel col-md-12" >
+														<div class="col-md-2 groupfla" style="margin-top: 10px;">组内过滤</div>
+														<div class="aggregation_group col-md-10">
+															<div class="aggregation_group_templ col-md-12">
+																<div class="aggregation_group_filter" >
+																	<select class="selectpicker"  data-live-search="true" name="g_source" data-width="fit">
+																		<option>source</option>
+																	</select>
+																</div>
+																<div class="aggregation_group_filter">
+																	<select class="selectpicker"  data-live-search="true" name="g_measure" data-width="fit">
+																		<option>measure</option>
+																	</select>
+																</div>
+
+																<div class="aggregation_group_filter">
+																	<select class="selectpicker"  data-live-search="true" name="g_op" data-width="100%">
+																		<option>></option>
+																		<option><</option>
+																		<option>>=</option>
+																		<option><=</option>
+																		<option>=</option>
+																	</select>
+																</div>
+
+																<div class="aggregation_group_filter col-xs-3">
+																	<input type="number" min="0" class="form-control" name="g_threshold" placeholder="threshold" aria-describedby="basic-addon1"  required />
+																</div>
+
+																<div class="aggregation_group_filter">
+																	<select class="selectpicker"  data-live-search="true" name="g_boolExp" data-width="100%">
+																		<option>And</option>
+																		<option>Or</option>
+																	</select>
+																</div>
+																<div class="aggregation_group_filter" style="padding-top: 4px;">
+																	<span onclick="add_aggregation_predicate(this)"><img src="/ke/media/img/01.gif"/></span>
+																	<span onclick="remove_aggregation_predicate(this)"><img src="/ke/media/img/02.gif"/></span>
+																</div>
+
+
+															</div>
+														</div>
+
+													</div>
+													<!--aggregation_group_panel-->
+											</div>
+											<div class="col-md-1 delAggregation">
+												<span onclick="remove_aggregation(this)"><img src="/ke/media/img/02.gif"/></span>
+											</div>
+										</div>
+											<%--aggregation_item_templ--%>
+									</div>
+									<%--aggregation_item_outpanel--%>
+
+								</div>
 	                        </div>
 	                    </div>
 	                </div>
@@ -452,26 +767,26 @@
 	                    <div class="input-group">
 	                        <div class="row">
 	                            <div class="col-md-12">
-	                                <span>filter</span>
-	                                <span onclick="add_filter(this)"><img src="/ke/media/img/01.gif"/></span>
-	                                <span onclick="remove_filter(this)"><img src="/ke/media/img/02.gif"/></span>
+	                                <span>过滤</span>
+	                                <%--<span onclick="add_filter(this)"><img src="/ke/media/img/01.gif"/></span>--%>
+	                                <%--<span onclick="remove_filter(this)"><img src="/ke/media/img/02.gif"/></span>--%>
 	                            </div>
 	                        </div>
 	                        <div class="row filter">
 	                            <div class="filter_templ">
 	                                <div class="filter_row"> 
-	                                    <select class="selectpicker"  data-live-search="true" name="f_source">
+	                                    <select class="selectpicker"  data-live-search="true" name="f_source" data-width="auto">
 	                                        <option>source</option>
 	                                    </select>
 	                                </div>
 	                                <div class="filter_row"> 
-	                                    <select class="selectpicker"  data-live-search="true" name="f_measure">
+	                                    <select class="selectpicker"  data-live-search="true" name="f_measure" data-width="auto">
 	                                        <option>measure</option>
 	                                    </select>
 	                                </div>
 	                               
 	                                <div class="filter_row"> 
-	                                    <select class="selectpicker"  data-live-search="true" name="f_op">
+	                                    <select class="selectpicker"  data-live-search="true" name="f_op" data-width="auto">
 											<option>></option>
 											<option><</option>
 											<option>>=</option>
@@ -480,16 +795,20 @@
 	                                    </select>
 	                                </div>
 
-	                                <div class="filter_row"> 
+	                                <div class="filter_row col-xs-2" >
 	                                      <input type="number" min="0" class="form-control" name="f_threshold" placeholder="threshold" aria-describedby="basic-addon1" required />
 	                                </div>
 
 	                                <div class="filter_row"> 
-	                                    <select class="selectpicker"  data-live-search="true" name="f_boolExp">
+	                                    <select class="selectpicker"  data-live-search="true" name="f_boolExp" data-width="auto">
 											<option>And</option>
 											<option>Or</option>
 	                                    </select>
-	                                </div> 
+	                                </div>
+									<div class="filter_row" style="padding-top: 4px;">
+										<span onclick="add_filter(this)"><img src="/ke/media/img/01.gif"/></span>
+										<span onclick="remove_filter(this)"><img src="/ke/media/img/02.gif"/></span>
+									</div>
 	                            </div>
 	                        </div>
 	                    </div>
@@ -503,9 +822,9 @@
 	                    <div class="input-group">
 	                        <div class="row">
 	                            <div class="col-md-12">
-	                                <span>select</span>
-	                                <span onclick="add_select(this)"><img src="/ke/media/img/01.gif"/></span>
-	                                <span onclick="remove_select(this)"><img src="/ke/media/img/02.gif"/></span>
+	                                <span>选择</span>
+	                                <%--<span onclick="add_select(this)"><img src="/ke/media/img/01.gif"/></span>--%>
+	                                <%--<span onclick="remove_select(this)"><img src="/ke/media/img/02.gif"/></span>--%>
 	                            </div>
 	                        </div>
 	                        <div class="row select">
@@ -516,20 +835,26 @@
 	                                    </select>
 	                                </div>
 
-	                                <div class="select_row"> 
+	                                <div class="select_row">
 	                                    <select class="selectpicker"  data-live-search="true" name="s_meaOrCal">
 	                                        <option>measureOrCalculation</option>
 	                                    </select>
 	                                </div>
-	                            </div>
+									<div class="select_row" style="padding-top: 4px">
+										<span onclick="add_select(this)"><img src="/ke/media/img/01.gif"/></span>
+										<span onclick="remove_select(this)"><img src="/ke/media/img/02.gif"/></span>
+									</div>
+								</div>
 	                        </div>
 	                    </div>
 	                </div>
 	            </div>
 	        </div>
-		  </div>
+		 </div>
+			<!--block_tmpl -->
         </div>
         <button type="button" class="btn btn-primary btn-lg block_submit">提交</button>
+		<button type="button" class="btn btn-primary btn-lg block_reset">重置</button>
     </form>
     </div>
 	<div id="loading" class="loading" style="display:none">Loading...</div>

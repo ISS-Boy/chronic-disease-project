@@ -1,21 +1,26 @@
-/**
-  * Copyright 2018 bejson.com 
-  */
 package org.smartloli.kafka.eagle.web.json.pojo;
 import java.util.List;
 
 /**
- * Auto-generated: 2018-03-27 11:1:23
+ * Auto-generated: 2018-04-24 20:24:26
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
-public class Block {
+public class BlockValues {
 
+    private String monitorName;
     private List<Source> source;
-    private Calculation calculation;
+    private Aggregation aggregation;
     private List<Filters> filters;
     private List<Selects> selects;
+    public void setMonitorName(String monitorName) {
+         this.monitorName = monitorName;
+     }
+     public String getMonitorName() {
+         return monitorName;
+     }
+
     public void setSource(List<Source> source) {
          this.source = source;
      }
@@ -23,11 +28,11 @@ public class Block {
          return source;
      }
 
-    public void setCalculation(Calculation calculation) {
-         this.calculation = calculation;
+    public void setAggregation(Aggregation aggregation) {
+         this.aggregation = aggregation;
      }
-     public Calculation getCalculation() {
-         return calculation;
+     public Aggregation getAggregation() {
+         return aggregation;
      }
 
     public void setFilters(List<Filters> filters) {
@@ -46,9 +51,10 @@ public class Block {
 
     @Override
     public String toString() {
-        return "Block{" +
-                "source=" + source +
-                ", calculation=" + calculation +
+        return "BlockValues{" +
+                "monitorName='" + monitorName + '\'' +
+                ", source=" + source +
+                ", aggregation=" + aggregation +
                 ", filters=" + filters +
                 ", selects=" + selects +
                 '}';

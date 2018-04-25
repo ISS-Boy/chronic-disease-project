@@ -1,10 +1,7 @@
-/**
-  * Copyright 2018 bejson.com 
-  */
 package org.smartloli.kafka.eagle.web.json.pojo;
 
 /**
- * Auto-generated: 2018-03-27 11:1:23
+ * Auto-generated: 2018-04-24 20:24:26
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/

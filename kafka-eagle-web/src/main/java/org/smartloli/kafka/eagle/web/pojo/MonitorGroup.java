@@ -8,6 +8,7 @@ import java.util.Date;
 public class MonitorGroup {
 
     private String monitorGroupId;
+    private String name;
     private Date createTime;
     private String creator;
     private String state;
@@ -19,12 +20,21 @@ public class MonitorGroup {
     public String toString() {
         return "MonitorGroup{" +
                 "monitorGroupId='" + monitorGroupId + '\'' +
+                ", name='" + name + '\'' +
                 ", createTime=" + createTime +
                 ", creator='" + creator + '\'' +
                 ", state='" + state + '\'' +
                 ", imageId='" + imageId + '\'' +
                 ", serviceId='" + serviceId + '\'' +
                 '}';
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getMonitorGroupId() {
@@ -80,6 +90,16 @@ public class MonitorGroup {
 
     public MonitorGroup(String monitorGroupId, Date createTime, String creator, String state, String imageId, String serviceId) {
         this.monitorGroupId = monitorGroupId;
+        this.createTime = createTime;
+        this.creator = creator;
+        this.state = state;
+        this.imageId = imageId;
+        this.serviceId = serviceId;
+    }
+
+    public MonitorGroup(String monitorGroupId, String name, Date createTime, String creator, String state, String imageId, String serviceId) {
+        this.monitorGroupId = monitorGroupId;
+        this.name = name;
         this.createTime = createTime;
         this.creator = creator;
         this.state = state;

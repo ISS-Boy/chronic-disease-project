@@ -14,8 +14,8 @@ import java.util.List;
 public class Test {
     public static void main(String[] args) {
 //        System.out.println(Test.class.getResource("/"));
-//        System.out.println(createDashboard("12", new ArrayList<>(), null, null));
-        String url = GrafanaConfigUtil.getPropertyByKey("grafana.url");
+        System.out.println(createDashboard("12", new ArrayList<>(), null, null));
+        String url = GrafanaConfigUtil.getPropertyByKey("grafana.urlForCreate");
         System.out.println(url);
     }
 
@@ -99,6 +99,6 @@ public class Test {
 //        dashboard.setTo(Optional.of(to).orElse(new Date()).toString());
         System.out.println(panels.toString());
         HandleDashboard handledashboard = new HandleDashboard();
-        return handledashboard.createdashboard(dashboard);
+        return handledashboard.createdashboard(dashboard) == 200;
     }
 }

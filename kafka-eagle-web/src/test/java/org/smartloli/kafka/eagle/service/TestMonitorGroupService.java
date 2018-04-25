@@ -46,14 +46,14 @@ public class TestMonitorGroupService {
 
     @Test
     public void addMonitorGroupTest() {
-        MonitorGroup monitorGroup = new MonitorGroup("9999", new Date(), "dujijun", "uncreated", "image", "org.smartloli.kafka.eagle.grafana.service");
+        MonitorGroup monitorGroup = new MonitorGroup("9998", "test" ,new Date(),"dujijun", "uncreated", "image", "org.smartloli.kafka.eagle.grafana.service");
         int n = monitorGroupService.addMonitorGroup(monitorGroup);
         System.out.println(n);
     }
 
     @Test
     public void deleteMonitorGroupTest() {
-        int n = monitorGroupService.deleteMonitorGroupById("100");
+        int n = monitorGroupService.deleteMonitorGroupById("9998");
         System.out.println(n);
     }
 

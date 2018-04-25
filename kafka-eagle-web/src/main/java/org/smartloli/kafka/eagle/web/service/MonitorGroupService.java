@@ -1,6 +1,6 @@
 package org.smartloli.kafka.eagle.web.service;
 
-import org.smartloli.kafka.eagle.web.json.pojo.Block;
+import org.smartloli.kafka.eagle.web.json.pojo.BlockGroup;
 import org.smartloli.kafka.eagle.web.pojo.Monitor;
 import org.smartloli.kafka.eagle.web.pojo.MonitorGroup;
 import org.smartloli.kafka.eagle.web.utils.ValidateResult;
@@ -27,7 +27,7 @@ public interface MonitorGroupService {
 
     int deleteMonitorGroupById(String MonitorGroupId);
 
-    ValidateResult createImage(String creator, List<Block> blocksEntity) throws IOException;
+    ValidateResult createImage(String creator, BlockGroup blockGroup) throws IOException;
 
     ValidateResult runService(String monitorGroupId);
 

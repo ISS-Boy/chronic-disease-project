@@ -1,10 +1,13 @@
 package org.smartloli.kafka.eagle.web.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.sun.mail.iap.ConnectionException;
 import org.apache.log4j.Logger;
 import org.smartloli.kafka.eagle.web.dao.MonitorGroupDao;
-import org.smartloli.kafka.eagle.web.json.pojo.Block;
-import org.smartloli.kafka.eagle.web.json.pojo.Source;
+import org.smartloli.kafka.eagle.web.exception.entity.NormalException;
+import org.smartloli.kafka.eagle.web.grafana.service.GrafanaDashboardService;
+import org.smartloli.kafka.eagle.web.json.pojo.BlockGroup;
+import org.smartloli.kafka.eagle.web.json.pojo.BlockValues;
 import org.smartloli.kafka.eagle.web.pojo.Monitor;
 import org.smartloli.kafka.eagle.web.pojo.MonitorGroup;
 import org.smartloli.kafka.eagle.web.rest.docker.DockerRestService;
@@ -41,6 +44,9 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
 
     @Autowired
     private DockerRestService dockerRestService;
+
+    @Autowired
+    private GrafanaDashboardService grafanaDashboardService;
 
     @Override
     public List<MonitorGroup> getAllMonitorGroups() {
@@ -90,19 +96,28 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
     }
 
     @Override
-    @Transactional(rollbackFor = RuntimeException.class)
-    public ValidateResult createImage(String creator, List<Block> blocksEntity) throws IOException {
+    @Transactional(rollbackFor = Exception.class)
+    public ValidateResult createImage(String creator, BlockGroup blockGroup) throws IOException {
 
         logger.info("==========开始创建镜像===========");
 
+        List<BlockValues> blocksEntity = blockGroup.getBlockValues();
+
         // 封装monitorGroup
         String monitorGroupId = creator + "-" + System.currentTimeMillis();
+        String monitorGroupName = blockGroup.getBlockGroupName();
         Date createTime = Date.from(Instant.now());
         String state = "uncreated";
         String imageId = monitorGroupId + "-image";
         String serviceId = monitorGroupId + "-service";
 
-        MonitorGroup monitorGroup = new MonitorGroup(monitorGroupId, createTime, creator, state, imageId, serviceId);
+        MonitorGroup monitorGroup = new MonitorGroup(monitorGroupId,
+                                                    monitorGroupName,
+                                                    createTime,
+                                                    creator,
+                                                    state,
+                                                    imageId,
+                                                    serviceId);
 
         // 封装monitor
         List<Monitor> monitors = new ArrayList<>();
@@ -122,17 +137,13 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
 
         for (int i = 0; i < blocksEntity.size(); i++) {
             // 这里需要重新规划一下
-            String metricName = blocksEntity.get(i)
-                    .getSource()
-                    .stream()
-                    .map(Source::getSourceName)
-                    .reduce((x, y) -> x + "," + y).orElse("");
+            BlockValues block = blocksEntity.get(i);
 
             Monitor monitor = new Monitor(monitorIdList.get(i),
-                    monitorGroupId,
-                    blocksEntity.get(i).toString(),
-                    metricName,
-                    jars.getJar().get(i));
+                                        block.getMonitorName(),
+                                        monitorGroupId,
+                                        JSON.toJSON(block).toString(),
+                                        jars.getJar().get(i));
 
             monitors.add(monitor);
         }
@@ -181,7 +192,7 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public ValidateResult deleteMonitorGroup(String monitorGroupId) {
         MonitorGroup monitorGroup = getMonitorGroupById(monitorGroupId);
         // 由于设定外键级联删除，所以这里不需要手动删除monitor
@@ -200,9 +211,14 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
     }
 
     @Override
-    @Transactional(rollbackFor = ConnectionException.class)
-    public ValidateResult stopMonitorGroupService(String monitorGroupId) throws ConnectionException{
+    @Transactional(rollbackFor = Exception.class)
+    public ValidateResult stopMonitorGroupService(String monitorGroupId) throws ConnectionException {
         MonitorGroup monitorGroup = getMonitorGroupById(monitorGroupId);
+
+        ValidateResult success = new ValidateResult(ValidateResult.ResultCode.SUCCESS, "服务停止成功");
+        // 如果状态没有开启，则直接回复校验成功结果
+        if(!"started".equals(monitorGroup.getState()))
+            return success;
 
         int n = monitorGroupDao.updateMonitorGroup("stopped", monitorGroupId);
         if(n != 1)
@@ -212,14 +228,18 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
         String res = dockerRestService.stopMonitorServiceOnDocker(monitorGroup.getServiceId());
         Map<String, String> resMes = DockerRestResolver.resolveResult(res);
         if("200".equals(resMes.get("root.code")))
-            return new ValidateResult(ValidateResult.ResultCode.SUCCESS, "服务停止成功");
+            return success;
         else
             return new ValidateResult(ValidateResult.ResultCode.FAILURE, "服务停止失败");
     }
 
     @Override
     public ValidateResult showMonitorDashBoard(String monitorGroupId) {
+        // 判断如果服务没有开启，则抛出异常
+        MonitorGroup monitorGroup = getMonitorGroupById(monitorGroupId);
+        if(!"started".equals(monitorGroup.getState()))
+            throw new NormalException("服务未开启，请先开启服务");
 
-        return null;
+        return grafanaDashboardService.checkAndCreateDashboard(monitorGroupId);
     }
 }

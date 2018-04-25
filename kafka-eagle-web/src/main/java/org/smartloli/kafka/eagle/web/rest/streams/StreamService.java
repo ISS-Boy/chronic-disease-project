@@ -2,6 +2,7 @@ package org.smartloli.kafka.eagle.web.rest.streams;
 
 import org.smartloli.kafka.eagle.web.exception.entity.NormalException;
 import org.smartloli.kafka.eagle.web.rest.pojo.JarEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,12 +17,15 @@ import java.util.List;
 @Service
 public class StreamService {
 
+    private static final String DEFAULT_URL = "http://192.168.0.140:8080/monitor/blocks";
+
     public JarEntity getJarFromStreamingPeer(String monitorGroupId,
                                              String imageId,
                                              int size) throws IOException {
-        RestTemplate restTemplate = new RestTemplate();
+
         // 从请求当中获取nfs的path, 然后从nfs path中读取文件
-        String path = "/Users/dujijun/Documents/tmp/nfsTest/nfs/KSTREAM_TEST";
+//        String path = "/Users/dujijun/Documents/tmp/nfsTest/nfs/" + getUrlAndRunKStream(monitorGroupId);
+        String path = "/Users/dujijun/Documents/tmp/nfsTest/nfs/KSTREAM_TEST2";
 
         List<byte[]> jarBytes = new ArrayList<>();
         File dir = new File(path);
@@ -36,6 +40,12 @@ public class StreamService {
             jarBytes.add(jar);
         }
         return new JarEntity(jarBytes, path);
+    }
+
+    public String getUrlAndRunKStream(String monitorGroupId){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.postForEntity(DEFAULT_URL, monitorGroupId, String.class);
+        return response.getBody();
     }
 
 }

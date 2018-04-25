@@ -14,10 +14,17 @@ public class ValidateResult {
 
     private ResultCode resultCode;
     private String mes;
+    private Object attach;
 
     public ValidateResult(ResultCode resultCode, String mes) {
         this.resultCode = resultCode;
         this.mes = mes;
+    }
+
+    public ValidateResult(ResultCode resultCode, String mes, Object attach) {
+        this.resultCode = resultCode;
+        this.mes = mes;
+        this.attach = attach;
     }
 
     public ResultCode getResultCode() {
@@ -36,8 +43,16 @@ public class ValidateResult {
         this.mes = mes;
     }
 
+    public Object getAttach() {
+        return attach;
+    }
+
+    public void setAttach(Object attach) {
+        this.attach = attach;
+    }
+
     @Override
     public String toString() {
-        return resultCode.mes + ": " + mes;
+        return resultCode.mes + ": " + mes + (attach == null ? "" : attach.toString());
     }
 }

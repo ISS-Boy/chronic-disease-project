@@ -113,29 +113,28 @@ public class HandleDashboard {
     }
 
     //创建dashboard
-    public boolean createdashboard(Dashboard dashboard) {
+    public int createdashboard(Dashboard dashboard) {
         List<PARMOfPanel> parmOfPanels = dashboard.getPanels();
 
         String result = makeDashboard(dashboard, parmOfPanels);
         try {
             String path = "classpath:template/json.json";
             FileUtils.writeToFile(path, result);
-            int num = DashboardAPI.createdashboard(GrafanaConfigUtil.getPropertyByKey("grafana.url"), path);
+            int num = DashboardAPI.createdashboard(GrafanaConfigUtil.getPropertyByKey("grafana.urlForCreate"), path);
             System.out.println(num);
-            if (num == 200)
-                return true;
+            return num;
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return false;
+        return -1;
 
     }
 
     //获取url
-    public String getdashboardurl(Dashboard dashboard, int panelId) {
+    public String getDashboardUrl(Dashboard dashboard, int panelId) {
         String dashboardurl = null;
-        dashboardurl = GrafanaConfigUtil.getPropertyByKey("grafana.url")
+        dashboardurl = GrafanaConfigUtil.getPropertyByKey("grafana.urlForGetDashboard")
                 + dashboard.getDashboardName() + "?orgId=1&panelId=" + panelId + "&from=" + dashboard.getFrom() + "&to=" + dashboard.getTo() + "";
         return dashboardurl;
 
@@ -144,7 +143,7 @@ public class HandleDashboard {
     //删除dashboard
     public boolean deletedashboard(Dashboard dashboard) {
         try {
-            int num = DashboardAPI.deletedashboard(GrafanaConfigUtil.getPropertyByKey("grafana.url") + dashboard.getDashboardName() + "");
+            int num = DashboardAPI.deletedashboard(GrafanaConfigUtil.getPropertyByKey("grafana.urlForCreate") + dashboard.getDashboardName() + "");
             if (num == 200)
                 return true;
         } catch (IOException e) {
