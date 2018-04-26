@@ -30,7 +30,8 @@ public class KafkaFactory implements KafkaProvider {
 
 	@Override
 	public KafkaService create() {
-		return new KafkaServiceImpl();
+//		return new KafkaServiceImpl();
+		return new EmptyKafkaServiceImpl();
 	}
 
 }

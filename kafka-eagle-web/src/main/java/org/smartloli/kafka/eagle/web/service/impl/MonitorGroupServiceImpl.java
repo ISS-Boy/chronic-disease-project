@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.sun.mail.iap.ConnectionException;
 import org.apache.log4j.Logger;
 import org.smartloli.kafka.eagle.web.dao.MonitorGroupDao;
+import org.smartloli.kafka.eagle.web.exception.entity.NormalException;
 import org.smartloli.kafka.eagle.web.grafana.service.GrafanaDashboardService;
 import org.smartloli.kafka.eagle.web.json.pojo.BlockGroup;
 import org.smartloli.kafka.eagle.web.json.pojo.BlockValues;
@@ -158,7 +159,7 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
 
         // 如果调用失败
         if (!"200".equals(resMes.get("root.code")))
-            return new ValidateResult(ValidateResult.ResultCode.FAILURE, resMes.get("root.msg"));
+            throw new NormalException(resMes.get("root.msg"));
 
         // 如果调用成功
         int res = updateMonitorGroupState("stopped", monitorGroupId);
@@ -197,7 +198,7 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
         // 由于设定外键级联删除，所以这里不需要手动删除monitor
         int n = deleteMonitorGroupById(monitorGroupId);
         if(n != 1)
-            return new ValidateResult(ValidateResult.ResultCode.FAILURE, "数据删除失败");
+            throw new NormalException("数据删除失败");
         logger.info("========数据删除完成========");
 
         String res = dockerRestService.deleteMonitorImage(monitorGroup.getImageId());
@@ -206,7 +207,7 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
         if("200".equals(resMes.get("root.code")))
             return new ValidateResult(ValidateResult.ResultCode.SUCCESS, "镜像删除成功");
         else
-            return new ValidateResult(ValidateResult.ResultCode.FAILURE, "镜像删除失败");
+            throw new NormalException("镜像删除失败");
     }
 
     @Override

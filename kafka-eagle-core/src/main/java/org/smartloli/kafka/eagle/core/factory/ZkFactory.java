@@ -30,7 +30,8 @@ public class ZkFactory implements ZkProvider {
 
 	@Override
 	public ZkService create() {
-		return new ZkServiceImpl();
+//		return new ZkServiceImpl();
+		return new EmptyZKServiceImpl();
 	}
 
 }

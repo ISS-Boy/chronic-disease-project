@@ -42,13 +42,22 @@ public class StartupListener implements ApplicationContextAware {
 
 	private static ApplicationContext applicationContext;
 
+	/**
+	 * 我tm也是醉了～这样写的，让人怎么找啊
+	 * 在某些特殊的情况下，Bean需要实现某个功能，但该功能必须借助于Spring
+	 * 容器才能实现，此时就必须让该Bean先获取Spring容器，然后借助于Spring
+	 * 容器实现该功能。为了让Bean获取它所在的Spring容器，可以让该Bean实现
+	 * ApplicationContextAware接口。
+	 * @param arg0
+	 * @throws BeansException
+	 */
 	@Override
 	public void setApplicationContext(ApplicationContext arg0) throws BeansException {
-		ContextSchema context = new ContextSchema();
-		context.start();
-
-		RunTask task = new RunTask();
-		task.start();
+//		ContextSchema context = new ContextSchema();
+//		context.start();
+//
+//		RunTask task = new RunTask();
+//		task.start();
 	}
 
 	public static Object getBean(String beanName) {

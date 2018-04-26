@@ -1,8 +1,8 @@
-/Users/dujijun/Documents/大数据相关/慢性病大数据项目/chronic-disease1-master-29/kafka-eagle-api/src/main/java/org/smartloli/kafka/eagle/api/email/MailFactory.java
-/Users/dujijun/Documents/大数据相关/慢性病大数据项目/chronic-disease1-master-29/kafka-eagle-api/src/main/java/org/smartloli/kafka/eagle/api/email/MailServiceImpl.java
-/Users/dujijun/Documents/大数据相关/慢性病大数据项目/chronic-disease1-master-29/kafka-eagle-api/src/main/java/org/smartloli/kafka/eagle/api/sms/SmsServiceImpl.java
-/Users/dujijun/Documents/大数据相关/慢性病大数据项目/chronic-disease1-master-29/kafka-eagle-api/src/main/java/org/smartloli/kafka/eagle/api/sms/SmsService.java
-/Users/dujijun/Documents/大数据相关/慢性病大数据项目/chronic-disease1-master-29/kafka-eagle-api/src/main/java/org/smartloli/kafka/eagle/api/email/MailService.java
-/Users/dujijun/Documents/大数据相关/慢性病大数据项目/chronic-disease1-master-29/kafka-eagle-api/src/main/java/org/smartloli/kafka/eagle/api/email/MailProvider.java
-/Users/dujijun/Documents/大数据相关/慢性病大数据项目/chronic-disease1-master-29/kafka-eagle-api/src/main/java/org/smartloli/kafka/eagle/api/sms/SmsFactory.java
-/Users/dujijun/Documents/大数据相关/慢性病大数据项目/chronic-disease1-master-29/kafka-eagle-api/src/main/java/org/smartloli/kafka/eagle/api/sms/SmsProvider.java
+/Users/dujijun/Documents/大数据相关/chronic-disease-github/chronic-disease-project/kafka-eagle-api/src/main/java/org/smartloli/kafka/eagle/api/sms/SmsService.java
+/Users/dujijun/Documents/大数据相关/chronic-disease-github/chronic-disease-project/kafka-eagle-api/src/main/java/org/smartloli/kafka/eagle/api/sms/SmsProvider.java
+/Users/dujijun/Documents/大数据相关/chronic-disease-github/chronic-disease-project/kafka-eagle-api/src/main/java/org/smartloli/kafka/eagle/api/email/MailFactory.java
+/Users/dujijun/Documents/大数据相关/chronic-disease-github/chronic-disease-project/kafka-eagle-api/src/main/java/org/smartloli/kafka/eagle/api/sms/SmsFactory.java
+/Users/dujijun/Documents/大数据相关/chronic-disease-github/chronic-disease-project/kafka-eagle-api/src/main/java/org/smartloli/kafka/eagle/api/sms/SmsServiceImpl.java
+/Users/dujijun/Documents/大数据相关/chronic-disease-github/chronic-disease-project/kafka-eagle-api/src/main/java/org/smartloli/kafka/eagle/api/email/MailService.java
+/Users/dujijun/Documents/大数据相关/chronic-disease-github/chronic-disease-project/kafka-eagle-api/src/main/java/org/smartloli/kafka/eagle/api/email/MailServiceImpl.java
+/Users/dujijun/Documents/大数据相关/chronic-disease-github/chronic-disease-project/kafka-eagle-api/src/main/java/org/smartloli/kafka/eagle/api/email/MailProvider.java

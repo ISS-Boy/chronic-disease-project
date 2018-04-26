@@ -49,7 +49,7 @@
                     <div class="panel-body">
                         <c:forEach items="${urls}" varStatus="i" var="url">
                             <div>
-                                <iframe src="${url}" width="650" height="400" frameborder="0"/>
+                                <iframe src="${url}" width="1000" height="400" frameborder="0"/>
                             </div>
                         </c:forEach>
                     </div>
