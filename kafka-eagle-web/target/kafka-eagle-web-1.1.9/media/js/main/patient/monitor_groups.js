@@ -3,16 +3,17 @@ $(document).ready(function() {
         "ajax": "/ke/monitor/monitorGroupList",
         "columns": [
             { "data": "monitorGroupId" },
+            { "data": "name" },
             { "data": "createTime", "render": function (data) {
                 return new Date(data)
             }},
             { "data": "creator" },
             { "data": "state" },
             { "data": "imageId" },
-            { "data": "serviceId" },
+            { "data": "serviceId" }
         ],
         "columnDefs":[{
-            "targets":[6],
+            "targets":[7],
             "data": "monitorGroupId",
             "render":function (data,type,row,meta){
                 console.log(data);

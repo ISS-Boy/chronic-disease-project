@@ -138,6 +138,7 @@
           <element id="archive" name="kafka-eagle-grafana-1.1.9.jar">
             <element id="module-output" name="kafka-eagle-grafana" />
           </element>
+          <element id="library" level="project" name="Maven: com.belerweb:pinyin4j:2.5.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">

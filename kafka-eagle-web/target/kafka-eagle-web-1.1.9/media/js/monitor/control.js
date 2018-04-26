@@ -1,9 +1,16 @@
-/// 规定全局字典数据
+// 规定全局字典数据
+// var metadata = {
+//     'blood-pressure': new Set(['systolic_blood_pressure', 'diastolic_blood_pressure']),
+//     'body-fat-percentage': new Set(['body_fat_percentage']),
+//     'heart-rate': new Set(['heart_rate']),
+//     'body-temperature': new Set(['body_temperature'])
+// }
+
 var metadata = {
-    'blood-pressure': new Set(['systolic_blood_pressure', 'diastolic_blood_pressure']),
-    'body-fat-percentage': new Set(['body_fat_percentage']),
-    'heart-rate': new Set(['heart_rate']),
-    'body-temperature': new Set(['body_temperature'])
+    '血压': new Set(['收缩压.', '舒张压.']),
+    '体脂': new Set(['体脂.']),
+    '心率': new Set(['心率.']),
+    '体温': new Set(['体温.'])
 }
 
 var localizeDictionary = {
@@ -15,7 +22,19 @@ var localizeDictionary = {
     '心率': 'heart-rate',
     '心率.': 'heart_rate',
     '体温': 'body-temperature',
-    '体温.': 'body_temperature'
+    '体温.': 'body_temperature',
+    '滑动窗口': 'sliding-window',
+    '滚动窗口': 'tumbling-window',
+    '跳跃窗口': 'hopping-window',
+    '最小值': 'min',
+    '最大值': 'max',
+    '平均值': 'average',
+    '计数': 'count',
+    '求和': 'sum',
+    '增幅': 'amplitude',
+    '增比': 'growth radio',
+    '且': 'and',
+    '或': 'or'
 }
 
 // 初始化被选中的source

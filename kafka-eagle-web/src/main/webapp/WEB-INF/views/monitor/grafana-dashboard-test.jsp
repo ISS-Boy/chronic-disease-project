@@ -61,7 +61,6 @@
 
     </div>
 </div>
-<%--<jsp:param value="main/patient/monitor_maintain.js" name="loader" />--%>
 </body>
 <jsp:include page="../public/script.jsp">
     <jsp:param value="main/patient/monitor_groups.js" name="loader" />

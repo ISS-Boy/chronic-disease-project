@@ -1,12 +1,12 @@
 {
   "dashboard": {
     "id": null,
-    "rows": [{"collapse":false,"height":"250px","panels":[{"aliasColors":{},"bars":true,"dashLength":10,"dashes":false,"datasource":"openTSDB","fill":1,"id":0,"legend":{"avg":false,"current":false,"max":false,"min":false,"show":true,"total":false,"values":false},"lines":false,"linewidth":1,"nullPointMode":null,"percentage":false,"pointradius":5,"points":false,"renderer":"flot","seriesOverrides":[],"spaceLength":10,"span":6,"stack":false,"steppedLine":false,"targets":[{"aggregator":"first","alias":"monitor","currentTagKey":"item","currentTagValue":"heart_rate","disableDownsampling":false,"downsampleAggregator":"avg","downsampleFillPolicy":"none","downsampleInterval":null,"metric":"monitor","refId":"A"}],"thresholds":[],"timeFrom":null,"timeShift":null,"title":"administrator-1524473638167-0","tooltip":{"shared":true,"sort":0,"value_type":"individual"},"type":"graph","xaxis":{"buckets":null,"mode":"time","name":null,"show":true,"values":[]},"yaxes":[{"format":"short","label":null,"logBase":1,"max":null,"min":null,"show":true},{"format":"short","label":null,"logBase":1,"max":null,"min":null,"show":true}]}],"repeat":null,"repeatIteration":null,"repeatRowId":null,"showTitle":false,"title":"Dashboard Row","titleSize":"h6"}],
+    "rows": [{"collapse":false,"height":"250px","panels":[{"aliasColors":{},"bars":true,"dashLength":10,"dashes":false,"datasource":"openTSDB","fill":1,"id":0,"legend":{"avg":false,"current":false,"max":false,"min":false,"show":true,"total":false,"values":false},"lines":false,"linewidth":1,"nullPointMode":null,"percentage":false,"pointradius":5,"points":false,"renderer":"flot","seriesOverrides":[],"spaceLength":10,"span":6,"stack":false,"steppedLine":false,"targets":[{"aggregator":"first","alias":"monitor","currentTagKey":"monitor-id","currentTagValue":"monitor-001","disableDownsampling":false,"downsampleAggregator":"avg","downsampleFillPolicy":"none","downsampleInterval":null,"metric":"monitor","refId":"A"}],"thresholds":[],"timeFrom":null,"timeShift":null,"title":"从 v 的人","tooltip":{"shared":true,"sort":0,"value_type":"individual"},"type":"graph","xaxis":{"buckets":null,"mode":"time","name":null,"show":true,"values":[]},"yaxes":[{"format":"short","label":null,"logBase":1,"max":null,"min":null,"show":true},{"format":"short","label":null,"logBase":1,"max":null,"min":null,"show":true}]}],"repeat":null,"repeatIteration":null,"repeatRowId":null,"showTitle":false,"title":"Dashboard Row","titleSize":"h6"}],
     "schemaVersion": 6,
     "tags": ["templated"],
     "time": {"from":"1484373600000","to":"1484438400000"},
     "timezone": "browser",
-    "title": "administrator-1524473638167",
+    "title": "administrator-1524716121073",
     "version": 0
   },
   "overwrite": true

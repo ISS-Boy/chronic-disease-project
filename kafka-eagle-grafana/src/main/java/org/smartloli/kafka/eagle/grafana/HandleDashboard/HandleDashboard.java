@@ -3,6 +3,7 @@ package org.smartloli.kafka.eagle.grafana.HandleDashboard;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import net.sourceforge.pinyin4j.PinyinHelper;
 import org.smartloli.kafka.eagle.grafana.D3GaugePanels.SetD3Panels;
 import org.smartloli.kafka.eagle.grafana.DashboardAPI.DashboardAPI;
 import org.smartloli.kafka.eagle.grafana.GraphPanels.SetGraPanels;
@@ -133,11 +134,14 @@ public class HandleDashboard {
 
     //获取url
     public String getDashboardUrl(Dashboard dashboard, int panelId) {
-        String dashboardurl = null;
-        dashboardurl = GrafanaConfigUtil.getPropertyByKey("grafana.urlForGetDashboard")
-                + dashboard.getDashboardName() + "?orgId=1&panelId=" + panelId + "&from=" + dashboard.getFrom() + "&to=" + dashboard.getTo() + "";
-        return dashboardurl;
+        String dashboardurl;
+        String dashboardName = chineseToPinyin(dashboard.getDashboardName());
 
+        dashboardurl = GrafanaConfigUtil.getPropertyByKey("grafana.urlForGetDashboard") +
+                dashboardName + "?orgId=1&panelId=" + panelId +
+                "&from=" + dashboard.getFrom() + "&to=" +
+                dashboard.getTo();
+        return dashboardurl;
     }
 
     //删除dashboard
@@ -151,6 +155,26 @@ public class HandleDashboard {
             e.printStackTrace();
         }
         return false;
+    }
 
+    private String chineseToPinyin(String source){
+        char[] cs = source.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        boolean hanyu = false;
+        for(char c: cs){
+            if(c <= 128) {
+                sb.append(c);
+                hanyu = false;
+            }else{
+                String[] pinyins = PinyinHelper.toHanyuPinyinStringArray(c);
+                String pinyin = pinyins[0].substring(0, pinyins[0].length() - 1);
+                System.out.println(pinyin);
+                if(hanyu)
+                    sb.append('-');
+                sb.append(pinyin);
+                hanyu = true;
+            }
+        }
+        return sb.toString();
     }
 }

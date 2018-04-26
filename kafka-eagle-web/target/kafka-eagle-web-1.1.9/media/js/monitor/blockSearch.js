@@ -32,8 +32,7 @@
 
         var aggregations = pBlock.find($('.aggregation_item_outpanel')).children();
 
-        if(aggregations.length > 1)
-            $(span).parents('.aggregation_item_templ').remove();
+        $(span).parents('.aggregation_item_templ').remove();
 
         // 手动触发事件更新内容
         var selectSources = pBlock.find($('.select select[name="s_source"]'))
@@ -52,7 +51,7 @@
         var this_block = $(span).parents('.block_tmpl')
         if(!checkTopicEmpty(this_block))
             return
-        var aggregation_group = $(span).parents('.aggregation_group');
+        var aggregation_group = $(span).parents('.aggregation_group_panel').find('.aggregation_group');
         $('#calculationTmpl').tmpl().appendTo(aggregation_group);
         $('.selectpicker').selectpicker({
         'selectedText': 'cat'  
@@ -63,10 +62,9 @@
     }
 
     function remove_aggregation_predicate(span) {
-         var aggregations = $(span).parents('.block_tmpl').find($('.aggregation_group')).children();
-        // calculation.children().last().remove()
-        if (aggregations.length>1)
-            $(span).parents('.aggregation_group_templ').remove();
+        //  var aggregations = $(span).parents('.block_tmpl').find($('.aggregation_group')).children();
+        // if (aggregations.length>1)
+        $(span).parents('.aggregation_group_templ').remove();
     }
 
     function add_filter(span) {
@@ -116,15 +114,17 @@
 
             var blockGroupName = $('.blockGroupName').val();
             var monitorName = $('.monitorName').val();
-            var  w_interval = $('.block_tmpl').find($('.window_row')).children("input[name='w_interval']").val();
+            var w_interval = $('.block_tmpl').find($('.window_row')).children("input[name='w_interval']").val();
             var w_length = $('.block_tmpl').find($('.window_row')).children("input[name='w_length']").val()
             var f_threshlod = $('.filter_templ').children().children("input[name='f_threshold']").val();
             var g_threshold = $('.aggregation_group_templ').children().children("input[name='g_threshold']").val();
             if(blockGroupName.length==0||monitorName.length==0){
                 alert("命名不能为空！");
-            }
-            else if(w_interval.length==0||w_length.length==0||f_threshlod.length==0||g_threshold.length==0){
-                alert("数字输入不能为空！");
+                return false
+            // }
+            // else if(w_interval.length==0||w_length.length==0||f_threshlod.length==0||g_threshold.length==0){
+            //     alert("数字输入不能为空！");
+            //     return false
             }else {
             // 遍历每个block块
                 var blockGroups = {};
@@ -156,7 +156,7 @@
                     // 获取source键值对
                     sourceList.each(function () {
                         var source= {
-                            sourceName: $(this).text()
+                            sourceName: localizeDictionary[$(this).text()]
                         }
                         sourceJson.push(source)
                     })
@@ -166,7 +166,7 @@
                     // 获取window键值对
                     var aggregation = {}
                     var aggregationWindow = {
-                        windowType: this_block.find($('.window_row')).children().children("select").val(),
+                        windowType: localizeDictionary[this_block.find($('.window_row')).children().children("select").val()],
                         windowInterval: this_block.find($('.window_row')).children("input[name='w_interval']").val(),
                         windowLength: this_block.find($('.window_row')).children("input[name='w_length']").val()
                     }
@@ -181,20 +181,20 @@
                         var predicates = $(this).find($('.aggregation_group_templ'))
                         predicates.each(function () {
                             var predicate = {
-                                source: $(this).find("select[name='g_source']").val(),
-                                measure: $(this).find("select[name='g_measure']").val(),
+                                source: localizeDictionary[$(this).find("select[name='g_source']").val()],
+                                measure: localizeDictionary[$(this).find("select[name='g_measure']").val()],
                                 op: $(this).find("select[name='g_op']").val(),
                                 threshold: $(this).find("input[name='g_threshold']").val(),
-                                boolExp: $(this).find("select[name='g_boolExp']").val()
+                                boolExp: localizeDictionary[$(this).find("select[name='g_boolExp']").val()]
                             }
                             predicatesArray.push(predicate)
                         })
 
                         var aggr = {
-                            name:$(this).find("input[name='a_name']").val(),
-                            source:$(this).find("select[name='a_source']").val(),
-                            measure:$(this).find("select[name='a_measure']").val(),
-                            type:$(this).find("select[name='a_type']").val(),
+                            name: $(this).find("input[name='a_name']").val(),
+                            source: localizeDictionary[$(this).find("select[name='a_source']").val()],
+                            measure: localizeDictionary[$(this).find("select[name='a_measure']").val()],
+                            type: localizeDictionary[$(this).find("select[name='a_type']").val()],
                             predicates: predicatesArray
                         }
                         aggregationValues.push(aggr)
@@ -208,11 +208,11 @@
                     var filterList = this_block.find($('.filter_templ'))
                     filterList.each(function(){
                         var filter = {
-                            f_source:$(this).children().children().children("select[name='f_source']").val(),
-                            f_measure:$(this).children().children().children("select[name='f_measure']").val(),
-                            f_op:$(this).children().children().children("select[name='f_op']").val(),
-                            f_threshold:$(this).children().children("input[name='f_threshold']").val(),
-                            f_boolExp:$(this).children().children().children("select[name='f_boolExp']").val()
+                            f_source: localizeDictionary[$(this).children().children().children("select[name='f_source']").val()],
+                            f_measure: localizeDictionary[$(this).children().children().children("select[name='f_measure']").val()],
+                            f_op: $(this).children().children().children("select[name='f_op']").val(),
+                            f_threshold: $(this).children().children("input[name='f_threshold']").val(),
+                            f_boolExp: localizeDictionary[$(this).children().children().children("select[name='f_boolExp']").val()]
                         }
                         //console.log(filter)
                         filters.push(filter)
@@ -223,8 +223,8 @@
                     var selectList = this_block.find($('.select_templ'))
                     selectList.each(function(){
                         var select = {
-                            s_source:$(this).children().children().children("select[name='s_source']").val(),
-                            s_meaOrCal:$(this).children().children().children("select[name='s_meaOrCal']").val()
+                            s_source: localizeDictionary[$(this).children().children().children("select[name='s_source']").val()],
+                            s_meaOrCal: $(this).children().children().children("select[name='s_meaOrCal']").val()
                         };
                         //console.log(select)
                         selects.push(select);

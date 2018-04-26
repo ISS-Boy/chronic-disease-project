@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.sun.mail.iap.ConnectionException;
 import org.apache.log4j.Logger;
 import org.smartloli.kafka.eagle.web.dao.MonitorGroupDao;
-import org.smartloli.kafka.eagle.web.exception.entity.NormalException;
 import org.smartloli.kafka.eagle.web.grafana.service.GrafanaDashboardService;
 import org.smartloli.kafka.eagle.web.json.pojo.BlockGroup;
 import org.smartloli.kafka.eagle.web.json.pojo.BlockValues;
@@ -234,12 +233,7 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
     }
 
     @Override
-    public ValidateResult showMonitorDashBoard(String monitorGroupId) {
-        // 判断如果服务没有开启，则抛出异常
-        MonitorGroup monitorGroup = getMonitorGroupById(monitorGroupId);
-        if(!"started".equals(monitorGroup.getState()))
-            throw new NormalException("服务未开启，请先开启服务");
-
-        return grafanaDashboardService.checkAndCreateDashboard(monitorGroupId);
+    public ValidateResult createMonitorDashBoardAndGetUrl(String monitorGroupId) {
+        return grafanaDashboardService.createDashboardAndGetUrl(monitorGroupId);
     }
 }

@@ -107,11 +107,9 @@ public class MonitorController {
                 validateResults.get(0).getResultCode() == ValidateResult.ResultCode.SUCCESS))
             return validateResults.toString();
 
-
         // 获取登陆者信息
         Signiner user = (Signiner) session.getAttribute("LOGIN_USER_SESSION");
         String creator = user.getRealname().toLowerCase();
-
 
         // 校验成功, 开始创建镜像
         logger.info("======数据校验成功========");
@@ -135,11 +133,6 @@ public class MonitorController {
         ValidateResult serviceExecutionResult = monitorGroupService.runService(monitorGroupId);
         if(serviceExecutionResult.getResultCode() != ValidateResult.ResultCode.SUCCESS)
             throw new NormalException(serviceExecutionResult.getMes());
-
-//        ValidateResult dashboardCreatedResult = grafanaDashboardService.checkAndCreateDashboard(monitorGroupId);
-//        if(dashboardCreatedResult.getResultCode() == ValidateResult.ResultCode.FAILURE)
-//            throw new NormalException(dashboardCreatedResult.getMes());
-//        logger.info("============" + dashboardCreatedResult.getMes() + "============");
 
         session.setAttribute("monitorGroupId", monitorGroupId);
         return "redirect:/visualizer/visShow";
@@ -188,7 +181,7 @@ public class MonitorController {
     public ModelAndView showMonitorGroup(@RequestParam("monitorGroupId") String monitorGroupId) throws Exception {
         logger.info("monitorGroupId:" + monitorGroupId);
         ModelAndView mav = new ModelAndView("monitor/grafana-dashboard-test");
-        ValidateResult getDashboardUrlResult = monitorGroupService.showMonitorDashBoard(monitorGroupId);
+        ValidateResult getDashboardUrlResult = monitorGroupService.createMonitorDashBoardAndGetUrl(monitorGroupId);
 
         if(getDashboardUrlResult.getResultCode() != ValidateResult.ResultCode.SUCCESS)
             throw new NormalException(getDashboardUrlResult.getMes());
@@ -208,6 +201,7 @@ public class MonitorController {
         List<MonitorGroup> monitorGroupList = monitorGroupService.getAllMonitorGroups();
         Map<String, Object> map = new HashMap<>();
         map.put("data", JSON.toJSON(monitorGroupList));
+        logger.info("==========" + map + "==========");
         return map;
     }
 

@@ -1,3 +1,4 @@
+import net.sourceforge.pinyin4j.PinyinHelper;
 import org.smartloli.kafka.eagle.grafana.HandleDashboard.HandleDashboard;
 import org.smartloli.kafka.eagle.grafana.Parameter.Dashboard;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARMOfPanel;
@@ -14,9 +15,31 @@ import java.util.List;
 public class Test {
     public static void main(String[] args) {
 //        System.out.println(Test.class.getResource("/"));
-        System.out.println(createDashboard("12", new ArrayList<>(), null, null));
-        String url = GrafanaConfigUtil.getPropertyByKey("grafana.urlForCreate");
-        System.out.println(url);
+//        System.out.println(createDashboard("12", new ArrayList<>(), null, null));
+//        String url = GrafanaConfigUtil.getPropertyByKey("grafana.urlForCreate");
+//        System.out.println(url);
+        pinyinTest();
+    }
+
+    private static void pinyinTest(){
+        char[] cs = "历史的咖啡机".toCharArray();
+        StringBuilder sb = new StringBuilder();
+        boolean hanyu = false;
+        for(char c: cs){
+            if(c <= 128) {
+                sb.append(c);
+                hanyu = false;
+            }else{
+                String[] pinyins = PinyinHelper.toHanyuPinyinStringArray(c);
+                String pinyin = pinyins[0].substring(0, pinyins[0].length() - 1);
+                System.out.println(pinyin);
+                if(hanyu)
+                    sb.append('-');
+                sb.append(pinyin);
+                hanyu = true;
+            }
+        }
+        System.out.println(sb);
     }
 
     public static boolean createDashboard(String dashboardName,
