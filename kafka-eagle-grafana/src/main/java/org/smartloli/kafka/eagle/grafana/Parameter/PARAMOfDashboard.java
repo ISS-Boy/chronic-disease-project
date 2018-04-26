@@ -2,7 +2,7 @@ package org.smartloli.kafka.eagle.grafana.Parameter;
 
 import java.util.List;
 
-public class Dashboard {
+public class PARAMOfDashboard {
     private String dashboardName;
 
     private String from;
@@ -11,7 +11,7 @@ public class Dashboard {
 
     private List<PARMOfPanel> panels;
 
-    public Dashboard(String dashboardName, String from, String to, List<PARMOfPanel> panels) {
+    public PARAMOfDashboard(String dashboardName, String from, String to, List<PARMOfPanel> panels) {
         this.dashboardName = dashboardName;
         this.from = from;
         this.to = to;
@@ -20,7 +20,7 @@ public class Dashboard {
 
     @Override
     public String toString() {
-        return "Dashboard{" +
+        return "PARAMOfDashboard{" +
                 "dashboardName='" + dashboardName + '\'' +
                 ", from='" + from + '\'' +
                 ", to='" + to + '\'' +
@@ -60,6 +60,6 @@ public class Dashboard {
         this.panels = panels;
     }
 
-    public Dashboard() {
+    public PARAMOfDashboard() {
     }
 }

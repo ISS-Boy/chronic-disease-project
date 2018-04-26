@@ -1,18 +1,20 @@
+
 import org.junit.Test;
 import org.smartloli.kafka.eagle.grafana.HandleDashboard.HandleDashboard;
-import org.smartloli.kafka.eagle.grafana.Parameter.Dashboard;
+import org.smartloli.kafka.eagle.grafana.Parameter.PARAMOfDashboard;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARMOfPanel;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARMOfTarget;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
+
 
 /**
  * Created by dujijun on 2018/4/16.
  */
-public class TestCreateDashboard {
+
+public class TestCreatePARAMOfDashboard {
     @Test
     public void createDashboardTest(){
         boolean res = createDashboard("a", new ArrayList<>(), new Date(), null) == 200;
@@ -23,8 +25,8 @@ public class TestCreateDashboard {
                                    List<PARMOfPanel> panels,
                                    Date from,
                                    Date to) {
-        Dashboard dashboard = new Dashboard();
-        dashboard.setDashboardName(dashboardName);
+        PARAMOfDashboard PARAMOfDashboard = new PARAMOfDashboard();
+        PARAMOfDashboard.setDashboardName(dashboardName);
 
         //创建体温panel
         PARMOfPanel panel1 = new PARMOfPanel();
@@ -92,14 +94,15 @@ public class TestCreateDashboard {
 
 
         //创建用户dashboard
-        dashboard.setPanels(panels);
-        dashboard.setFrom("2017-01-14T06:00:00.000Z");
-        dashboard.setTo("2017-01-15T00:00:00.000Z");
-//        dashboard.setFrom(from.toString());
-//        dashboard.setTo(Optional.of(to).orElse(new Date()).toString());
+        PARAMOfDashboard.setPanels(panels);
+        PARAMOfDashboard.setFrom("2017-01-14T06:00:00.000Z");
+        PARAMOfDashboard.setTo("2017-01-15T00:00:00.000Z");
+//        PARAMOfDashboard.setFrom(from.toString());
+//        PARAMOfDashboard.setTo(Optional.of(to).orElse(new Date()).toString());
         System.out.println(panels.toString());
         HandleDashboard handledashboard = new HandleDashboard();
-        return handledashboard.createdashboard(dashboard);
+        return handledashboard.createdashboard(PARAMOfDashboard);
     }
 
 }
+

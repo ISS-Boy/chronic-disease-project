@@ -1,33 +1,23 @@
 package org.smartloli.kafka.eagle.grafana.Parameter;
 
 
+import java.util.HashMap;
+
 public class PARMOfTarget {
 
     private String metricName;
 
-    private String tagKey;
+    private HashMap<String, String> tags;//Tags标签的key and value
 
-    private String tagValue;
+    //private String type;      不需要
 
-    private String type;
-
-    public PARMOfTarget(String metricName, String tagKey, String tagValue) {
+    public PARMOfTarget(String metricName, HashMap<String, String> tags) {
         this.metricName = metricName;
-        this.tagKey = tagKey;
-        this.tagValue = tagValue;
+        this.tags = tags;
+        //this.type = type;
     }
 
     public PARMOfTarget() {
-    }
-
-    @Override
-    public String toString() {
-        return "Target{" +
-                "metricName='" + metricName + '\'' +
-                ", tagKey='" + tagKey + '\'' +
-                ", tagValue='" + tagValue + '\'' +
-                ", type='" + type + '\'' +
-                '}';
     }
 
     public String getMetricName() {
@@ -38,27 +28,19 @@ public class PARMOfTarget {
         this.metricName = metricName;
     }
 
-    public String getTagKey() {
-        return tagKey;
+    public HashMap<String, String> getTags() {
+        return tags;
     }
 
-    public void setTagKey(String tagKey) {
-        this.tagKey = tagKey;
+    public void setTags(HashMap<String, String> tags) {
+        this.tags = tags;
     }
 
-    public String getTagValue() {
-        return tagValue;
-    }
-
-    public void setTagValue(String tagValue) {
-        this.tagValue = tagValue;
-    }
-
-    public String getType() {
+    /*public String getType() {
         return type;
     }
 
     public void setType(String type) {
         this.type = type;
-    }
+    }*/
 }

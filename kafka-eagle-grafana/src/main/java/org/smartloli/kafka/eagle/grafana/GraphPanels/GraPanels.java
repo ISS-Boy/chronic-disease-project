@@ -21,7 +21,7 @@ public class GraPanels extends Panels {
     private int pointradius;
     private boolean points;
     private String renderer;
-    private List<String> seriesOverrides;
+    private List<SeriesOverrides> seriesOverrides;
     private int spaceLength;
     private int span;
     private boolean stack;
@@ -140,10 +140,10 @@ public class GraPanels extends Panels {
          return renderer;
      }
 
-    public void setSeriesOverrides(List<String> seriesOverrides) {
+    public void setSeriesOverrides(List<SeriesOverrides> seriesOverrides) {
          this.seriesOverrides = seriesOverrides;
      }
-     public List<String> getSeriesOverrides() {
+     public List<SeriesOverrides> getSeriesOverrides() {
          return seriesOverrides;
      }
 
