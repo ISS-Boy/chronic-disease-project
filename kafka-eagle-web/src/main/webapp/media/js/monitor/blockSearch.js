@@ -207,9 +207,12 @@
                     var filters = []
                     var filterList = this_block.find($('.filter_templ'))
                     filterList.each(function(){
+                        var measure = $(this).children().children().children("select[name='f_measure']").val();
+                        if(localizeDictionary[measure] != undefined)
+                            measure = localizeDictionary[measure]
                         var filter = {
                             f_source: localizeDictionary[$(this).children().children().children("select[name='f_source']").val()],
-                            f_measure: localizeDictionary[$(this).children().children().children("select[name='f_measure']").val()],
+                            f_measure: measure,
                             f_op: $(this).children().children().children("select[name='f_op']").val(),
                             f_threshold: $(this).children().children("input[name='f_threshold']").val(),
                             f_boolExp: localizeDictionary[$(this).children().children().children("select[name='f_boolExp']").val()]
@@ -222,9 +225,12 @@
                     var selects = []
                     var selectList = this_block.find($('.select_templ'))
                     selectList.each(function(){
+                        var meaOrCal = $(this).children().children().children("select[name='s_meaOrCal']").val();
+                        if(localizeDictionary[meaOrCal] != undefined)
+                            meaOrCal = localizeDictionary[meaOrCal]
                         var select = {
                             s_source: localizeDictionary[$(this).children().children().children("select[name='s_source']").val()],
-                            s_meaOrCal: $(this).children().children().children("select[name='s_meaOrCal']").val()
+                            s_meaOrCal: meaOrCal
                         };
                         //console.log(select)
                         selects.push(select);
