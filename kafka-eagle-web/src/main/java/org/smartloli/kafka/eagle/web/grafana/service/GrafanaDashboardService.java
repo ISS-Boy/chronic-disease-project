@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import org.apache.log4j.Logger;
 import org.apache.logging.log4j.util.Strings;
 import org.smartloli.kafka.eagle.grafana.HandleDashboard.HandleDashboard;
-import org.smartloli.kafka.eagle.grafana.Parameter.Dashboard;
+import org.smartloli.kafka.eagle.grafana.Parameter.PARAMOfDashboard;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARMOfPanel;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARMOfTarget;
 import org.smartloli.kafka.eagle.web.exception.entity.NormalException;
@@ -20,7 +20,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by dujijun on 2018/4/10.
@@ -51,7 +53,7 @@ public class GrafanaDashboardService {
         List<String> panelUrls = new ArrayList<>();
 
         HandleDashboard handleDashboard = new HandleDashboard();
-        Dashboard dashboard = new Dashboard();
+        PARAMOfDashboard dashboard = new PARAMOfDashboard();
 
         dashboard.setDashboardName(monitorGroupId);
 
@@ -65,9 +67,11 @@ public class GrafanaDashboardService {
             List<PARMOfTarget> targets = new ArrayList<>();
             for (Selects select : block.getSelects()) {
                 PARMOfTarget target = new PARMOfTarget();
+                HashMap<String, String> tagsMap = new HashMap<>();
+                target.setTags(tagsMap);
                 target.setMetricName("monitor");
-                target.setTagKey("monitor-id");
-                target.setTagValue("monitor-001");
+                tagsMap.put("monitor-id", "monitor-001");
+                tagsMap.put("item", select.getS_meaOrCal());
                 targets.add(target);
             }
 

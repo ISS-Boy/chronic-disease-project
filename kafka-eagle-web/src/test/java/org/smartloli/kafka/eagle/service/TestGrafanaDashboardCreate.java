@@ -3,7 +3,7 @@ package org.smartloli.kafka.eagle.service;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.smartloli.kafka.eagle.grafana.HandleDashboard.HandleDashboard;
-import org.smartloli.kafka.eagle.grafana.Parameter.Dashboard;
+import org.smartloli.kafka.eagle.grafana.Parameter.PARAMOfDashboard;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARMOfPanel;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARMOfTarget;
 //import org.smartloli.kafka.eagle.web.grafana.HandleDashboard.HandleDashboard;
@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.ResourceUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.io.*;
 
@@ -34,17 +35,18 @@ public class TestGrafanaDashboardCreate {
 	public void createDashboardTest(){
 
 		try {
-			Dashboard dashboard=new Dashboard();
+			PARAMOfDashboard dashboard=new PARAMOfDashboard();
 			dashboard.setDashboardName("MyTestDashBoard-dujijun");
 			List<PARMOfPanel> panels=new ArrayList<PARMOfPanel>();
+			HashMap<String, String> tagsMap;
 
 			//创建体温panel
 			PARMOfPanel panel1=new PARMOfPanel();
 			PARMOfTarget parmOfTarget1=new PARMOfTarget();
 			List<PARMOfTarget> parmOfTargetslist1=new ArrayList<PARMOfTarget>();
 			parmOfTarget1.setMetricName("body_temperature");
-			parmOfTarget1.setTagKey("userId");
-			parmOfTarget1.setTagValue("the-user-0");
+			tagsMap = new HashMap<>();
+			tagsMap.put("userId", "the-user-0");
 			parmOfTargetslist1.add(parmOfTarget1);
 			panel1.setTargets(parmOfTargetslist1);
 			panel1.setPanelId(1);
@@ -59,12 +61,12 @@ public class TestGrafanaDashboardCreate {
 			PARMOfTarget parmOfTarget22=new PARMOfTarget();
 			List<PARMOfTarget> parmOfTargetslist2=new ArrayList<PARMOfTarget>();
 			parmOfTarget2.setMetricName("diastolic_blood_pressure");
-			parmOfTarget2.setTagKey("userId");
-			parmOfTarget2.setTagValue("the-user-0");
+			tagsMap = new HashMap<>();
+			tagsMap.put("userId", "the-user-0");
 			parmOfTargetslist2.add(parmOfTarget2);
 			parmOfTarget22.setMetricName("systolic_blood_pressure");
-			parmOfTarget22.setTagKey("userId");
-			parmOfTarget22.setTagValue("the-user-0");
+			tagsMap = new HashMap<>();
+			tagsMap.put("userId", "the-user-0");
 			parmOfTargetslist2.add(parmOfTarget22);
 			panel2.setTargets(parmOfTargetslist2);
 			panel2.setPanelId(2);
@@ -78,8 +80,8 @@ public class TestGrafanaDashboardCreate {
 			PARMOfTarget parmOfTarget3=new PARMOfTarget();
 			List<PARMOfTarget> parmOfTargetslist3=new ArrayList<PARMOfTarget>();
 			parmOfTarget3.setMetricName("step_count");
-			parmOfTarget3.setTagKey("userId");
-			parmOfTarget3.setTagValue("the-user-0");
+			tagsMap = new HashMap<>();
+			tagsMap.put("userId", "the-user-0");
 			parmOfTargetslist3.add(parmOfTarget3);
 			panel3.setTargets(parmOfTargetslist3);
 			panel3.setPanelId(3);
@@ -93,8 +95,8 @@ public class TestGrafanaDashboardCreate {
 			PARMOfTarget parmOfTarget4=new PARMOfTarget();
 			List<PARMOfTarget> parmOfTargetslist4=new ArrayList<PARMOfTarget>();
 			parmOfTarget4.setMetricName("heart_rate");
-			parmOfTarget4.setTagKey("userId");
-			parmOfTarget4.setTagValue("the-user-0");
+			tagsMap = new HashMap<>();
+			tagsMap.put("userId", "the-user-0");
 			parmOfTargetslist4.add(parmOfTarget4);
 			panel4.setTargets(parmOfTargetslist4);
 			panel4.setPanelId(4);
