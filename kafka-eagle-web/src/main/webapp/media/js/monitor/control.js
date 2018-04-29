@@ -74,7 +74,8 @@ function initFunc(new_block){
     })
 
     // 为其它Block的source和measure创建联动事件
-    readyForBlock(new_block, ".calculation", "a_source")
+    readyForBlock(new_block, ".aggregation_item", "a_source")
+    readyForBlock(new_block, ".aggregation_group", "g_source");
     readyForBlock(new_block, ".filter", "f_source")
     readyForBlock(new_block, ".select", "s_source")
 
