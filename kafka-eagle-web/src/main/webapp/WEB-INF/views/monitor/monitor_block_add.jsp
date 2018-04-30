@@ -281,7 +281,7 @@
 															</select>
 														</div>
 														<div class="aggregation_group_filter" style="padding-top: 4px;">
-															<span onclick="add_aggregation_predicate(this)"><img src="/ke/media/img/01.gif"/></span>
+															<%--<span onclick="add_aggregation_predicate(this)"><img src="/ke/media/img/01.gif"/></span>--%>
 															<span onclick="remove_aggregation_predicate(this)"><img src="/ke/media/img/02.gif"/></span>
 														</div>
 													</div>
