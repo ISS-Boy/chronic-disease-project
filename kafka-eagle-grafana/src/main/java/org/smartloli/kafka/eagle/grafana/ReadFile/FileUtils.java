@@ -40,8 +40,8 @@ public class FileUtils {
             // 创建文件对象
             File file = ResourceUtils.getFile(strFilename);
 //            File file = new File(strFilename);
-            // 向文件写入对象写入信息
-            FileWriter fileWriter = new FileWriter(file);
+            // 向文件写入对象写入信息, 指定UTF-8编码
+            OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
             //将""转化为null,否则无法显示图像
             strBuffer = strBuffer.replace("\"\"", "null");
             // 写文件
