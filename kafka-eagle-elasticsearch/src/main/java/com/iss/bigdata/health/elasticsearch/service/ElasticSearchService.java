@@ -189,6 +189,8 @@ public interface ElasticSearchService {
     /**
      * 根据性别和年龄（起止初始日期）这个条件筛选用户
      * */
-    ArrayList<UserBasic> searchUserByConditions(Date startDate, Date endDate, String gender);
+    ArrayList<UserBasic> searchUserByConditions(String startDate, String endDate, String gender);
+
+    ArrayList<Condition> searchCondition(List<String> conditions);
 
 }

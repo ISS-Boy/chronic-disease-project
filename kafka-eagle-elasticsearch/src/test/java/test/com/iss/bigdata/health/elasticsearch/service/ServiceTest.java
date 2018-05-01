@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -149,6 +150,24 @@ public class ServiceTest {
 
 
     // 统计所有地区患病人数
+
+
+    @Test
+    public void testSearchUserByConditions(){
+        List<UserBasic> userBasics = service.searchUserByConditions(null, null, null);
+        System.out.println("=========================" + userBasics);
+        System.out.println("=========================" + userBasics.size());
+    }
+
+    @Test
+    public void testSearchCondition(){
+        List<String> conditions = new ArrayList<>();
+        conditions.add("appendectomy");
+        conditions.add("colon");
+        List<Condition> conditionList = service.searchCondition(conditions);
+        System.out.println("=========================" + conditionList);
+        System.out.println("=========================" + conditionList.size());
+    }
 
 }
 
