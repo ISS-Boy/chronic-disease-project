@@ -952,5 +952,32 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
     }
 
 
+    @Override
+    public ArrayList<UserBasic> searchUserByConditions(Date startDate, Date endDate, String gender) {
+        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+        SearchRequest searchRequest = new SearchRequest("patient");
+        searchRequest.types("synthea");
+        if (gender != null) {
+            
+        }
+        sourceBuilder.query(QueryBuilders.boolQuery().must(QueryBuilders.matchQuery("description", "Hypertension"))
+                .must(QueryBuilders.rangeQuery("start").gt("2018-01-01T00:00:00Z").lt("2018-12-31T23:59:59Z")));
+        sourceBuilder.size(MAX_QUERY_SIZE);
+        searchRequest.source(sourceBuilder);
+        SearchResponse result = null;
+        try {
+            result = client.search(searchRequest);
 
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("连接或查询有误, 请检查您的网络连接是否畅通，并检查查询项是否有误!");
+        }
+        SearchHits hits = result.getHits();
+        ArrayList<Diseaseuser> diseaseusers = new ArrayList<Diseaseuser>();
+        for (SearchHit hit : hits.getHits()) {
+            Diseaseuser dis = JSON.parseObject(hit.getSourceAsString(), Diseaseuser.class);
+            diseaseusers.add(dis);
+        }
+        return null;
+    }
 }

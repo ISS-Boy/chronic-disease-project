@@ -184,4 +184,11 @@ public interface ElasticSearchService {
     int getDiseaseUserNum_per(String years, String diseases);
 
     ArrayList<String> getDiseaseUserNum_timeline(String diseases, String years);
+
+
+    /**
+     * 根据性别和年龄（起止初始日期）这个条件筛选用户
+     * */
+    ArrayList<UserBasic> searchUserByConditions(Date startDate, Date endDate, String gender);
+
 }

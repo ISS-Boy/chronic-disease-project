@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.laml</groupId>
+  <artifactId>laml</artifactId>
+  <versioning>
+    <versions>
+      <version>1.7.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20180110144509</lastUpdated>
+  </versioning>
+</metadata>

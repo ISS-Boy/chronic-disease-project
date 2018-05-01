@@ -49,6 +49,7 @@
 				/account/signin = anon
 				/account/signout = anon
 				/media/** = anon
+				/code	= anon
 				/** = authc
 			</value>
 		</property>

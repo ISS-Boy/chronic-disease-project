@@ -29,12 +29,12 @@
 				<div class="form-content">
 					<div class="form-group">
 						<input class="form-control input-underline input-lg" id="usr"
-							   ng-model="name" name="username" placeholder="Account"
+							   ng-model="name" name="username" placeholder="用户名"
 							   autocomplete="off" type="text">
 					</div>
 					<div class="form-group">
 						<input class="form-control input-underline input-lg" id="pwd"
-							   name="password" placeholder="Password" name="pwd" type="text">
+							   name="password" placeholder="密码" name="pwd" type="password">
 						<input type="hidden" id="ref_url" name="ref_url" type="text">
 					</div>
 					<div class="form-group">
@@ -42,9 +42,24 @@
 							 class="alert alert-danger"></div>
 						${error_msg}
 					</div>
-				</div>
+					<%--<div class="form-actions">--%>
+						<%--<div style="width:86%;padding-left:8%;">--%>
+							<%--<div style="float: left;">--%>
+								<%--<i><img src="/ke/media/img/yan.png" /></i>--%>
+							<%--</div>--%>
+							<%--<div style="float: left;" class="codediv">--%>
+								<%--<input type="text" name="code" id="code" class="login_code"--%>
+									   <%--style="height:16px; padding-top:0px;" />--%>
+							<%--</div>--%>
+							<%--<div style="float: left;">--%>
+								<%--<i><img style="height:22px;" id="codeImg" alt="点击更换"--%>
+										<%--title="点击更换" src="" /></i>--%>
+							<%--</div>--%>
+						<%--</div>--%>
+					<%--</div>--%>
+				<%--</div>--%>
 				<button id="submit" class="btn rounded-btn" routerlink=""style="background-color: #10406b">
-					Signin</button>
+					登录</button>
 			</form>
 		</div>
 	</div>

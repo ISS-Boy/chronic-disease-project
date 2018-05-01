@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/FindPattern/FindPattern.iml" filepath="$PROJECT_DIR$/FindPattern/FindPattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/kafka-eagle.iml" filepath="$PROJECT_DIR$/kafka-eagle.iml" />
       <module fileurl="file://$PROJECT_DIR$/kafka-eagle-api/kafka-eagle-api.iml" filepath="$PROJECT_DIR$/kafka-eagle-api/kafka-eagle-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/kafka-eagle-common/kafka-eagle-common.iml" filepath="$PROJECT_DIR$/kafka-eagle-common/kafka-eagle-common.iml" />

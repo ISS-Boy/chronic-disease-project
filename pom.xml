@@ -25,5 +25,6 @@
 		<module>kafka-eagle-plugin</module>
         <module>kafka-eagle-elasticsearch</module>
         <module>kafka-eagle-grafana</module>
+		<module>FindPattern</module>
     </modules>
 </project>
