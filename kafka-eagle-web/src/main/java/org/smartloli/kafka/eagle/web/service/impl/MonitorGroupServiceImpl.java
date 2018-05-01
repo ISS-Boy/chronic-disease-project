@@ -204,19 +204,26 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
             return new ValidateResult(ValidateResult.ResultCode.FAILURE, "数据删除失败");
         logger.info("========数据删除完成========");
 
+        // 删除grafana dashboard
+        ValidateResult deleteResult = grafanaDashboardService.deleteDashboard(monitorGroupId);
+        if(deleteResult.getResultCode() != ValidateResult.ResultCode.SUCCESS)
+            throw new NormalException(deleteResult.getMes()) ;
+        logger.info("========dashboard删除完成========");
+
+        // 删除image文件
+        //String path = monitorGroup.getPath();
+        //if(StringUtils.isBlank(path) ||c
+        //        Files.deleteIfExists(Paths.get(monitorGroup.getPath())))
+        //    return new ValidateResult(ValidateResult.ResultCode.FAILURE, "删除镜像文件失败!");
+        // logger.info("========image文件删除完成========")
+
         String res = dockerRestService.deleteMonitorImage(monitorGroup.getImageId());
         logger.info(res);
         Map<String, String> resMes = DockerRestResolver.resolveResult(res);
         if(!"200".equals(resMes.get("root.code")))
-            return new ValidateResult(ValidateResult.ResultCode.FAILURE, "镜像删除失败");
+            throw new NormalException("远程镜像删除失败");
 
-        // 删除image文件
-        //String path = monitorGroup.getPath();
-        //if(StringUtils.isBlank(path) ||
-        //        Files.deleteIfExists(Paths.get(monitorGroup.getPath())))
-        //    return new ValidateResult(ValidateResult.ResultCode.FAILURE, "删除镜像文件失败!");
-
-        return new ValidateResult(ValidateResult.ResultCode.SUCCESS, "镜像删除成功");
+        return new ValidateResult(ValidateResult.ResultCode.SUCCESS, "image删除成功");
     }
 
     @Override

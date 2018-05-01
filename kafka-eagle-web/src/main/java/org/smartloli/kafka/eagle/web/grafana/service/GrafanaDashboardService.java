@@ -95,4 +95,14 @@ public class GrafanaDashboardService {
         ValidateResult success = new ValidateResult(ValidateResult.ResultCode.SUCCESS, "success", panelUrls);
         return success;
     }
+
+    // 使用monitorGroupId来作为dashboardName
+    public ValidateResult deleteDashboard(String monitorGroupId){
+        HandleDashboard handleDashboard = new HandleDashboard();
+        if(!handleDashboard.deletedashboard(monitorGroupId))
+            return new ValidateResult(ValidateResult.ResultCode.FAILURE, "删除dashboard失败");
+
+        return new ValidateResult(ValidateResult.ResultCode.SUCCESS, "删除dashboard成功");
+    }
+
 }
