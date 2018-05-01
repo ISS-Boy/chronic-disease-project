@@ -2,9 +2,11 @@ package org.smartloli.kafka.eagle.web.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.sun.mail.iap.ConnectionException;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
 import org.smartloli.kafka.eagle.web.dao.MonitorGroupDao;
+import org.smartloli.kafka.eagle.web.exception.entity.NormalException;
 import org.smartloli.kafka.eagle.web.grafana.service.GrafanaDashboardService;
 import org.smartloli.kafka.eagle.web.json.pojo.BlockGroup;
 import org.smartloli.kafka.eagle.web.json.pojo.BlockValues;
@@ -22,6 +24,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.Instant;
 import java.util.*;
 
@@ -192,7 +196,7 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ValidateResult deleteMonitorGroup(String monitorGroupId) {
+    public ValidateResult deleteMonitorGroup(String monitorGroupId) throws IOException {
         MonitorGroup monitorGroup = getMonitorGroupById(monitorGroupId);
         // 由于设定外键级联删除，所以这里不需要手动删除monitor
         int n = deleteMonitorGroupById(monitorGroupId);
@@ -203,10 +207,16 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
         String res = dockerRestService.deleteMonitorImage(monitorGroup.getImageId());
         logger.info(res);
         Map<String, String> resMes = DockerRestResolver.resolveResult(res);
-        if("200".equals(resMes.get("root.code")))
-            return new ValidateResult(ValidateResult.ResultCode.SUCCESS, "镜像删除成功");
-        else
+        if(!"200".equals(resMes.get("root.code")))
             return new ValidateResult(ValidateResult.ResultCode.FAILURE, "镜像删除失败");
+
+        // 删除image文件
+        //String path = monitorGroup.getPath();
+        //if(StringUtils.isBlank(path) ||
+        //        Files.deleteIfExists(Paths.get(monitorGroup.getPath())))
+        //    return new ValidateResult(ValidateResult.ResultCode.FAILURE, "删除镜像文件失败!");
+
+        return new ValidateResult(ValidateResult.ResultCode.SUCCESS, "镜像删除成功");
     }
 
     @Override
@@ -234,6 +244,13 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
 
     @Override
     public ValidateResult createMonitorDashBoardAndGetUrl(String monitorGroupId) {
-        return grafanaDashboardService.createDashboardAndGetUrl(monitorGroupId);
+        // 判断如果服务没有开启，则抛出异常
+        MonitorGroup monitorGroup = getMonitorGroupById(monitorGroupId);
+        if(!"started".equals(monitorGroup.getState()))
+            throw new NormalException("服务未开启，请先开启服务");
+
+        List<Monitor> monitors = monitorService.getAllMonitorByGroupId(monitorGroupId);
+
+        return grafanaDashboardService.createDashboardAndGetUrl(monitorGroupId, monitorGroup, monitors);
     }
 }

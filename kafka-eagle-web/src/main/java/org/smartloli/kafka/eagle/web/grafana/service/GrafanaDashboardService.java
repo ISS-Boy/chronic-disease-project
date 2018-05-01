@@ -36,19 +36,7 @@ public class GrafanaDashboardService {
 
     private static final String DEFAULT_DISPLAY_TYPE = "bars";
 
-    @Autowired
-    private MonitorService monitorService;
-
-    @Autowired
-    private MonitorGroupService monitorGroupService;
-
-    public ValidateResult createDashboardAndGetUrl(String monitorGroupId) {
-        // 判断如果服务没有开启，则抛出异常
-        MonitorGroup monitorGroup = monitorGroupService.getMonitorGroupById(monitorGroupId);
-        if(!"started".equals(monitorGroup.getState()))
-            throw new NormalException("服务未开启，请先开启服务");
-
-        List<Monitor> monitors = monitorService.getAllMonitorByGroupId(monitorGroupId);
+    public ValidateResult createDashboardAndGetUrl(String monitorGroupId, MonitorGroup monitorGroup, List<Monitor> monitors) {
         List<PARMOfPanel> panels = new ArrayList<>();
         List<String> panelUrls = new ArrayList<>();
 

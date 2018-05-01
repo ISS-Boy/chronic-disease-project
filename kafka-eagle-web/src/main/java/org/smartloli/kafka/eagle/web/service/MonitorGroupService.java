@@ -59,7 +59,7 @@ public interface MonitorGroupService {
      * @param monitorGroupId
      * @return 校验结果
      */
-    ValidateResult deleteMonitorGroup(String monitorGroupId);
+    ValidateResult deleteMonitorGroup(String monitorGroupId) throws IOException;
 
     /**
      * 停止MonitorGroup服务，如果本身Monitor就是关闭状态，则不发生改变
