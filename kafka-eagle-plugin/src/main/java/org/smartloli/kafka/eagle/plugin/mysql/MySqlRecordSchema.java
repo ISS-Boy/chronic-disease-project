@@ -57,7 +57,7 @@ public class MySqlRecordSchema {
 	}
 
 	private static void tables(String username, String password, String host, String port, String db) {
-		Connection connection = MySqlStoragePlugin.getInstance(host + ":" + port + File.separator + db, username, password);
+		Connection connection = MySqlStoragePlugin.getInstance(host + ":" + port + "/" + db, username, password);
 		ResultSet rs = null;
 		Statement stmt = null;
 		List<String> tbls = new ArrayList<>();

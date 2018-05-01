@@ -10,11 +10,12 @@
         <result property="state" column="state" />
         <result property="imageId" column="image_id" />
         <result property="serviceId" column="service_id" />
+        <result property="path" column="path" />
     </resultMap>
 
     <!-- 共享部分数据 -->
     <sql id="Base_Column_List">
-        monitor_group_id,name,create_time,creator,state,image_id,service_id
+        monitor_group_id,name,create_time,creator,state,image_id,service_id,path
     </sql>
 
     <sql id="BASE_COLUMN_WHERE">
@@ -44,7 +45,7 @@
         monitor_group(
         <include refid="Base_Column_List"/>
         )
-        values(#{monitorGroupId},#{name},#{createTime},#{creator},#{state},#{imageId},#{serviceId})
+        values(#{monitorGroupId},#{name},#{createTime},#{creator},#{state},#{imageId},#{serviceId},#{path})
     </insert>
 
 

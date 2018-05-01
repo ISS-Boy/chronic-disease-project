@@ -70,8 +70,13 @@ public class GrafanaDashboardService {
                 HashMap<String, String> tagsMap = new HashMap<>();
                 target.setTags(tagsMap);
                 target.setMetricName("monitor");
-                tagsMap.put("monitor-id", "monitor-001");
-                tagsMap.put("item", select.getS_meaOrCal());
+                // 非测试用
+                // tagsMap.put("monitorId", monitor.getMonitorId());
+                // tagsMap.put("item", select.getS_meaOrCal());
+
+                // 测试用
+                tagsMap.put("monitorId", "monitorId-001");
+                tagsMap.put("item", "heart_rate");
                 targets.add(target);
             }
 

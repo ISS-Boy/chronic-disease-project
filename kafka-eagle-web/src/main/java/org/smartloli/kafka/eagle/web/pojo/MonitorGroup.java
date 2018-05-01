@@ -14,6 +14,7 @@ public class MonitorGroup {
     private String state;
     private String imageId;
     private String serviceId;
+    private String path;
 
 
     @Override
@@ -85,17 +86,17 @@ public class MonitorGroup {
         this.serviceId = serviceId;
     }
 
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
     public MonitorGroup() {
     }
 
-    public MonitorGroup(String monitorGroupId, Date createTime, String creator, String state, String imageId, String serviceId) {
-        this.monitorGroupId = monitorGroupId;
-        this.createTime = createTime;
-        this.creator = creator;
-        this.state = state;
-        this.imageId = imageId;
-        this.serviceId = serviceId;
-    }
 
     public MonitorGroup(String monitorGroupId, String name, Date createTime, String creator, String state, String imageId, String serviceId) {
         this.monitorGroupId = monitorGroupId;
@@ -105,5 +106,15 @@ public class MonitorGroup {
         this.state = state;
         this.imageId = imageId;
         this.serviceId = serviceId;
+    }
+
+    public MonitorGroup(String name, Date createTime, String creator, String state, String imageId, String serviceId, String path) {
+        this.name = name;
+        this.createTime = createTime;
+        this.creator = creator;
+        this.state = state;
+        this.imageId = imageId;
+        this.serviceId = serviceId;
+        this.path = path;
     }
 }

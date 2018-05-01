@@ -2,6 +2,7 @@ package org.smartloli.kafka.eagle.web.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.sun.mail.iap.ConnectionException;
+import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
 import org.smartloli.kafka.eagle.web.dao.MonitorGroupDao;
 import org.smartloli.kafka.eagle.web.grafana.service.GrafanaDashboardService;
@@ -131,18 +132,17 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
         String monitorIds = String.join(",", monitorIdList);
 
         logger.info("==========开始获取jar包===========");
-        // 调用黄章昊接口，获取jar包和对应的路径
-        JarEntity jars = streamService.getJarFromStreamingPeer(monitorIds, imageId, monitorIdList.size());
+        // 调用黄章昊接口，获取jar包对应路径
+        String path = streamService.getJarFromStreamingPeer(monitorIds, imageId, creator);
+        monitorGroup.setPath(path);
 
         for (int i = 0; i < blocksEntity.size(); i++) {
-            // 这里需要重新规划一下
             BlockValues block = blocksEntity.get(i);
 
             Monitor monitor = new Monitor(monitorIdList.get(i),
                                         block.getMonitorName(),
                                         monitorGroupId,
-                                        JSON.toJSON(block).toString(),
-                                        jars.getJar().get(i));
+                                        JSON.toJSON(block).toString());
 
             monitors.add(monitor);
         }
@@ -154,7 +154,7 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
             return new ValidateResult(ValidateResult.ResultCode.FAILURE, "数据存储异常");
 
         logger.info("==========开始Docker调用===========");
-        Map<String, String> resMes = DockerRestResolver.resolveResult(dockerRestService.createImage(jars.getPath(), imageId));
+        Map<String, String> resMes = DockerRestResolver.resolveResult(dockerRestService.createImage(path, imageId));
 
         // 如果调用失败
         if (!"200".equals(resMes.get("root.code")))
