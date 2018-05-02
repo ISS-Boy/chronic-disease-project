@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.smartloli.kafka.eagle.web.dao.OffLineLearningDao">
+
+    <!-- 清空疾病表 -->
+    <update id="truncateDisease" >
+        TRUNCATE TABLE ke_disease
+    </update>
+
+    <!-- 插入所有疾病 -->
+    <insert id="insertAllDisease" parameterType="java.util.List">
+        INSERT INTO ke_disease (diseaseName) VALUES
+        <foreach collection="list" item="item" index="index">
+            (#{item})
+        </foreach>
+    </insert>
+
+</mapper>

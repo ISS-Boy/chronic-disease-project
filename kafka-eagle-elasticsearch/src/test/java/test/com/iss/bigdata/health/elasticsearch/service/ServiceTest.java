@@ -162,9 +162,9 @@ public class ServiceTest {
     @Test
     public void testSearchCondition(){
         List<String> conditions = new ArrayList<>();
-        conditions.add("appendectomy");
-        conditions.add("colon");
-        List<Condition> conditionList = service.searchCondition(conditions);
+//        conditions.add("appendectomy");
+//        conditions.add("colon");
+        List<Condition> conditionList = service.searchCondition(null);
         System.out.println("=========================" + conditionList);
         System.out.println("=========================" + conditionList.size());
     }

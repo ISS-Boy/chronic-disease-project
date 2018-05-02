@@ -1002,9 +1002,14 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
         SearchRequest searchRequest = new SearchRequest("conditions");
         searchRequest.types("synthea");
         BoolQueryBuilder queryBuilder = new BoolQueryBuilder();
-        for (String condition : conditions) {
-            queryBuilder.should(QueryBuilders.matchQuery("description", condition));
+        if (conditions != null && conditions.size() > 0) {
+            for (String condition : conditions) {
+                queryBuilder.should(QueryBuilders.matchQuery("description", condition));
+            }
+        } else {
+            queryBuilder.must(QueryBuilders.matchAllQuery());
         }
+
         sourceBuilder.query(queryBuilder);
         sourceBuilder.size(MAX_QUERY_SIZE);
         searchRequest.source(sourceBuilder);

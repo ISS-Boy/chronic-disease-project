@@ -11,5 +11,5 @@ public interface MenuDao {
     /**
      * 列出所有父菜单
      * */
-    public List<Menu> listAllParentMenu();
+    List<Menu> listAllParentMenu();
 }
