@@ -1,7 +1,10 @@
 package org.smartloli.kafka.eagle.web.rest.streams;
 
+import org.smartloli.kafka.eagle.common.util.SystemConfigUtils;
 import org.smartloli.kafka.eagle.web.exception.entity.NormalException;
 import org.smartloli.kafka.eagle.web.rest.pojo.JarEntity;
+import org.smartloli.kafka.eagle.web.utils.ValidateResult;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,26 +19,26 @@ import java.util.List;
 @Service
 public class StreamService {
 
-    public JarEntity getJarFromStreamingPeer(String monitorGroupId,
-                                             String imageId,
-                                             int size) throws IOException {
-        RestTemplate restTemplate = new RestTemplate();
+    private static final String DEFAULT_URL = SystemConfigUtils.getProperty("kstream.url.prefix");
+
+    private static final String PATH_PREFIX = SystemConfigUtils.getProperty("nfs.path.prefix");
+
+    public String getJarFromStreamingPeer(String monitorGroupId,
+                                                  String imageId,
+                                                  String creator) throws IOException {
+
         // 从请求当中获取nfs的path, 然后从nfs path中读取文件
-        String path = "/Users/dujijun/Documents/tmp/nfsTest/nfs/KSTREAM_TEST";
+        //String path = "/Users/dujijun/Documents/tmp/nfsTest/nfs/" + getUrlAndRunKStream(monitorGroupId, creator);
+        String path = PATH_PREFIX + "KSTREAM_TEST2";
 
-        List<byte[]> jarBytes = new ArrayList<>();
-        File dir = new File(path);
-        File[] files = dir.listFiles(f -> f.getName().endsWith(".jar"));
-        if(size != files.length)
-            throw new NormalException("执行计划生成异常：监视器与流计算程序数量不一致");
+        return path;
+    }
 
-        for(File f: files){
-            InputStream in = new FileInputStream(f);
-            byte[] jar = new byte[in.available()];
-            in.read(jar);
-            jarBytes.add(jar);
-        }
-        return new JarEntity(jarBytes, path);
+    public String getUrlAndRunKStream(String monitorGroupId, String creator){
+        RestTemplate restTemplate = new RestTemplate();
+        String params = String.format("monitorGroupId=%s\nuserId=%s", monitorGroupId, creator);
+        ResponseEntity<String> response = restTemplate.postForEntity(DEFAULT_URL, params, String.class);
+        return response.getBody();
     }
 
 }

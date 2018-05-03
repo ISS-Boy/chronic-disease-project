@@ -3,6 +3,8 @@
   */
 package org.smartloli.kafka.eagle.grafana.D3GaugePanels;
 
+import java.util.HashMap;
+
 /**
 * Auto-generated: 2018-03-15 17:44:56
 *
@@ -16,9 +18,8 @@ public class Targets {
    private String downsampleAggregator;
    private String downsampleFillPolicy;
    private String metric;
-   private String currentTagValue;
+    private HashMap<String, String> tags;//tagkey and tagvalue
    private String downsampleInterval;
-   private String currentTagKey;
    private boolean shouldComputeRate;
    private boolean disableDownsampling;
    public void setRefId(String refId) {
@@ -56,26 +57,21 @@ public class Targets {
         return metric;
     }
 
-   public void setCurrentTagValue(String string) {
-        this.currentTagValue = string;
-    }
-    public String getCurrentTagValue() {
-        return currentTagValue;
+    public HashMap<String, String> getTags() {
+        return tags;
     }
 
-   public void setDownsampleInterval(String downsampleInterval) {
+    public void setTags(HashMap<String, String> tags) {
+        this.tags = tags;
+    }
+
+    public void setDownsampleInterval(String downsampleInterval) {
         this.downsampleInterval = downsampleInterval;
     }
     public String getDownsampleInterval() {
         return downsampleInterval;
     }
 
-   public void setCurrentTagKey(String currentTagKey) {
-        this.currentTagKey = currentTagKey;
-    }
-    public String getCurrentTagKey() {
-        return currentTagKey;
-    }
 
    public void setShouldComputeRate(boolean shouldComputeRate) {
         this.shouldComputeRate = shouldComputeRate;

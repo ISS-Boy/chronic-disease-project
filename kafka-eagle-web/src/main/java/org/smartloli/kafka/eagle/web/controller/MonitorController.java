@@ -5,8 +5,9 @@ import net.sf.json.JSONArray;
 import org.apache.log4j.Logger;
 import org.smartloli.kafka.eagle.web.exception.entity.NormalException;
 import org.smartloli.kafka.eagle.web.grafana.service.GrafanaDashboardService;
-import org.smartloli.kafka.eagle.web.json.pojo.Block;
+import org.smartloli.kafka.eagle.web.json.pojo.BlockGroup;
 import org.smartloli.kafka.eagle.web.pojo.MonitorGroup;
+import org.smartloli.kafka.eagle.web.pojo.Signiner;
 import org.smartloli.kafka.eagle.web.service.MonitorGroupService;
 import org.smartloli.kafka.eagle.web.service.MonitorService;
 import org.smartloli.kafka.eagle.web.utils.DataValidator;
@@ -19,10 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author LH
@@ -95,28 +93,31 @@ public class MonitorController {
 
     @RequestMapping(value = "/monitor/submitMonitors", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public String submitMonitors(@RequestBody String blocks) throws IOException {
+    public String submitMonitors(@RequestBody String blocks, HttpSession session) throws IOException {
         logger.info(blocks);
-        List<Block> blocksEntity = JSON.parseArray(blocks, Block.class);
+        BlockGroup blockGroup = JSON.parseObject(blocks, BlockGroup.class);
+
+        logger.info("========" + blockGroup + "=========");
 
         // 进行block检验
-        List<ValidateResult> validateResults = DataValidator.validateBlocks(blocksEntity);
+        List<ValidateResult> validateResults = DataValidator.validateBlocks(blockGroup);
 
-        // 这里暂时
-        String creator = "dujijun";
-
-        // 校验失败，后面会补充显示失败原因
-        if(!(validateResults.size() == 1
-                && validateResults.get(0).getResultCode()
-                            == ValidateResult.ResultCode.SUCCESS))
+        // 校验失败
+        if(!(validateResults.size() == 1 &&
+                validateResults.get(0).getResultCode() == ValidateResult.ResultCode.SUCCESS))
             return validateResults.toString();
 
-        // 校验成功
+        // 获取登陆者信息
+        Signiner user = (Signiner) session.getAttribute("LOGIN_USER_SESSION");
+        String creator = user.getRealname().toLowerCase();
+
+        // 校验成功, 开始创建镜像
         logger.info("======数据校验成功========");
-        ValidateResult result = monitorGroupService.createImage(creator, blocksEntity);
+        ValidateResult result = monitorGroupService.createImage(creator, blockGroup);
         if(result.getResultCode() == ValidateResult.ResultCode.FAILURE)
             return result.getMes();
 
+        // 镜像创建成功
         return "success";
     }
 
@@ -132,11 +133,6 @@ public class MonitorController {
         ValidateResult serviceExecutionResult = monitorGroupService.runService(monitorGroupId);
         if(serviceExecutionResult.getResultCode() != ValidateResult.ResultCode.SUCCESS)
             throw new NormalException(serviceExecutionResult.getMes());
-
-//        ValidateResult dashboardCreatedResult = grafanaDashboardService.checkAndCreateDashboard(monitorGroupId);
-//        if(dashboardCreatedResult.getResultCode() == ValidateResult.ResultCode.FAILURE)
-//            throw new Exception(dashboardCreatedResult.getMes());
-//        logger.info("============" + dashboardCreatedResult.getMes() + "============");
 
         session.setAttribute("monitorGroupId", monitorGroupId);
         return "redirect:/visualizer/visShow";
@@ -182,13 +178,18 @@ public class MonitorController {
     }
 
     @RequestMapping(value = "/monitor/showMonitorGroup", method = RequestMethod.GET)
-    public String showMonitorGroup(@RequestParam("monitorGroupId") String monitorGroupId) throws Exception {
+    public ModelAndView showMonitorGroup(@RequestParam("monitorGroupId") String monitorGroupId) throws Exception {
         logger.info("monitorGroupId:" + monitorGroupId);
-        ValidateResult validateResult = monitorGroupService.showMonitorDashBoard(monitorGroupId);
-        if(validateResult.getResultCode() == ValidateResult.ResultCode.SUCCESS)
-            return "monitor/monitor_dashboard";
-        else
-            throw new Exception(validateResult.getMes());
+        ModelAndView mav = new ModelAndView("monitor/grafana-dashboard-test");
+        ValidateResult getDashboardUrlResult = monitorGroupService.createMonitorDashBoardAndGetUrl(monitorGroupId);
+
+        if(getDashboardUrlResult.getResultCode() != ValidateResult.ResultCode.SUCCESS)
+            throw new NormalException(getDashboardUrlResult.getMes());
+
+        // 如果没有失败，则将数据url封装至ModelAndView中
+        logger.info("==========" + getDashboardUrlResult.getAttach() + "==========");
+        mav.addObject("urls", getDashboardUrlResult.getAttach());
+        return mav;
     }
 
     /**
@@ -200,6 +201,7 @@ public class MonitorController {
         List<MonitorGroup> monitorGroupList = monitorGroupService.getAllMonitorGroups();
         Map<String, Object> map = new HashMap<>();
         map.put("data", JSON.toJSON(monitorGroupList));
+        logger.info("==========" + map + "==========");
         return map;
     }
 

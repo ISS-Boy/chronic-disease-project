@@ -1,5 +1,6 @@
 package org.smartloli.kafka.eagle.web.rest.docker;
 
+import org.smartloli.kafka.eagle.common.util.SystemConfigUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -13,7 +14,7 @@ import java.util.Map;
  */
 @Service
 public class DockerRestService {
-    private static final String PREFIX = "http://localhost:8001/isswhu";
+    private static final String PREFIX = SystemConfigUtils.getProperty("docker.url.prefix");
 
     public String createImage(String path, String imageName){
         RestTemplate restTemplate = new RestTemplate();

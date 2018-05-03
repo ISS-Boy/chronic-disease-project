@@ -51,6 +51,7 @@
                             <thead>
                             <tr>
                                 <th>监视器组id</th>
+                                <th>监视器组名</th>
                                 <th>创建时间</th>
                                 <th>创建者</th>
                                 <th>状态</th>
@@ -69,7 +70,6 @@
 
     </div>
 </div>
-<%--<jsp:param value="main/patient/monitor_maintain.js" name="loader" />--%>
 </body>
 <jsp:include page="../public/script.jsp">
     <jsp:param value="main/patient/monitor_groups.js" name="loader" />

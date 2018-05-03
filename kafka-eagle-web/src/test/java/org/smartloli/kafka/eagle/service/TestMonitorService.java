@@ -29,7 +29,7 @@ public class TestMonitorService {
 
     @Test
     public void addMonitorTest(){
-        int n = monitorService.addMonitor(new Monitor("9d99", "1", "sdf", "metricName", null));
+        int n = monitorService.addMonitor(new Monitor("9d99", "jsd", "1", "metricName", null));
         System.out.println(n);
     }
 

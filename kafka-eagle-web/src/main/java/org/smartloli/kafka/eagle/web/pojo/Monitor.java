@@ -8,19 +8,17 @@ import java.util.Arrays;
 public class Monitor {
 
     private String monitorId;
+    private String name;
     private String monitorGroupId;
     private String json;
-    private String metricName;
-    private byte[] jar;
 
     @Override
     public String toString() {
         return "Monitor{" +
                 "monitorId='" + monitorId + '\'' +
+                ", name='" + name + '\'' +
                 ", monitorGroupId='" + monitorGroupId + '\'' +
                 ", json='" + json + '\'' +
-                ", metricName='" + metricName + '\'' +
-                ", jar=" + Arrays.toString(jar) +
                 '}';
     }
 
@@ -48,30 +46,21 @@ public class Monitor {
         this.json = json;
     }
 
-    public String getMetricName() {
-        return metricName;
+    public String getName() {
+        return name;
     }
 
-    public void setMetricName(String metricName) {
-        this.metricName = metricName;
-    }
-
-    public byte[] getJar() {
-        return jar;
-    }
-
-    public void setJar(byte[] jar) {
-        this.jar = jar;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Monitor() {
     }
 
-    public Monitor(String monitorId, String monitorGroupId, String json, String metricName, byte[] jar) {
+    public Monitor(String monitorId, String name, String monitorGroupId, String json) {
         this.monitorId = monitorId;
+        this.name = name;
         this.monitorGroupId = monitorGroupId;
         this.json = json;
-        this.metricName = metricName;
-        this.jar = jar;
     }
 }

@@ -3,6 +3,8 @@
   */
 package org.smartloli.kafka.eagle.grafana.GraphPanels;
 
+import java.util.HashMap;
+
 /**
  * Auto-generated: 2018-01-12 18:1:14
  *
@@ -12,8 +14,7 @@ package org.smartloli.kafka.eagle.grafana.GraphPanels;
 public class Targets {
 	    private String aggregator;
 	    private String alias;
-	    private String currentTagKey;
-	    private String currentTagValue;
+		private HashMap<String, String> tags;//tagkey and tagvalue
 	    private boolean disableDownsampling;
 	    private String downsampleAggregator;
 	    private String downsampleFillPolicy;
@@ -34,20 +35,15 @@ public class Targets {
 	         return alias;
 	     }
 
-	    public void setCurrentTagKey(String currentTagKey) {
-	         this.currentTagKey = currentTagKey;
-	     }
-	     public String getCurrentTagKey() {
-	         return currentTagKey;
-	     }
+		public HashMap<String, String> getTags() {
+			return tags;
+		}
 
-	    public void setCurrentTagValue(String currentTagValue) {
-	         this.currentTagValue = currentTagValue;
-	     }
-	     public String getCurrentTagValue() {
-	         return currentTagValue;
-	     }
-        public void setDisableDownsampling(Boolean disableDownsampling) {
+		public void setTags(HashMap<String, String> tags) {
+			this.tags = tags;
+		}
+
+	public void setDisableDownsampling(Boolean disableDownsampling) {
         	this.disableDownsampling=disableDownsampling;
         }
         public boolean getDisableDownsampling() {

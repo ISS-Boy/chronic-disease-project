@@ -25,7 +25,6 @@ public class DashboardAPI {
 
         conn.setRequestProperty("accept", "application/json");
         conn.setRequestProperty("Content-Type", "application/json");
-        //conn.setRequestProperty("Authorization", "Bearer eyJrIjoiNkxLZ0E5dnoxaUZuajk1bzJtZlU3MHZzemJIMVRlWVciLCJuIjoidGVzdCIsImlkIjoxfQ==");
         conn.setRequestProperty("Authorization", GrafanaConfigUtil.getPropertyByKey("grafana.token"));
 
         // 往服务器里面发送数据
@@ -38,8 +37,8 @@ public class DashboardAPI {
         byte[] bys = new byte[1024];
         Integer len = 0;
         while ((len = fileIn.read(bys)) != -1) {
-            out.write(bys);
-            //System.out.println(new String(bys,0,len));
+            out.write(bys, 0, len);
+            // System.out.println("+-+-+-+-" + new String(bys,0,len));
         }
         //  System.out.println(conn.getResponseCode());
         result = conn.getResponseCode();

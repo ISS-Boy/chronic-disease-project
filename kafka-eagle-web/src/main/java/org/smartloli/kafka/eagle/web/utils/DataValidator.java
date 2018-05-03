@@ -1,16 +1,11 @@
 package org.smartloli.kafka.eagle.web.utils;
 
-import org.apache.calcite.linq4j.tree.Blocks;
-import org.smartloli.kafka.eagle.web.json.pojo.Block;
-import org.smartloli.kafka.eagle.web.json.pojo.CalculationValues;
-import org.smartloli.kafka.eagle.web.json.pojo.Filters;
-import org.smartloli.kafka.eagle.web.json.pojo.Selects;
+import org.smartloli.kafka.eagle.web.json.pojo.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
@@ -23,12 +18,13 @@ public class DataValidator {
      * 校验结果主要有三种：SUCCESS, ERROR, FAILURE
      * 1、如果calculation中的数据没有被filter和select使用，则warning，提示未使用的变量
      * 2、如果
-     * @param blocks 一个块组
+     * @param blockGroup 一个块组
      */
-    public static List<ValidateResult> validateBlocks(List<Block> blocks){
+    public static List<ValidateResult> validateBlocks(BlockGroup blockGroup){
         List<ValidateResult> validateResults = new ArrayList<>();
+        List<BlockValues> blocks = blockGroup.getBlockValues();
         for(int i = 0; i < blocks.size(); i++){
-            Block block = blocks.get(i);
+            BlockValues block = blocks.get(i);
 
             // 判别是否有未使用过的计算值
             if(!checkUnusedAggregation(block)){
@@ -50,16 +46,23 @@ public class DataValidator {
     }
 
     /** 检查是否存在命名重复使用的情况 */
-    private static boolean checkDuplicated(Block block){
-        int calNameSetSize = block.getCalculation()
-                .getCalculationValues()
-                .stream().map(CalculationValues::getC_name)
+    private static boolean checkDuplicated(BlockValues block){
+        int aggrNameSetSize = block.getAggregation()
+                .getAggregationValues()
+                .stream().map(AggregationValues::getName)
                 .collect(Collectors.toSet())
                 .size();
 
-        int calNameSize = block.getCalculation()
-                .getCalculationValues()
+        int aggrNameSize = block.getAggregation()
+                .getAggregationValues()
                 .size();
+
+        int filNameSetSize = block.getFilters()
+                .stream()
+                .map(Filters::getF_measure)
+                .collect(Collectors.toSet()).size();
+
+        int filNameSize = block.getFilters().size();
 
         int selectNameSetSize = block.getSelects()
                 .stream()
@@ -68,23 +71,25 @@ public class DataValidator {
 
         int selectNameSize = block.getSelects().size();
 
-        return calNameSetSize == calNameSize && selectNameSetSize == selectNameSize;
+        return aggrNameSetSize == aggrNameSize &&
+                selectNameSetSize == selectNameSize &&
+                filNameSetSize == filNameSize;
     }
 
     /** 判别在aggregation中声明的变量是否被filter和select使用 */
-    private static boolean checkUnusedAggregation(Block block){
-        List<CalculationValues> calculationValues = block.getCalculation().getCalculationValues();
+    private static boolean checkUnusedAggregation(BlockValues block){
+        List<AggregationValues> aggregationValues = block.getAggregation().getAggregationValues();
         List<Selects> selects = block.getSelects();
         List<Filters> filters = block.getFilters();
-        Set<String> calNames = new HashSet<>();
+        Set<String> aggrName = new HashSet<>();
         Set<String> selNames = new HashSet<>();
         Set<String> filNames = new HashSet<>();
         Set<String> allUsedNames = new HashSet<>();
-        calculationValues.forEach(c -> calNames.add(c.getC_name()));
+        aggregationValues.forEach(a -> aggrName.add((a.getName())));
         filters.forEach(f -> filNames.add(f.getF_measure()));
         selects.forEach(s -> selNames.add(s.getS_meaOrCal()));
         allUsedNames.addAll(filNames);
         allUsedNames.addAll(selNames);
-        return allUsedNames.containsAll(calNames);
+        return allUsedNames.containsAll(aggrName);
     }
 }

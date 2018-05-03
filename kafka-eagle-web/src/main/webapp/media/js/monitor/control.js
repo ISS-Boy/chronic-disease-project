@@ -1,9 +1,40 @@
-/// 规定全局字典数据
+// 规定全局字典数据
+// var metadata = {
+//     'blood-pressure': new Set(['systolic_blood_pressure', 'diastolic_blood_pressure']),
+//     'body-fat-percentage': new Set(['body_fat_percentage']),
+//     'heart-rate': new Set(['heart_rate']),
+//     'body-temperature': new Set(['body_temperature'])
+// }
+
 var metadata = {
-    'blood-pressure': new Set(['systolic_blood_pressure', 'diastolic_blood_pressure']),
-    'body-fat-percentage': new Set(['body_fat_percentage']),
-    'heart-rate': new Set(['heart_rate']),
-    'body-temperature': new Set(['body_temperature'])
+    '血压': new Set(['收缩压.', '舒张压.']),
+    '体脂': new Set(['体脂.']),
+    '心率': new Set(['心率.']),
+    '体温': new Set(['体温.'])
+}
+
+var localizeDictionary = {
+    '血压': 'blood-pressure',
+    '收缩压.': 'systolic_blood_pressure',
+    '舒张压.': 'diastolic_blood_pressure',
+    '体脂': 'body-fat-percentage',
+    '体脂.': 'body_fat_percentage',
+    '心率': 'heart-rate',
+    '心率.': 'heart_rate',
+    '体温': 'body-temperature',
+    '体温.': 'body_temperature',
+    '滑动窗口': 'sliding-window',
+    '滚动窗口': 'tumbling-window',
+    '跳跃窗口': 'hopping-window',
+    '最小值': 'min',
+    '最大值': 'max',
+    '平均值': 'average',
+    '计数': 'count',
+    '求和': 'sum',
+    '增幅': 'amplitude',
+    '增比': 'growth radio',
+    '且': 'and',
+    '或': 'or'
 }
 
 // 初始化被选中的source
@@ -35,14 +66,16 @@ function initFunc(new_block){
                 selectedOptions.push($(this).text())
             })
             // 更新其它块中的source记录
-            update(selectedOptions, new_block, ".calculation", "c_source", "c_measure")
+            update(selectedOptions, new_block, ".aggregation_item", "a_source", "a_measure")
+            update(selectedOptions, new_block, ".aggregation_group", "g_source", "g_measure")
             update(selectedOptions, new_block, ".filter", "f_source", "f_measure")
             update(selectedOptions, new_block, ".select", "s_source", "s_meaOrCal")
         })
     })
 
     // 为其它Block的source和measure创建联动事件
-    readyForBlock(new_block, ".calculation", "c_source")
+    readyForBlock(new_block, ".aggregation_item", "a_source")
+    readyForBlock(new_block, ".aggregation_group", "g_source");
     readyForBlock(new_block, ".filter", "f_source")
     readyForBlock(new_block, ".select", "s_source")
 
@@ -87,17 +120,16 @@ function update(selectedOptions, this_block, block_class, sourceName, measureNam
                 })
 
                 // 找到所有的新增的calculation名称
-                if(sourceBlock.attr('name') != 'c_source'){
-                    var calRoot = sourceBlock.parents('.block_tmpl').find($('.calculation_templ'))
+                if(sourceBlock.attr('name') != 'a_source' && sourceBlock.attr('name') != 'g_source'){
+                    var calRoot = sourceBlock.parents('.block_tmpl').find($('.aggregation_item_templ'))
                     calRoot.each(function () {
-                        var cSource = $(this).find($('[name="c_source"] option:selected'))
+                        var cSource = $(this).find($('[name="a_source"] option:selected'))
                         if(source == cSource.text()){
                             var calName = $(this).find($('input')).val();
                             t.append("<option value='" + calName + "'>" + calName + "</option>")
                         }
                     })
                 }
-
             }
         }
     })
@@ -116,10 +148,10 @@ function onchange(sourceBlock, measureBlock){
         })
 
         // 添加
-        if($(this).attr('name') != "c_source"){
-            var calRoot = sourceBlock.parents('.block_tmpl').find($('.calculation_templ'))
+        if($(this).attr('name') != "a_source" && $(this).attr('name') != "g_source"){
+            var calRoot = sourceBlock.parents('.block_tmpl').find($('.aggregation_item_templ'))
             calRoot.each(function () {
-                var cSource = $(this).find($('[name="c_source"] option:selected'))
+                var cSource = $(this).find($('[name="a_source"] option:selected'))
                 if(source == cSource.text()){
                     var calName = $(this).find($('input')).val();
                     measureBlock.append("<option value='" + calName + "'>" + calName + "</option>")
@@ -153,10 +185,10 @@ function changeContent(sourceBlock, measureBlock) {
         measureBlock.append("<option value='" + value + "'>" + value + "</option>")
     })
 
-    if(sourceBlock.attr('name') != 'c_source'){
-        var calRoot = sourceBlock.parents('.block_tmpl').find($('.calculation_templ'))
+    if(sourceBlock.attr('name') != 'a_source' && sourceBlock.attr('name') != "g_source"){
+        var calRoot = sourceBlock.parents('.block_tmpl').find($('.aggregation_item_templ'))
         calRoot.each(function () {
-            var cSource = $(this).find($('[name="c_source"] option:selected'))
+            var cSource = $(this).find($('[name="a_source"] option:selected'))
             if(source == cSource.text()){
                 var calName = $(this).find($('input')).val();
                 if (calName != "")
@@ -171,7 +203,7 @@ function changeContent(sourceBlock, measureBlock) {
 function onCalNameDefine(this_block, nameBlock){
     // 如果没有定义nameBlock的话, 直接进行所有nameBlock的工作
     if(nameBlock == undefined)
-        nameBlock = this_block.find($('.calculation input[name="c_name"]'))
+        nameBlock = $(this_block).find($('.calculation input[name="a_name"]'))
     nameBlock.blur(function () {
         var pBlock = $(this).parents('.block_tmpl')
 
@@ -221,8 +253,4 @@ function checkTopicEmpty(this_block) {
         return false
     }
     return true
-}
-
-function checkWindowIntervalNotEmpty(block){
-
 }
