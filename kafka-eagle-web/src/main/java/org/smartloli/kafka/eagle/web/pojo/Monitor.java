@@ -11,16 +11,14 @@ public class Monitor {
     private String name;
     private String monitorGroupId;
     private String json;
-    private byte[] jar;
 
     @Override
     public String toString() {
         return "Monitor{" +
                 "monitorId='" + monitorId + '\'' +
+                ", name='" + name + '\'' +
                 ", monitorGroupId='" + monitorGroupId + '\'' +
                 ", json='" + json + '\'' +
-                ", name='" + name + '\'' +
-                ", jar=" + Arrays.toString(jar) +
                 '}';
     }
 
@@ -56,22 +54,13 @@ public class Monitor {
         this.name = name;
     }
 
-    public byte[] getJar() {
-        return jar;
-    }
-
-    public void setJar(byte[] jar) {
-        this.jar = jar;
-    }
-
     public Monitor() {
     }
 
-    public Monitor(String monitorId, String name, String monitorGroupId, String json, byte[] jar) {
+    public Monitor(String monitorId, String name, String monitorGroupId, String json) {
         this.monitorId = monitorId;
         this.name = name;
         this.monitorGroupId = monitorGroupId;
         this.json = json;
-        this.jar = jar;
     }
 }

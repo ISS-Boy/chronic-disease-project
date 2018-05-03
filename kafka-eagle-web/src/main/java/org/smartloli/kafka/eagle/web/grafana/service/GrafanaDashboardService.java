@@ -36,19 +36,7 @@ public class GrafanaDashboardService {
 
     private static final String DEFAULT_DISPLAY_TYPE = "bars";
 
-    @Autowired
-    private MonitorService monitorService;
-
-    @Autowired
-    private MonitorGroupService monitorGroupService;
-
-    public ValidateResult createDashboardAndGetUrl(String monitorGroupId) {
-        // 判断如果服务没有开启，则抛出异常
-        MonitorGroup monitorGroup = monitorGroupService.getMonitorGroupById(monitorGroupId);
-        if(!"started".equals(monitorGroup.getState()))
-            throw new NormalException("服务未开启，请先开启服务");
-
-        List<Monitor> monitors = monitorService.getAllMonitorByGroupId(monitorGroupId);
+    public ValidateResult createDashboardAndGetUrl(String monitorGroupId, MonitorGroup monitorGroup, List<Monitor> monitors) {
         List<PARMOfPanel> panels = new ArrayList<>();
         List<String> panelUrls = new ArrayList<>();
 
@@ -70,8 +58,13 @@ public class GrafanaDashboardService {
                 HashMap<String, String> tagsMap = new HashMap<>();
                 target.setTags(tagsMap);
                 target.setMetricName("monitor");
-                tagsMap.put("monitor-id", "monitor-001");
-                tagsMap.put("item", select.getS_meaOrCal());
+                // 非测试用
+                // tagsMap.put("monitorId", monitor.getMonitorId());
+                // tagsMap.put("item", select.getS_meaOrCal());
+
+                // 测试用
+                tagsMap.put("monitorId", "monitorId-001");
+                tagsMap.put("item", "heart_rate");
                 targets.add(target);
             }
 
@@ -102,4 +95,14 @@ public class GrafanaDashboardService {
         ValidateResult success = new ValidateResult(ValidateResult.ResultCode.SUCCESS, "success", panelUrls);
         return success;
     }
+
+    // 使用monitorGroupId来作为dashboardName
+    public ValidateResult deleteDashboard(String monitorGroupId){
+        HandleDashboard handleDashboard = new HandleDashboard();
+        if(!handleDashboard.deletedashboard(monitorGroupId))
+            return new ValidateResult(ValidateResult.ResultCode.FAILURE, "删除dashboard失败");
+
+        return new ValidateResult(ValidateResult.ResultCode.SUCCESS, "删除dashboard成功");
+    }
+
 }

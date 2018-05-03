@@ -60,9 +60,9 @@ public class HandleDashboard {
         return false;
     }*/
     //删除dashboard
-    public boolean deletedashboard(PARAMOfDashboard PARAMOfDashboard) {
+    public boolean deletedashboard(String dashboardName) {
         try {
-            int num = DashboardAPI.deletedashboard(GrafanaConfigUtil.getPropertyByKey("grafana.urlForCreate") + PARAMOfDashboard.getDashboardName() + "");
+            int num = DashboardAPI.deletedashboard(GrafanaConfigUtil.getPropertyByKey("grafana.urlForCreate") + dashboardName);
             if (num == 200)
                 return true;
         } catch (IOException e) {

@@ -1,3 +1,4 @@
+import jdk.internal.org.objectweb.asm.Handle;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import org.smartloli.kafka.eagle.grafana.HandleDashboard.HandleDashboard;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARAMOfDashboard;
@@ -16,8 +17,11 @@ public class Test {
 //        String url = GrafanaConfigUtil.getPropertyByKey("grafana.urlForCreate");
 //        System.out.println(url);
 //        pinyinTest();
-        boolean recode = createDashboard("shaoyifei",new ArrayList<PARMOfPanel>());
-        System.out.println(recode);
+        //boolean recode = createDashboard("shaoyifei",new ArrayList<PARMOfPanel>());
+        //System.out.println(recode);
+
+        HandleDashboard handleDashboard = new HandleDashboard();
+        handleDashboard.deletedashboard("aaa");
     }
 
     private static void pinyinTest(){
