@@ -12,17 +12,16 @@ import org.smartloli.kafka.eagle.web.json.pojo.BlockValues;
 import org.smartloli.kafka.eagle.web.json.pojo.Selects;
 import org.smartloli.kafka.eagle.web.pojo.Monitor;
 import org.smartloli.kafka.eagle.web.pojo.MonitorGroup;
-import org.smartloli.kafka.eagle.web.service.MonitorGroupService;
-import org.smartloli.kafka.eagle.web.service.MonitorService;
 import org.smartloli.kafka.eagle.web.utils.ValidateResult;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by dujijun on 2018/4/10.
@@ -45,8 +44,17 @@ public class GrafanaDashboardService {
 
         dashboard.setDashboardName(monitorGroupId);
 
-        dashboard.setFrom(String.valueOf(Instant.parse("2017-01-14T06:00:00.000Z").toEpochMilli()));
-        dashboard.setTo(String.valueOf(Instant.parse("2017-01-15T00:00:00.000Z").toEpochMilli()));
+
+        Date start = Date.from(Instant.now().plus(-4, ChronoUnit.DAYS));
+        Date end = Date.from(Instant.now());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+
+//        dashboard.setFrom("2018-04-28T00:00:00.000Z");
+//        dashboard.setTo("2018-04-29T00:00:00.000Z");
+
+        dashboard.setFrom(sdf.format(start));
+        dashboard.setTo(sdf.format(end));
 
         int i = 0;
         for (Monitor monitor : monitors) {
@@ -59,12 +67,12 @@ public class GrafanaDashboardService {
                 target.setTags(tagsMap);
                 target.setMetricName("monitor");
                 // 非测试用
-                // tagsMap.put("monitorId", monitor.getMonitorId());
-                // tagsMap.put("item", select.getS_meaOrCal());
+                 tagsMap.put("monitorId", monitorGroupId + "_" + monitor.getName());
+                 tagsMap.put("item", select.getS_meaOrCal());
 
                 // 测试用
-                tagsMap.put("monitorId", "monitorId-001");
-                tagsMap.put("item", "heart_rate");
+//                tagsMap.put("monitorId", "monitorId-001");
+//                tagsMap.put("item", "heart_rate");
                 targets.add(target);
             }
 
