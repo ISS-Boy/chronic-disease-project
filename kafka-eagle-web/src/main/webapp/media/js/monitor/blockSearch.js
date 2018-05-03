@@ -17,6 +17,17 @@
         var this_block = $(span).parents('.block_tmpl');
         if(!checkTopicEmpty(this_block))
             return;
+
+        var pBlock = $(span).parents('.block_tmpl')
+        var aggregationsI = pBlock.find($('.aggregation_item_outpanel')).children();
+        var length = aggregationsI.length;
+        console.log(length);
+        if(length == 0){
+           var windowRow =  this_block.find($('.window_row_tmpl'));
+           console.log(windowRow);
+           $('#aggregationWindowTmpl').tmpl().appendTo(windowRow);
+        }
+
         var aggregation = this_block.find($('.aggregation_item_outpanel'));
         $('#aggregationTmpl').tmpl().appendTo(aggregation);
         $('.selectpicker').selectpicker({
@@ -30,8 +41,11 @@
     function remove_aggregation(span){
         var pBlock = $(span).parents('.block_tmpl')
 
-        var aggregations = pBlock.find($('.aggregation_item_outpanel')).children();
-
+        var aggregationsI = pBlock.find($('.aggregation_item_outpanel')).children();
+        var length = aggregationsI.length;
+        console.log(length);
+        if (length < 2)
+            $(span).parents('.block_tmpl').find(".window_").remove();
         $(span).parents('.aggregation_item_templ').remove();
 
         // 手动触发事件更新内容

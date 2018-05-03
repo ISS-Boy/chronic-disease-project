@@ -108,8 +108,9 @@ public class MonitorController {
             return validateResults.toString();
 
         // 获取登陆者信息
-        Signiner user = (Signiner) session.getAttribute("LOGIN_USER_SESSION");
-        String creator = user.getRealname().toLowerCase();
+//        Signiner user = (Signiner) session.getAttribute("LOGIN_USER_SESSION");
+//        String creator = user.getRealname().toLowerCase();
+        String creator = "the-user-1";
 
         // 校验成功, 开始创建镜像
         logger.info("======数据校验成功========");
@@ -131,8 +132,11 @@ public class MonitorController {
     public String runMonitorGroup(@RequestParam("monitorGroupId") String monitorGroupId, HttpSession session){
         logger.info("monitorGroupId:" + monitorGroupId);
         ValidateResult serviceExecutionResult = monitorGroupService.runService(monitorGroupId);
-        if(serviceExecutionResult.getResultCode() != ValidateResult.ResultCode.SUCCESS)
+        if(serviceExecutionResult.getResultCode() == ValidateResult.ResultCode.FAILURE)
             throw new NormalException(serviceExecutionResult.getMes());
+
+        if(serviceExecutionResult.getResultCode() == ValidateResult.ResultCode.WARNING)
+            logger.info(serviceExecutionResult.getResultCode() + "-" + serviceExecutionResult.getMes());
 
         session.setAttribute("monitorGroupId", monitorGroupId);
         return "redirect:/visualizer/visShow";
