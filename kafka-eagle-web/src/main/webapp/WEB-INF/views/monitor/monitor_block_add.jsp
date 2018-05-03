@@ -68,8 +68,8 @@
         .window_ {
             border: 1px solid #eee;
             padding: 10px;
-            float: right;
-            margin-right: 200px;
+            margin-left: 10px;
+            float: left;
         }
 
         .window_row {
@@ -171,37 +171,39 @@
 					<div class="input-group">
 						<div class="row">
 							<div class="col-md-12">
-								<span>聚集</span>
-								<%--<span onclick="add_aggregation_predicate(this)"><img src="/ke/media/img/01.gif"/></span>--%>
-								<%--<span onclick="remove_aggregation_predicate(this)"><img src="/ke/media/img/02.gif"/></span>--%>
-
-								<div class="panel window_">
-									<div class="panel-heading">
-										<h3 class="panel-title">时间窗口</h3>
-									</div>
-									<div class="window_row">
-									   <span>窗口类型</span> <select class="selectpicker" data-live-search="true" name="w_type">
-											<option>滑动窗口</option>
-											<option>翻滚窗口</option>
-											<option>跳跃窗口</option>
-										</select>
-									</div>
-
-									<div class="window_row">
-										<input type="number" min="0" class="form-control" name="w_interval" placeholder="interval" aria-describedby="basic-addon1" required>
-									</div>
-
-									<div class="window_row">
-										<input type="number" min="0" class="form-control" name="w_length" placeholder="length" aria-describedby="basic-addon1" required>
-									</div>
-
+								<div class="col-md-2">
+								    <h6 style="width:100px">聚集</h6>
 								</div>
+								<div class="window_row_tmpl" >
+                                    <div class="panel window_">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">时间窗口</h3>
+                                        </div>
+
+                                        <div class="window_row">
+                                           <span>窗口类型</span> <select class="selectpicker" data-live-search="true" name="w_type">
+                                                <option>滑动窗口</option>
+                                                <option>翻滚窗口</option>
+                                                <option>跳跃窗口</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="window_row">
+                                            <input type="number" min="0" class="form-control" name="w_interval" placeholder="interval" aria-describedby="basic-addon1" required>
+                                        </div>
+
+                                        <div class="window_row">
+                                            <input type="number" min="0" class="form-control" name="w_length" placeholder="length" aria-describedby="basic-addon1" required>
+                                        </div>
+
+                                    </div>
+                                </div>
 							</div>
 						</div>
 						<div class="row aggregation">
 							<div class="col-md-1">
-								<h6>聚集项</h6>
-								<span onclick="add_aggregation(this)"><img src="/ke/media/img/01.gif"/></span>
+								<h6 style="width: 100px">聚集项<span onclick="add_aggregation(this)"><img src="/ke/media/img/01.gif"/></span></h6>
+
 							</div>
 							<%--aggregation_item_outpanel--%>
 							<div class="aggregation_item_outpanel col-md-11">
@@ -391,8 +393,37 @@
 	</div>
 </div>
 
-    </script>
-    <script id="aggregationTmpl" type="text/x-jquery-tmpl">
+</script>
+<script id="aggregationWindowTmpl" type="text/x-jquery-tmpl">
+    <div class="panel window_">
+
+        <div class="panel-heading">
+            <h3 class="panel-title">时间窗口</h3>
+        </div>
+
+        <div class="window_row">
+            <span>窗口类型</span> <select class="selectpicker"
+                                      data-live-search="true" name="w_type">
+            <option>滑动窗口</option>
+            <option>翻滚窗口</option>
+            <option>跳跃窗口</option>
+        </select>
+        </div>
+
+        <div class="window_row">
+            <input type="number" min="0" class="form-control"
+                   name="w_interval" placeholder="interval"
+                   aria-describedby="basic-addon1" required>
+        </div>
+
+        <div class="window_row">
+            <input type="number" min="0" class="form-control"
+                   name="w_length" placeholder="length"
+                   aria-describedby="basic-addon1" required>
+        </div>
+    </div>
+</script>
+<script id="aggregationTmpl" type="text/x-jquery-tmpl">
 <div class="aggregation_item_templ col-md-11">
 	<div class="row calculation col-md-11" style="border: 1px solid #eee">
 
@@ -470,7 +501,7 @@
 							</select>
 						</div>
 						<div class="aggregation_group_filter" style="padding-top: 4px;">
-							<span onclick="add_aggregation_predicate(this)"><img src="/ke/media/img/01.gif"/></span>
+							<%--<span onclick="add_aggregation_predicate(this)"><img src="/ke/media/img/01.gif"/></span>--%>
 							<span onclick="remove_aggregation_predicate(this)"><img src="/ke/media/img/02.gif"/></span>
 						</div>
 					</div>
@@ -647,40 +678,44 @@
                                     <div class="input-group">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <span>聚集</span>
+                                                <div class="col-md-2">
+                                                    <h6 style="width: 100px">聚集</h6>
+                                                </div>
+                                                <div class="window_row_tmpl" >
+                                                    <div class="panel window_">
 
-                                                <div class="panel window_">
-                                                    <div class="panel-heading">
-                                                        <h3 class="panel-title">时间窗口</h3>
-                                                    </div>
-                                                    <div class="window_row">
-                                                        <span>窗口类型</span> <select class="selectpicker"
-                                                                                  data-live-search="true" name="w_type">
-                                                        <option>滑动窗口</option>
-                                                        <option>翻滚窗口</option>
-                                                        <option>跳跃窗口</option>
-                                                    </select>
-                                                    </div>
+                                                        <div class="panel-heading">
+                                                            <h3 class="panel-title">时间窗口</h3>
+                                                        </div>
 
-                                                    <div class="window_row">
-                                                        <input type="number" min="0" class="form-control"
-                                                               name="w_interval" placeholder="interval"
-                                                               aria-describedby="basic-addon1" required>
-                                                    </div>
+                                                        <div class="window_row">
+                                                            <span>窗口类型</span> <select class="selectpicker"
+                                                                                      data-live-search="true" name="w_type">
+                                                            <option>滑动窗口</option>
+                                                            <option>翻滚窗口</option>
+                                                            <option>跳跃窗口</option>
+                                                        </select>
+                                                        </div>
 
-                                                    <div class="window_row">
-                                                        <input type="number" min="0" class="form-control"
-                                                               name="w_length" placeholder="length"
-                                                               aria-describedby="basic-addon1" required>
-                                                    </div>
+                                                        <div class="window_row">
+                                                            <input type="number" min="0" class="form-control"
+                                                                   name="w_interval" placeholder="interval"
+                                                                   aria-describedby="basic-addon1" required>
+                                                        </div>
 
+                                                        <div class="window_row">
+                                                            <input type="number" min="0" class="form-control"
+                                                                   name="w_length" placeholder="length"
+                                                                   aria-describedby="basic-addon1" required>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row aggregation">
                                             <div class="col-md-1">
-                                                聚集项
-                                                <span onclick="add_aggregation(this)"><img src="/ke/media/img/01.gif"/></span>
+                                                <h6 style="width: 100px">聚集项 <span onclick="add_aggregation(this)"><img src="/ke/media/img/01.gif"/></span></h6>
+
                                             </div>
                                             <%--aggregation_item_outpanel--%>
                                             <div class="aggregation_item_outpanel col-md-11">
