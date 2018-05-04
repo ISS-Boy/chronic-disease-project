@@ -133,7 +133,7 @@ public class WriteGraPanels {
 				newtarget.setAlias(DefaultValues.getAlias(parmOfTargetslist.get(i).getMetricName()));
 				//newtarget.setCurrentTagKey(parmOfTargetslist.get(i).getTagKey());
 				//newtarget.setCurrentTagValue(parmOfTargetslist.get(i).getTagValue());
-				newtarget.setTags(parmOfTargetslist.get(0).getTags());//设置tags标签的key和value;
+				newtarget.setTags(parmOfTargetslist.get(i).getTags()); //设置tags标签的key和value;
 				newtarget.setDisableDownsampling(false);
 				newtarget.setDownsampleAggregator("avg");
 				newtarget.setDownsampleFillPolicy("none");
