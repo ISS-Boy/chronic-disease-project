@@ -1,6 +1,14 @@
 package com.iss.bigdata.health.elasticsearch.service;
 
 import com.alibaba.fastjson.JSON;
+import com.aliyun.hitsdb.client.HiTSDB;
+import com.aliyun.hitsdb.client.HiTSDBClient;
+import com.aliyun.hitsdb.client.HiTSDBClientFactory;
+import com.aliyun.hitsdb.client.HiTSDBConfig;
+import com.aliyun.hitsdb.client.value.request.Query;
+import com.aliyun.hitsdb.client.value.request.SubQuery;
+import com.aliyun.hitsdb.client.value.response.QueryResult;
+import com.aliyun.hitsdb.client.value.type.Aggregator;
 import com.iss.bigdata.health.elasticsearch.entity.*;
 import com.iss.bigdata.health.elasticsearch.help.EventMap;
 import com.iss.bigdata.health.elasticsearch.help.QueryObject;
@@ -47,6 +55,8 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
         this.client = new RestHighLevelClient(lowLevelRestClient);
 
     }
+
+    HiTSDBConfig hiTSDBConfig = HiTSDBConfig.address("192.168.222.233", 4242).config();
 
     @Override
     public EventMap getAllTypeEventByUserId(String userId, Date start, Date end){
@@ -1028,5 +1038,25 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
             diseaseusers.add(dis);
         }
         return diseaseusers;
+    }
+
+
+    @Override
+    public List<QueryResult> searchMetric(Long start, Long end, List<String> metrics, String userId) {
+        HiTSDB hiTSDB = HiTSDBClientFactory.connect(hiTSDBConfig);
+        Query query = new Query();//Query.timeRange(start, end)
+//                .sub(SubQuery.metric("heart_rate").aggregator(Aggregator.FIRST).tag("userId", "the-user-0").build()).build();
+        Query.Builder builder = query.timeRange(start, end);
+//                .sub(SubQuery.metric("heart_rate").aggregator(Aggregator.FIRST).tag("userId", "the-user-0").build());
+        if (metrics != null && metrics.size() > 0) {
+            for (String metric : metrics) {
+                builder = builder.sub(SubQuery.metric(metric).aggregator(Aggregator.FIRST).tag("userId", userId).build());
+            }
+        }
+        query = builder.build();
+        List<QueryResult> result = hiTSDB.query(query);
+        System.out.println("==============" + result);
+        System.out.println("==============" + result.size());
+        return result;
     }
 }

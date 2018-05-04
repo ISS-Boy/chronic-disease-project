@@ -14,6 +14,8 @@
         <module name="kafka-eagle-grafana" />
         <module name="kafka-eagle-plugin" />
         <module name="kafka-eagle-web" />
+        <module name="streams-example" />
+        <module name="streams-examples" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -26,6 +28,8 @@
       <module name="kafka-eagle-grafana" target="1.8" />
       <module name="kafka-eagle-plugin" target="1.8" />
       <module name="kafka-eagle-web" target="1.8" />
+      <module name="streams-example" target="1.8" />
+      <module name="streams-examples" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

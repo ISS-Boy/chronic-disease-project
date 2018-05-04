@@ -15,4 +15,58 @@
         </foreach>
     </insert>
 
+    <insert id="insertConfigure" parameterType="org.smartloli.kafka.eagle.web.pojo.LearningConfigure">
+        INSERT INTO ke_configure (
+            configureId,
+            configureName,
+            age,
+            gender,
+            disease,
+            metric,
+            dateBegin,
+            dateEnd,
+            slidingWindowSize,
+            paaSize,
+            alphabetSize,
+            analysisWindowStartSize,
+            frequencyThreshold,
+            rThreshold,
+            k
+        ) VALUE (
+            #{configureId},
+            #{configureName},
+            #{age},
+            #{gender},
+            #{disease},
+            #{metric},
+            #{dateBegin},
+            #{dateEnd},
+            #{slidingWindowSize},
+            #{paaSize},
+            #{alphabetSize},
+            #{analysisWindowStartSize},
+            #{frequencyThreshold},
+            #{rThreshold},
+            #{k}
+        )
+    </insert>
+
+    <update id="updateIsDone" parameterType="java.lang.String">
+        UPDATE ke_configure SET isDone = '1'
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insertAllSymbolicPattern" parameterType="java.util.List">
+        INSERT INTO ke_symbolic_pattern (id,configureId,alias,order,length) VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.configureId},#{item.alias},#{item.order},#{item.length})
+        </foreach>
+    </insert>
+
+    <insert id="insertAllPatternDetail" parameterType="java.util.List">
+        INSERT INTO ke_pattern_detail (id,symbolicPatternId,measureName,measureValue) VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.symbolicPatternId},#{item.measureName},#{item.measureValue})
+        </foreach>
+    </insert>
 </mapper>

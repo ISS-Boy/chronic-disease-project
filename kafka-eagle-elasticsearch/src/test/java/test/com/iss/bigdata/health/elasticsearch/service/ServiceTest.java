@@ -169,6 +169,14 @@ public class ServiceTest {
         System.out.println("=========================" + conditionList.size());
     }
 
+    @Test
+    public void testSearchMetric(){
+        //"the-user-0"
+        List<String> strings = new ArrayList<>();
+        strings.add("heart_rate");
+        service.searchMetric(Long.valueOf(1483804800), Long.valueOf(1483837200), strings, "the-user-0");
+    }
+
 }
 
 
