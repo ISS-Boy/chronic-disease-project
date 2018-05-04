@@ -1,0 +1,23 @@
+{
+     "namespace": "org.mhealth.open.data.avro",
+     "name": "MEvent",
+     "type": "record",
+     "fields": [
+         {"name": "user_id", "type": ["string","null"] },
+         {"name": "timestamp", "type": "long"},
+         {"name": "measures" ,"type": {
+             "type":"map","values":{"type":"record", "name": "Measure", "fields":[
+                     {"name": "unit", "type": "string"},
+                     {"name": "value", "type": "float"}
+                 ]}
+             }
+         }
+     ]
+ }
+
+/**
+* Avro嵌套Avro的结构,MEvent是Avro的格式，Measure也是Avro的格式。measures是个map类型，key是put的时候自己指定的，这里是用体征作为key，即高压低压等，value是Measure类型
+* the key of the record is the-user-7201
+* the value is {"user_id": "the-user-7201", "timestamp": 1483273017000, "measures": {"systolic_blood_pressure": {"unit": "mmHg", "value": 116.81972}, "diastolic_blood_pressure": {"unit": "mmHg", "value": 69.789474}}}
+* KStream的key-value是<user_id,MEvent>，获取体征测量值通过value.getMeasures().get(measure).getValue(),
+* value.getMeasures先获得map，然后.get(measure)通过get(key)获得value值，即Measure类型，最后.getValue()获得体征测量值
