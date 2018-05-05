@@ -9,12 +9,9 @@ public class PARMOfTarget {
 
     private HashMap<String, String> tags;//Tags标签的key and value
 
-    //private String type;      不需要
-
     public PARMOfTarget(String metricName, HashMap<String, String> tags) {
         this.metricName = metricName;
         this.tags = tags;
-        //this.type = type;
     }
 
     public PARMOfTarget() {
@@ -36,11 +33,11 @@ public class PARMOfTarget {
         this.tags = tags;
     }
 
-    /*public String getType() {
-        return type;
+    @Override
+    public String toString() {
+        return "PARMOfTarget{" +
+                "metricName='" + metricName + '\'' +
+                ", tags=" + tags +
+                '}';
     }
-
-    public void setType(String type) {
-        this.type = type;
-    }*/
 }

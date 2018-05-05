@@ -18,7 +18,7 @@ public class HandleDashboard {
     public int createdashboard(PARAMOfDashboard paramOfDashboard) {
         List<PARMOfPanel> parmOfPanels = paramOfDashboard.getPanels();
         WriteDashboard writeDashboard = new WriteDashboard();
-        String result =writeDashboard.makeDashboard (paramOfDashboard, parmOfPanels);
+        String result = writeDashboard.makeDashboard(paramOfDashboard, parmOfPanels);
         try {
             String path = "classpath:template/json.json";
             FileUtils.writeToFile(path, result);
@@ -41,13 +41,14 @@ public class HandleDashboard {
         dashboardurl = GrafanaConfigUtil.getPropertyByKey("grafana.urlForGetDashboard") +
                 dashboardName + "?orgId=1&panelId=" + panelId +
                 "&from=" + PARAMOfDashboard.getFrom() + "&to=" +
-                PARAMOfDashboard.getTo();
+                PARAMOfDashboard.getTo() + "&theme=light";
         return dashboardurl;
     }
+
     /**
      * 这里删除dashboard的接口，我觉得直接从数据库或者前端页面拿到一个dashboardname
-     *  的参数就可以了，没有必要为了一个删除操作重新创建一个dashboardparam的实例
-     * */
+     * 的参数就可以了，没有必要为了一个删除操作重新创建一个dashboardparam的实例
+     */
     /*public boolean deletedashboard(String dashboardName) {
         try {
             int num = DashboardAPI.deletedashboard(GrafanaConfigUtil.getPropertyByKey("grafana.urlForCreate") + dashboardName+ "");
@@ -72,19 +73,19 @@ public class HandleDashboard {
         return false;
     }
 
-    private String chineseToPinyin(String source){
+    private String chineseToPinyin(String source) {
         char[] cs = source.toCharArray();
         StringBuilder sb = new StringBuilder();
         boolean hanyu = false;
-        for(char c: cs){
-            if(c <= 128) {
+        for (char c : cs) {
+            if (c <= 128) {
                 sb.append(c);
                 hanyu = false;
-            }else{
+            } else {
                 String[] pinyins = PinyinHelper.toHanyuPinyinStringArray(c);
                 String pinyin = pinyins[0].substring(0, pinyins[0].length() - 1);
                 System.out.println(pinyin);
-                if(hanyu)
+                if (hanyu)
                     sb.append('-');
                 sb.append(pinyin);
                 hanyu = true;
