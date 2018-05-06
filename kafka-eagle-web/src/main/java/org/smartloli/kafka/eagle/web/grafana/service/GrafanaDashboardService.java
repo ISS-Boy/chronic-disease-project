@@ -139,4 +139,23 @@ public class GrafanaDashboardService {
         return measureWithUnit;
     }
 
+
+    public void cleanUselessDashboard(List<String> dashboardId){
+        // 获取所有grafana的Dashboard
+        List<String> allGrafanaDashboards = new ArrayList<>();
+
+        allGrafanaDashboards.removeAll(dashboardId);
+
+        allGrafanaDashboards.removeIf(d -> !d.matches(".*-\\d+"));
+
+        int i = 0;
+        for (String dId: allGrafanaDashboards){
+            ValidateResult validateResult = deleteDashboard(dId);
+            if(validateResult.getResultCode() == ValidateResult.ResultCode.SUCCESS)
+                logger.info(String.format("成功删除第%d个dashboard!", i));
+            else
+                logger.error(String.format("删除第%d个dashboard失败——%s", i, validateResult.getMes()));
+            i++;
+        }
+    }
 }

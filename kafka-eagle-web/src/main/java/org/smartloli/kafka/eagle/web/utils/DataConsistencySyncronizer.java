@@ -8,13 +8,14 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * 数据一致同步器: 用来同步数据创建线程和后台清除线程
  * ==============================================
  * 1、数据创建线程是通过前端请求触发, 执行数据创建逻辑.
- * 2、后台清除线程通过对比数据库和Docker中ImageId, 将数据
- * 库中不存在的Image从Docker中清除
+ * 2、后台清除线程通过对比数据库和Docker中ImageId、grafana的dashboardId
+ * 以及nfs中的userId和GroupId, 将无用资源进行释放
  *
+ * 例如:
  * 在数据创建的过程中, 存在Docker Image已经生成而数据库数据
- * 还未提交的中间状态, 而这个中间状态会被后台清除线程捕捉到, 进
+ * 还未提交的中间状态, 而这个中间状态可能会被后台清除线程捕捉到, 进
  * 行Image清除, 这样就会导致错误出现。所以使用数据一致同步器进
- * 行数据清除
+ * 行数据清除。
  *
  * ==============================================
  * 数据创建线程之间可以共享锁, 而后台清除线程需要与数据创建进行互斥
@@ -28,7 +29,7 @@ public class DataConsistencySyncronizer {
 
     private static final Lock writeLock = lock.writeLock();
 
-    public static void createMonitorLock(){
+    public static void lockForCreateMonitor(){
         readLock.lock();
     }
 
@@ -36,7 +37,7 @@ public class DataConsistencySyncronizer {
         readLock.unlock();
     }
 
-    public static void deleteMonitorLock(){
+    public static void lockForDeleteResources(){
         writeLock.lock();
     }
 

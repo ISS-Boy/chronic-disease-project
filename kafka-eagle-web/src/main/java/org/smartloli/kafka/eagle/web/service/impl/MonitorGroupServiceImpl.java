@@ -2,8 +2,6 @@ package org.smartloli.kafka.eagle.web.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.sun.mail.iap.ConnectionException;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
 import org.smartloli.kafka.eagle.web.dao.MonitorGroupDao;
 import org.smartloli.kafka.eagle.web.exception.entity.NormalException;
@@ -13,10 +11,10 @@ import org.smartloli.kafka.eagle.web.json.pojo.BlockValues;
 import org.smartloli.kafka.eagle.web.pojo.Monitor;
 import org.smartloli.kafka.eagle.web.pojo.MonitorGroup;
 import org.smartloli.kafka.eagle.web.rest.docker.DockerRestService;
-import org.smartloli.kafka.eagle.web.rest.pojo.JarEntity;
 import org.smartloli.kafka.eagle.web.rest.streams.StreamService;
 import org.smartloli.kafka.eagle.web.service.MonitorGroupService;
 import org.smartloli.kafka.eagle.web.service.MonitorService;
+import org.smartloli.kafka.eagle.web.utils.DataConsistencySyncronizer;
 import org.smartloli.kafka.eagle.web.utils.DockerRestResolver;
 import org.smartloli.kafka.eagle.web.utils.ValidateResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +22,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.Instant;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by dujijun on 2018/4/9.
@@ -102,75 +99,80 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public ValidateResult createImage(String creator, BlockGroup blockGroup) throws IOException {
+        try {
+            DataConsistencySyncronizer.lockForCreateMonitor();
 
-        logger.info("==========开始创建镜像===========");
+            logger.info("==========开始创建镜像===========");
 
-        List<BlockValues> blocksEntity = blockGroup.getBlockValues();
+            List<BlockValues> blocksEntity = blockGroup.getBlockValues();
 
-        // 封装monitorGroup
-        String monitorGroupId = creator + "-" + System.currentTimeMillis();
-        String monitorGroupName = blockGroup.getBlockGroupName();
-        Date createTime = Date.from(Instant.now());
-        String state = "uncreated";
-        String imageId = monitorGroupId + "-image";
-        String serviceId = monitorGroupId + "-service";
+            // 封装monitorGroup
+            String monitorGroupId = creator + "-" + System.currentTimeMillis();
+            String monitorGroupName = blockGroup.getBlockGroupName();
+            Date createTime = Date.from(Instant.now());
+            String state = "uncreated";
+            String imageId = monitorGroupId + "-image";
+            String serviceId = monitorGroupId + "-service";
 
-        MonitorGroup monitorGroup = new MonitorGroup(monitorGroupId,
-                                                    monitorGroupName,
-                                                    createTime,
-                                                    creator,
-                                                    state,
-                                                    imageId,
-                                                    serviceId);
+            MonitorGroup monitorGroup = new MonitorGroup(monitorGroupId,
+                    monitorGroupName,
+                    createTime,
+                    creator,
+                    state,
+                    imageId,
+                    serviceId);
 
-        // 封装monitor
-        List<Monitor> monitors = new ArrayList<>();
+            // 封装monitor
+            List<Monitor> monitors = new ArrayList<>();
 
-        // 这里会轮询传递进来的monitor做封装
-        List<String> monitorIdList = new ArrayList<>();
+            // 这里会轮询传递进来的monitor做封装
+            List<String> monitorIdList = new ArrayList<>();
 
-        // monitor命名规范: monitorGroupId-*
-        for (int i = 0; i < blocksEntity.size(); i++)
-            monitorIdList.add(String.format("%s-%d", monitorGroupId, i));
+            // monitor命名规范: monitorGroupId-*
+            for (int i = 0; i < blocksEntity.size(); i++)
+                monitorIdList.add(String.format("%s-%d", monitorGroupId, i));
 
-        String monitorIds = String.join(",", monitorIdList);
+            String monitorIds = String.join(",", monitorIdList);
 
-        logger.info("==========开始获取jar包===========");
-        // 调用黄章昊接口，获取jar包对应路径
-        String path = streamService.getJarFromStreamingPeer(blockGroup, monitorGroupId, creator);
+            logger.info("==========开始获取jar包===========");
+            // 调用黄章昊接口，获取jar包对应路径
+            String path = streamService.getJarFromStreamingPeer(blockGroup, monitorGroupId, creator);
 //        String path = "the-user-1/the-user-1-1525337364460";
-        monitorGroup.setPath(path);
+            monitorGroup.setPath(path);
 
-        for (int i = 0; i < blocksEntity.size(); i++) {
-            BlockValues block = blocksEntity.get(i);
+            for (int i = 0; i < blocksEntity.size(); i++) {
+                BlockValues block = blocksEntity.get(i);
 
-            Monitor monitor = new Monitor(monitorIdList.get(i),
-                                        block.getMonitorName(),
-                                        monitorGroupId,
-                                        JSON.toJSON(block).toString());
+                Monitor monitor = new Monitor(monitorIdList.get(i),
+                        block.getMonitorName(),
+                        monitorGroupId,
+                        JSON.toJSON(block).toString());
 
-            monitors.add(monitor);
+                monitors.add(monitor);
+            }
+
+            logger.info("==========开始获取进行数据存储===========");
+            // 封装对象，存数据库
+            boolean result = addMonitorGroupAndMonitor(monitorGroup, monitors);
+            if (!result)
+                return new ValidateResult(ValidateResult.ResultCode.FAILURE, "数据存储异常");
+
+            logger.info("==========开始Docker调用===========");
+            Map<String, String> resMes = DockerRestResolver.resolveResult(dockerRestService.createImage(path, imageId));
+
+            // 如果调用失败
+            if (!"200".equals(resMes.get("root.code")))
+                return new ValidateResult(ValidateResult.ResultCode.FAILURE, resMes.get("root.msg"));
+
+            // 如果调用成功
+            int res = updateMonitorGroupState("stopped", monitorGroupId);
+            if (res == 1)
+                return new ValidateResult(ValidateResult.ResultCode.SUCCESS, "创建镜像成功");
+            else
+                return new ValidateResult(ValidateResult.ResultCode.FAILURE, "状态更新失败");
+        } finally {
+            DataConsistencySyncronizer.releaseCreateMonitorLock();
         }
-
-        logger.info("==========开始获取进行数据存储===========");
-        // 封装对象，存数据库
-        boolean result = addMonitorGroupAndMonitor(monitorGroup, monitors);
-        if (!result)
-            return new ValidateResult(ValidateResult.ResultCode.FAILURE, "数据存储异常");
-
-        logger.info("==========开始Docker调用===========");
-        Map<String, String> resMes = DockerRestResolver.resolveResult(dockerRestService.createImage(path, imageId));
-
-        // 如果调用失败
-        if (!"200".equals(resMes.get("root.code")))
-            return new ValidateResult(ValidateResult.ResultCode.FAILURE, resMes.get("root.msg"));
-
-        // 如果调用成功
-        int res = updateMonitorGroupState("stopped", monitorGroupId);
-        if (res == 1)
-            return new ValidateResult(ValidateResult.ResultCode.SUCCESS, "创建镜像成功");
-        else
-            return new ValidateResult(ValidateResult.ResultCode.FAILURE, "状态更新失败");
     }
 
     @Override
@@ -264,5 +266,35 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
         List<Monitor> monitors = monitorService.getAllMonitorByGroupId(monitorGroupId);
 
         return grafanaDashboardService.createDashboardAndGetUrl(monitorGroupId, monitorGroup, monitors);
+    }
+
+    @Override
+    public void cleanUselessResources() {
+        try {
+            // 开启数据一致锁
+            DataConsistencySyncronizer.lockForDeleteResources();
+
+            // 清理无用的Docker镜像
+            List<MonitorGroup> monitorGroups = getAllMonitorGroups();
+            List<String> imageIds = monitorGroups.stream()
+                    .map(MonitorGroup::getImageId)
+                    .collect(Collectors.toList());
+            dockerRestService.cleanUselessImages(imageIds);
+
+            // 清理无用的Grafana仪表板
+            List<String> monitorGroupIds = monitorGroups.stream()
+                    .map(MonitorGroup::getMonitorGroupId)
+                    .collect(Collectors.toList());
+            grafanaDashboardService.cleanUselessDashboard(monitorGroupIds);
+
+            // 清理无用的文件镜像
+            List<String> userIdAndMonitorGroupIds = monitorGroups.stream()
+                    .map(m -> m.getCreator() + "-" + m.getMonitorGroupId())
+                    .collect(Collectors.toList());
+            streamService.cleanUselessStreamFiles(userIdAndMonitorGroupIds);
+
+        } finally {
+            DataConsistencySyncronizer.releaseDeleteMonitorLock();
+        }
     }
 }

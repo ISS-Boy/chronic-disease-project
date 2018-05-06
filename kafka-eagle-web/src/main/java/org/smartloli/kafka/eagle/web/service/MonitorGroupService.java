@@ -75,4 +75,9 @@ public interface MonitorGroupService {
      * @return 校验结果，attach中含有UrlList
      */
     ValidateResult createMonitorDashBoardAndGetUrl(String monitorGroupId);
+
+    /**
+     * 清理无用的Images
+     */
+    void cleanUselessResources();
 }

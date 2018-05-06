@@ -23,9 +23,6 @@
 			<id>nexus</id>
 			<name>nexus</name>
 			<url>http://central.maven.org/maven2/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
@@ -37,10 +34,8 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>3.1.1.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
-
-
 		<dependency>
 			<groupId>org.smartloli.kafka.eagle</groupId>
 			<artifactId>kafka-eagle-common</artifactId>

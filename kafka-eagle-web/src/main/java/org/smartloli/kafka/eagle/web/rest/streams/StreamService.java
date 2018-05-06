@@ -12,6 +12,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -83,6 +88,12 @@ public class StreamService {
         public void setUserId(String userId) {
             this.userId = userId;
         }
+    }
+
+    public void cleanUselessStreamFiles(List<String> userIdAndMonitorGroupId){
+        logger.info("清理中...");
+
+        //Paths.get(PATH_PREFIX)
     }
 
 }

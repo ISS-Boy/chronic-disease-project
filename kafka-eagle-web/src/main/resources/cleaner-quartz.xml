@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!-- Add scheduling task bean configuration corresponding to class. -->
+	<bean id="cleanerSchedule" class="org.smartloli.kafka.eagle.web.quartz.CleanerQuartz" />
+
+	<bean id="cleanerQuartzJobMethod"
+		  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="cleanerSchedule" />
+		<property name="targetMethod" value="executeClean" />
+	</bean>
+
+	<!-- ======================== 调度触发器 ======================== -->
+	<bean id="cleanerTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="cleanerQuartzJobMethod"></property>
+
+		<!-- 每隔五分钟触发一次 -->
+		<property name="cronExpression" value="0 0/1 * * * ?"></property>
+	</bean>
+
+	<!-- ======================== 调度工厂 ======================== -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref local="cleanerTriggerBean" />
+			</list>
+		</property>
+
+		<property name="schedulerContextAsMap">
+			<!-- Spring管理的service需要放在这里才能注入成功 -->
+			<map>
+				<description>schedulerContextAsMap</description>
+				<entry key="monitorGroupService" value-ref="monitorGroupServiceImpl" />
+			</map>
+		</property>
+	</bean>
+
+</beans>
