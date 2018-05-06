@@ -20,7 +20,7 @@ public class TestStreamService {
 
     @Test
     public void testGetUrlFromOtherPeer(){
-        String res = streamService.getUrlAndRunKStream("1");
-        System.out.println(res);
+//        String res = streamService.getUrlAndRunKStream("1");
+//        System.out.println(res);
     }
 }

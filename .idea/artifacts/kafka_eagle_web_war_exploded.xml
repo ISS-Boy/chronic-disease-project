@@ -33,7 +33,7 @@
           <element id="library" level="project" name="Maven: com.yammer.metrics:metrics-core:2.2.0" />
           <element id="library" level="project" name="Maven: org.scala-lang:scala-library:2.11.8" />
           <element id="library" level="project" name="Maven: org.scala-lang.modules:scala-parser-combinators_2.11:1.0.4" />
-          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.30" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.46" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.8.7" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.8.7" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.8.0" />
@@ -126,7 +126,6 @@
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore-nio:4.4.5" />
           <element id="library" level="project" name="Maven: org.elasticsearch.plugin:parent-join-client:5.6.0" />
           <element id="library" level="project" name="Maven: org.elasticsearch.plugin:aggs-matrix-stats-client:5.6.0" />
-          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j:2.10.0" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.10.0" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.10.0" />
           <element id="library" level="project" name="Maven: junit:junit:4.12" />

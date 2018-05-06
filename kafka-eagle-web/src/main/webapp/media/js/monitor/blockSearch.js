@@ -246,19 +246,30 @@
                     console.log(filters)
                     // 获取select键值对
                     var selects = []
-                    var selectList = this_block.find($('.select_templ'))
-                    selectList.each(function(){
-                        var meaOrCal = $(this).children().children().children("select[name='s_meaOrCal']").val();
-                        if(localizeDictionary[meaOrCal] != undefined)
-                            meaOrCal = localizeDictionary[meaOrCal]
+                    var alertOnly = this_block.find($('input[type="checkbox"]')).prop('checked')
+                    // 若不是只看警报, 则添加所有select和measure项
+                    if(!alertOnly) {
+                        var selectList = this_block.find($('.select_templ'))
+                        selectList.each(function () {
+                            var meaOrCal = $(this).children().children().children("select[name='s_meaOrCal']").val();
+                            if (localizeDictionary[meaOrCal] != undefined)
+                                meaOrCal = localizeDictionary[meaOrCal]
+                            var select = {
+                                s_source: localizeDictionary[$(this).children().children().children("select[name='s_source']").val()],
+                                s_meaOrCal: meaOrCal
+                            };
+                            //console.log(select)
+                            selects.push(select);
+                        });
+                    }else{
                         var select = {
-                            s_source: localizeDictionary[$(this).children().children().children("select[name='s_source']").val()],
-                            s_meaOrCal: meaOrCal
-                        };
-                        //console.log(select)
-                        selects.push(select);
-                    });
+                            s_source: '1',
+                            s_meaOrCal: '1'
+                        }
+                        selects.push(select)
+                    }
                     console.log(selects);
+
                     block.source  = sourceJson;
                     block.aggregation = aggregation;
                     block.filters = filters;

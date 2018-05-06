@@ -7,11 +7,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57195fec-5f50-452b-80ce-49848137aab6" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_2_10_0.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/lib/mysql-connector-java-5.1.30.jar" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_30.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_46.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-elasticsearch/target/test-classes/Test1.class" afterPath="$PROJECT_DIR$/kafka-eagle-elasticsearch/target/test-classes/Test1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-grafana/target/classes/Test.class" afterPath="$PROJECT_DIR$/kafka-eagle-grafana/target/classes/Test.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-grafana/target/classes/org/smartloli/kafka/eagle/grafana/DashboardAPI/DashboardAPI.class" afterPath="$PROJECT_DIR$/kafka-eagle-grafana/target/classes/org/smartloli/kafka/eagle/grafana/DashboardAPI/DashboardAPI.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-grafana/target/classes/org/smartloli/kafka/eagle/grafana/HandleDashboard/HandleDashboard.class" afterPath="$PROJECT_DIR$/kafka-eagle-grafana/target/classes/org/smartloli/kafka/eagle/grafana/HandleDashboard/HandleDashboard.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-grafana/target/classes/org/smartloli/kafka/eagle/grafana/Parameter/PARMOfTarget.class" afterPath="$PROJECT_DIR$/kafka-eagle-grafana/target/classes/org/smartloli/kafka/eagle/grafana/Parameter/PARMOfTarget.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-grafana/target/classes/org/smartloli/kafka/eagle/grafana/ReadFile/FileUtils.class" afterPath="$PROJECT_DIR$/kafka-eagle-grafana/target/classes/org/smartloli/kafka/eagle/grafana/ReadFile/FileUtils.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-plugin/target/classes/org/smartloli/kafka/eagle/plugin/mysql/MySqlRecordSchema.class" afterPath="$PROJECT_DIR$/kafka-eagle-plugin/target/classes/org/smartloli/kafka/eagle/plugin/mysql/MySqlRecordSchema.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/controller/MonitorController.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/controller/MonitorController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/controller/PatientController.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/controller/PatientController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/grafana/service/GrafanaDashboardService.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/grafana/service/GrafanaDashboardService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/pojo/Monitor.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/pojo/Monitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/pojo/MonitorGroup.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/pojo/MonitorGroup.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/rest/docker/DockerRestService.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/rest/docker/DockerRestService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/rest/streams/StreamService.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/rest/streams/StreamService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/service/MonitorGroupService.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/service/MonitorGroupService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/service/impl/MonitorGroupServiceImpl.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/service/impl/MonitorGroupServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/service/impl/PatientServiceImpl.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/service/impl/PatientServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/utils/DataValidator.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/utils/DataValidator.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/utils/DockerRestResolver.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/utils/DockerRestResolver.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/controller/MonitorController.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/controller/MonitorController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/controller/PatientController.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/controller/PatientController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/grafana/service/GrafanaDashboardService.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/grafana/service/GrafanaDashboardService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/pojo/Monitor.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/pojo/Monitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/pojo/MonitorGroup.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/pojo/MonitorGroup.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/rest/docker/DockerRestService.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/rest/docker/DockerRestService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/rest/streams/StreamService.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/rest/streams/StreamService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/service/MonitorGroupService.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/service/MonitorGroupService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/service/impl/MonitorGroupServiceImpl.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/service/impl/MonitorGroupServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/service/impl/PatientServiceImpl.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/service/impl/PatientServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/utils/DataValidator.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/utils/DataValidator.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/utils/DockerRestResolver.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/utils/DockerRestResolver.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/lib/kafka-eagle-api-1.1.9.jar" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/lib/kafka-eagle-api-1.1.9.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/lib/kafka-eagle-common-1.1.9.jar" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/lib/kafka-eagle-common-1.1.9.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/lib/kafka-eagle-core-1.1.9.jar" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/lib/kafka-eagle-core-1.1.9.jar" />
@@ -19,24 +46,31 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/lib/kafka-eagle-grafana-1.1.9.jar" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/lib/kafka-eagle-grafana-1.1.9.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/lib/kafka-eagle-plugin-1.1.9.jar" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/lib/kafka-eagle-plugin-1.1.9.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/test-classes/org/smartloli/kafka/eagle/service/TestGrafanaDashboardCreate.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/test-classes/org/smartloli/kafka/eagle/service/TestGrafanaDashboardCreate.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/test-classes/org/smartloli/kafka/eagle/service/TestMonitorService.class" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/test-classes/org/smartloli/kafka/eagle/service/TestMonitorService.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/kafka_eagle_web_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/kafka_eagle_web_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_10_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_10_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_10_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_10_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-api/kafka-eagle-api.iml" afterPath="$PROJECT_DIR$/kafka-eagle-api/kafka-eagle-api.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-common/kafka-eagle-common.iml" afterPath="$PROJECT_DIR$/kafka-eagle-common/kafka-eagle-common.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-common/pom.xml" afterPath="$PROJECT_DIR$/kafka-eagle-common/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-common/src/main/resources/system-config.properties" afterPath="$PROJECT_DIR$/kafka-eagle-common/src/main/resources/system-config.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-common/target/classes/system-config.properties" afterPath="$PROJECT_DIR$/kafka-eagle-common/target/classes/system-config.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-core/kafka-eagle-core.iml" afterPath="$PROJECT_DIR$/kafka-eagle-core/kafka-eagle-core.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-elasticsearch/kafka-eagle-elasticsearch.iml" afterPath="$PROJECT_DIR$/kafka-eagle-elasticsearch/kafka-eagle-elasticsearch.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-elasticsearch/pom.xml" afterPath="$PROJECT_DIR$/kafka-eagle-elasticsearch/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-grafana/src/test/java/TestCreatePARAMOfDashboard.java" afterPath="$PROJECT_DIR$/kafka-eagle-grafana/src/test/java/TestCreatePARAMOfDashboard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-plugin/kafka-eagle-plugin.iml" afterPath="$PROJECT_DIR$/kafka-eagle-plugin/kafka-eagle-plugin.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/kafka-eagle-web.iml" afterPath="$PROJECT_DIR$/kafka-eagle-web/kafka-eagle-web.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-grafana/target/classes/server/grafana-rest.properties" afterPath="$PROJECT_DIR$/kafka-eagle-grafana/target/classes/server/grafana-rest.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/grafana/service/GrafanaDashboardService.java" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/grafana/service/GrafanaDashboardService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/src/test/java/org/smartloli/kafka/eagle/service/TestGrafanaDashboardCreate.java" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/test/java/org/smartloli/kafka/eagle/service/TestGrafanaDashboardCreate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/rest/docker/DockerRestService.java" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/rest/docker/DockerRestService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/rest/streams/StreamService.java" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/rest/streams/StreamService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/impl/MonitorGroupServiceImpl.java" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/impl/MonitorGroupServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/utils/DataValidator.java" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/utils/DataValidator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/monitor/grafana-dashboard-test.jsp" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/monitor/grafana-dashboard-test.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/monitor/monitor_block_add.jsp" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/monitor/monitor_block_add.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/monitor/blockSearch.js" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/monitor/blockSearch.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/monitor/control.js" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/monitor/control.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/src/test/java/org/smartloli/kafka/eagle/service/TestMonitorService.java" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/test/java/org/smartloli/kafka/eagle/service/TestMonitorService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/src/test/java/org/smartloli/kafka/eagle/service/TestStreamService.java" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/test/java/org/smartloli/kafka/eagle/service/TestStreamService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/dao/MonitorDao.xml" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/dao/MonitorDao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/dao/MonitorGroupDao.xml" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/classes/org/smartloli/kafka/eagle/web/dao/MonitorGroupDao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/dao/MonitorDao.xml" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/dao/MonitorDao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/dao/MonitorGroupDao.xml" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/org/smartloli/kafka/eagle/web/dao/MonitorGroupDao.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/template/json.json" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/classes/template/json.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/views/monitor/monitor_block_add.jsp" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/WEB-INF/views/monitor/monitor_block_add.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/media/js/monitor/blockSearch.js" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/media/js/monitor/blockSearch.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/media/js/monitor/control.js" afterPath="$PROJECT_DIR$/kafka-eagle-web/target/kafka-eagle-web-1.1.9/media/js/monitor/control.js" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/kafka-eagle-plugin/target/" />
@@ -65,61 +99,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-eagle-common/pom.xml">
+      <file leaf-file-name="DefaultValues.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/JavaBean/DefaultValues.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="89" column="25" lean-forward="false" selection-start-line="89" selection-start-column="25" selection-end-line="89" selection-end-column="25" />
+            <state relative-caret-position="195">
+              <caret line="29" column="27" lean-forward="false" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/pom.xml">
+      <file leaf-file-name="PARMOfTarget.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/Parameter/PARMOfTarget.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="24" column="16" lean-forward="true" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-eagle-elasticsearch/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="35" column="46" lean-forward="false" selection-start-line="35" selection-start-column="46" selection-end-line="35" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="13" column="31" lean-forward="true" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ke.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/resources/bash/ke.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+            <state relative-caret-position="176">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -128,30 +122,58 @@
       <file leaf-file-name="GrafanaDashboardService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/grafana/service/GrafanaDashboardService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="66" column="25" lean-forward="false" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PARAMOfDashboard.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/Parameter/PARAMOfDashboard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+            <state relative-caret-position="902">
+              <caret line="60" column="43" lean-forward="false" selection-start-line="60" selection-start-column="43" selection-end-line="60" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PARMOfPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/Parameter/PARMOfPanel.java">
+      <file leaf-file-name="OffsetsQuartz.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/quartz/OffsetsQuartz.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            <state relative-caret-position="2244">
+              <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ZKPoolUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kafka-eagle-common/src/main/java/org/smartloli/kafka/eagle/common/util/ZKPoolUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1408">
+              <caret line="89" column="0" lean-forward="false" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HandleDashboard.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/HandleDashboard/HandleDashboard.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="20" column="47" lean-forward="false" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WriteDashboard.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/JavaBean/WriteDashboard.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="638">
+              <caret line="37" column="43" lean-forward="false" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="blockSearch.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/monitor/blockSearch.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5742">
+              <caret line="261" column="49" lean-forward="false" selection-start-line="261" selection-start-column="49" selection-end-line="261" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -170,11 +192,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>/media/img</find>
-      <find>monitor</find>
-      <find>eagle.web.grafana</find>
-      <find>junit</find>
-      <find>util</find>
       <find>&quot;Bearer eyJrIjoiNkxLZ0E5dnoxaUZuajk1bzJtZlU3MHZzemJIMVRlWVciLCJuIjoidGVzdCIsImlkIjoxfQ==&quot;</find>
       <find>metric_name</find>
       <find>calculation_item_templ</find>
@@ -200,6 +217,11 @@
       <find>monitorgrouplist</find>
       <find>Initialize KafkaOffsetGetter clazz.</find>
       <find>mysql</find>
+      <find>growth</find>
+      <find>select_row</find>
+      <find>select_templ</find>
+      <find>item</find>
+      <find>show</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -259,20 +281,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/VisualizerController.java" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/rest/docker/DockerRestService.java" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/exception/ExceptionsHandler.java" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/utils/ValidateResult.java" />
-        <option value="$PROJECT_DIR$/kafka-eagle-grafana/src/test/java/TestCreateDashboard.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/test/resources/server/grafana-rest.properties" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/test/java/org/smartloli/kafka/eagle/service/TestStreamService.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-grafana/src/main/resources/server/grafana-rest.properties" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/Monitor.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/MonitorGroupDao.xml" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/MonitorGroup.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/test/java/org/smartloli/kafka/eagle/service/TestMonitorGroupService.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/MonitorDao.xml" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/test/java/org/smartloli/kafka/eagle/service/TestMonitorService.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/json/pojo/tmp/Aggregation.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/json/pojo/tmp/AggregationValues.java" />
@@ -283,33 +298,40 @@
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/json/pojo/tmp/Source.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/json/pojo/tmp/Window.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/json/pojo/tmp/BlockGroup.java" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/rest/streams/StreamService.java" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/utils/DataValidator.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/MonitorGroupService.java" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/monitor/control.js" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/monitor/monitor_block_add.jsp" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/monitor/blockSearch.js" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/monitor/monitor_maintain.jsp" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/main/patient/monitor_groups.js" />
         <option value="$PROJECT_DIR$/kafka-eagle-grafana/pom.xml" />
         <option value="$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/Test.java" />
-        <option value="$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/HandleDashboard/HandleDashboard.java" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/MonitorController.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/rest/pojo/JarEntity.java" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/monitor/grafana-dashboard-test.jsp" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/impl/MonitorGroupServiceImpl.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/StartupListener.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-core/src/main/java/org/smartloli/kafka/eagle/core/factory/EmptyKafkaServiceImpl.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-core/src/main/java/org/smartloli/kafka/eagle/core/factory/EmptyZKServiceImpl.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-core/src/main/java/org/smartloli/kafka/eagle/core/factory/KafkaFactory.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-core/src/main/java/org/smartloli/kafka/eagle/core/factory/ZkFactory.java" />
-        <option value="$PROJECT_DIR$/kafka-eagle-common/src/main/resources/system-config.properties" />
         <option value="$PROJECT_DIR$/kafka-eagle-grafana/src/test/java/TestCreatePARAMOfDashboard.java" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/grafana/service/GrafanaDashboardService.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/test/java/org/smartloli/kafka/eagle/service/TestGrafanaDashboardCreate.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-common/pom.xml" />
         <option value="$PROJECT_DIR$/kafka-eagle-elasticsearch/pom.xml" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/test/java/org/smartloli/kafka/eagle/service/TestMonitorService.java" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/test/java/org/smartloli/kafka/eagle/service/TestStreamService.java" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/rest/streams/StreamService.java" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/rest/docker/DockerRestService.java" />
+        <option value="$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/HandleDashboard/HandleDashboard.java" />
+        <option value="$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/JavaBean/WriteDashboard.java" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/impl/MonitorGroupServiceImpl.java" />
+        <option value="$PROJECT_DIR$/kafka-eagle-common/src/main/resources/system-config.properties" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/utils/DataValidator.java" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/MonitorController.java" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/monitor/grafana-dashboard-test.jsp" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/monitor/blockSearch.js" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/monitor/monitor_block_add.jsp" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/monitor/control.js" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/grafana/service/GrafanaDashboardService.java" />
+        <option value="$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/Parameter/PARMOfTarget.java" />
+        <option value="$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/JavaBean/DefaultValues.java" />
+        <option value="$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/GraphPanels/WriteGraPanels.java" />
       </list>
     </option>
   </component>
@@ -383,6 +405,28 @@
     <option name="width" value="1280" />
     <option name="height" value="800" />
   </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Compiler issuesJava</id>
+          </State>
+          <State>
+            <id>Java</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>UNCHECKED_WARNING</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -399,8 +443,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -428,13 +472,13 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="XML" />
-    <property name="SearchEverywhereHistoryKey" value="Kafkaservice&#9;FILE&#9;file:///Users/dujijun/Documents/大数据相关/chronic-disease-github/chronic-disease-project/kafka-eagle-core/src/main/java/org/smartloli/kafka/eagle/core/factory/KafkaServiceImpl.java&#10;zkclient&#9;PSI&#9;JAVA://org.smartloli.kafka.eagle.common.util.ZKPoolUtils#getZkClient&#10;zkClient&#9;PSI&#9;JAVA://org.I0Itec.zkclient.ZkClient&#10;ZkEventThread&#9;FILE&#9;jar:///Users/dujijun/.m2/repository/com/101tec/zkclient/0.9/zkclient-0.9.jar!/org/I0Itec/zkclient/ZkEventThread.class&#10;ZkClient&#9;PSI&#9;JAVA://org.smartloli.kafka.eagle.common.util.ZKPoolUtils#getZkClient&#10;ge&#9;FILE&#9;file:///Users/dujijun/Documents/大数据相关/chronic-disease-github/chronic-disease-project/kafka-eagle-core/src/main/java/org/smartloli/kafka/eagle/core/ipc/KafkaOffsetGetter.java&#10;KafkaOffsetGetter&#9;FILE&#9;file:///Users/dujijun/Documents/大数据相关/chronic-disease-github/chronic-disease-project/kafka-eagle-core/src/main/java/org/smartloli/kafka/eagle/core/ipc/KafkaOffsetGetter.java&#10;algorithmex&#9;PSI&#9;JAVA://java.security.NoSuchAlgorithmException&#10;java.net.Connect&#9;PSI&#9;JAVA://java.net.ConnectException&#10;exception&#9;null&#9;null&#10;snomed.&#9;FILE&#9;file:///Users/lee/Desktop/chronic-disease1-master-15/kafka-eagle-web/src/main/webapp/media/js/main/patient/snomed.js" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/dujijun/Documents/大数据相关/chronic-disease-github/chronic-disease-project/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/GraphPanels/WriteGraPanels.java&#10;Kafkaservice&#9;FILE&#9;file:///Users/dujijun/Documents/大数据相关/chronic-disease-github/chronic-disease-project/kafka-eagle-core/src/main/java/org/smartloli/kafka/eagle/core/factory/KafkaServiceImpl.java&#10;zkclient&#9;PSI&#9;JAVA://org.smartloli.kafka.eagle.common.util.ZKPoolUtils#getZkClient&#10;zkClient&#9;PSI&#9;JAVA://org.I0Itec.zkclient.ZkClient&#10;ZkEventThread&#9;FILE&#9;jar:///Users/dujijun/.m2/repository/com/101tec/zkclient/0.9/zkclient-0.9.jar!/org/I0Itec/zkclient/ZkEventThread.class&#10;ZkClient&#9;PSI&#9;JAVA://org.smartloli.kafka.eagle.common.util.ZKPoolUtils#getZkClient&#10;ge&#9;FILE&#9;file:///Users/dujijun/Documents/大数据相关/chronic-disease-github/chronic-disease-project/kafka-eagle-core/src/main/java/org/smartloli/kafka/eagle/core/ipc/KafkaOffsetGetter.java&#10;KafkaOffsetGetter&#9;FILE&#9;file:///Users/dujijun/Documents/大数据相关/chronic-disease-github/chronic-disease-project/kafka-eagle-core/src/main/java/org/smartloli/kafka/eagle/core/ipc/KafkaOffsetGetter.java&#10;algorithmex&#9;PSI&#9;JAVA://java.security.NoSuchAlgorithmException&#10;java.net.Connect&#9;PSI&#9;JAVA://java.net.ConnectException&#10;exception&#9;null&#9;null&#10;snomed.&#9;FILE&#9;file:///Users/lee/Desktop/chronic-disease1-master-15/kafka-eagle-web/src/main/webapp/media/js/main/patient/snomed.js" />
     <property name="settings.editor.splitter.proportion" value="0.24681684" />
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="add_unversioned_files" value="true" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="FullScreen" value="true" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+    <property name="FullScreen" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -1270,7 +1314,17 @@
       <workItem from="1524707585141" duration="9441000" />
       <workItem from="1524730821497" duration="4873000" />
       <workItem from="1524968309092" duration="173000" />
-      <workItem from="1524969655993" duration="6052000" />
+      <workItem from="1524969655993" duration="7228000" />
+      <workItem from="1524996101708" duration="1723000" />
+      <workItem from="1525153911404" duration="5868000" />
+      <workItem from="1525311931087" duration="3132000" />
+      <workItem from="1525329168561" duration="521000" />
+      <workItem from="1525330063803" duration="3761000" />
+      <workItem from="1525345352744" duration="5246000" />
+      <workItem from="1525398865645" duration="12068000" />
+      <workItem from="1525438662061" duration="767000" />
+      <workItem from="1525485226856" duration="22920000" />
+      <workItem from="1525570678194" duration="145000" />
     </task>
     <task id="LOCAL-00001" summary="1、更新monitor界面以及相关控制流&#10;2、更新monitor和monitorGroup数据表结构，删除panel，target表，删除对应的dao&#10;3、更新MonitorController中相关控制流&#10;4、更新Grafana-module中的dashboard生成、连接获取、匿名登陆token等部分">
       <created>1524622683034</created>
@@ -1293,7 +1347,56 @@
       <option name="project" value="LOCAL" />
       <updated>1524750222343</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="1、mysql driver jar包版本更新&#10;2、bug fixed">
+      <created>1524988699491</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1524988699491</updated>
+    </task>
+    <task id="LOCAL-00005" summary="1、mysql driver jar包版本更新&#10;2、bug fixed">
+      <created>1525354615150</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1525354615150</updated>
+    </task>
+    <task id="LOCAL-00006" summary="更新grafana生成仪表板时间">
+      <created>1525354685046</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1525354685046</updated>
+    </task>
+    <task id="LOCAL-00007" summary="修改双轴双tag代码bug">
+      <created>1525417750329</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1525417750329</updated>
+    </task>
+    <task id="LOCAL-00008" summary="修改时区UTC&#10;bug fixed">
+      <created>1525418790470</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1525418790470</updated>
+    </task>
+    <task id="LOCAL-00009" summary="修改了双轴显示">
+      <created>1525517858706</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1525517858706</updated>
+    </task>
+    <task id="LOCAL-00010" summary="bug fixed">
+      <created>1525570719293</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1525570719293</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1329,7 +1432,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="575433000" />
+    <option name="totallyTimeSpent" value="632760000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1355,19 +1458,18 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34652665" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4520548" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45204082" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13728324" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22191781" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947975" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28767124" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4479452" sideWeight="0.7746365" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27123287" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38061225" sideWeight="0.7746365" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32658958" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2980614" sideWeight="0.49452055" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37641358" sideWeight="0.49452055" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38529888" sideWeight="0.50547945" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1375,6 +1477,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24878837" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22142857" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" x="100" y="100" width="1080" height="600" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947975" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
@@ -1457,7 +1560,13 @@
     <MESSAGE value="1、更新monitor界面以及相关控制流&#10;2、更新monitor和monitorGroup数据表结构，删除panel，target表，删除对应的dao&#10;3、更新MonitorController中相关控制流&#10;4、更新Grafana-module中的dashboard生成、连接获取、匿名登陆token等部分" />
     <MESSAGE value="更新了monitor界面控制流&#10;更新了dashboard汉化&#10;更新了monitorGroup格式" />
     <MESSAGE value="修改部分代码，分离了Kafka监控的部分" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改部分代码，分离了Kafka监控的部分" />
+    <MESSAGE value="1、mysql driver jar包版本更新&#10;2、bug fixed" />
+    <MESSAGE value="更新grafana生成仪表板时间" />
+    <MESSAGE value="修改双轴双tag代码bug" />
+    <MESSAGE value="修改时区UTC&#10;bug fixed" />
+    <MESSAGE value="修改了双轴显示" />
+    <MESSAGE value="bug fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1470,41 +1579,11 @@
           </properties>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/quartz/OffsetsQuartz.java</url>
-          <line>143</line>
-          <properties />
-          <option name="timeStamp" value="105" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/quartz/MBeanQuartz.java</url>
-          <line>57</line>
-          <properties />
-          <option name="timeStamp" value="106" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/quartz/MBeanQuartz.java</url>
-          <line>62</line>
-          <properties />
-          <option name="timeStamp" value="107" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/kafka-eagle-core/src/main/java/org/smartloli/kafka/eagle/core/ipc/KafkaOffsetGetter.java</url>
-          <line>235</line>
-          <properties />
-          <option name="timeStamp" value="110" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/kafka-eagle-common/src/main/java/org/smartloli/kafka/eagle/common/util/ZKPoolUtils.java</url>
-          <line>89</line>
-          <properties />
-          <option name="timeStamp" value="114" />
-        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="115" />
+      <option name="time" value="120" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1513,263 +1592,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/rest/pojo/JarEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/Monitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="69" column="11" lean-forward="false" selection-start-line="69" selection-start-column="11" selection-end-line="69" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/monitor/grafana-dashboard-test.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1254">
-          <caret line="57" column="18" lean-forward="false" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/MonitorController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2970">
-          <caret line="155" column="70" lean-forward="false" selection-start-line="155" selection-start-column="70" selection-end-line="155" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/MonitorGroupService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1210">
-          <caret line="61" column="19" lean-forward="false" selection-start-line="61" selection-start-column="19" selection-end-line="61" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/impl/MonitorGroupServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/resources/mbean-quartz.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-166">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/resources/spring-mvc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1483">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/resources/spring-mybatis.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-885">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1472">
-          <caret line="20" column="21" lean-forward="true" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/test/DataTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="7" column="76" lean-forward="false" selection-start-line="7" selection-start-column="76" selection-end-line="7" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/test/java/org/smartloli/kafka/eagle/quartz/TestOffsetsQuartz.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="31" column="22" lean-forward="false" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/resources/log4j.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/quartz/OffsetsQuartz.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1971">
-          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/quartz/MBeanQuartz.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="63" column="42" lean-forward="false" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-core/src/main/java/org/smartloli/kafka/eagle/core/ipc/KafkaOffsetGetter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="235" column="0" lean-forward="false" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
-          <folding>
-            <element signature="e#10897#10898#0" expanded="true" />
-            <element signature="e#10947#10948#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.1.6.RELEASE/spring-beans-4.1.6.RELEASE.jar!/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="56" column="179" lean-forward="false" selection-start-line="56" selection-start-column="179" selection-end-line="56" selection-end-column="179" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.1.6.RELEASE/spring-context-4.1.6.RELEASE.jar!/org/springframework/context/support/ApplicationContextAwareProcessor.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="13" column="63" lean-forward="false" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/StartupListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="45" column="26" lean-forward="false" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/impl/OffsetServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="172" column="27" lean-forward="false" selection-start-line="172" selection-start-column="27" selection-end-line="172" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/OffsetController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="61" column="26" lean-forward="false" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/101tec/zkclient/0.9/zkclient-0.9.jar!/org/I0Itec/zkclient/ZkEventThread.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="6" column="14" lean-forward="false" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/zookeeper/zookeeper/3.4.8/zookeeper-3.4.8.jar!/org/apache/zookeeper/Watcher.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/101tec/zkclient/0.9/zkclient-0.9-sources.jar!/org/I0Itec/zkclient/ZkClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="154" column="31" lean-forward="true" selection-start-line="154" selection-start-column="31" selection-end-line="154" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/101tec/zkclient/0.9/zkclient-0.9-sources.jar!/org/I0Itec/zkclient/ZkEventThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="32" column="19" lean-forward="false" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-common/src/main/java/org/smartloli/kafka/eagle/common/util/ZKPoolUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="39" column="28" lean-forward="false" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-core/src/main/java/org/smartloli/kafka/eagle/core/factory/EmptyZKServiceImpl.java" />
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-core/src/main/java/org/smartloli/kafka/eagle/core/factory/EmptyKafkaServiceImpl.java" />
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-core/src/main/java/org/smartloli/kafka/eagle/core/factory/KafkaServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="100" column="48" lean-forward="false" selection-start-line="100" selection-start-column="48" selection-end-line="100" selection-end-column="48" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#26003#26004#0" expanded="false" />
-            <element signature="e#26053#26054#0" expanded="false" />
-            <element signature="e#35401#35402#0" expanded="false" />
-            <element signature="e#35446#35447#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-core/src/main/java/org/smartloli/kafka/eagle/core/factory/KafkaService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="37" column="23" lean-forward="false" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/impl/AlarmServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="52" column="54" lean-forward="false" selection-start-line="52" selection-start-column="54" selection-end-line="52" selection-end-column="54" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#2288#2304#0" expanded="false" />
-            <element signature="e#4163#4164#0" expanded="false" />
-            <element signature="e#4209#4210#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/resources/offsets-quartz.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kafka-eagle-core/src/main/java/org/smartloli/kafka/eagle/core/factory/ZkFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#1167#1168#0" expanded="false" />
-            <element signature="e#1200#1201#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1777,10 +1603,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
           <caret line="59" column="13" lean-forward="false" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1796,15 +1618,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
           <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-common/src/main/resources/system-config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="49" column="21" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1812,15 +1625,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="166">
           <caret line="35" column="23" lean-forward="false" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/Parameter/PARAMOfDashboard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
+        <state relative-caret-position="242">
           <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1828,7 +1639,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1836,9 +1646,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
           <caret line="98" column="48" lean-forward="false" selection-start-line="98" selection-start-column="48" selection-end-line="98" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1846,40 +1653,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/grafana/service/GrafanaDashboardService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="66" column="25" lean-forward="false" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kafka-eagle-common/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
+        <state relative-caret-position="1958">
           <caret line="89" column="25" lean-forward="false" selection-start-line="89" selection-start-column="25" selection-end-line="89" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kafka-eagle-elasticsearch/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
+        <state relative-caret-position="770">
           <caret line="35" column="46" lean-forward="false" selection-start-line="35" selection-start-column="46" selection-end-line="35" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="13" column="31" lean-forward="true" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+        <state relative-caret-position="286">
+          <caret line="13" column="31" lean-forward="false" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -1888,7 +1682,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1896,22 +1689,326 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/resources/bash/ke.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
-          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-          <folding />
+          <caret line="20" column="1" lean-forward="false" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/5cd942e4-9ad2-47c5-a09f-4c5e42d39661/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kafka-eagle-web/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="24" column="16" lean-forward="true" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="16" />
+        <state relative-caret-position="572">
+          <caret line="26" column="39" lean-forward="false" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/test/java/org/smartloli/kafka/eagle/service/TestStreamService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-115">
+          <caret line="11" column="3" lean-forward="false" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/test/java/org/smartloli/kafka/eagle/service/TestMonitorService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="31" column="86" lean-forward="false" selection-start-line="31" selection-start-column="86" selection-end-line="31" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_73.jdk/Contents/Home/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15114">
+          <caret line="744" column="0" lean-forward="false" selection-start-line="744" selection-start-column="0" selection-end-line="744" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/rest/streams/StreamService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_73.jdk/Contents/Home/src.zip!/java/time/Instant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15224">
+          <caret line="797" column="37" lean-forward="false" selection-start-line="797" selection-start-column="37" selection-end-line="797" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#61356#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#11865#11866#0" expanded="false" />
+            <element signature="e#11915#11916#0" expanded="false" />
+            <element signature="e#13001#13002#0" expanded="false" />
+            <element signature="e#13046#13047#0" expanded="false" />
+            <element signature="e#22812#22813#0" expanded="false" />
+            <element signature="e#22862#22863#0" expanded="false" />
+            <element signature="e#27399#27400#0" expanded="false" />
+            <element signature="e#27429#27430#0" expanded="false" />
+            <element signature="e#27825#27826#0" expanded="false" />
+            <element signature="e#27853#27854#0" expanded="false" />
+            <element signature="e#28896#28897#0" expanded="false" />
+            <element signature="e#28954#28955#0" expanded="false" />
+            <element signature="e#35502#35503#0" expanded="false" />
+            <element signature="e#35558#35559#0" expanded="false" />
+            <element signature="e#40257#40258#0" expanded="false" />
+            <element signature="e#40301#40302#0" expanded="false" />
+            <element signature="e#40870#40871#0" expanded="false" />
+            <element signature="e#40950#40951#0" expanded="false" />
+            <element signature="e#41513#41514#0" expanded="false" />
+            <element signature="e#41555#41556#0" expanded="false" />
+            <element signature="e#43866#43867#0" expanded="false" />
+            <element signature="e#43934#43935#0" expanded="false" />
+            <element signature="e#55324#55325#0" expanded="false" />
+            <element signature="e#55385#55386#0" expanded="false" />
+            <element signature="e#56110#56111#0" expanded="false" />
+            <element signature="e#56168#56169#0" expanded="false" />
+            <element signature="e#58240#58241#0" expanded="false" />
+            <element signature="e#58290#58291#0" expanded="false" />
+            <element signature="e#58712#58713#0" expanded="false" />
+            <element signature="e#58762#58763#0" expanded="false" />
+            <element signature="e#59658#59659#0" expanded="false" />
+            <element signature="e#59730#59731#0" expanded="false" />
+            <element signature="e#60111#60112#0" expanded="false" />
+            <element signature="e#60176#60177#0" expanded="false" />
+            <element signature="e#60649#60650#0" expanded="false" />
+            <element signature="e#60703#60704#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_73.jdk/Contents/Home/src.zip!/java/time/temporal/ChronoUnit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="76" column="22" lean-forward="false" selection-start-line="76" selection-start-column="12" selection-end-line="76" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="34" column="18" lean-forward="true" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-grafana/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="836">
+          <caret line="38" column="21" lean-forward="false" selection-start-line="34" selection-start-column="8" selection-end-line="38" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/DashboardAPI/DashboardAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="11" column="33" lean-forward="true" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/GraphPanels/Yaxes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-core/src/main/java/org/smartloli/kafka/eagle/core/ipc/KafkaOffsetGetter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="235" column="0" lean-forward="false" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/quartz/MBeanQuartz.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="46" column="13" lean-forward="false" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/resources/mbean-quartz.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-591">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-common/src/main/resources/system-config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1232">
+          <caret line="56" column="29" lean-forward="false" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/rest/docker/DockerRestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1034">
+          <caret line="54" column="30" lean-forward="false" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/utils/DataValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="18" column="36" lean-forward="false" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/MonitorGroupService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1540">
+          <caret line="76" column="19" lean-forward="false" selection-start-line="76" selection-start-column="19" selection-end-line="76" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/impl/MonitorGroupServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5148">
+          <caret line="265" column="55" lean-forward="false" selection-start-line="265" selection-start-column="55" selection-end-line="265" selection-end-column="55" />
+          <folding>
+            <element signature="e#2504#2505#0" expanded="false" />
+            <element signature="e#2575#2576#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/MonitorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3652">
+          <caret line="186" column="70" lean-forward="false" selection-start-line="186" selection-start-column="70" selection-end-line="186" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/monitor/grafana-dashboard-test.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="52" column="26" lean-forward="true" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/monitor/monitor_block_add.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="928" column="79" lean-forward="false" selection-start-line="928" selection-start-column="63" selection-end-line="928" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_73.jdk/Contents/Home/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="1445" column="38" lean-forward="false" selection-start-line="1445" selection-start-column="38" selection-end-line="1445" selection-end-column="38" />
+          <folding>
+            <element signature="e#56437#56438#0" expanded="false" />
+            <element signature="e#56514#56515#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/monitor/control.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="31" column="18" lean-forward="true" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/monitor/blockSearch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5742">
+          <caret line="261" column="49" lean-forward="false" selection-start-line="261" selection-start-column="49" selection-end-line="261" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/JavaBean/WriteDashboard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="37" column="43" lean-forward="false" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.1.6.RELEASE/spring-core-4.1.6.RELEASE-sources.jar!/org/springframework/util/StringUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="80" column="19" lean-forward="true" selection-start-line="80" selection-start-column="19" selection-end-line="80" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/HandleDashboard/HandleDashboard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="20" column="47" lean-forward="false" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-common/src/main/java/org/smartloli/kafka/eagle/common/util/ZKPoolUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1408">
+          <caret line="89" column="0" lean-forward="false" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/quartz/OffsetsQuartz.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2244">
+          <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/grafana/service/GrafanaDashboardService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="902">
+          <caret line="60" column="43" lean-forward="false" selection-start-line="60" selection-start-column="43" selection-end-line="60" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/Parameter/PARMOfTarget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/GraphPanels/Targets.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="13" column="10" lean-forward="false" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/GraphPanels/WriteGraPanels.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3973">
+          <caret line="208" column="30" lean-forward="false" selection-start-line="208" selection-start-column="30" selection-end-line="208" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-grafana/src/main/java/org/smartloli/kafka/eagle/grafana/JavaBean/DefaultValues.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="29" column="27" lean-forward="false" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
           <folding />
         </state>
       </provider>

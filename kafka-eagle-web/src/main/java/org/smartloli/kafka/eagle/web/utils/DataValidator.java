@@ -23,19 +23,24 @@ public class DataValidator {
     public static List<ValidateResult> validateBlocks(BlockGroup blockGroup){
         List<ValidateResult> validateResults = new ArrayList<>();
         List<BlockValues> blocks = blockGroup.getBlockValues();
+        if(!checkDuplicatedBlockName(blockGroup)) {
+            validateResults.add(new ValidateResult(ValidateResult.ResultCode.FAILURE, "Monitor命名定义重复！"));
+            return validateResults;
+        }
+
         for(int i = 0; i < blocks.size(); i++){
             BlockValues block = blocks.get(i);
 
             // 判别是否有未使用过的计算值
             if(!checkUnusedAggregation(block)){
                 validateResults.add(new ValidateResult(ValidateResult.ResultCode.WARNING,
-                                                       String.format("block-%d: 未使用的计算值", i)));
+                                                       String.format("查询块-%s: 未使用的计算值", block.getMonitorName())));
             }
 
             // 判别前端的命名选择是否有重复
             if(!checkDuplicated(block)){
                 validateResults.add(new ValidateResult(ValidateResult.ResultCode.WARNING,
-                                                       String.format("block-%d: 存在重复命名", i)));
+                                                       String.format("查询块-%s: 存在重复命名", block.getMonitorName())));
             }
         }
 
@@ -44,6 +49,15 @@ public class DataValidator {
         return validateResults;
 
     }
+    /** 检查是否存在重复命名Block */
+    private static boolean checkDuplicatedBlockName(BlockGroup blockGroup){
+        Set<String> blockNameSet = blockGroup.getBlockValues()
+                  .stream()
+                  .map(BlockValues::getMonitorName)
+                  .collect(Collectors.toSet());
+        return blockNameSet.size() == blockGroup.getBlockValues().size();
+    }
+
 
     /** 检查是否存在命名重复使用的情况 */
     private static boolean checkDuplicated(BlockValues block){

@@ -16,10 +16,11 @@ import java.util.Map;
 public class DockerRestService {
     private static final String PREFIX = SystemConfigUtils.getProperty("docker.url.prefix");
 
+
     public String createImage(String path, String imageName){
         RestTemplate restTemplate = new RestTemplate();
         Map<String, String> params = new HashMap<>();
-        params.put("dfpath", path);
+        params.put("dfpath", "X:\\" + path.replaceAll("/", "\\\\"));
         params.put("imageName", imageName);
         String url = String.format("%s/image/createImage?dfpath={dfpath}&imageName={imageName}", PREFIX);
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class, params);

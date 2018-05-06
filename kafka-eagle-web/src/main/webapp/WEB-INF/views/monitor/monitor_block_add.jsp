@@ -2,6 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -362,11 +363,14 @@
 	<div class="row">
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<div class="input-group">
+                <div class="input-group select_parent">
 					<div class="row">
-						<div class="col-md-12">
-							<span>选择</span>
-						</div>
+						<span>选择</span>
+                        <span onclick="add_select(this)"><img
+                                src="/ke/media/img/01.gif"/></span>
+                        <span style="margin-left: 10%">
+                            <input type="checkbox" name="s_alert" value="只看警报">只看警报
+                        </span>
 					</div>
 					<div class="row select">
 						<div class="select_templ">
@@ -382,7 +386,6 @@
 								</select>
 							</div>
 							<div class="select_row" style="padding-top: 4px">
-								<span onclick="add_select(this)"><img src="/ke/media/img/01.gif"/></span>
 								<span onclick="remove_select(this)"><img src="/ke/media/img/02.gif"/></span>
 							</div>
 						</div>
@@ -393,8 +396,10 @@
 	</div>
 </div>
 
-</script>
-<script id="aggregationWindowTmpl" type="text/x-jquery-tmpl">
+
+
+    </script>
+    <script id="aggregationWindowTmpl" type="text/x-jquery-tmpl">
     <div class="panel window_">
 
         <div class="panel-heading">
@@ -422,8 +427,10 @@
                    aria-describedby="basic-addon1" required>
         </div>
     </div>
-</script>
-<script id="aggregationTmpl" type="text/x-jquery-tmpl">
+
+
+    </script>
+    <script id="aggregationTmpl" type="text/x-jquery-tmpl">
 <div class="aggregation_item_templ col-md-11">
 	<div class="row calculation col-md-11" style="border: 1px solid #eee">
 
@@ -516,6 +523,8 @@
 
 </div>
 
+
+
     </script>
 
     <script id="calculationTmpl" type="text/x-jquery-tmpl">
@@ -557,6 +566,8 @@
 		</div>
 	</div>
 
+
+
     </script>
     <script id="filterTempl" type="text/x-jquery-tmpl">
     <div class="filter_templ" >
@@ -597,9 +608,11 @@
 		</div>
     </div>
 
+
+
     </script>
     <script id="selectTempl" type="text/x-jquery-tmpl">
-    <div class="select_templ" >
+    <div class="select_templ col-md-12" >
         <div class="select_row"> 
             <select class="selectpicker" data-live-search="true" name="s_source">
                 <option>数据源</option>
@@ -612,10 +625,11 @@
             </select>
         </div>
         <div class="select_row" style="padding-top: 4px">
-			<span onclick="add_select(this)"><img src="/ke/media/img/01.gif"/></span>
 			<span onclick="remove_select(this)"><img src="/ke/media/img/02.gif"/></span>
 		</div>
     </div>
+
+
 
     </script>
 </head>
@@ -681,7 +695,7 @@
                                                 <div class="col-md-2">
                                                     <h6 style="width: 100px">聚集</h6>
                                                 </div>
-                                                <div class="window_row_tmpl" >
+                                                <div class="window_row_tmpl">
                                                     <div class="panel window_">
 
                                                         <div class="panel-heading">
@@ -690,7 +704,8 @@
 
                                                         <div class="window_row">
                                                             <span>窗口类型</span> <select class="selectpicker"
-                                                                                      data-live-search="true" name="w_type">
+                                                                                      data-live-search="true"
+                                                                                      name="w_type">
                                                             <option>滑动窗口</option>
                                                             <option>翻滚窗口</option>
                                                             <option>跳跃窗口</option>
@@ -714,7 +729,8 @@
                                         </div>
                                         <div class="row aggregation">
                                             <div class="col-md-1">
-                                                <h6 style="width: 100px">聚集项 <span onclick="add_aggregation(this)"><img src="/ke/media/img/01.gif"/></span></h6>
+                                                <h6 style="width: 100px">聚集项 <span onclick="add_aggregation(this)"><img
+                                                        src="/ke/media/img/01.gif"/></span></h6>
 
                                             </div>
                                             <%--aggregation_item_outpanel--%>
@@ -906,17 +922,20 @@
                         <div class="row">
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <div class="input-group">
+                                    <div class="input-group select_parent">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <span>选择</span>
-                                                <%--<span onclick="add_select(this)"><img src="/ke/media/img/01.gif"/></span>--%>
-                                                <%--<span onclick="remove_select(this)"><img src="/ke/media/img/02.gif"/></span>--%>
+                                                <span onclick="add_select(this)" name = "add_select_block"><img
+                                                        src="/ke/media/img/01.gif"/></span>
+                                                <span style="margin-left: 10%">
+                                                    <input type="checkbox" name="s_alert" value="只看警报">只看警报
+                                                </span>
                                             </div>
                                         </div>
-                                        <div class="row select">
+                                        <div class="row select" style="width: 800px">
                                             <div class="select_templ">
-                                                <div class="select_row">
+                                                <div class="select_row" style="margin-left: 15px">
                                                     <select class="selectpicker" data-live-search="true"
                                                             name="s_source">
                                                         <option>数据源</option>
@@ -929,9 +948,8 @@
                                                         <option>数据项或聚集值</option>
                                                     </select>
                                                 </div>
+
                                                 <div class="select_row" style="padding-top: 4px">
-                                                    <span onclick="add_select(this)"><img
-                                                            src="/ke/media/img/01.gif"/></span>
                                                     <span onclick="remove_select(this)"><img
                                                             src="/ke/media/img/02.gif"/></span>
                                                 </div>

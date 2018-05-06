@@ -137,7 +137,8 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
 
         logger.info("==========开始获取jar包===========");
         // 调用黄章昊接口，获取jar包对应路径
-        String path = streamService.getJarFromStreamingPeer(monitorIds, imageId, creator);
+        String path = streamService.getJarFromStreamingPeer(blockGroup, monitorGroupId, creator);
+//        String path = "the-user-1/the-user-1-1525337364460";
         monitorGroup.setPath(path);
 
         for (int i = 0; i < blocksEntity.size(); i++) {
@@ -176,6 +177,10 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
     @Transactional(rollbackFor = Exception.class)
     public ValidateResult runService(String monitorGroupId){
         MonitorGroup monitorGroup = getMonitorGroupById(monitorGroupId);
+        // 如果已经开启, 则直接返回
+        if("started".equals(monitorGroup.getState()))
+            return new ValidateResult(ValidateResult.ResultCode.WARNING, "服务已经开启");
+
         int res = monitorGroupDao.updateMonitorGroup("started", monitorGroupId);
         logger.info("==========数据库写入成功==========");
 
@@ -205,10 +210,10 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
         logger.info("========数据删除完成========");
 
         // 删除grafana dashboard
-        ValidateResult deleteResult = grafanaDashboardService.deleteDashboard(monitorGroupId);
-        if(deleteResult.getResultCode() != ValidateResult.ResultCode.SUCCESS)
-            throw new NormalException(deleteResult.getMes()) ;
-        logger.info("========dashboard删除完成========");
+//        ValidateResult deleteResult = grafanaDashboardService.deleteDashboard(monitorGroupId);
+//        if(deleteResult.getResultCode() != ValidateResult.ResultCode.SUCCESS)
+//            throw new NormalException(deleteResult.getMes()) ;
+//        logger.info("========dashboard删除完成========");
 
         // 删除image文件
         //String path = monitorGroup.getPath();
@@ -217,11 +222,11 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
         //    return new ValidateResult(ValidateResult.ResultCode.FAILURE, "删除镜像文件失败!");
         // logger.info("========image文件删除完成========")
 
-        String res = dockerRestService.deleteMonitorImage(monitorGroup.getImageId());
-        logger.info(res);
-        Map<String, String> resMes = DockerRestResolver.resolveResult(res);
-        if(!"200".equals(resMes.get("root.code")))
-            throw new NormalException("远程镜像删除失败");
+//        String res = dockerRestService.deleteMonitorImage(monitorGroup.getImageId());
+//        logger.info(res);
+//        Map<String, String> resMes = DockerRestResolver.resolveResult(res);
+//        if(!"200".equals(resMes.get("root.code")))
+//            throw new NormalException("远程镜像删除失败");
 
         return new ValidateResult(ValidateResult.ResultCode.SUCCESS, "image删除成功");
     }
