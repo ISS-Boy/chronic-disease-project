@@ -206,7 +206,7 @@ public class WriteGraPanels {
     private Object[] jugdeStateAndConstruct(String unit, String flag, String item, int axis, List<SeriesOverrides> sList) {
         int curAxis = axis;
         String curUnit = unit;
-        SeriesOverrides series = null;
+        SeriesOverrides series;
         if (StringUtils.isEmpty(curUnit))
             curUnit = flag;
         if (curUnit.equals(flag)) {
