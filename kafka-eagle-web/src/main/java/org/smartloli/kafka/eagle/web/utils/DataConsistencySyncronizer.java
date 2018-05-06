@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * ==============================================
  * 1、数据创建线程是通过前端请求触发, 执行数据创建逻辑.
  * 2、后台清除线程通过对比数据库和Docker中ImageId、grafana的dashboardId
- * 以及nfs中的userId和GroupId, 将无用资源进行释放
+ * 以及nfs中的userId和MonitorGroupId, 将无用资源进行释放
  *
  * 例如:
  * 在数据创建的过程中, 存在Docker Image已经生成而数据库数据
@@ -29,19 +29,19 @@ public class DataConsistencySyncronizer {
 
     private static final Lock writeLock = lock.writeLock();
 
-    public static void lockForCreateMonitor(){
+    public static void lockForCreatingMonitor(){
         readLock.lock();
     }
 
-    public static void releaseCreateMonitorLock(){
+    public static void releaseLockOfCreatingMonitor(){
         readLock.unlock();
     }
 
-    public static void lockForDeleteResources(){
+    public static void lockForDeletingResources(){
         writeLock.lock();
     }
 
-    public static void releaseDeleteMonitorLock(){
+    public static void releaseLockOfDeletingResources(){
         writeLock.unlock();
     }
 }

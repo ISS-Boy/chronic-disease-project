@@ -7,7 +7,7 @@ import org.smartloli.kafka.eagle.grafana.HandleDashboard.HandleDashboard;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARAMOfDashboard;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARMOfPanel;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARMOfTarget;
-import org.smartloli.kafka.eagle.web.exception.entity.NormalException;
+import org.smartloli.kafka.eagle.web.exception.entity.InternalException;
 import org.smartloli.kafka.eagle.web.json.pojo.AggregationValues;
 import org.smartloli.kafka.eagle.web.json.pojo.BlockValues;
 import org.smartloli.kafka.eagle.web.json.pojo.Selects;
@@ -33,7 +33,7 @@ public class GrafanaDashboardService {
 
     private static final String DEFAULT_DISPLAY_TYPE = "bars";
 
-    public ValidateResult createDashboardAndGetUrl(String monitorGroupId, MonitorGroup monitorGroup, List<Monitor> monitors) {
+    public List<String> createDashboardAndGetUrl(String monitorGroupId, MonitorGroup monitorGroup, List<Monitor> monitors) {
         List<PARMOfPanel> panels = new ArrayList<>();
         List<String> panelUrls = new ArrayList<>();
 
@@ -42,14 +42,10 @@ public class GrafanaDashboardService {
 
         dashboard.setDashboardName(monitorGroupId);
 
-
+        // 设置panel查询时间
         Date start = Date.from(Instant.now().plus(-2, ChronoUnit.HOURS));
         Date end = Date.from(Instant.now().plus(1, ChronoUnit.HOURS));
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.CHINA);
-
-//        dashboard.setFrom("2018-04-28T00:00:00.000Z");
-//        dashboard.setTo("2018-04-29T00:00:00.000Z");
-
         dashboard.setFrom(sdf.format(start) + "Z");
         dashboard.setTo(sdf.format(end) + "Z");
 
@@ -84,7 +80,7 @@ public class GrafanaDashboardService {
             // 获取dashboard的url
             String dashboardUrl = handleDashboard.getDashboardUrl(dashboard, i);
             if (Strings.isBlank(dashboardUrl))
-                throw new NormalException("获取panel的URL地址失败");
+                throw new InternalException("获取panel的URL地址失败");
             panelUrls.add(dashboardUrl);
             i++;
         }
@@ -95,22 +91,20 @@ public class GrafanaDashboardService {
         // 创建dashboard
         int code = handleDashboard.createdashboard(dashboard);
         if (code != 200)
-            return new ValidateResult(ValidateResult.ResultCode.FAILURE, "创建dashboard失败: " + code);
+            throw new InternalException("创建Dashboard失败, 错误代码: " + code);
 
-        // 封装结果对象
-        ValidateResult success = new ValidateResult(ValidateResult.ResultCode.SUCCESS, "success", panelUrls);
-        return success;
+        // 返回结果对象
+        return panelUrls;
     }
 
     // 使用monitorGroupId来作为dashboardName
-    public ValidateResult deleteDashboard(String monitorGroupId) {
+    public void deleteDashboard(String monitorGroupId) {
         HandleDashboard handleDashboard = new HandleDashboard();
         if (!handleDashboard.deletedashboard(monitorGroupId))
-            return new ValidateResult(ValidateResult.ResultCode.FAILURE, "删除dashboard失败");
-
-        return new ValidateResult(ValidateResult.ResultCode.SUCCESS, "删除dashboard成功");
+            throw new InternalException("删除Dashboard失败!");
     }
 
+    // 根据select项来判别数据单位
     private List<String> determineUnitForMeasure(BlockValues block) {
         List<String> measureWithUnit = new ArrayList<>();
         List<Selects> selects = block.getSelects();
@@ -150,11 +144,8 @@ public class GrafanaDashboardService {
 
         int i = 0;
         for (String dId: allGrafanaDashboards){
-            ValidateResult validateResult = deleteDashboard(dId);
-            if(validateResult.getResultCode() == ValidateResult.ResultCode.SUCCESS)
-                logger.info(String.format("成功删除第%d个dashboard!", i));
-            else
-                logger.error(String.format("删除第%d个dashboard失败——%s", i, validateResult.getMes()));
+            deleteDashboard(dId);
+            logger.info(String.format("成功删除第%d个dashboard!", i));
             i++;
         }
     }

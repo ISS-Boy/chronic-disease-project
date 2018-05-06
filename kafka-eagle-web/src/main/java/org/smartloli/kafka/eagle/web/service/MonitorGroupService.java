@@ -3,7 +3,6 @@ package org.smartloli.kafka.eagle.web.service;
 import org.smartloli.kafka.eagle.web.json.pojo.BlockGroup;
 import org.smartloli.kafka.eagle.web.pojo.Monitor;
 import org.smartloli.kafka.eagle.web.pojo.MonitorGroup;
-import org.smartloli.kafka.eagle.web.utils.ValidateResult;
 
 import java.io.IOException;
 import java.util.List;
@@ -40,7 +39,7 @@ public interface MonitorGroupService {
      * @return 创建结果
      * @throws IOException
      */
-    ValidateResult createImage(String creator, BlockGroup blockGroup) throws IOException;
+    void createImage(String creator, BlockGroup blockGroup) throws IOException;
 
 
     /**
@@ -48,7 +47,7 @@ public interface MonitorGroupService {
      * @param monitorGroupId
      * @return 运行结果
      */
-    ValidateResult runService(String monitorGroupId);
+    void runService(String monitorGroupId);
 
     /**
      * 删除MonitorGroup
@@ -59,7 +58,7 @@ public interface MonitorGroupService {
      * @param monitorGroupId
      * @return 校验结果
      */
-    ValidateResult deleteMonitorGroup(String monitorGroupId) throws IOException;
+    void deleteMonitorGroup(String monitorGroupId) throws IOException;
 
     /**
      * 停止MonitorGroup服务，如果本身Monitor就是关闭状态，则不发生改变
@@ -67,14 +66,14 @@ public interface MonitorGroupService {
      * @return 校验结果
      * @throws Exception
      */
-    ValidateResult stopMonitorGroupService(String monitorGroupId) throws Exception;
+    void stopMonitorGroupService(String monitorGroupId) throws Exception;
 
     /**
      * 创建仪表板然后获取仪表板url
      * @param monitorGroupId
      * @return 校验结果，attach中含有UrlList
      */
-    ValidateResult createMonitorDashBoardAndGetUrl(String monitorGroupId);
+    List<String> createMonitorDashBoardAndGetUrl(String monitorGroupId);
 
     /**
      * 清理无用的Images

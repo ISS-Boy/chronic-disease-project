@@ -12,11 +12,12 @@ public class CleanerQuartz {
 
     public void executeClean(){
         logger.info("Cleaning work down!!!!!!!");
+
         // 测试用
         logger.info(monitorGroupService.getAllMonitorGroups());
 
         // 定时清理无用资源
-        // monitorGroupService.cleanUselessResources();
+        monitorGroupService.cleanUselessResources();
 
     }
 }

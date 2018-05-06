@@ -1,6 +1,5 @@
 package org.smartloli.kafka.eagle.web.controller;
 
-import org.smartloli.kafka.eagle.web.exception.entity.NormalException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

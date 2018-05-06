@@ -1,7 +1,7 @@
 package org.smartloli.kafka.eagle.web.exception;
 
 import org.apache.log4j.Logger;
-import org.smartloli.kafka.eagle.web.exception.entity.NormalException;
+import org.smartloli.kafka.eagle.web.exception.entity.InternalException;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -43,8 +43,8 @@ public class ExceptionsHandler {
         return mv;
     }
 
-    @ExceptionHandler(NormalException.class)
-    public ModelAndView handleNormalException(NormalException e){
+    @ExceptionHandler(InternalException.class)
+    public ModelAndView handleNormalException(InternalException e){
         // 异常打印
         logger.error(e.getMessage());
         e.printStackTrace();

@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.sun.mail.iap.ConnectionException;
 import org.apache.log4j.Logger;
 import org.smartloli.kafka.eagle.web.dao.MonitorGroupDao;
-import org.smartloli.kafka.eagle.web.exception.entity.NormalException;
+import org.smartloli.kafka.eagle.web.exception.entity.InternalException;
 import org.smartloli.kafka.eagle.web.grafana.service.GrafanaDashboardService;
 import org.smartloli.kafka.eagle.web.json.pojo.BlockGroup;
 import org.smartloli.kafka.eagle.web.json.pojo.BlockValues;
@@ -16,7 +16,6 @@ import org.smartloli.kafka.eagle.web.service.MonitorGroupService;
 import org.smartloli.kafka.eagle.web.service.MonitorService;
 import org.smartloli.kafka.eagle.web.utils.DataConsistencySyncronizer;
 import org.smartloli.kafka.eagle.web.utils.DockerRestResolver;
-import org.smartloli.kafka.eagle.web.utils.ValidateResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -98,9 +97,9 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ValidateResult createImage(String creator, BlockGroup blockGroup) throws IOException {
+    public void createImage(String creator, BlockGroup blockGroup) throws IOException {
         try {
-            DataConsistencySyncronizer.lockForCreateMonitor();
+            DataConsistencySyncronizer.lockForCreatingMonitor();
 
             logger.info("==========开始创建镜像===========");
 
@@ -132,12 +131,11 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
             for (int i = 0; i < blocksEntity.size(); i++)
                 monitorIdList.add(String.format("%s-%d", monitorGroupId, i));
 
-            String monitorIds = String.join(",", monitorIdList);
-
             logger.info("==========开始获取jar包===========");
             // 调用黄章昊接口，获取jar包对应路径
             String path = streamService.getJarFromStreamingPeer(blockGroup, monitorGroupId, creator);
 //        String path = "the-user-1/the-user-1-1525337364460";
+
             monitorGroup.setPath(path);
 
             for (int i = 0; i < blocksEntity.size(); i++) {
@@ -155,113 +153,95 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
             // 封装对象，存数据库
             boolean result = addMonitorGroupAndMonitor(monitorGroup, monitors);
             if (!result)
-                return new ValidateResult(ValidateResult.ResultCode.FAILURE, "数据存储异常");
+                throw new InternalException("数据存储异常");
 
             logger.info("==========开始Docker调用===========");
             Map<String, String> resMes = DockerRestResolver.resolveResult(dockerRestService.createImage(path, imageId));
 
             // 如果调用失败
             if (!"200".equals(resMes.get("root.code")))
-                return new ValidateResult(ValidateResult.ResultCode.FAILURE, resMes.get("root.msg"));
+                throw new InternalException(resMes.get("root.msg"));
 
             // 如果调用成功
             int res = updateMonitorGroupState("stopped", monitorGroupId);
-            if (res == 1)
-                return new ValidateResult(ValidateResult.ResultCode.SUCCESS, "创建镜像成功");
-            else
-                return new ValidateResult(ValidateResult.ResultCode.FAILURE, "状态更新失败");
+            if(res != 1)
+                throw new InternalException("状态更新失败!");
         } finally {
-            DataConsistencySyncronizer.releaseCreateMonitorLock();
+            DataConsistencySyncronizer.releaseLockOfCreatingMonitor();
         }
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ValidateResult runService(String monitorGroupId){
+    public void runService(String monitorGroupId){
         MonitorGroup monitorGroup = getMonitorGroupById(monitorGroupId);
-        // 如果已经开启, 则直接返回
-        if("started".equals(monitorGroup.getState()))
-            return new ValidateResult(ValidateResult.ResultCode.WARNING, "服务已经开启");
 
+        // 如果已经开启, 则直接返回
+        if("started".equals(monitorGroup.getState())) {
+            logger.info("服务已经开启, 无需重复启动!");
+            return;
+        }
         int res = monitorGroupDao.updateMonitorGroup("started", monitorGroupId);
-        logger.info("==========数据库写入成功==========");
 
         // 数据更新异常
         if(res != 1)
-            return new ValidateResult(ValidateResult.ResultCode.FAILURE, "数据更新失败");
+            throw new InternalException("数据库更新状态失败!");
+
+        logger.info("==========数据库写入成功==========");
 
         String response = dockerRestService.runMonitorServiceOnDocker(
                 monitorGroup.getMonitorGroupId(),
                 monitorGroup.getImageId(),
                 monitorGroup.getServiceId());
         Map<String, String> resMes = DockerRestResolver.resolveResult(response);
-        if("200".equals(resMes.get("root.code")))
-            return new ValidateResult(ValidateResult.ResultCode.SUCCESS, "服务运行成功");
-        else
-            return new ValidateResult(ValidateResult.ResultCode.FAILURE, "服务运行失败");
+        if(!"200".equals(resMes.get("root.code")))
+            throw new InternalException("服务运行失败: " + resMes.get("root.msg"));
+
+        logger.info(monitorGroupId + ": 服务运行成功");
     }
 
+    // 注意: 删除MonitorGroup只删除数据库信息, 保证MonitorService关闭
+    // 至于MonitorGroup镜像的删除, Grafana的清理以及文件系统的清理, 应该由后台清理线程去完成
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ValidateResult deleteMonitorGroup(String monitorGroupId) throws IOException {
-        MonitorGroup monitorGroup = getMonitorGroupById(monitorGroupId);
+    public void deleteMonitorGroup(String monitorGroupId) throws IOException {
+
         // 由于设定外键级联删除，所以这里不需要手动删除monitor
         int n = deleteMonitorGroupById(monitorGroupId);
         if(n != 1)
-            return new ValidateResult(ValidateResult.ResultCode.FAILURE, "数据删除失败");
+            throw new InternalException("数据删除失败！");
+
         logger.info("========数据删除完成========");
 
-        // 删除grafana dashboard
-//        ValidateResult deleteResult = grafanaDashboardService.deleteDashboard(monitorGroupId);
-//        if(deleteResult.getResultCode() != ValidateResult.ResultCode.SUCCESS)
-//            throw new NormalException(deleteResult.getMes()) ;
-//        logger.info("========dashboard删除完成========");
-
-        // 删除image文件
-        //String path = monitorGroup.getPath();
-        //if(StringUtils.isBlank(path) ||c
-        //        Files.deleteIfExists(Paths.get(monitorGroup.getPath())))
-        //    return new ValidateResult(ValidateResult.ResultCode.FAILURE, "删除镜像文件失败!");
-        // logger.info("========image文件删除完成========")
-
-//        String res = dockerRestService.deleteMonitorImage(monitorGroup.getImageId());
-//        logger.info(res);
-//        Map<String, String> resMes = DockerRestResolver.resolveResult(res);
-//        if(!"200".equals(resMes.get("root.code")))
-//            throw new NormalException("远程镜像删除失败");
-
-        return new ValidateResult(ValidateResult.ResultCode.SUCCESS, "image删除成功");
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ValidateResult stopMonitorGroupService(String monitorGroupId) throws ConnectionException {
+    public void stopMonitorGroupService(String monitorGroupId) throws ConnectionException {
         MonitorGroup monitorGroup = getMonitorGroupById(monitorGroupId);
 
-        ValidateResult success = new ValidateResult(ValidateResult.ResultCode.SUCCESS, "服务停止成功");
         // 如果状态没有开启，则直接回复校验成功结果
         if(!"started".equals(monitorGroup.getState()))
-            return success;
+            return;
 
         int n = monitorGroupDao.updateMonitorGroup("stopped", monitorGroupId);
         if(n != 1)
-            return new ValidateResult(ValidateResult.ResultCode.FAILURE, "状态更新失败");
+            throw new InternalException("状态更新失败");
+
 
         logger.info("==========容器状态更新=========");
         String res = dockerRestService.stopMonitorServiceOnDocker(monitorGroup.getServiceId());
         Map<String, String> resMes = DockerRestResolver.resolveResult(res);
-        if("200".equals(resMes.get("root.code")))
-            return success;
-        else
-            return new ValidateResult(ValidateResult.ResultCode.FAILURE, "服务停止失败");
+        if(!"200".equals(resMes.get("root.code")))
+            throw new InternalException(monitorGroupId + ": 服务停止失败! " + resMes.get("root.msg"));
     }
 
     @Override
-    public ValidateResult createMonitorDashBoardAndGetUrl(String monitorGroupId) {
+    public List<String> createMonitorDashBoardAndGetUrl(String monitorGroupId) {
         // 判断如果服务没有开启，则抛出异常
         MonitorGroup monitorGroup = getMonitorGroupById(monitorGroupId);
         if(!"started".equals(monitorGroup.getState()))
-            throw new NormalException("服务未开启，请先开启服务");
+            throw new InternalException("服务未开启，请先开启服务");
 
         List<Monitor> monitors = monitorService.getAllMonitorByGroupId(monitorGroupId);
 
@@ -272,7 +252,7 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
     public void cleanUselessResources() {
         try {
             // 开启数据一致锁
-            DataConsistencySyncronizer.lockForDeleteResources();
+            DataConsistencySyncronizer.lockForDeletingResources();
 
             // 清理无用的Docker镜像
             List<MonitorGroup> monitorGroups = getAllMonitorGroups();
@@ -293,8 +273,13 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
                     .collect(Collectors.toList());
             streamService.cleanUselessStreamFiles(userIdAndMonitorGroupIds);
 
-        } finally {
-            DataConsistencySyncronizer.releaseDeleteMonitorLock();
+        } catch(Exception e) {
+            // 防止异常抛出到外层被ExceptionHandler接受并进行处理
+            logger.error(e.getMessage());
+            e.printStackTrace();
+        }
+        finally {
+            DataConsistencySyncronizer.releaseLockOfDeletingResources();
         }
     }
 }

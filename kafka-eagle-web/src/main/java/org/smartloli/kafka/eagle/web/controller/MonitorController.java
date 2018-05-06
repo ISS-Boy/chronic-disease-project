@@ -3,11 +3,10 @@ package org.smartloli.kafka.eagle.web.controller;
 import com.alibaba.fastjson.JSON;
 import net.sf.json.JSONArray;
 import org.apache.log4j.Logger;
-import org.smartloli.kafka.eagle.web.exception.entity.NormalException;
+import org.smartloli.kafka.eagle.web.exception.entity.InternalException;
 import org.smartloli.kafka.eagle.web.grafana.service.GrafanaDashboardService;
 import org.smartloli.kafka.eagle.web.json.pojo.BlockGroup;
 import org.smartloli.kafka.eagle.web.pojo.MonitorGroup;
-import org.smartloli.kafka.eagle.web.pojo.Signiner;
 import org.smartloli.kafka.eagle.web.service.MonitorGroupService;
 import org.smartloli.kafka.eagle.web.service.MonitorService;
 import org.smartloli.kafka.eagle.web.utils.DataValidator;
@@ -114,9 +113,9 @@ public class MonitorController {
 
         // 校验成功, 开始创建镜像
         logger.info("======数据校验成功========");
-        ValidateResult result = monitorGroupService.createImage(creator, blockGroup);
-        if(result.getResultCode() == ValidateResult.ResultCode.FAILURE)
-            return result.getMes();
+
+        // 创建镜像, 若创建失败, 则会抛出异常到异常捕捉方法中
+        monitorGroupService.createImage(creator, blockGroup);
 
         // 镜像创建成功
         return "success";
@@ -131,12 +130,9 @@ public class MonitorController {
     @RequestMapping(value = "/monitor/runMonitorGroup", method = RequestMethod.GET)
     public String runMonitorGroup(@RequestParam("monitorGroupId") String monitorGroupId, HttpSession session){
         logger.info("monitorGroupId:" + monitorGroupId);
-        ValidateResult serviceExecutionResult = monitorGroupService.runService(monitorGroupId);
-        if(serviceExecutionResult.getResultCode() == ValidateResult.ResultCode.FAILURE)
-            throw new NormalException(serviceExecutionResult.getMes());
 
-        if(serviceExecutionResult.getResultCode() == ValidateResult.ResultCode.WARNING)
-            logger.info(serviceExecutionResult.getResultCode() + "-" + serviceExecutionResult.getMes());
+        // 启动Monitor服务
+        monitorGroupService.runService(monitorGroupId);
 
         session.setAttribute("monitorGroupId", monitorGroupId);
         return "redirect:/visualizer/visShow";
@@ -151,15 +147,12 @@ public class MonitorController {
     @RequestMapping(value = "/monitor/deleteMonitorGroup", method = RequestMethod.GET)
     public String deleteMonitorGroup(@RequestParam("monitorGroupId") String monitorGroupId) throws Exception {
         logger.info("monitorGroupId:" + monitorGroupId);
+
         // 先停止服务
-        ValidateResult stopResult = monitorGroupService.stopMonitorGroupService(monitorGroupId);
-        if(stopResult.getResultCode() != ValidateResult.ResultCode.SUCCESS)
-            throw new NormalException(stopResult.getMes());
+        monitorGroupService.stopMonitorGroupService(monitorGroupId);
 
         // 再删除镜像
-        ValidateResult validateResult = monitorGroupService.deleteMonitorGroup(monitorGroupId);
-        if(validateResult.getResultCode() != ValidateResult.ResultCode.SUCCESS)
-            throw new NormalException(validateResult.getMes());
+        monitorGroupService.deleteMonitorGroup(monitorGroupId);
 
         return "monitor/monitor_maintain";
 
@@ -174,25 +167,22 @@ public class MonitorController {
     @RequestMapping(value = "/monitor/stopMonitorGroup", method = RequestMethod.GET)
     public String stopMonitorGroup(@RequestParam("monitorGroupId") String monitorGroupId) throws Exception {
         logger.info("monitorGroupId:" + monitorGroupId);
-        ValidateResult validateResult = monitorGroupService.stopMonitorGroupService(monitorGroupId);
-        if(validateResult.getResultCode() == ValidateResult.ResultCode.SUCCESS)
-            return "redirect:/visualizer/visShow";
-        else
-            throw new NormalException(validateResult.getMes());
+
+        // 停止MonitorGroupService
+        monitorGroupService.stopMonitorGroupService(monitorGroupId);
+        return "redirect:/visualizer/visShow";
     }
 
     @RequestMapping(value = "/monitor/showMonitorGroup", method = RequestMethod.GET)
     public ModelAndView showMonitorGroup(@RequestParam("monitorGroupId") String monitorGroupId) throws Exception {
         logger.info("monitorGroupId:" + monitorGroupId);
         ModelAndView mav = new ModelAndView("monitor/grafana-dashboard-test");
-        ValidateResult getDashboardUrlResult = monitorGroupService.createMonitorDashBoardAndGetUrl(monitorGroupId);
 
-        if(getDashboardUrlResult.getResultCode() != ValidateResult.ResultCode.SUCCESS)
-            throw new NormalException(getDashboardUrlResult.getMes());
+        List<String> urls = monitorGroupService.createMonitorDashBoardAndGetUrl(monitorGroupId);
 
         // 如果没有失败，则将数据url封装至ModelAndView中
-        logger.info("==========" + getDashboardUrlResult.getAttach() + "==========");
-        mav.addObject("urls", getDashboardUrlResult.getAttach());
+        logger.info("==========" + urls + "==========");
+        mav.addObject("urls", urls);
         return mav;
     }
 
