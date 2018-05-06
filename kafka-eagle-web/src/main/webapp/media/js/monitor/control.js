@@ -229,6 +229,12 @@ function onCalNameDefine(this_block, nameBlock){
         nameBlock = $(this_block).find($('.calculation input[name="a_name"]'))
     nameBlock.blur(function () {
         var pBlock = $(this).parents('.block_tmpl')
+        // 命名不允许和现有命名冲突
+        if(localizeDictionary[$(this).val()] != undefined){
+            alert("命名与现有命名冲突, 请更换您的命名")
+            $(this).val("")
+            return false
+        }
 
         // 手动触发事件更新内容
         var selectSources = pBlock.find($('.select select[name="s_source"]'))
