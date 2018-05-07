@@ -198,7 +198,6 @@ public class WriteGraPanels {
                 unit = (String) unitAndAxis[0];
                 axis = (int) unitAndAxis[1];
             }
-
         }
         return seriesOverrideslist;
     }
@@ -267,6 +266,10 @@ public class WriteGraPanels {
             newYaxes.setShow(true);
             yaxeslist.add(newYaxes);
         }
+
+        // 如果y轴上的指标少于一个，则添加一个空的
+        if(yaxeslist.size() < 2)
+            yaxeslist.add(new Yaxes());
 
         return yaxeslist;
     }
