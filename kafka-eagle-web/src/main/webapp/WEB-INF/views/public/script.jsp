@@ -10,6 +10,9 @@
 <script src="/ke/media/js/public/navbar.js" type="text/javascript"></script>
 <script src="/ke/media/js/public/bootstrap-treeview.min.js" type="text/javascript"></script>
 <script src="/ke/media/js/plugins/handlebars/handlebars-v4.0.10.js" type="text/javascript"></script>
+<!--提示框-->
+<script src="/ke/media/js/ace/js/jquery.tips.js" type="text/javascript"></script>
+
 <%
 	String[] loader = request.getParameterValues("loader");
 	if (loader == null) {

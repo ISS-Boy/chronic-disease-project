@@ -20,5 +20,34 @@ public class MenuService {
         return menuDao.listAllParentMenu();
     }
 
+    public List<Menu> listAllMenu(){
+        List<Menu> parentMenus = menuDao.listAllParentMenu();
+        List<Menu> menus = menuDao.listAllMenu();
+        for (Menu menu : menus) {
+            for (Menu parent : parentMenus) {
+                if (parent.getId().equals(menu.getParentId())) {
+                    menu.setParentMenu(parent);
+                }
+            }
+        }
+        return menus;
+    }
 
+
+    public int saveAddMenu(Menu menu){
+        return menuDao.saveAddMenu(menu);
+    }
+
+
+    public Menu findMenuById(int id){
+        return menuDao.findMenuById(id);
+    }
+
+    public int updateMenuById(Menu menu){
+        return menuDao.updateMenuById(menu);
+    }
+
+    public void deleteMenuById(int id){
+        menuDao.deleteMenuById(id);
+    }
 }

@@ -5,15 +5,20 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
 
 import org.apache.commons.logging.Log;
+import org.apache.ibatis.annotations.Param;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.smartloli.kafka.eagle.web.pojo.Menu;
 import org.smartloli.kafka.eagle.web.service.MenuService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -39,7 +44,7 @@ public class MenuController{
 	public ModelAndView list()throws Exception{
 		ModelAndView mv = new ModelAndView();
 		try{
-			List<Menu> menuList = menuService.listAllParentMenu();
+			List<Menu> menuList = menuService.listAllMenu();
 			mv.addObject("menuList", menuList);
 			mv.setViewName("/menu/menu_list");
 		} catch(Exception e){
@@ -53,75 +58,71 @@ public class MenuController{
 	 * 请求新增菜单页面
 	 * @return
 	 */
-//	@RequestMapping(value="/toAdd")
-//	public ModelAndView toAdd()throws Exception{
-//		ModelAndView mv = new ModelAndView();
-//		try{
-//			List<Menu> menuList = menuService.listAllParentMenu();
-//			mv.addObject("menuList", menuList);
-//			mv.setViewName("system/menu/menu_add");
-//		} catch(Exception e){
-//			logger.warning(e.toString());
-//		}
-//		return mv;
-//	}
-//
-//	/**
-//	 * 保存菜单信息
-//	 * @param menu
-//	 * @return
-//	 */
-//	@RequestMapping(value="/add")
-//	public ModelAndView add(Menu menu)throws Exception{
-//		ModelAndView mv = new ModelAndView();
-//		PageData pd = new PageData();
-//		pd = this.getPageData();
-//		try{
-//			menu.setMENU_ID(String.valueOf(Integer.parseInt(menuService.findMaxId(pd).get("MID").toString())+1));
-//
-//
-//			String PARENT_ID = menu.getPARENT_ID();
-//			if(!"0".equals(PARENT_ID)){
-//				//处理菜单类型====
-//				pd.put("MENU_ID",PARENT_ID);
-//				pd = menuService.getMenuById(pd);
-//				menu.setMENU_TYPE(pd.getString("MENU_TYPE"));
-//				//处理菜单类型====
-//			}
-//			menuService.saveMenu(menu);
-//			mv.addObject("msg","success");
-//		} catch(Exception e){
-//			logger.error(e.toString(), e);
-//			mv.addObject("msg","failed");
-//		}
-//
-//		mv.setViewName("save_result");
-//		return mv;
-//
-//	}
-//
-//	/**
-//	 * 请求编辑菜单页面
-//	 * @param
-//	 * @return
-//	 */
-//	@RequestMapping(value="/toEdit")
-//	public ModelAndView toEdit(String MENU_ID)throws Exception{
-//		ModelAndView mv = this.getModelAndView();
-//		PageData pd = new PageData();
-//		try{
-//			pd = this.getPageData();
-//			pd.put("MENU_ID",MENU_ID);
-//			pd = menuService.getMenuById(pd);
-//			List<Menu> menuList = menuService.listAllParentMenu();
-//			mv.addObject("menuList", menuList);
-//			mv.addObject("pd", pd);
-//			mv.setViewName("system/menu/menu_edit");
-//		} catch(Exception e){
-//			logger.error(e.toString(), e);
-//		}
-//		return mv;
-//	}
+	@RequestMapping(value="/toAdd")
+	public ModelAndView toAdd()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		try{
+			List<Menu> menuList = menuService.listAllParentMenu();
+			mv.addObject("menuList", menuList);
+			mv.addObject("type", "addMenu");
+			mv.setViewName("/menu/menu_edit");
+		} catch(Exception e){
+			logger.warning(e.toString());
+		}
+		return mv;
+	}
+
+	/**
+	 * 保存新增菜单信息
+	 * @param menu
+	 * @return
+	 */
+	@RequestMapping(value="/addMenu")
+	public ModelAndView addMenu(Menu menu)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		menuService.saveAddMenu(menu);
+		mv.addObject("msg", "success");
+		mv.setViewName("/public/save_result");
+		return mv;
+
+	}
+
+	/**
+	 * 请求编辑菜单页面
+	 * @param
+	 * @return
+	 */
+	@RequestMapping(value = "/toEdit")
+	public ModelAndView toEdit(@RequestParam("id") int id, HttpServletRequest httpServletRequest)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		try{
+			Menu menu = menuService.findMenuById(id);
+			List<Menu> menuList = menuService.listAllParentMenu();
+			mv.addObject("menuList", menuList);
+			mv.addObject("menu", menu);
+			mv.addObject("type", "editMenu");
+			mv.setViewName("/menu/menu_edit");
+		} catch(Exception e){
+			logger.warning(e.toString());
+		}
+		return mv;
+	}
+
+
+	/**
+	 * 保存新增菜单信息
+	 * @param menu
+	 * @return
+	 */
+	@RequestMapping(value="/editMenu")
+	public ModelAndView editMenu(Menu menu)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		menuService.updateMenuById(menu);
+		mv.addObject("msg", "success");
+		mv.setViewName("/public/save_result");
+		return mv;
+
+	}
 //
 //	/**
 //	 * 请求编辑菜单图标页面
@@ -164,39 +165,6 @@ public class MenuController{
 //		return mv;
 //	}
 //
-//	/**
-//	 * 保存编辑
-//	 * @param
-//	 * @return
-//	 */
-//	@RequestMapping(value="/edit")
-//	public ModelAndView edit()throws Exception{
-//		ModelAndView mv = this.getModelAndView();
-//		PageData pd = new PageData();
-//		try{
-//			pd = this.getPageData();
-//
-//			String PARENT_ID = pd.getString("PARENT_ID");
-//			if(null == PARENT_ID || "".equals(PARENT_ID)){
-//				PARENT_ID = "0";
-//				pd.put("PARENT_ID", PARENT_ID);
-//			}
-//
-//			if("0".equals(PARENT_ID)){
-//				//处理菜单类型====
-//				menuService.editType(pd);
-//				//处理菜单类型====
-//			}
-//
-//			pd = menuService.edit(pd);
-//			mv.addObject("msg","success");
-//		} catch(Exception e){
-//			logger.error(e.toString(), e);
-//			mv.addObject("msg","failed");
-//		}
-//		mv.setViewName("save_result");
-//		return mv;
-//	}
 //
 //	/**
 //	 * 获取当前菜单的所有子菜单
@@ -221,22 +189,22 @@ public class MenuController{
 //		}
 //	}
 //
-//	/**
-//	 * 删除菜单
-//	 * @param menuId
-//	 * @param out
-//	 */
-//	@RequestMapping(value="/del")
-//	public void delete(@RequestParam String MENU_ID,PrintWriter out)throws Exception{
-//
-//		try{
-//			menuService.deleteMenuById(MENU_ID);
-//			out.write("success");
-//			out.flush();
-//			out.close();
-//		} catch(Exception e){
-//			logger.error(e.toString(), e);
-//		}
-//
-//	}
+	/**
+	 * 删除菜单
+	 * @param id
+	 * @param out
+	 */
+	@RequestMapping(value="/delMenu")
+	public void delete(@RequestParam int id,PrintWriter out)throws Exception{
+
+		try{
+			menuService.deleteMenuById(id);
+			out.write("success");
+			out.flush();
+			out.close();
+		} catch(Exception e){
+			logger.warning(e.toString());
+		}
+
+	}
 }
