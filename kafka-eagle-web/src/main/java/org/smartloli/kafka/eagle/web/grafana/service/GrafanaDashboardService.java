@@ -15,6 +15,7 @@ import org.smartloli.kafka.eagle.web.pojo.Monitor;
 import org.smartloli.kafka.eagle.web.pojo.MonitorGroup;
 import org.smartloli.kafka.eagle.web.utils.ValidateResult;
 import org.springframework.stereotype.Service;
+import scala.None;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -54,8 +55,8 @@ public class GrafanaDashboardService {
             BlockValues block = JSON.parseObject(monitor.getJson(), BlockValues.class);
             PARMOfPanel panel = new PARMOfPanel();
             List<PARMOfTarget> targets = new ArrayList<>();
-            List<String> measureWithUnit = determineUnitForMeasure(block);
-            for (String measure : measureWithUnit) {
+//            List<String> measureWithUnit = determineUnitForMeasure(block);
+            for (Selects select : block.getSelects()) {
                 PARMOfTarget target = new PARMOfTarget();
                 HashMap<String, String> tagsMap = new HashMap<>();
                 target.setTags(tagsMap);
@@ -64,8 +65,11 @@ public class GrafanaDashboardService {
                 // 两个tagMap确定一个查询
                 tagsMap.put("monitorId", monitorGroupId + "_" + i);
 
-                // 确定item的单位
-                tagsMap.put("item", measure);
+                // item对应目标measure
+                tagsMap.put("item", select.getS_meaOrCal());
+
+                // 确认item的单位
+                tagsMap.put("type", determineUnitForMeasure(select, block));
 
                 targets.add(target);
             }
@@ -105,32 +109,27 @@ public class GrafanaDashboardService {
     }
 
     // 根据select项来判别数据单位
-    private List<String> determineUnitForMeasure(BlockValues block) {
-        List<String> measureWithUnit = new ArrayList<>();
-        List<Selects> selects = block.getSelects();
+    private String determineUnitForMeasure(Selects select, BlockValues block) {
         List<AggregationValues> aggregationValues = block.getAggregation().getAggregationValues();
-        boolean isAggr = false;
-        for (Selects select : selects) {
-            String measure = select.getS_meaOrCal();
-            for (AggregationValues aggr : aggregationValues) {
-                if(measure.equals(aggr.getName())){
-                    isAggr = true;
-                    String type = aggr.getType();
-                    switch (type) {
-                        case "min":
-                        case "max":
-                        case "average":
-                            measure += "@" + select.getS_source();
-                    }
-                    measureWithUnit.add(measure);
+
+        // 如果它是聚集值
+        // -如果是最大值、最小值、平均值和求和, 那么它可以和原单位一致
+        // -如果是计数、增幅和增比那么它的单位是none
+        //
+        // 如果它不是聚集值, 它的单位和原单位一致
+        for (AggregationValues aggr : aggregationValues) {
+            if(select.getS_meaOrCal().equals(aggr.getName())){
+                switch (aggr.getType()) {
+                    case "count":
+                    case "rate":
+                    case "amplitude":
+                        return "none";
+                    default:// min、max、average、sum
+                        return aggr.getSource();
                 }
             }
-            if(!isAggr)
-                measureWithUnit.add(measure);
-            else
-                isAggr = false;
         }
-        return measureWithUnit;
+        return select.getS_source();
     }
 
 
