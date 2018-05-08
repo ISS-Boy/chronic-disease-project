@@ -8,6 +8,7 @@ import org.smartloli.kafka.eagle.grafana.Parameter.PARAMOfDashboard;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARMOfPanel;
 import org.smartloli.kafka.eagle.grafana.ReadFile.FileUtils;
 import org.smartloli.kafka.eagle.grafana.utils.GrafanaConfigUtil;
+import org.smartloli.kafka.eagle.grafana.utils.PinyinUtil;
 
 import java.io.IOException;
 import java.util.List;
@@ -36,7 +37,7 @@ public class HandleDashboard {
     //获取url
     public String getDashboardUrl(PARAMOfDashboard PARAMOfDashboard, int panelId) {
         String dashboardurl;
-        String dashboardName = chineseToPinyin(PARAMOfDashboard.getDashboardName());
+        String dashboardName = PinyinUtil.chineseToPinyin(PARAMOfDashboard.getDashboardName());
 
         dashboardurl = GrafanaConfigUtil.getPropertyByKey("grafana.urlForGetDashboard") +
                 dashboardName + "?orgId=1&panelId=" + panelId +
@@ -71,26 +72,5 @@ public class HandleDashboard {
             e.printStackTrace();
         }
         return false;
-    }
-
-    private String chineseToPinyin(String source) {
-        char[] cs = source.toCharArray();
-        StringBuilder sb = new StringBuilder();
-        boolean hanyu = false;
-        for (char c : cs) {
-            if (c <= 128) {
-                sb.append(c);
-                hanyu = false;
-            } else {
-                String[] pinyins = PinyinHelper.toHanyuPinyinStringArray(c);
-                String pinyin = pinyins[0].substring(0, pinyins[0].length() - 1);
-                System.out.println(pinyin);
-                if (hanyu)
-                    sb.append('-');
-                sb.append(pinyin);
-                hanyu = true;
-            }
-        }
-        return sb.toString();
     }
 }

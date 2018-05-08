@@ -19,12 +19,14 @@ public class Test {
         //boolean recode = createDashboard("shaoyifei",new ArrayList<PARMOfPanel>());
         //System.out.println(recode);
 
-        HandleDashboard handleDashboard = new HandleDashboard();
-        handleDashboard.deletedashboard("aaa");
+//        HandleDashboard handleDashboard = new HandleDashboard();
+//        handleDashboard.deletedashboard("aaa");
+
+        pinyinTest();
     }
 
     private static void pinyinTest(){
-        char[] cs = "历史的咖啡机".toCharArray();
+        char[] cs = "心率".toCharArray();
         StringBuilder sb = new StringBuilder();
         boolean hanyu = false;
         for(char c: cs){
@@ -33,7 +35,7 @@ public class Test {
                 hanyu = false;
             }else{
                 String[] pinyins = PinyinHelper.toHanyuPinyinStringArray(c);
-                String pinyin = pinyins[0].substring(0, pinyins[0].length() - 1);
+                String pinyin = pinyins[0].replaceAll("[^a-z]", "");
                 System.out.println(pinyin);
                 if(hanyu)
                     sb.append('-');
