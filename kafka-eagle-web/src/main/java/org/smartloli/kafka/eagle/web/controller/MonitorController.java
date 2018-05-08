@@ -3,13 +3,12 @@ package org.smartloli.kafka.eagle.web.controller;
 import com.alibaba.fastjson.JSON;
 import net.sf.json.JSONArray;
 import org.apache.log4j.Logger;
-import org.smartloli.kafka.eagle.web.exception.entity.InternalException;
 import org.smartloli.kafka.eagle.web.grafana.service.GrafanaDashboardService;
 import org.smartloli.kafka.eagle.web.json.pojo.BlockGroup;
 import org.smartloli.kafka.eagle.web.pojo.MonitorGroup;
 import org.smartloli.kafka.eagle.web.service.MonitorGroupService;
 import org.smartloli.kafka.eagle.web.service.MonitorService;
-import org.smartloli.kafka.eagle.web.utils.DataValidator;
+import org.smartloli.kafka.eagle.web.utils.DataValidatorUtil;
 import org.smartloli.kafka.eagle.web.utils.ValidateResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -99,7 +98,7 @@ public class MonitorController {
         logger.info("========" + blockGroup + "=========");
 
         // 进行block检验
-        List<ValidateResult> validateResults = DataValidator.validateBlocks(blockGroup);
+        List<ValidateResult> validateResults = DataValidatorUtil.validateBlocks(blockGroup);
 
         // 校验失败
         if(!(validateResults.size() == 1 &&

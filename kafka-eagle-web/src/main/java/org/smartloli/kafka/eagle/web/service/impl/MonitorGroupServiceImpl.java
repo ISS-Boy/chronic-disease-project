@@ -206,13 +206,22 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
     @Transactional(rollbackFor = Exception.class)
     public void deleteMonitorGroup(String monitorGroupId) throws IOException {
 
+        MonitorGroup monitorGroup = getMonitorGroupById(monitorGroupId);
+
         // 由于设定外键级联删除，所以这里不需要手动删除monitor
         int n = deleteMonitorGroupById(monitorGroupId);
         if(n != 1)
             throw new InternalException("数据删除失败！");
 
+        Map<String, String> resMap = DockerRestResolver.resolveResult(dockerRestService.deleteMonitorImage(monitorGroup.getImageId()));
+        String resultCode = resMap.get("root.code");
+        if(!"200".equals(resultCode)) {
+            if (!"203".equals(resultCode))
+                throw new InternalException("Image清除: " + resMap.get("root.msg"));
+            else
+                logger.info("ImageId不存在, Image已清除! ");
+        }
         logger.info("========数据删除完成========");
-
     }
 
     @Override
@@ -259,7 +268,7 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
             List<String> imageIds = monitorGroups.stream()
                     .map(MonitorGroup::getImageId)
                     .collect(Collectors.toList());
-            dockerRestService.cleanUselessImages(imageIds);
+//            dockerRestService.cleanUselessImages(imageIds);
 
             // 清理无用的Grafana仪表板
             List<String> monitorGroupIds = monitorGroups.stream()

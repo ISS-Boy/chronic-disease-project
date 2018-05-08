@@ -108,10 +108,17 @@ public class DockerRestService {
         int i = 1;
         for(String imageId: imageIdsInDocker){
             Map<String, String> resMap = DockerRestResolver.resolveResult(deleteMonitorImage(imageId));
-            if("200".equals(resMap.get("root.code")))
+            if(!"200".equals(resMap.get("root.code"))){
+                logger.info("删除失败, 先尝试关闭服务, 再尝试删除");
+
+                // 删除失败, 尝试先关闭服务
+                Map<String, String> stopResMap
+                        = DockerRestResolver.resolveResult(stopMonitorServiceOnDocker(imageId.replaceAll("-image", "-service")));
+                if(!"200".equals(resMap.get("root.code")))
+                    logger.error(String.format("============关闭服务异常, 删除第%d个image失败, imageId为%s, 结果为: %s", i, imageId, resMap.get("data")));
+            }else
                 logger.info(String.format("============成功删除第%d个image, imageId为%s==============", i, imageId));
-            else
-                logger.error(String.format("============删除第%d个image失败, 结果为: %s", i, resMap.get("data")));
+
             i++;
         }
     }

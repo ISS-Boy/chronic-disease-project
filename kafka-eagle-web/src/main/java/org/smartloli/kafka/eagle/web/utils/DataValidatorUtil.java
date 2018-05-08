@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 /**
  * Created by dujijun on 2018/3/27.
  */
-public class DataValidator {
+public class DataValidatorUtil {
 
     /**
      * 主要进行数据校验，若出现数据不规范的情况，则返回相应错误信息
