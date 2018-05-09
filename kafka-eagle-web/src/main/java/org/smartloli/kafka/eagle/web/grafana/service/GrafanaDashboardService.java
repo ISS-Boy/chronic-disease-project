@@ -4,9 +4,11 @@ import com.alibaba.fastjson.JSON;
 import org.apache.log4j.Logger;
 import org.apache.logging.log4j.util.Strings;
 import org.smartloli.kafka.eagle.grafana.HandleDashboard.HandleDashboard;
+import org.smartloli.kafka.eagle.grafana.JavaBean.DefaultValues;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARAMOfDashboard;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARMOfPanel;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARMOfTarget;
+import org.smartloli.kafka.eagle.grafana.utils.PinyinUtil;
 import org.smartloli.kafka.eagle.web.exception.entity.InternalException;
 import org.smartloli.kafka.eagle.web.json.pojo.AggregationValues;
 import org.smartloli.kafka.eagle.web.json.pojo.BlockValues;
@@ -49,6 +51,8 @@ public class GrafanaDashboardService {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.CHINA);
         dashboard.setFrom(sdf.format(start) + "Z");
         dashboard.setTo(sdf.format(end) + "Z");
+        dashboard.setFrom("now-2h");
+        dashboard.setTo("now");
 
         int i = 0;
         for (Monitor monitor : monitors) {
@@ -66,10 +70,14 @@ public class GrafanaDashboardService {
                 tagsMap.put("monitorId", monitorGroupId + "_" + i);
 
                 // item对应目标measure
-                tagsMap.put("item", select.getS_meaOrCal());
+                String item = select.getS_meaOrCal();
+                tagsMap.put("item", PinyinUtil.chineseToPinyin(item));
+
+                // 设置别名
+                target.setAlias(DefaultValues.getAlias(item));
 
                 // 确认item的单位
-                tagsMap.put("type", determineUnitForMeasure(select, block));
+                target.setType(determineUnitForMeasure(select, block));
 
                 targets.add(target);
             }

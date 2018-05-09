@@ -17,6 +17,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>chronic - disease</title>
+
     <jsp:include page="../public/css.jsp"></jsp:include>
     <jsp:include page="../public/tcss.jsp"></jsp:include>
 </head>
@@ -62,6 +63,8 @@
 </body>
 <jsp:include page="../public/script.jsp">
     <jsp:param value="main/patient/monitor_groups.js" name="loader" />
+    <jsp:param name="loader" value="monitor/refresh-grafana-dashboard.js" />
+    <jsp:param name="loader" value="public/jquery.timer.js" />
 </jsp:include>
 <jsp:include page="../public/tscript.jsp"></jsp:include>
 </html>
