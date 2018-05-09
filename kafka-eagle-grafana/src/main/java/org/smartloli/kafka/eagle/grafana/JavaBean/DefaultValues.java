@@ -24,7 +24,7 @@ public class DefaultValues {
 
 		if ("diastolic_blood_pressure".equals(format) ||
 				"systolic_blood_pressure".equals(format) ||
-				("blood-pressure").equals(format))
+				"blood-pressure".equals(format))
 			return "pressurembar";
 
 		return "none";

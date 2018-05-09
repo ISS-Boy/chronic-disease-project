@@ -1,9 +1,8 @@
 package org.smartloli.kafka.eagle.grafana.HandleDashboard;
 
 
-import net.sourceforge.pinyin4j.PinyinHelper;
 import org.smartloli.kafka.eagle.grafana.DashboardAPI.DashboardAPI;
-import org.smartloli.kafka.eagle.grafana.JavaBean.*;
+import org.smartloli.kafka.eagle.grafana.JavaBean.WriteDashboard;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARAMOfDashboard;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARMOfPanel;
 import org.smartloli.kafka.eagle.grafana.ReadFile.FileUtils;
@@ -41,8 +40,10 @@ public class HandleDashboard {
 
         dashboardurl = GrafanaConfigUtil.getPropertyByKey("grafana.urlForGetDashboard") +
                 dashboardName + "?orgId=1&panelId=" + panelId +
-                "&from=" + PARAMOfDashboard.getFrom() + "&to=" +
-                PARAMOfDashboard.getTo() + "&theme=light";
+                "&from=" + PARAMOfDashboard.getFrom() +
+                "&to=" + PARAMOfDashboard.getTo() +
+                "&theme=light" +
+                "&refresh=30s";
         return dashboardurl;
     }
 

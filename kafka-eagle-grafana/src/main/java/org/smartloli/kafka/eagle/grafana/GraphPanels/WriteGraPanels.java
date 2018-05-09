@@ -56,11 +56,11 @@ public class WriteGraPanels {
         makeXaxis();
 
         makeYaxesList(parmOfTargetslist);
+        makeTargetsList(parmOfTargetslist);
         makeSeriesOverrides(parmOfTargetslist);
         makeTooltip();
         makeAliasColors();
         makeLegend();
-        makeTargetsList(parmOfTargetslist);
         makePanels(parmOfPanel);
         return panel;
 
@@ -128,19 +128,13 @@ public class WriteGraPanels {
 
     public List<Targets> makeTargetsList(List<PARMOfTarget> parmOfTargetslist) {
 
+        int i = 0;
         for (PARMOfTarget target : parmOfTargetslist) {
             Targets newTarget = new Targets();
             newTarget.setAggregator("last");
             HashMap<String, String> tags = target.getTags();
 
-            String alias = DefaultValues.getAlias(tags.get("item"));
-            newTarget.setAlias(alias);
-
-            // 移除之前的辅助的type字段
-            tags.remove("type");
-
-            // 转item为拼音标识
-            tags.put("item", PinyinUtil.chineseToPinyin(tags.get("item")));
+            newTarget.setAlias(target.getAlias());
 
             newTarget.setTags(tags);//设置tags标签的key和value;
             newTarget.setDisableDownsampling(false);
@@ -148,11 +142,10 @@ public class WriteGraPanels {
             newTarget.setDownsampleFillPolicy("none");
             newTarget.setDownsampleInterval("");
             newTarget.setMetric(target.getMetricName());
-            newTarget.setRefId("A");
+            newTarget.setRefId(String.valueOf((char)('A' + i++)));
             targetslist.add(newTarget);
         }
         return targetslist;
-
     }
 
     public List<SeriesOverrides> makeSeriesOverrides(List<PARMOfTarget> parmOfTargetslist) {
@@ -179,12 +172,32 @@ public class WriteGraPanels {
         } else {
             // 设置左Y轴和右Y轴
             // 元素的单位有三种情况: 无单位, 血压系单位, 其它系单位
-            int axis = 1;
-            String unit = "";
             for (PARMOfTarget target : parmOfTargetslist) {
-                String item = target.getTags().get("item");
-                String type = target.getTags().get("type");
+                String type = target.getType();
+                String alias = target.getAlias();
 
+                SeriesOverrides series = new SeriesOverrides();
+
+                // 判断单位类型
+                String format = "none";
+                if(celsiusSet.contains(type))
+                    format = "celsius";
+                else if(pressurembarSet.contains(type))
+                    format = "pressurembar";
+
+                // 循环遍历y轴列表看是否有需要的单位
+                for(int i = 1; i <= yaxeslist.size(); i++){
+                    if(yaxeslist.get(i - 1).getFormat().equals(format)){
+                        series.setYaxis(i);
+                        break;
+                    }
+                }
+
+                // 设置别名
+                series.setAlias(alias);
+
+                seriesOverrideslist.add(series);
+                /*
                 Object[] unitAndAxis;
                 if (celsiusSet.contains(type)) {
                     unitAndAxis = jugdeStateAndConstruct(unit, "celsius", item, axis, seriesOverrideslist);
@@ -195,6 +208,7 @@ public class WriteGraPanels {
                 }
                 unit = (String) unitAndAxis[0];
                 axis = (int) unitAndAxis[1];
+                */
             }
         }
         return seriesOverrideslist;
@@ -239,9 +253,13 @@ public class WriteGraPanels {
 
     //设置y轴
     public List<Yaxes> makeYaxesList(List<PARMOfTarget> parmOfTargetslist) {
+        Set<String> typeSet = new HashSet<>();
         for (PARMOfTarget target : parmOfTargetslist) {
-            String type = target.getTags().get("type");
+            String type = target.getType();
             String format = DefaultValues.getFormat(type);
+            if(typeSet.contains(format))
+                continue;
+            typeSet.add(format);
 
             Yaxes newYaxes = new Yaxes();
             newYaxes.setFormat(format);
@@ -254,9 +272,11 @@ public class WriteGraPanels {
         }
 
         // 如果y轴上的指标少于一个，则添加一个空的
-        if(yaxeslist.size() < 2)
-            yaxeslist.add(new Yaxes());
-
+        if(yaxeslist.size() < 2) {
+            Yaxes emptyY = new Yaxes();
+            emptyY.setFormat("");
+            yaxeslist.add(emptyY);
+        }
         return yaxeslist;
     }
 

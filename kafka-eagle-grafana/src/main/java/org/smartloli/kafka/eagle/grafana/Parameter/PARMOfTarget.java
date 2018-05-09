@@ -9,6 +9,16 @@ public class PARMOfTarget {
 
     private HashMap<String, String> tags;//Tags标签的key and value
 
+    private String type;
+
+    private String alias;
+
+    public PARMOfTarget(String metricName, HashMap<String, String> tags, String type) {
+        this.metricName = metricName;
+        this.tags = tags;
+        this.type = type;
+    }
+
     public PARMOfTarget(String metricName, HashMap<String, String> tags) {
         this.metricName = metricName;
         this.tags = tags;
@@ -33,11 +43,36 @@ public class PARMOfTarget {
         this.tags = tags;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public PARMOfTarget(String metricName, HashMap<String, String> tags, String type, String alias) {
+        this.metricName = metricName;
+        this.tags = tags;
+        this.type = type;
+        this.alias = alias;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
     @Override
     public String toString() {
         return "PARMOfTarget{" +
                 "metricName='" + metricName + '\'' +
                 ", tags=" + tags +
+                ", type='" + type + '\'' +
+                ", alias='" + alias + '\'' +
                 '}';
     }
 }
