@@ -40,7 +40,11 @@
 			<version>3.1.1.RELEASE</version>
 		</dependency>
 
-
+		<dependency>
+			<groupId>io.confluent</groupId>
+			<artifactId>streams-examples</artifactId>
+			<version>3.3.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.smartloli.kafka.eagle</groupId>
 			<artifactId>kafka-eagle-common</artifactId>

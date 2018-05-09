@@ -3,14 +3,14 @@
 <mapper namespace="org.smartloli.kafka.eagle.web.dao.OffLineLearningDao">
 
     <!-- 清空疾病表 -->
-    <update id="truncateDisease" >
-        TRUNCATE TABLE ke_disease
+    <update id="truncateDisease">
+        truncate table ${tableName}
     </update>
 
     <!-- 插入所有疾病 -->
     <insert id="insertAllDisease" parameterType="java.util.List">
         INSERT INTO ke_disease (diseaseName) VALUES
-        <foreach collection="list" item="item" index="index">
+        <foreach collection="list" item="item" index="index" separator=",">
             (#{item})
         </foreach>
     </insert>
@@ -69,4 +69,8 @@
             (#{item.id},#{item.symbolicPatternId},#{item.measureName},#{item.measureValue})
         </foreach>
     </insert>
+
+    <select id="getAllDisease" resultType="org.smartloli.kafka.eagle.web.pojo.DiseaseDB">
+        SELECT * FROM ke_disease WHERE 1=1
+    </select>
 </mapper>

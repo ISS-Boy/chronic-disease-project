@@ -11,7 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/kafka-eagle-grafana/kafka-eagle-grafana.iml" filepath="$PROJECT_DIR$/kafka-eagle-grafana/kafka-eagle-grafana.iml" />
       <module fileurl="file://$PROJECT_DIR$/kafka-eagle-plugin/kafka-eagle-plugin.iml" filepath="$PROJECT_DIR$/kafka-eagle-plugin/kafka-eagle-plugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/kafka-eagle-web/kafka-eagle-web.iml" filepath="$PROJECT_DIR$/kafka-eagle-web/kafka-eagle-web.iml" />
-      <module fileurl="file://$PROJECT_DIR$/streams-example/streams-example.iml" filepath="$PROJECT_DIR$/streams-example/streams-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/streams-example-master/streams-examples.iml" filepath="$PROJECT_DIR$/streams-example-master/streams-examples.iml" />
     </modules>
   </component>
 </project>

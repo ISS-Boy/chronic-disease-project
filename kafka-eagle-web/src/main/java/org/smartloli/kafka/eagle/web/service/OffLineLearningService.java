@@ -11,12 +11,7 @@ import com.iss.bigdata.health.patternrecognition.service.OfflineMiningTask;
 import la.matrix.DenseMatrix;
 import la.matrix.Matrix;
 import org.smartloli.kafka.eagle.web.dao.OffLineLearningDao;
-import org.smartloli.kafka.eagle.web.pojo.LearningConfigure;
-import org.smartloli.kafka.eagle.web.pojo.PatternDetail;
-import org.smartloli.kafka.eagle.web.pojo.SymbolicPatternDB;
-import org.smartloli.kafka.eagle.web.pojo.MiningTaskManager;
-import org.smartloli.kafka.eagle.web.pojo.OffLineUserData;
-import org.smartloli.kafka.eagle.web.pojo.PatientInfo;
+import org.smartloli.kafka.eagle.web.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,9 +34,19 @@ public class OffLineLearningService {
      * 重置疾病表的数据
      */
     public void resetDisease(){
-        offLineLearningDao.truncateDisease();
+        offLineLearningDao.truncateDisease("ke_disease");
         List<String> diseaseList = new ArrayList<>(getAllDisease());
+        System.out.println(diseaseList);
         offLineLearningDao.insertAllDisease(diseaseList);
+    }
+
+    /***
+     *
+     * 重置疾病表的数据
+     */
+    public List<DiseaseDB> getAllDiseaseDB(){
+        List<DiseaseDB> diseaseDBS = offLineLearningDao.getAllDisease();
+        return diseaseDBS;
     }
 
     /***

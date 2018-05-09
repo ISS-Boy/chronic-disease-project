@@ -123,6 +123,17 @@
 				</ul>
 			</li>
 
+			<li><a href="#" data-toggle="collapse" data-target="#offlineLearning"><i
+					class="fa fa-calendar-minus-o"></i> 离线学习 <i
+					class="fa fa-fw fa-caret-down"></i></a>
+				<ul id="offlineLearning" class="collapse">
+					<li><a href="/ke/offlineLearning/toAdd?type=0"><i
+							class="fa fa-plus-circle"></i> 新建学习任务</a></li>
+					<li id=""><a href="/ke/patient_analysis/realTime"><i
+							class="fa fa-fw fa-bar-chart"></i> 管理学习任务</a></li>
+				</ul>
+			</li>
+
 			<li><a href="#" data-toggle="collapse" data-target="#demo5"><i
 					class="fa fa-fw fa-user"></i> 用户分析 <i
 					class="fa fa-fw fa-caret-down"></i></a>

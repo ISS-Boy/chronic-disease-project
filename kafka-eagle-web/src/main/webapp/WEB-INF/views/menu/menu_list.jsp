@@ -62,8 +62,8 @@
 						<td class='center'>${menu.menuOrder }</td>
 							<td class='center'>${menu.parentMenu.menuName }</td>
 						<td style="width: 25%;">
-						<a class='btn btn-primary' title="编辑" onclick="editMenu(${menu.id })" ><i class='fa fa-edit'></i></a>
-						<a class='btn btn-danger' title="删除"  onclick="delMenu(${menu.id })"><i class='fa fa-trash'></i></a>
+							<a class='btn btn-primary' title="编辑" onclick="editMenu(${menu.id })" ><i class='fa fa-edit'></i></a>
+							<a class='btn btn-danger' title="删除"  onclick="delMenu(${menu.id })"><i class='fa fa-trash'></i></a></td>
 						</tr>
 						</c:forEach>
 					</c:when>

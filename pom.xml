@@ -26,6 +26,6 @@
         <module>kafka-eagle-elasticsearch</module>
         <module>kafka-eagle-grafana</module>
 		<module>FindPattern</module>
-		<module>streams-example</module>
+		<module>streams-example-master</module>
     </modules>
 </project>

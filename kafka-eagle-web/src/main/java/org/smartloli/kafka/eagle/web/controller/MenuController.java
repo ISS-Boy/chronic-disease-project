@@ -23,10 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * 类名称：MenuController
- * 创建人：FH 
- * 创建时间：2014年7月1日
- * @version
+ *
  */
 @Controller
 @RequestMapping(value="/menu")
