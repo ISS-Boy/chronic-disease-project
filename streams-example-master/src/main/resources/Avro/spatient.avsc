@@ -1,0 +1,17 @@
+{
+    "namespace": "org.mhealth.open.data.avro",
+    "name": "SPatient",
+    "type": "record",
+    "fields": [
+        {"name": "timestamp", "type": "long"},
+        {"name": "user_id", "type": ["string","null"] },
+        {"name": "name", "type": "string"},
+        {"name": "birthdate", "type": "string"},
+        {"name": "deathdate", "type": ["string","null"]},
+        {"name": "gender", "type": "string"},
+        {"name": "race", "type": "string"}
+    ]
+}
+//the key of the record is the-user-39
+//the value is {"timestamp":
+1509609789630, "user_id": "the-user-39", "name": "Coral610Friesen52", "birthdate": "2007-04-23T16:00:00Z", "deathdate": null, "gender": "F", "race": "hispanic"}
