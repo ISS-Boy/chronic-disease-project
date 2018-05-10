@@ -60,6 +60,7 @@ public class offlineLearningController {
     @RequestMapping(value="/nextStep")
     public ModelAndView nextStep(@RequestParam("userid") String userid, HttpServletRequest request)throws Exception{
         ModelAndView mv = new ModelAndView();
+        System.out.println("========" + userid);
         mv.setViewName("/learning/offlineLearnList");
         return mv;
     }

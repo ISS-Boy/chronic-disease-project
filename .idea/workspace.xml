@@ -6,193 +6,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57195fec-5f50-452b-80ce-49848137aab6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/StreamMasterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/offlineLearningController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/KeConfigureMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/KeConfigureMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/KePatternDetailMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/KePatternDetailMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/KeSymbolicPatternMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/KeSymbolicPatternMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/DiseaseDB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/KeConfigure.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/KePatternDetail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/KeSymbolicPattern.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/StreamMasterService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/task/LearningResultTask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnAdd.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/main/offlineLearning/learning.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/streams-example-master/streams-examples.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/kafka_eagle_web_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/kafka_eagle_web_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_laml_laml_1_7_0_SNAPSHOT.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_laml_laml_1_7_0_SNAPSHOT.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="57195fec-5f50-452b-80ce-49848137aab6" name="Default" comment="在线匹配">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka-eagle-common/src/main/resources/system-config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-common/src/main/resources/system-config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/kafka-eagle-web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/kafka-eagle-web.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/OffLineLearningDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/OffLineLearningDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/OffLineLearningDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/OffLineLearningDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/OffLineLearningService.java" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/OffLineLearningService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/resources/spring-mvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/resources/spring-mvc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/menu/menu_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/menu/menu_list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/navbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/navbar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__classworlds_classworlds_1_1_alpha_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__com_101tec_zkclient_0_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__com_beust_jcommander_1_58.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__com_fasterxml_classmate_1_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_8_8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_8_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_8_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__com_fasterxml_jackson_jaxrs_jackson_jaxrs_base_2_8_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__com_fasterxml_jackson_jaxrs_jackson_jaxrs_json_provider_2_8_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_jaxb_annotations_2_8_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__com_google_guava_guava_16_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__com_thoughtworks_paranamer_paranamer_2_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__com_yammer_metrics_metrics_core_2_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__commons_collections_commons_collections_3_2_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__io_confluent_common_config_3_3_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__io_confluent_common_metrics_3_3_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__io_confluent_common_utils_3_3_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__io_confluent_kafka_avro_serializer_3_3_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__io_confluent_kafka_schema_registry_3_3_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__io_confluent_kafka_schema_registry_client_3_3_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__io_confluent_kafka_schema_registry_tests_3_3_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__io_confluent_kafka_streams_avro_serde_3_3_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__io_confluent_rest_utils_3_3_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__io_netty_netty_3_7_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__javax_activation_activation_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__javax_annotation_javax_annotation_api_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__javax_el_javax_el_api_2_2_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__javax_mail_mail_1_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__javax_servlet_javax_servlet_api_3_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__javax_validation_validation_api_1_1_0_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__javax_ws_rs_javax_ws_rs_api_2_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__jline_jline_0_9_94.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__joda_time_joda_time_2_9_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__junit_junit_4_12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__log4j_log4j_1_2_15.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_6_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_6_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__net_jpountz_lz4_lz4_1_3_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__net_seninp_jmotif_sax_1_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__net_seninp_jmotif_sax_1_1_3_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__net_sf_jopt_simple_jopt_simple_5_0_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_avro_avro_1_8_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_avro_avro_compiler_1_8_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_avro_avro_maven_plugin_1_8_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_commons_commons_compress_1_8_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_commons_commons_math_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_curator_curator_test_2_9_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_kafka_connect_api_0_11_0_0_cp1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_kafka_connect_json_0_11_0_0_cp1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_kafka_kafka_2_10_0_10_2_1_cp2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_kafka_kafka_2_11_0_11_0_0_cp1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_kafka_kafka_2_11_test_0_11_0_0_cp1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_kafka_kafka_clients_0_11_0_0_cp1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_kafka_kafka_clients_test_0_11_0_0_cp1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_kafka_kafka_streams_0_11_0_0_cp1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_kafka_kafka_streams_test_0_11_0_0_cp1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_maven_maven_artifact_2_0_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_maven_maven_artifact_manager_2_0_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_maven_maven_model_2_0_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_maven_maven_plugin_api_2_0_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_maven_maven_plugin_registry_2_0_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_maven_maven_profile_2_0_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_maven_maven_project_2_0_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_maven_maven_repository_metadata_2_0_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_maven_maven_settings_2_0_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_maven_shared_file_management_1_2_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_maven_shared_maven_shared_io_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_maven_wagon_wagon_provider_api_1_0_beta_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_velocity_velocity_1_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_apache_zookeeper_zookeeper_3_4_8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_assertj_assertj_core_3_3_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_codehaus_jackson_jackson_core_asl_1_9_13.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_codehaus_jackson_jackson_mapper_asl_1_9_13.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_codehaus_plexus_plexus_container_default_1_0_alpha_9_stable_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_codehaus_plexus_plexus_interpolation_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_codehaus_plexus_plexus_utils_1_5_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_eclipse_jetty_jetty_continuation_9_2_19_v20160908.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_eclipse_jetty_jetty_http_9_2_12_v20150709.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_eclipse_jetty_jetty_io_9_2_12_v20150709.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_eclipse_jetty_jetty_jaas_9_2_19_v20160908.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_eclipse_jetty_jetty_jmx_9_2_19_v20160908.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_eclipse_jetty_jetty_security_9_2_12_v20150709.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_eclipse_jetty_jetty_server_9_2_12_v20150709.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_eclipse_jetty_jetty_servlet_9_2_12_v20150709.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_eclipse_jetty_jetty_servlets_9_2_19_v20160908.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_eclipse_jetty_jetty_util_9_2_12_v20150709.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_glassfish_hk2_external_aopalliance_repackaged_2_5_0_b30.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_glassfish_hk2_external_javax_inject_2_5_0_b30.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_glassfish_hk2_hk2_api_2_5_0_b30.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_glassfish_hk2_hk2_locator_2_5_0_b30.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_glassfish_hk2_hk2_utils_2_5_0_b30.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_glassfish_hk2_osgi_resource_locator_1_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_glassfish_jersey_bundles_repackaged_jersey_guava_2_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_glassfish_jersey_containers_jersey_container_servlet_2_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_glassfish_jersey_containers_jersey_container_servlet_core_2_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_client_2_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_common_2_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_server_2_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_glassfish_jersey_ext_jersey_bean_validation_2_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_glassfish_jersey_ext_jersey_entity_filtering_2_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_glassfish_jersey_media_jersey_media_jaxb_2_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_glassfish_jersey_media_jersey_media_json_jackson_2_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_glassfish_web_javax_el_2_2_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_hibernate_hibernate_validator_5_1_3_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_javassist_javassist_3_18_1_GA.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_1_3_GA.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_jfree_jcommon_1_0_23.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_jfree_jfreechart_1_0_19.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_laml_laml_1_7_0_SNAPSHOT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_mockito_mockito_core_2_7_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_objenesis_objenesis_2_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_rocksdb_rocksdbjni_5_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_scala_lang_modules_scala_parser_combinators_2_11_1_0_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_scala_lang_scala_library_2_11_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_7_21.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_slf4j_slf4j_simple_1_7_23.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_tukaani_xz_1_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/Maven__org_xerial_snappy_snappy_java_1_1_2_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/jmotif_sax_1_1_3_20180110_144031_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/libraries/junit_junit_4_12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/java/examples/interactivequeries/Demo/Demo1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/java/examples/interactivequeries/Demo/Demo1RestService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/java/examples/interactivequeries/Demo/HostStoreInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/java/examples/interactivequeries/Demo/MEventBean.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/java/examples/interactivequeries/Demo/MetadataService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/java/examples/interactivequeries/Demo/ParaConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/java/examples/interactivequeries/Demo/PatternMatch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/java/examples/interactivequeries/Demo/PatternMatch1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/java/examples/interactivequeries/Demo/PriorityQueueDeserializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/java/examples/interactivequeries/Demo/PriorityQueueSerde.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/java/examples/interactivequeries/Demo/PriorityQueueSerializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/java/examples/interactivequeries/Demo/SAXAnalysisWindow.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/java/examples/interactivequeries/Demo/SymbolicPattern.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/java/examples/interactivequeries/Demo/WindowedSerde.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/resources/Avro/demo.avsc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/resources/Avro/mevent.avsc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/resources/Avro/mpattern.avsc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/resources/Avro/spatient.avsc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/test/Ktest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/src/main/test/PatternMain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example/streams-example.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/offlineLearningController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/offlineLearningController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnAdd.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnAdd.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/script.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/script.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/main/offlineLearning/learning.js" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/main/offlineLearning/learning.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/kafka-eagle-plugin/target/" />
@@ -226,32 +45,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="OfflineMiningTask.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FindPattern/src/main/java/com/iss/bigdata/health/patternrecognition/service/OfflineMiningTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="53" column="47" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
-              <folding>
-                <element signature="e#1351#1352#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="OffLineLearningService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/OffLineLearningService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="66">
               <caret line="38" column="32" lean-forward="true" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OffLineLearningDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/OffLineLearningDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
-              <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -270,18 +68,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="offlineLearnAdd.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnAdd.jsp">
+      <file leaf-file-name="script.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/script.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="96" column="88" lean-forward="true" selection-start-line="96" selection-start-column="88" selection-end-line="96" selection-end-column="88" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#select#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#select#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="124">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="learning.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/main/offlineLearning/learning.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="149">
+              <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
             </state>
           </provider>
         </entry>
@@ -301,11 +101,20 @@
       <file leaf-file-name="offlineLearningController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/offlineLearningController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="45" column="113" selection-start-line="45" selection-start-column="113" selection-end-line="45" selection-end-column="113" />
+            <state relative-caret-position="86">
+              <caret line="63" column="53" lean-forward="true" selection-start-line="63" selection-start-column="53" selection-end-line="63" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="offlineLearnList.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnList.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="24" column="44" lean-forward="true" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -319,6 +128,18 @@
                 <marker date="1525856279210" expanded="true" signature="707:1524" ph="INSERT INTO ke_configure... " />
                 <marker date="1525856279210" expanded="true" signature="1612:1673" ph="UPDATE ke_co... " />
                 <marker date="1525856279210" expanded="true" signature="2509:2543" ph="SELECT * FRO... ke_disease" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="offlineLearnAdd.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnAdd.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="87">
+              <caret line="66" column="69" selection-start-line="66" selection-start-column="69" selection-end-line="66" selection-end-column="69" />
+              <folding>
+                <element signature="n#style#0;n#div#4;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -418,7 +239,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/grafana/service/GrafanaDashboardService.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/test/java/org/smartloli/kafka/eagle/service/TestGrafanaDashboardCreate.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-common/pom.xml" />
         <option value="$PROJECT_DIR$/kafka-eagle-elasticsearch/pom.xml" />
@@ -444,7 +264,6 @@
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/plugins/zDialog/zDialog.js" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/mycss.jsp" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/save_result.jsp" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/script.jsp" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/menu/menu_edit.jsp" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/main/menu/menu.js" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/MenuDao.xml" />
@@ -453,7 +272,6 @@
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/MenuController.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/DiseaseDB.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/navbar.jsp" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/main/offlineLearning/learning.js" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/resources/spring-mvc.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/streams-example-master/target/generated-sources/org/mhealth/open/data/avro/MEvent.java" />
@@ -467,8 +285,11 @@
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/OffLineLearningService.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/task/LearningResultTask.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/menu/menu_list.jsp" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnAdd.jsp" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnList.jsp" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/main/offlineLearning/learning.js" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/script.jsp" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/offlineLearningController.java" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnAdd.jsp" />
       </list>
     </option>
   </component>
@@ -752,6 +573,62 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="media" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chronic-disease-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chronic-disease-project" type="462c0819:PsiDirectoryNode" />
+              <item name="kafka-eagle-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chronic-disease-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chronic-disease-project" type="462c0819:PsiDirectoryNode" />
+              <item name="kafka-eagle-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="ace" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chronic-disease-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chronic-disease-project" type="462c0819:PsiDirectoryNode" />
+              <item name="kafka-eagle-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="ace" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chronic-disease-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chronic-disease-project" type="462c0819:PsiDirectoryNode" />
+              <item name="kafka-eagle-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chronic-disease-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chronic-disease-project" type="462c0819:PsiDirectoryNode" />
+              <item name="kafka-eagle-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="offlineLearning" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chronic-disease-project" type="b2602c69:ProjectViewProjectNode" />
@@ -1292,7 +1169,7 @@
       <workItem from="1525415312135" duration="2772000" />
       <workItem from="1525418135698" duration="334000" />
       <workItem from="1525418513254" duration="59559000" />
-      <workItem from="1525848305743" duration="10942000" />
+      <workItem from="1525848305743" duration="16985000" />
     </task>
     <task id="LOCAL-00001" summary="1、更新monitor界面以及相关控制流&#10;2、更新monitor和monitorGroup数据表结构，删除panel，target表，删除对应的dao&#10;3、更新MonitorController中相关控制流&#10;4、更新Grafana-module中的dashboard生成、连接获取、匿名登陆token等部分">
       <created>1524622683034</created>
@@ -1343,7 +1220,28 @@
       <option name="project" value="LOCAL" />
       <updated>1525683546189</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="在线匹配">
+      <created>1525859638260</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1525859638260</updated>
+    </task>
+    <task id="LOCAL-00009" summary="在线匹配">
+      <created>1525872832930</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1525872832930</updated>
+    </task>
+    <task id="LOCAL-00010" summary="在线匹配">
+      <created>1525922393467</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1525922393467</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1379,7 +1277,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="686626000" />
+    <option name="totallyTimeSpent" value="692669000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1392,6 +1290,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.2253635" side_tool="true" weight="0.35643566" />
@@ -1411,11 +1310,11 @@
       <window_info id="Image Layers" order="5" />
       <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.32947975" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.7746365" visible="true" weight="0.31188118" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.30283913" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.7746365" visible="true" weight="0.6650165" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.3019802" />
       <window_info anchor="bottom" id="Spring" order="12" weight="0.32876712" />
       <window_info anchor="bottom" id="Terminal" order="13" weight="0.32658958" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49452055" visible="true" weight="0.2624811" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49452055" weight="0.2624811" />
       <window_info anchor="right" id="Bean Validation" order="11" />
       <window_info id="Web" order="6" sideWeight="0.50547945" side_tool="true" weight="0.38529888" />
       <window_info anchor="right" id="Theme Preview" order="7" />
@@ -1433,6 +1332,47 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="1" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="bottom" id="Thumbnails" order="17" weight="0.32947975" />
+      <window_info anchor="bottom" id="Application Servers" order="15" sideWeight="0.19742489" weight="0.14595376" />
+      <window_info id="Designer" order="3" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="SBT Console" order="16" />
+      <window_info anchor="right" id="Properties" order="8" />
+      <window_info anchor="bottom" id="Spring" order="12" weight="0.32876712" />
+      <window_info id="Image Layers" order="5" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.7746365" visible="true" weight="0.5808581" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="13" weight="0.32658958" />
+      <window_info id="Capture Tool" order="8" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.2253635" side_tool="true" weight="0.35643566" />
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.5709571" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.13728324" />
+      <window_info anchor="right" x="100" y="100" width="1080" height="600" id="Documentation" order="10" type="FLOATING" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24878837" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49452055" weight="0.2624811" />
+      <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.32947975" />
+      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.3019802" />
+      <window_info id="Nl-Palette" order="2" />
+      <window_info anchor="right" id="Maven Projects" order="9" weight="0.40620273" />
+      <window_info anchor="bottom" id="MyBatis Sql Log" order="14" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32176656" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="right" id="Database" order="4" weight="0.32956383" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info id="Web" order="6" sideWeight="0.50547945" side_tool="true" weight="0.38529888" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.34652665" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.52640265" />
+      <window_info anchor="right" id="Bean Validation" order="11" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -1465,7 +1405,8 @@
     <MESSAGE value="离线学习" />
     <MESSAGE value="在线匹配代码导入" />
     <MESSAGE value="菜单管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="菜单管理" />
+    <MESSAGE value="在线匹配" />
+    <option name="LAST_COMMIT_MESSAGE" value="在线匹配" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1533,12 +1474,6 @@
           <option name="timeStamp" value="142" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/offlineLearningController.java</url>
-          <line>46</line>
-          <properties />
-          <option name="timeStamp" value="143" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/OffLineLearningService.java</url>
           <line>36</line>
           <properties />
@@ -1568,24 +1503,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/css/public/account/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6129">
-          <caret column="27855" selection-start-column="27855" selection-end-column="27855" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/MenuController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-351">
           <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="32" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnList.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2167">
-          <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -1638,13 +1559,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/main/offlineLearning/learning.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/quartz/MBeanQuartz.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1401">
@@ -1664,6 +1578,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
           <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1806,13 +1723,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-common/src/main/resources/system-config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="51" column="26" lean-forward="true" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/MenuDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="648">
@@ -1925,24 +1835,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/main/offlineLearning/learning.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnList.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="24" column="44" lean-forward="true" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/script.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-common/src/main/resources/system-config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="51" column="26" lean-forward="true" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnAdd.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="96" column="88" lean-forward="true" selection-start-line="96" selection-start-column="88" selection-end-line="96" selection-end-column="88" />
+        <state relative-caret-position="87">
+          <caret line="66" column="69" selection-start-line="66" selection-start-column="69" selection-end-line="66" selection-end-column="69" />
           <folding>
-            <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#select#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#select#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/offlineLearningController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="45" column="113" selection-start-line="45" selection-start-column="113" selection-end-line="45" selection-end-column="113" />
+        <state relative-caret-position="86">
+          <caret line="63" column="53" lean-forward="true" selection-start-line="63" selection-start-column="53" selection-end-line="63" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

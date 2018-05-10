@@ -46,10 +46,11 @@ var kResult=0, rThreshold=0, frequencyThreshold=0, analysisWindowStartSize=3, al
 
 function nextStep() {
     userIds = "123456";
+    alert("1");
     $.ajax({
         type: "POST",
         url: '/ke/offlineLearning/nextStep',
-        data: {userid:""},
+        data: {userid:userIds},
         dataType:'json',
         cache: false,
         // success: function(data){
@@ -63,6 +64,7 @@ function nextStep() {
         //     }
         // }
     });
+    alert("2");
 }
 
 

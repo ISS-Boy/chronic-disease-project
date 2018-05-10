@@ -56,7 +56,7 @@
 								<select style="width: 300px;height: 26px" name="disease" id="disease" title="病史">
 									<option value=null></option>
 									<c:forEach items="${allDisease}" var="disease">
-										<option value="${disease.diseaseName }">${disease.dis3easeName }</option>
+										<option value="${disease.diseaseName }">${disease.diseaseName }</option>
 									</c:forEach>
 								</select>
 							</div>
