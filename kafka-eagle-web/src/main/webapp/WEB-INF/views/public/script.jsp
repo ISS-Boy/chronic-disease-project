@@ -12,6 +12,7 @@
 <script src="/ke/media/js/plugins/handlebars/handlebars-v4.0.10.js" type="text/javascript"></script>
 <!--提示框-->
 <script src="/ke/media/js/ace/js/jquery.tips.js" type="text/javascript"></script>
+<script src="/ke/media/js/ace/js/jquery-1.7.2.js" type="text/javascript"></script>
 
 <%
 	String[] loader = request.getParameterValues("loader");

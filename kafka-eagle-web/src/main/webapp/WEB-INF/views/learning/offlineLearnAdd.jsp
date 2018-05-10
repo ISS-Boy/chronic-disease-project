@@ -56,12 +56,15 @@
 								<select style="width: 300px;height: 26px" name="disease" id="disease" title="病史">
 									<option value=null></option>
 									<c:forEach items="${allDisease}" var="disease">
-										<option value="${disease.diseaseName }">${disease.diseaseName }</option>
+										<option value="${disease.diseaseName }">${disease.dis3easeName }</option>
 									</c:forEach>
 								</select>
 							</div>
 							<div style="width: 50px;height:26px;float: left;overflow: hidden">
 								<a class='btn btn-primary' title="筛选" onclick="searchUsers();"><i class="fa fa-search"></i></a>
+							</div>
+							<div style="width: 50px;height:26px;float: right;overflow: hidden">
+								<a class='btn btn-primary' title="下一步" onclick="nextStep();"><i class="fa fa-search"></i></a>
 							</div>
 						</form>
 					</div>

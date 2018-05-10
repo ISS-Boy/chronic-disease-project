@@ -52,4 +52,16 @@ public class offlineLearningController {
         return mv;
     }
 
+
+    /**
+     * 请求新增离线学习任务页面
+     * @return
+     */
+    @RequestMapping(value="/nextStep")
+    public ModelAndView nextStep(@RequestParam("userid") String userid, HttpServletRequest request)throws Exception{
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/learning/offlineLearnList");
+        return mv;
+    }
+
 }
