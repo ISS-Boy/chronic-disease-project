@@ -115,7 +115,7 @@ $(document).ready(function() {
                 if(data) {
                     $('#ke_loinc_modify_dialog').modal('hide');
                     alert("修改成功");
-                    // location.reload();
+                    location.reload();
                 } else {
                     alert("编码已存在");
                 }

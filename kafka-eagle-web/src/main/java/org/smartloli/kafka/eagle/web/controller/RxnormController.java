@@ -5,12 +5,10 @@ import org.smartloli.kafka.eagle.web.pojo.Rxnorm;
 import org.smartloli.kafka.eagle.web.service.RxnormService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -65,6 +63,39 @@ public class RxnormController {
         System.out.println(map);
         return map;
     }
+    //添加 /ke/patient_analysis/rxnorm_add
+    @ResponseBody
+    @RequestMapping(value ="/patient_analysis/rxnorm_add",method = RequestMethod.POST)
+    public String add_icd(@RequestBody Rxnorm rxnorm, HttpServletRequest request){
+        boolean flag = rxnormService.addRxnorm(rxnorm) > 0 ? true : false;
+        if (flag) {
+            return "true";
+        } else {
+            return "false";
+        }
+    }
+    //删除
+    @ResponseBody
+    @RequestMapping(value = "/rxnorm/deleterxnormByCode",method = RequestMethod.GET)
+    public String deleteIcd(@RequestParam("code") String code){
+        //JSONArray jsonArray = JSONArray.parseArray(ids);
+        if(!StringUtils.isEmpty(code)){
+            rxnormService.deleteRxnormBycode(code);
+        }
+        return "success";//
+    }
+    //修改/ke/patient_analysis/rxnorm_modify
+    @ResponseBody
+    @RequestMapping(value = "/patient_analysis/rxnorm_modify",method = RequestMethod.POST)
+    public String modifyIcd(@RequestBody Rxnorm rxnorm) {
+        boolean flag = rxnormService.modifyRxnorm(rxnorm) > 0 ? true : false;
+        if (flag) {
+            return "true";
+        } else {
+            return "false";
+        }
+    }
+
     /**
      * 根据code 查找 dexscription
      * */

@@ -22,7 +22,7 @@
         from rxnorm
     </select>
 
-    <select id="rxnormOf" resultMap="rxnorm">
+    <select id="rxnormof" resultMap="rxnorm">
         select
         <include refid="Base_Column_List"/>
         from rxnorm
@@ -46,7 +46,7 @@
         values(#{rxcode},#{rxDescription},#{helpCode})
     </insert>
 
-    <delete id="deleteRxnormByCode" parameterType="org.smartloli.kafka.eagle.web.pojo.Rxnorm">
+    <delete id="deleteRxnormBycode" parameterType="org.smartloli.kafka.eagle.web.pojo.Rxnorm">
         delete FROM
         rxnorm where rxcode=#{rxcode}
     </delete>
@@ -57,7 +57,7 @@
         from rxnorm where rxcode=#{rxcode}
     </select>
 
-    <update id="updateRxnorm" parameterType="org.smartloli.kafka.eagle.web.pojo.Rxnorm">
+    <update id="updaterxnorm" parameterType="org.smartloli.kafka.eagle.web.pojo.Rxnorm">
         update rxnorm set
         rxcode=#{rxcode},rxDescription=#{rxDescription},helpCode=#{helpCode} where id=#{id}
     </update>
