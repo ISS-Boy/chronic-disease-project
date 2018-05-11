@@ -69,6 +69,9 @@
 							<div style="width: 100px;height:36px;float: left;overflow: hidden">
 								<a class='btn btn-primary' id="whatever" title="实例开始" onclick="runDemo();">实例开始</a>
 							</div>
+							<div style="width: 50px;height:36px;float: left;overflow: hidden">
+								<a href="/ke/offlineLearning/newNextStep" class='btn btn-primary' ><i class="fa fa-hand-o-right"></i></a>
+							</div>
 						</form>
 					</div>
 				</div>

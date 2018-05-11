@@ -5,11 +5,10 @@ import org.smartloli.kafka.eagle.web.pojo.Cvx;
 import org.smartloli.kafka.eagle.web.service.CvxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,6 +61,50 @@ public class CvxController {
         Map<Object,List> map = new HashMap();
         map.put("data",returnCvxList);
         System.out.println(map);
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping(value ="/patient_analysis/cvx_add",method = RequestMethod.POST)
+    public String add_icd(@RequestBody Cvx cvx, HttpServletRequest request){
+        boolean flag = cvxService.addCvx(cvx) > 0 ? true : false;
+        if (flag) {
+            return "true";
+        } else {
+            return "false";
+        }
+    }
+
+    //删除
+    @ResponseBody
+    @RequestMapping(value = "/cvx/deleteCvxByCode",method = RequestMethod.GET)
+    public String deleteLoinc(@RequestParam("code") String code){
+        if(!StringUtils.isEmpty(code)){
+            cvxService.deleteCvxBycode(code);
+        }
+        return "success";//
+    }
+    //修改 /patient_analysis/loinc_modify
+    @ResponseBody
+    @RequestMapping(value = "/patient_analysis/cvx_modify",method = RequestMethod.POST)
+    public String modifyLoinc(@RequestBody Cvx cvx) {
+        boolean flag = cvxService.modifyCvx(cvx) > 0 ? true : false;
+        if (flag) {
+            return "true";
+        } else {
+            return "false";
+        }
+    }
+
+    /**
+     * 根据code 查找 cvxComponent
+     * */
+    @ResponseBody
+    @RequestMapping(value = "patient_analysis/findCvxComponent",method = RequestMethod.GET)
+    public Map<String,String> findloincComponent(@RequestParam("lcode") String lcode) {
+        String loincComponent = cvxService.findCvxDescription(lcode).getCvxDescription();
+        Map<String,String> map = new HashMap<>();
+        map.put("data",loincComponent);
         return map;
     }
 }

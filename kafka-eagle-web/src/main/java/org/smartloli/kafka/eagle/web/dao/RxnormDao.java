@@ -9,4 +9,12 @@ public interface RxnormDao {
     List<Rxnorm> getAllRxnorms();
 
     Rxnorm findRxnormDescription(String rxcode);
+
+    int insertRxnorm(Rxnorm rxnorm);
+
+    void deleteRxnormBycode(String code);
+
+    List<Rxnorm> rxnormof(Rxnorm rxnorm);
+
+    int updaterxnorm(Rxnorm rxnorm);
 }
