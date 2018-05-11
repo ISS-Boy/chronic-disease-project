@@ -5,9 +5,15 @@ import org.smartloli.kafka.eagle.web.pojo.Loinc;
 import java.util.List;
 
 public interface LoincService {
-    public List<Loinc> getLoincList();
+     List<Loinc> getLoincList();
 
-    public int addLoinc(Loinc loinc);
+     int addLoinc(Loinc loinc);
 
     Loinc findloincComponent(String lcode);
+
+    int modifyLoinc(Loinc loinc);
+
+    void deleteLoincBycode(String code);
+
+//    boolean checkLoincCode(Loinc loinc);
 }

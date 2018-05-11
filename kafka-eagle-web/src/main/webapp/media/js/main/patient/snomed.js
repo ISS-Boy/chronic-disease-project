@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
     var table = $("#snomedTable").DataTable({
         "ajax":"/ke/patient_analysis/getSnomedlist/ajax"
@@ -13,6 +14,8 @@ $(document).ready(function() {
         }
     } );
 
+
+
     $('#deleteSnomed').click( function () {
         var rowValue = table.row('.selected').data();
         // console.log();
@@ -21,11 +24,10 @@ $(document).ready(function() {
             console.log(code);
             if(confirm("确定要删除吗？")){
                 $.ajax({
-                    url:"/ke/snomed/deteteSnomedByCode?code="+code,
+                    url:"/ke/snomed/deleteSnomedByCode?code="+code,
                     type:"get",
                     success: function (data) {
                         if(data === 'success') {
-
                             alert("删除成功！");
                         }
                     }
@@ -96,7 +98,7 @@ $(document).ready(function() {
             success: function(data){
                 if(data) {
                     $('#ke_snomed_modify_dialog').modal('hide');
-                    location.reload();
+                    location.reload();//
                     alert("修改成功");
                 } else {
                     alert("编码已存在");
@@ -108,3 +110,31 @@ $(document).ready(function() {
         })
     })
 })
+// function checksnomedCode() {
+//     var snomedCode = $("#ke_snomed_code").val();
+//     $.ajax({
+//         url:"/ke/patient_analysis/checkSnomedCode?snomedCode="+snomedCode,
+//         dataType:'json',
+//         type: 'GET',
+//         success: function (data) {
+//             if (data) {
+//                 $("#ke_snomed_code").tips({
+//                     side:3,
+//                     msg:'用户已存在',
+//                     bg:'#AE81FF',
+//                     time:3
+//                 });
+//                 $("#ke_snomed_code").focus();
+//                 setTimeout("$('#ke_snomed_code').val('')",2000);
+//                 return;
+//             }
+//
+//         },
+//         error: function (data) {
+//             alert("error");
+//         }
+//
+//     })
+//
+//
+// }

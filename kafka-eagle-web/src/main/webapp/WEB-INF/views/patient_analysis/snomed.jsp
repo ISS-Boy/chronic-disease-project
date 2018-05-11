@@ -50,7 +50,7 @@
                             </button>
                             <button id="deleteSnomed" class="btn btn-danger btn-xs">删除</button>
                             <button id="modifySnomed" class="btn btn-success btn-xs" data-toggle="modal"
-                                   >编辑
+                            >编辑
                             </button>
                         </div>
                     </div>
@@ -108,9 +108,9 @@
                                 </div>
                             </div>
 
-                            <div id="alert_snomed_add_mssage" style="display: none"
+                            <div id="alert_snomed_snomedadd" style="display: none"
                                  class="alert alert-danger">
-                                <label> Oops! Please make some changes .</label>
+                                <label>输入不能为空</label>
                             </div>
                         </fieldset>
 
@@ -118,7 +118,7 @@
                             <button type="button" class="btn btn-default"
                                     data-dismiss="modal">Cancle
                             </button>
-                            <button type="submit" class="btn btn-primary" id="snomed_create-btn">Submit
+                            <button type="button" class="btn btn-primary" id="snomed_create-btn">Submit
                             </button>
                         </div>
                     </form>
@@ -167,9 +167,9 @@
                                 </div>
                             </div>
 
-                            <div id="alert_snomed_edit_mssage" style="display: none"
+                            <div id="alert_snomed_snomedmodify" style="display: none"
                                  class="alert alert-danger">
-                                <label> Oops! Please make some changes .</label>
+                                <label> 请做一些修改</label>
                             </div>
                         </fieldset>
 
@@ -190,9 +190,31 @@
 </body>
 <jsp:include page="../public/script.jsp">
     <jsp:param value="main/patient/snomed.js" name="loader"/>
+    <jsp:param value="ace/js/jquery.tips.js" name="loader" />
 </jsp:include>
 <jsp:include page="../public/tscript.jsp"></jsp:include>
 <script src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>
 <script src=".https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+<script>
+    function contextFormValid() {
+        var snomedCode = $("#ke_snomed_code").val();
+        var snomedCnomen = $("#ke_snomedCnomen").val();
+        var helpCode = $("#ke_snomed_helpCode").val();
+
+        if (snomedCode.length == 0 || snomedCnomen.length == 0 || helpCode.length == 0 ) {
+            $("#alert_snomed_snomedadd").show();
+            setTimeout(function() {
+                $("#alert_snomed_snomedadd").hide()
+            }, 3000);
+            return false;
+        }
+
+
+        return true;
+    }
+
+</script>
 </html>
+
+
 

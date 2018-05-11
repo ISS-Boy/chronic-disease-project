@@ -14,4 +14,6 @@ public interface SnomedService {
     int modifySnomed(Snomed snomed);
 
     Snomed findSnomedCnomen(String scode);
+
+    int checkSnomedCode(String snomedCode);
 }

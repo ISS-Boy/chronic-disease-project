@@ -11,9 +11,9 @@
         id,snomedCode,snomedCnomen,helpCode
     </sql>
     <sql id="BASE_COLUMN_WHERE">
-      <if test="snomedCode != null and snomedCode.length() !=0">
-          AND snomedCode = #{snomedCode}
-      </if>
+        <if test="snomedCode != null and snomedCode.length() !=0">
+            AND snomedCode = #{snomedCode}
+        </if>
     </sql>
 
     <select id="getAllSnomeds" resultMap="snomed">
@@ -40,16 +40,26 @@
         </where>
     </select>
 
+    <select id="countOfSnomedCnomen" parameterType="String" resultType="int">
+        select
+        COUNT(1) as total
+        from snomed
+        <where>
+            snomedCode = #{scode}
+        </where>
+    </select>
 
     <insert id="insertSnomed" parameterType="org.smartloli.kafka.eagle.web.pojo.Snomed" >
         insert into
         snomed(snomedCode,snomedCnomen,helpCode)
         values(#{snomedCode},#{snomedCnomen},#{helpCode})
     </insert>
+
     <delete id="deleteSnomedByCode" parameterType="org.smartloli.kafka.eagle.web.pojo.Snomed">
         delete FROM
-        snomed where snomedCode=#{code}
+        snomed where snomedCode=#{snomedCode}
     </delete>
+
     <select id="findSnomedBySnomedCode" parameterType="String" resultMap="snomed">
         select
         <include refid="Base_Column_List"/>

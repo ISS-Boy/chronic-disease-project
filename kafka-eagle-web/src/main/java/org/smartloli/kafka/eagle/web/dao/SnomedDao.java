@@ -1,5 +1,6 @@
 package org.smartloli.kafka.eagle.web.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.smartloli.kafka.eagle.web.pojo.Snomed;
 
 import java.util.List;
@@ -15,5 +16,6 @@ public interface SnomedDao {
 
     List<Snomed> snomesOf(Snomed snomed);
 
-    Snomed findSnomedCnomen(String scode);
+    Snomed findSnomedCnomen(@Param("scode") String scode);
+    int countOfSnomedCnomen(@Param("scode") String scode);
 }
