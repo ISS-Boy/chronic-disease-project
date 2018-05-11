@@ -91,7 +91,12 @@ public class offlineLearningController {
         return mv;
     }
 
-
+    @RequestMapping(value="/newNextStep")
+    public ModelAndView newNextStep()throws Exception{
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/learning/offineLearnNext");
+        return mv;
+    }
     /**
      * 请求新增离线学习任务页面
      * @return
