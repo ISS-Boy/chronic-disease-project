@@ -1,15 +1,11 @@
 package org.smartloli.kafka.eagle.web.controller;
 
-import com.iss.bigdata.health.elasticsearch.entity.Medication;
 import org.apache.commons.lang.StringUtils;
-import org.junit.Test;
 import org.smartloli.kafka.eagle.web.pojo.Icd;
 import org.smartloli.kafka.eagle.web.service.IcdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -68,23 +64,36 @@ public class IcdController {
         return map;
 
     }
+    @ResponseBody
     @RequestMapping(value ="/patient_analysis/icd_add",method = RequestMethod.POST)
-    public String add_icd(HttpServletRequest request, Icd icd){
-        String icd_code = request.getParameter("ke_icd_code");
-        String diseaseName = request.getParameter("ke_diseaseName");
-        String helpCode = request.getParameter("ke_helpCode");
-        if(icd_code.equals(icd.getIcdCode())){
-            request.setAttribute("msg","编码已存在！");
-            return "redirect:/patient_analysis/icd_10";
-        }else {
-            icd.setIcdCode(icd_code);
-            icd.setDiseaseName(diseaseName);
-            icd.setHelpCode(helpCode);
-            if (icdService.addIcd(icd)) {
-                return "/patient_analysis/icd_10";
-            } else {
-                return "redirect:/errors/500";
-            }
+    public String add_icd(@RequestBody Icd icd, HttpServletRequest request){
+        boolean flag = icdService.addIcd(icd) > 0 ? true : false;
+        if (flag) {
+            return "true";
+        } else {
+            request.setAttribute("msg","<div class='alert alert-danger'>编码已存在！不能重复添加！</div>");
+            return "false";
         }
     }
+    @ResponseBody
+    @RequestMapping(value = "/icd/deleteIcdByCode",method = RequestMethod.GET)
+    public String deleteIcd(@RequestParam("code") String code){
+        //JSONArray jsonArray = JSONArray.parseArray(ids);
+        if(!StringUtils.isEmpty(code)){
+            icdService.deleteIcdBycode(code);
+        }
+        return "success";//
+    }
+    ///patient_analysis/icd_modify
+    @ResponseBody
+    @RequestMapping(value = "/patient_analysis/icd_modify",method = RequestMethod.POST)
+    public String modifyIcd(@RequestBody Icd icd) {
+        boolean flag = icdService.modifyIcd(icd) > 0 ? true : false;
+        if (flag) {
+            return "true";
+        } else {
+            return "false";
+        }
+    }
+
 }
