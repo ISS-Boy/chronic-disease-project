@@ -2,6 +2,7 @@ package org.smartloli.kafka.eagle.offline;
 
 import com.iss.bigdata.health.patternrecognition.entity.SAXAnalysisWindow;
 import com.iss.bigdata.health.patternrecognition.entity.TSSequence;
+import com.iss.bigdata.health.patternrecognition.service.OfflineLearningTask;
 import com.iss.bigdata.health.patternrecognition.service.OfflineMiningTask;
 import com.iss.bigdata.health.patternrecognition.util.TaskUtil;
 import la.io.IO;
@@ -44,7 +45,7 @@ public class OfflineTest {
         SAXAnalysisWindow tmin = new SAXAnalysisWindow(64,8,4);
 
         for (int i=0; i<4; i++) {
-            OfflineMiningTask task = new OfflineMiningTask(offLineUserData.getTsSequence(), offLineUserData.getDataLengthArr(), tmin, 3,2, 10000, 10, offLineUserData.getMetricName());//new String[]{"systolic_blood_pressure","diastolic_blood_pressure"});
+            OfflineLearningTask task = new OfflineLearningTask(offLineUserData.getTsSequence(), offLineUserData.getDataLengthArr(), tmin, 3,2, 10000, 10, offLineUserData.getMetricName());//new String[]{"systolic_blood_pressure","diastolic_blood_pressure"});
             MiningTaskManager miningTaskManager = new MiningTaskManager();
             miningTaskManager.submit(String.valueOf(i),task);
             Thread.sleep(500);

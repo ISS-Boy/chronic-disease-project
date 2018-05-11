@@ -1,7 +1,10 @@
 package org.smartloli.kafka.eagle.web.pojo;
 
+import com.iss.bigdata.health.patternrecognition.entity.PatternResult;
 import com.iss.bigdata.health.patternrecognition.entity.SymbolicPattern;
+import com.iss.bigdata.health.patternrecognition.service.OfflineLearningTask;
 import com.iss.bigdata.health.patternrecognition.service.OfflineMiningTask;
+import com.iss.bigdata.health.patternrecognition.service.OfflineTask;
 import com.iss.bigdata.health.patternrecognition.util.TaskUtil;
 
 import java.util.HashMap;
@@ -20,14 +23,14 @@ public class MiningTaskManager {
 
     public void cancel(String taskId){
         if (miningTaskMap.containsKey(taskId)) {
-            TaskUtil.cancellMiningTask(miningTaskMap.get(taskId).getListFuture(), miningTaskMap.get(taskId).getOfflineMiningTask());
+            TaskUtil.cancelMiningTask(miningTaskMap.get(taskId).getListFuture(), miningTaskMap.get(taskId).getOfflineMiningTask());
             deleteMiningTask(taskId);
             System.out.println("==========================取消了任务，taskId：" + taskId);
         }
 
     }
 
-    public void submit(String taskId, OfflineMiningTask task){
+    public void submit(String taskId, OfflineLearningTask task){
         MiningTask miningTask = new MiningTask();
         miningTask.setOfflineMiningTask(task)
                 .setListFuture(threadPool.submit(task));
@@ -54,13 +57,13 @@ public class MiningTaskManager {
         }
     }
 
-    public List<SymbolicPattern> getSymbolicPatterns(String taskId){
+    public List<PatternResult> getSymbolicPatterns(String taskId){
         if (!miningTaskMap.containsKey(taskId) || isCancelled(taskId)) {
             return null;
         }
         if (isDone(taskId)) {
             try {
-                List<SymbolicPattern> symbolicPatterns =  miningTaskMap.get(taskId).getListFuture().get();
+                List<PatternResult> symbolicPatterns =  miningTaskMap.get(taskId).getListFuture().get();
                 return symbolicPatterns;
             } catch (Exception e) {
                 return null;

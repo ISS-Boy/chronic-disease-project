@@ -125,7 +125,7 @@ public class offlineLearningController {
                 .setConfigureId(UUID.randomUUID().toString())
                 .setConfigureName("runDemo")
                 .setDateBegin("1483200060")
-                .setDateEnd("1485910860")
+                .setDateEnd("1483405260")
                 .setSlidingWindowSize(64)
                 .setDisease("间歇性踌躇满志症")
                 .setFrequencyThreshold(2)

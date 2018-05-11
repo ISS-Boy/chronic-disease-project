@@ -1,5 +1,7 @@
 package org.smartloli.kafka.eagle.web.pojo;
 
+import java.util.List;
+
 /**
  * Created by weidaping on 2018/5/3.
  */
@@ -8,6 +10,7 @@ public class PatternDetail {
     private String symbolicPatternId;
     private String measureName;
     private String measureValue;
+    private String datas;
 
     public String getId() {
         return id;
@@ -43,5 +46,13 @@ public class PatternDetail {
     public PatternDetail setMeasureValue(String measureValue) {
         this.measureValue = measureValue;
         return this;
+    }
+
+    public String getDatas() {
+        return datas;
+    }
+
+    public void setDatas(String datas) {
+        this.datas = datas;
     }
 }

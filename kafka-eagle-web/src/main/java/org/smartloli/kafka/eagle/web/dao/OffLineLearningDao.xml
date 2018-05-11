@@ -64,9 +64,9 @@
     </insert>
 
     <insert id="insertAllPatternDetail" parameterType="java.util.List">
-        INSERT INTO ke_pattern_detail (id,symbolicPatternId,measureName,measureValue) VALUES
+        INSERT INTO ke_pattern_detail (id,symbolicPatternId,measureName,measureValue,datas) VALUES
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id},#{item.symbolicPatternId},#{item.measureName},#{item.measureValue})
+            (#{item.id},#{item.symbolicPatternId},#{item.measureName},#{item.measureValue},#{item.datas})
         </foreach>
     </insert>
 

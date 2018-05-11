@@ -4,9 +4,8 @@ import com.aliyun.hitsdb.client.value.response.QueryResult;
 import com.iss.bigdata.health.elasticsearch.entity.Condition;
 import com.iss.bigdata.health.elasticsearch.entity.UserBasic;
 import com.iss.bigdata.health.elasticsearch.service.ElasticSearchServiceImpl;
-import com.iss.bigdata.health.patternrecognition.entity.SAXAnalysisWindow;
-import com.iss.bigdata.health.patternrecognition.entity.SymbolicPattern;
-import com.iss.bigdata.health.patternrecognition.entity.TSSequence;
+import com.iss.bigdata.health.patternrecognition.entity.*;
+import com.iss.bigdata.health.patternrecognition.service.OfflineLearningTask;
 import com.iss.bigdata.health.patternrecognition.service.OfflineMiningTask;
 import la.matrix.DenseMatrix;
 import la.matrix.Matrix;
@@ -192,7 +191,7 @@ public class OffLineLearningService {
 
         SAXAnalysisWindow tmin = new SAXAnalysisWindow(learningConfigure.getSlidingWindowSize(),learningConfigure.getPaaSize(),learningConfigure.getAlphabetSize());
         OffLineUserData offLineUserData = getMetricByUserIds(Long.valueOf(learningConfigure.getDateBegin()), Long.valueOf(learningConfigure.getDateEnd()), string2ArrayList(learningConfigure.getMetric(), ",metrics,"), userIds);
-        OfflineMiningTask task = new OfflineMiningTask(offLineUserData.getTsSequence(), offLineUserData.getDataLengthArr(), tmin, learningConfigure.getAnalysisWindowStartSize(),learningConfigure.getFrequencyThreshold(), learningConfigure.getrThreshold(), learningConfigure.getK(), offLineUserData.getMetricName());
+        OfflineLearningTask task = new OfflineLearningTask(offLineUserData.getTsSequence(), offLineUserData.getDataLengthArr(), tmin, learningConfigure.getAnalysisWindowStartSize(),learningConfigure.getFrequencyThreshold(), learningConfigure.getrThreshold(), learningConfigure.getK(), offLineUserData.getMetricName());
         MiningTaskManager miningTaskManager = new MiningTaskManager();
         miningTaskManager.submit(learningConfigure.getConfigureId(), task);
         offLineLearningDao.insertConfigure(learningConfigure);
@@ -225,9 +224,9 @@ public class OffLineLearningService {
         if (!MiningTaskManager.miningTaskMap.isEmpty()) {
             for (String taskId: MiningTaskManager.miningTaskMap.keySet()) {
                 if (miningTaskManager.isDone(taskId)) {
-                    List<SymbolicPattern> symbolicPatterns = miningTaskManager.getSymbolicPatterns(taskId);
+                    List<PatternResult> symbolicPatterns = miningTaskManager.getSymbolicPatterns(taskId);
                     int i = 0;
-                    for (SymbolicPattern symbolicPattern : symbolicPatterns) {
+                    for (PatternResult symbolicPattern : symbolicPatterns) {
                         SymbolicPatternDB symbolicPatternDB = new SymbolicPatternDB();
                         String symbolicPatternId = UUID.randomUUID().toString();
                         symbolicPatternDB.setLengths(symbolicPattern.getLength())
@@ -236,12 +235,13 @@ public class OffLineLearningService {
                                 .setPatternOrder(i)
                                 .setAlias(String.valueOf(i));
                         symbolicPatternDBS.add(symbolicPatternDB);
-                        for (String measure : symbolicPattern.getMeasures().keySet()) {
+                        for (MeasureResult measure : symbolicPattern.getMeasureResults()) {
                             PatternDetail patternDetail = new PatternDetail();
                             patternDetail.setId(UUID.randomUUID().toString())
                                     .setSymbolicPatternId(symbolicPatternId)
-                                    .setMeasureName(measure)
-                                    .setMeasureValue(symbolicPattern.getMeasures().get(measure));
+                                    .setMeasureName(measure.getName())
+                                    .setMeasureValue(measure.getStrValue())
+                                    .setDatas(measure.getCenter().toString());
                             patternDetails.add(patternDetail);
                         }
                         i++;
