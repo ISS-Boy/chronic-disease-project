@@ -73,7 +73,7 @@
 								<c:if test="${learningConfigure.gender == 'M'}">男</c:if>
 							</td>
 							<td class='center'>${learningConfigure.disease }</td>
-							<td class="center">${learningConfigure.metric}</td>
+							<td class="center" style="word-wrap:break-word;word-break:break-all;width: 12%;">${learningConfigure.metric}</td>
 							<td class='center'>${learningConfigure.dateBegin }</td>
 							<td>${learningConfigure.dateEnd}</td>
 							<td class='center'>${learningConfigure.slidingWindowSize }</td>
@@ -84,13 +84,17 @@
 							<td class='center'>${learningConfigure.rThreshold }</td>
 							<td class='center'>${learningConfigure.k }</td>
 							<td class='center'>${learningConfigure.isDone }</td>
-						<td style="width: 7%">
-							<c:if test="${learningConfigure.isDone == '未完成'}">
-								<a class='btn btn-primary' title="停止" onclick="stopLearning('${learningConfigure.configureId }')" ><i class='fa fa-stop'></i></a>
-							</c:if>
-							<c:if test="${learningConfigure.isDone == '已完成' || learningConfigure.isDone == '已停止'}">
-							<a class='btn btn-danger' title="删除"  onclick="deleteConfigure('${learningConfigure.configureId }')"><i class='fa fa-trash'></i></a></td>
-							</c:if>
+							<td style="width: 10%">
+								<c:if test="${learningConfigure.isDone == '未完成'}">
+									<a class='btn btn-primary' title="停止" onclick="stopLearning('${learningConfigure.configureId }')" ><i class='fa fa-stop'></i></a>
+								</c:if>
+								<c:if test="${learningConfigure.isDone == '已完成' || learningConfigure.isDone == '已停止'}">
+									<a class='btn btn-danger' title="删除"  onclick="deleteConfigure('${learningConfigure.configureId }')"><i class='fa fa-trash'></i></a>
+								</c:if>
+								<c:if test="${learningConfigure.isDone == '已完成'}">
+									<a class='btn btn-success' title="查看结果"  onclick="showResult('${learningConfigure.configureId }')"><i class='fa fa-eye'></i></a>
+								</c:if>
+							</td>
 						</tr>
 						</c:forEach>
 					</c:when>
@@ -152,6 +156,21 @@
                     }
                 });
             }
+    }
+
+
+    function showResult(configureId) {
+        var diag = new top.Dialog();
+        diag.Drag=true;
+        diag.Title ="结果";
+        diag.URL = '/ke/offlineLearning/showResult?configureId=' + configureId;
+        diag.Width = 888;
+        diag.Height = 555;
+        diag.CancelEvent = function(){ //关闭事件
+            window.location.href="/ke/offlineLearning/getAllConfigure";
+            diag.close();
+        };
+        diag.show();
     }
 
 </script>

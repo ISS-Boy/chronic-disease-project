@@ -11,10 +11,9 @@ import java.util.concurrent.Callable;
 /**
  * Created with IDEA
  * User : HHE
- * Date : 2018/4/29
+ * Date : 2018/5/11
  */
-public class OfflineMiningTask implements OfflineTask,Callable<List<SymbolicPattern>>{
-
+public class OfflineLearningTask implements OfflineTask, Callable<List<PatternResult>> {
     private TSSequence ts;
     private int[] dataLengthArr;
     private SAXAnalysisWindow tmin;
@@ -91,9 +90,9 @@ public class OfflineMiningTask implements OfflineTask,Callable<List<SymbolicPatt
         this.measures = measures;
     }
 
-    public OfflineMiningTask(TSSequence ts, int[] dataLengthArr,
-                             SAXAnalysisWindow tmin, int bsAnalysisWindowStartSize,
-                             int fThreshold, int rThreshold, int k, String[] measures) {
+    public OfflineLearningTask(TSSequence ts, int[] dataLengthArr,
+                               SAXAnalysisWindow tmin, int bsAnalysisWindowStartSize,
+                               int fThreshold, int rThreshold, int k, String[] measures) {
         this.ts = ts;
         this.dataLengthArr = dataLengthArr;
         this.tmin = tmin;
@@ -105,20 +104,21 @@ public class OfflineMiningTask implements OfflineTask,Callable<List<SymbolicPatt
         this.mu = new MultipleUsers(this.ts, this.dataLengthArr);
     }
 
+
     @Override
     public boolean isCancelled() {
         return isCancelled;
     }
 
     @Override
-    public ArrayList<SymbolicPattern> call() throws Exception {
+    public ArrayList<PatternResult> call() throws Exception {
         //改了配置之后可以重置
         this.mu = new MultipleUsers(this.ts, this.dataLengthArr);
 
-        List<SymbolicPattern> symbolicPatterns = new ArrayList<SymbolicPattern>();
+        List<PatternResult> patterns = new ArrayList<PatternResult>();
         try {
             long start = System.currentTimeMillis();
-            List<MDLProperty> mdlpList = this.mu.calcDesLenMap(this.tmin,this.bsAnalysisWindowStartSize, this.fThreshold, this.rThreshold);
+            List<MDLProperty> mdlpList = this.mu.calcDesLenMap(this.tmin, this.bsAnalysisWindowStartSize, this.fThreshold, this.rThreshold);
             CalcUtil.sortMDLP(mdlpList);
 
 //            for (MDLProperty mdlP : mdlPropertyList) {
@@ -135,8 +135,8 @@ public class OfflineMiningTask implements OfflineTask,Callable<List<SymbolicPatt
 //        Motif m = motifs.get(7);
 //        motifs.clear();
 //        motifs.add(m);
-            symbolicPatterns = CalcUtil.motif2symbolicPattern(motifs,this.measures);
-            for (SymbolicPattern sp : symbolicPatterns) {
+            patterns = CalcUtil.motif2PatternResult(motifs, this.measures);
+            for (PatternResult sp : patterns) {
                 System.out.println(sp);
             }
             long end = System.currentTimeMillis();
@@ -145,9 +145,9 @@ public class OfflineMiningTask implements OfflineTask,Callable<List<SymbolicPatt
             e.printStackTrace();
         }
         if (isCancelled) {
-            return new ArrayList<SymbolicPattern>();
+            return new ArrayList<PatternResult>();
         }
-        return (ArrayList<SymbolicPattern>) symbolicPatterns;
+        return (ArrayList<PatternResult>) patterns;
     }
 
     @Override

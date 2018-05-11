@@ -3,8 +3,10 @@ package com.iss.bigdata.health.patternrecognition.util;
 import com.iss.bigdata.health.patternrecognition.algorithm.KMP;
 import com.iss.bigdata.health.patternrecognition.algorithm.Trie;
 import com.iss.bigdata.health.patternrecognition.entity.*;
+import la.matrix.DenseMatrix;
 import la.matrix.Matrix;
 import la.vector.DenseVector;
+import la.vector.Vector;
 import net.seninp.jmotif.sax.NumerosityReductionStrategy;
 import net.seninp.jmotif.sax.SAXException;
 import net.seninp.jmotif.sax.SAXProcessor;
@@ -412,7 +414,11 @@ public class CalcUtil {
                 TSSequence subTs = new TSSequence(subTsMa);
                 tsSequenceList.add(subTs);
             }
-            result.add(new Motif(Tmin, tsSequenceList));
+            int c = mdlProperty.getCenter();
+            Matrix subTsMa = ts.getData().getSubMatrix(c, c + tMotif, 0, ts.getData().getColumnDimension() - 1);
+            TSSequence center = new TSSequence(subTsMa);
+
+            result.add(new Motif(Tmin, tsSequenceList, center));
         }
         return (ArrayList<Motif>) result;
     }
@@ -421,7 +427,7 @@ public class CalcUtil {
      * 将motif中时间序列子序列，转化为符号映射
      * @param motifList motif列表
      * @param measuresName 每个度量值维度的名字
-     * @return 符号映射后的
+     * @return 符号映射后的符号模式
      */
     public static ArrayList<SymbolicPattern> motif2symbolicPattern(List<Motif> motifList, String[] measuresName) {
 
@@ -431,9 +437,9 @@ public class CalcUtil {
             return (ArrayList<SymbolicPattern>) result;
         }
 
-        int c = motifList.get(0).getTsSequences().
-                get(0).getData().
-                getColumnDimension();//维度数，即度量值个数
+        int c = motifList.get(0).getTsSequences()
+                .get(0).getData()
+                .getColumnDimension();//维度数，即度量值个数
 
         SAXAnalysisWindow window = motifList.get(0).getWindow();
 
@@ -508,5 +514,73 @@ public class CalcUtil {
             //System.out.println(idx + ", " + String.valueOf(res.getByIndex(idx).getPayload()));
         }
         return result;
+    }
+
+    /**
+     * 将motif中时间序列子序列，转化为模式结果
+     * @param motifList motif列表
+     * @param measuresName 每个度量值维度的名字
+     * @return 模式结果
+     */
+    public static ArrayList<PatternResult> motif2PatternResult(List<Motif> motifList, String[] measuresName){
+
+        List<PatternResult> result = new ArrayList<PatternResult>();
+
+        if (0 == motifList.size()) {
+            return (ArrayList<PatternResult>) result;
+        }
+
+        int c = motifList.get(0).getTsSequences()
+                .get(0).getData()
+                .getColumnDimension();//维度数，即度量值个数
+
+        SAXAnalysisWindow window = motifList.get(0).getWindow();
+
+        for (Motif motif : motifList) {
+            List<TSSequence> tsSequences = motif.getTsSequences();//子序列片段
+
+            Map<Integer, List<StringBuffer>> tempStrMap = new HashMap<Integer, List<StringBuffer>>();//临时map，key是维度序号，value是所有时间序列子序列的映射后的符号串联起来的结果
+            for (int i = 0; i < c; i++) {
+                tempStrMap.put(i, new ArrayList<StringBuffer>());
+            }
+
+            //遍历每个时间序列子序列
+            for (int i = 0, len = tsSequences.size(); i < len; i++) {
+                //遍历时间序列子序列里每个维度
+                TSSequence tsSequence = tsSequences.get(i);
+                for (int j = 0; j < c; j++) {
+                    DenseVector mVector = (DenseVector) tsSequence.getData().getColumnVector(j);
+                    double[] ts = mVector.getPr();
+                    StringBuffer tempSB = ts2symbolic(ts, window);
+                    tempStrMap.get(j).add(tempSB);//每个维度各自一个list，方便后面统计
+                }
+            }
+
+            //对每个维度进行统计
+            TSSequence centerTS = motif.getCenter();
+
+            List<MeasureResult> measureResults = new ArrayList<MeasureResult>();
+            for (int i = 0; i < c; i++) {
+                StringBuffer sb = patternStat(tempStrMap.get(i));
+
+                double[] dd  = ((DenseVector)(centerTS.getData().getColumnVector(i))).getPr();//得到度量值对应向量
+                Double[] dataArr = new Double[dd.length];
+                for (int m = 0; m < dataArr.length; m++) {
+                    dataArr[m] = dd[m];
+                }
+                List<Double> centerData = new ArrayList<Double>(Arrays.asList(dataArr));
+
+                MeasureResult mr = new MeasureResult(measuresName[i], sb.toString(), centerData);
+                measureResults.add(mr);
+            }
+
+            int length = 0;
+            if (tsSequences.size() > 0) {
+                length = tsSequences.get(0).getData().getRowDimension();
+            }
+            result.add(new PatternResult(length, measureResults));
+        }
+
+        return (ArrayList<PatternResult>) result;
     }
 }

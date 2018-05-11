@@ -2,10 +2,7 @@ package org.smartloli.kafka.eagle.web.dao;
 
 
 import org.apache.ibatis.annotations.Param;
-import org.smartloli.kafka.eagle.web.pojo.DiseaseDB;
-import org.smartloli.kafka.eagle.web.pojo.LearningConfigure;
-import org.smartloli.kafka.eagle.web.pojo.PatternDetail;
-import org.smartloli.kafka.eagle.web.pojo.SymbolicPatternDB;
+import org.smartloli.kafka.eagle.web.pojo.*;
 
 import java.util.List;
 
@@ -25,5 +22,7 @@ public interface OffLineLearningDao {
     void deleteDetailByPatternId(List<String> patternIds);
     void deletePatternByConfigureId(String configureId);
     void deleteConfigureById(String configureId);
+    List<Pattern> getPatternByConfigureId(String configureId);
+    List<PatternDetail> getAllDetail();
 
 }

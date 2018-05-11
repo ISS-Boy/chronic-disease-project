@@ -251,8 +251,10 @@ public class OffLineLearningService {
                 }
             }
         }
-        offLineLearningDao.insertAllPatternDetail(patternDetails);
-        offLineLearningDao.insertAllSymbolicPattern(symbolicPatternDBS);
+        try {
+            offLineLearningDao.insertAllPatternDetail(patternDetails);
+            offLineLearningDao.insertAllSymbolicPattern(symbolicPatternDBS);
+        } catch (Exception e) {}
     }
 
 
@@ -275,6 +277,23 @@ public class OffLineLearningService {
             offLineLearningDao.deletePatternByConfigureId(configureId);
             offLineLearningDao.deleteDetailByPatternId(patternIds);
         }
+    }
+
+
+    public List<Pattern> showResult(String configureId){
+        List<Pattern> patterns = offLineLearningDao.getPatternByConfigureId(configureId);
+        List<PatternDetail> patternDetails = offLineLearningDao.getAllDetail();
+        for (Pattern pattern : patterns) {
+            List<PatternDetail> patternDetailsTo = new ArrayList<>();
+            for (PatternDetail patternDetail : patternDetails) {
+                if (pattern.getId().equals(patternDetail.getSymbolicPatternId())) {
+                    patternDetailsTo.add(patternDetail);
+                }
+            }
+            pattern.setPatternDetail(patternDetailsTo);
+        }
+        System.out.println("===========" + patterns);
+        return patterns;
     }
 
 }

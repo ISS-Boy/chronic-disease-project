@@ -125,7 +125,7 @@ public class offlineLearningController {
                 .setConfigureId(UUID.randomUUID().toString())
                 .setConfigureName("runDemo")
                 .setDateBegin("1483200060")
-                .setDateEnd("1483318860")
+                .setDateEnd("1485910860")
                 .setSlidingWindowSize(64)
                 .setDisease("间歇性踌躇满志症")
                 .setFrequencyThreshold(2)
@@ -203,6 +203,21 @@ public class offlineLearningController {
         map.put("msg", msg);
         System.out.println(msg);
         return map;
+    }
+
+
+    /**
+     * 请求新增离线学习任务页面
+     * @return
+     */
+    @RequestMapping(value="/showResult")
+    public ModelAndView showResult(@RequestParam("configureId")String configureId, HttpServletRequest request)throws Exception{
+        ModelAndView mv = new ModelAndView();
+        List<Pattern> patterns = offLineLearningService.showResult(configureId);
+        mv.addObject("patterns", patterns);
+        System.out.println(patterns.size());
+        mv.setViewName("/learning/showResult");
+        return mv;
     }
 
 }

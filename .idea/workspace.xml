@@ -7,23 +7,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57195fec-5f50-452b-80ce-49848137aab6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/FirstInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/PatternMatchManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/allConfigure.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/Pattern.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/showResult.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/offlineLearningController.java" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/offlineLearningController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/OffLineLearningDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/OffLineLearningDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/OffLineLearningDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/OffLineLearningDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/LearningConfigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/LearningConfigure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/MiningTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/MiningTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/SymbolicPatternDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/SymbolicPatternDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/OffLineLearningService.java" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/OffLineLearningService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/task/LearningResultTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/task/LearningResultTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnAdd.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnAdd.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/navbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/navbar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/main/offlineLearning/learning.js" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/main/offlineLearning/learning.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/streams-example-master/src/main/java/examples/interactivequeries/Demo/PatternMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/streams-example-master/src/main/java/examples/interactivequeries/Demo/PatternMatch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/allConfigure.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/allConfigure.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/mycss.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/mycss.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/kafka-eagle-plugin/target/" />
@@ -57,27 +50,60 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="OffLineLearningService.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/OffLineLearningService.java">
+      <file leaf-file-name="showResult.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/showResult.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="277" column="5" lean-forward="true" selection-start-line="277" selection-start-column="5" selection-end-line="277" selection-end-column="5" />
+            <state relative-caret-position="122">
+              <caret line="66" column="119" selection-start-line="66" selection-start-column="119" selection-end-line="66" selection-end-column="119" />
               <folding>
-                <element signature="e#10415#10416#0" expanded="true" />
-                <element signature="e#10474#10475#0" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#td#4;n#tr#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#2;n#tr#0;n#table#0;n#td#4;n#tr#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MiningTaskManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/MiningTaskManager.java">
+      <file leaf-file-name="MEventBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/streams-example-master/src/main/java/examples/interactivequeries/Demo/MEventBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="-126">
+              <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MetadataService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/streams-example-master/src/main/java/examples/interactivequeries/Demo/MetadataService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-690">
+              <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PatternMain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/streams-example-master/src/main/java/examples/interactivequeries/Demo/test/PatternMain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="769">
+              <caret line="54" column="36" lean-forward="true" selection-start-line="54" selection-start-column="36" selection-end-line="54" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PatternMatch1.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/streams-example-master/src/main/java/examples/interactivequeries/Demo/PatternMatch1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-114">
+              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParaConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/streams-example-master/src/main/java/examples/interactivequeries/Demo/ParaConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-255">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -85,73 +111,11 @@
       <file leaf-file-name="offlineLearningController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/offlineLearningController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="139" column="34" lean-forward="true" selection-start-line="139" selection-start-column="34" selection-end-line="139" selection-end-column="34" />
+            <state relative-caret-position="81">
+              <caret line="216" column="30" selection-start-line="216" selection-start-column="22" selection-end-line="216" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LearningResultTask.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/task/LearningResultTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="allConfigure.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/allConfigure.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="96" column="33" lean-forward="true" selection-start-line="96" selection-start-column="33" selection-end-line="96" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="menu_list.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/menu/menu_list.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-373">
-              <caret line="66" column="29" lean-forward="true" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="menu.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/main/menu/menu.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="70" column="20" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OffLineLearningDao.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/OffLineLearningDao.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="55" column="33" lean-forward="true" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
-              <folding>
-                <marker date="1526009536581" expanded="true" signature="707:1524" ph="INSERT INTO ke_configure... " />
-                <marker date="1526009536581" expanded="true" signature="1612:1688" ph="UPDATE ke_co... " />
-                <marker date="1526009536581" expanded="true" signature="2540:2574" ph="SELECT * FRO... ke_disease" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OffLineLearningDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/OffLineLearningDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="37">
-              <caret line="15" column="61" lean-forward="true" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -159,8 +123,20 @@
       <file leaf-file-name="offlineLearnAdd.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnAdd.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="258" lean-forward="true" selection-start-line="258" selection-end-line="258" />
+            <state relative-caret-position="1544">
+              <caret line="260" column="24" lean-forward="true" selection-start-line="260" selection-start-column="24" selection-end-line="260" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="allConfigure.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/allConfigure.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="64">
+              <caret line="161" column="35" selection-start-line="161" selection-start-column="24" selection-end-line="161" selection-end-column="35" />
+              <folding>
+                <element signature="n#style#0;n#td#5;n#tr#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -178,7 +154,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&lt;option&gt;measureOrCalculation&lt;/option&gt;</find>
       <find>monitorgrouplist</find>
       <find>Initialize KafkaOffsetGetter clazz.</find>
       <find>mysql</find>
@@ -208,6 +183,7 @@
       <find>2</find>
       <find>====</find>
       <find>pca</find>
+      <find>get</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -259,8 +235,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/kafka-eagle-elasticsearch/src/main/java/com/iss/bigdata/health/elasticsearch/service/ElasticSearchServiceImpl.java" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/test/java/org/smartloli/kafka/eagle/service/TestStreamService.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/test/java/org/smartloli/kafka/eagle/service/TestMonitorService.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/patientInfo.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/PatientInfo.java" />
@@ -274,7 +248,6 @@
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/tscript.jsp" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/resources/spring-shiro.xml" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/plugins/zDialog/zDialog.js" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/mycss.jsp" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/save_result.jsp" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/menu/menu_edit.jsp" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/main/menu/menu.js" />
@@ -303,13 +276,16 @@
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/LearningConfigure.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/navbar.jsp" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/SymbolicPatternDB.java" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/task/LearningResultTask.java" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/offlineLearningController.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnAdd.jsp" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/OffLineLearningDao.xml" />
-        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/allConfigure.jsp" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/task/LearningResultTask.java" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/Pattern.java" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/OffLineLearningDao.java" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/OffLineLearningDao.xml" />
         <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/OffLineLearningService.java" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/offlineLearningController.java" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/mycss.jsp" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/allConfigure.jsp" />
+        <option value="$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/showResult.jsp" />
       </list>
     </option>
   </component>
@@ -603,6 +579,29 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="media" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chronic-disease-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chronic-disease-project" type="462c0819:PsiDirectoryNode" />
+              <item name="kafka-eagle-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="ace" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chronic-disease-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chronic-disease-project" type="462c0819:PsiDirectoryNode" />
+              <item name="kafka-eagle-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="ace" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chronic-disease-project" type="b2602c69:ProjectViewProjectNode" />
@@ -1222,7 +1221,7 @@
       <workItem from="1525415312135" duration="2772000" />
       <workItem from="1525418135698" duration="334000" />
       <workItem from="1525418513254" duration="59559000" />
-      <workItem from="1525848305743" duration="53814000" />
+      <workItem from="1525848305743" duration="70904000" />
     </task>
     <task id="LOCAL-00001" summary="1、更新monitor界面以及相关控制流&#10;2、更新monitor和monitorGroup数据表结构，删除panel，target表，删除对应的dao&#10;3、更新MonitorController中相关控制流&#10;4、更新Grafana-module中的dashboard生成、连接获取、匿名登陆token等部分">
       <created>1524622683034</created>
@@ -1301,7 +1300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1525923962628</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="在线管理">
+      <created>1526010934283</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1526010934283</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1337,7 +1343,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="729498000" />
+    <option name="totallyTimeSpent" value="746588000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1354,7 +1360,7 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.2253635" side_tool="true" weight="0.35643566" />
-      <window_info anchor="bottom" id="Application Servers" order="15" sideWeight="0.19742489" weight="0.14595376" />
+      <window_info anchor="bottom" id="Application Servers" order="17" sideWeight="0.19742489" weight="0.57755774" />
       <window_info anchor="right" id="Maven Projects" order="9" weight="0.40620273" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
       <window_info id="Capture Tool" order="8" />
@@ -1370,7 +1376,7 @@
       <window_info id="Image Layers" order="5" />
       <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.32947975" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.7746365" visible="true" weight="0.4438944" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.7746365" visible="true" weight="0.45049506" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.3019802" />
       <window_info anchor="bottom" id="Spring" order="12" weight="0.32876712" />
       <window_info anchor="bottom" id="Terminal" order="13" weight="0.32658958" />
@@ -1379,13 +1385,13 @@
       <window_info id="Web" order="6" sideWeight="0.50547945" side_tool="true" weight="0.38529888" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info id="Favorites" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="SBT Console" order="16" />
+      <window_info anchor="bottom" id="SBT Console" order="15" />
       <window_info id="Nl-Palette" order="2" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="right" x="100" y="100" width="1080" height="600" id="Documentation" order="10" type="FLOATING" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="MyBatis Sql Log" order="14" />
-      <window_info anchor="bottom" id="Thumbnails" order="17" weight="0.32947975" />
+      <window_info anchor="bottom" id="Thumbnails" order="16" weight="0.32947975" />
       <window_info anchor="right" id="Properties" order="8" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24878837" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32176656" />
@@ -1425,7 +1431,8 @@
     <MESSAGE value="在线匹配代码导入" />
     <MESSAGE value="菜单管理" />
     <MESSAGE value="在线匹配" />
-    <option name="LAST_COMMIT_MESSAGE" value="在线匹配" />
+    <MESSAGE value="在线管理" />
+    <option name="LAST_COMMIT_MESSAGE" value="在线管理" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1510,11 +1517,23 @@
           <properties />
           <option name="timeStamp" value="150" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/showResult.jsp</url>
+          <line>50</line>
+          <properties />
+          <option name="timeStamp" value="151" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/showResult.jsp</url>
+          <line>74</line>
+          <properties />
+          <option name="timeStamp" value="153" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="151" />
+      <option name="time" value="154" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1522,123 +1541,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/resources/spring-mybatis.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1023" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/KeSymbolicPattern.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="33" column="32" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/test/DataTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#226#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/MenuDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="27" column="47" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/MenuDao.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="2" column="60" selection-start-line="2" selection-start-column="53" selection-end-line="2" selection-end-column="60" />
-          <folding>
-            <marker date="1525682714845" expanded="true" signature="307:376" ph="select * fro... ke_menu" />
-            <marker date="1525682714845" expanded="true" signature="483:522" ph="SELECT * FRO... ke_menu" />
-            <marker date="1525682714845" expanded="true" signature="632:849" ph="INSERT INTO ke_menu... " />
-            <marker date="1525682714845" expanded="true" signature="992:1038" ph="SELECT * FRO... ke_menu" />
-            <marker date="1525682714845" expanded="true" signature="1152:1330" ph="UPDATE ke_me... " />
-            <marker date="1525682714845" expanded="true" signature="1421:1493" ph="DELETE FROM " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/MenuService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="49" column="10" selection-start-line="49" selection-start-column="10" selection-end-line="49" selection-end-column="10" />
-          <folding>
-            <element signature="e#1057#1058#0" expanded="true" />
-            <element signature="e#1104#1105#0" expanded="true" />
-            <element signature="e#1147#1148#0" expanded="true" />
-            <element signature="e#1198#1199#0" expanded="true" />
-            <element signature="e#1239#1240#0" expanded="true" />
-            <element signature="e#1281#1282#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-common/src/main/resources/system-config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="51" column="26" lean-forward="true" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/script.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-135">
-          <caret line="3" column="50" lean-forward="true" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/main/offlineLearning/learning.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/FirstInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
-          <folding>
-            <element signature="e#407#408#0" expanded="true" />
-            <element signature="e#434#435#0" expanded="true" />
-            <element signature="e#474#475#0" expanded="true" />
-            <element signature="e#506#507#0" expanded="true" />
-            <element signature="e#539#540#0" expanded="true" />
-            <element signature="e#568#569#0" expanded="true" />
-            <element signature="e#612#613#0" expanded="true" />
-            <element signature="e#648#649#0" expanded="true" />
-            <element signature="e#683#684#0" expanded="true" />
-            <element signature="e#714#715#0" expanded="true" />
-            <element signature="e#762#763#0" expanded="true" />
-            <element signature="e#802#803#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnList.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/MetricsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/StartupListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/IcdController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
@@ -1724,13 +1626,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/streams-example-master/src/main/java/examples/interactivequeries/Demo/test/PatternMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="54" column="36" lean-forward="true" selection-start-line="54" selection-start-column="36" selection-end-line="54" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/lang/Runtime.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
@@ -1769,30 +1664,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/PatternMatchManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/streams-example-master/src/main/java/examples/interactivequeries/Demo/PatternMatch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="239" lean-forward="true" selection-start-line="239" selection-end-line="239" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2405#2406#0" expanded="true" />
-            <element signature="e#2433#2434#0" expanded="true" />
-            <element signature="e#21041#21042#0" expanded="true" />
-            <element signature="e#21063#21064#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/navbar.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-387">
@@ -1824,26 +1695,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-19">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/PatternDetail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/SymbolicPatternDB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding>
-            <element signature="e#833#834#0" expanded="true" />
-            <element signature="e#868#869#0" expanded="true" />
-            <element signature="e#1008#1009#0" expanded="true" />
-            <element signature="e#1038#1039#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1892,80 +1743,252 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/task/LearningResultTask.java">
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/main/menu/menu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="286">
+          <caret line="59" column="8" lean-forward="true" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/KeSymbolicPattern.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1818">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/PatternMatchManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/menu/menu_list.jsp">
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/PatientInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-373">
-          <caret line="66" column="29" lean-forward="true" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
+        <state relative-caret-position="135">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/media/js/main/menu/menu.js">
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/SymbolicPatternDB.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="70" column="20" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="20" />
+        <state relative-caret-position="54">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="21" />
+          <folding>
+            <element signature="e#833#834#0" expanded="true" />
+            <element signature="e#868#869#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnAdd.jsp">
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/Pattern.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="258" lean-forward="true" selection-start-line="258" selection-end-line="258" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/allConfigure.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="96" column="33" lean-forward="true" selection-start-line="96" selection-start-column="33" selection-end-line="96" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/OffLineLearningDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="15" column="61" lean-forward="true" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
+        <state relative-caret-position="179">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding>
+            <element signature="e#357#358#0" expanded="true" />
+            <element signature="e#382#383#0" expanded="true" />
+            <element signature="e#418#419#0" expanded="true" />
+            <element signature="e#446#447#0" expanded="true" />
+            <element signature="e#484#485#0" expanded="true" />
+            <element signature="e#518#519#0" expanded="true" />
+            <element signature="e#572#573#0" expanded="true" />
+            <element signature="e#618#619#0" expanded="true" />
+            <element signature="e#650#651#0" expanded="true" />
+            <element signature="e#678#679#0" expanded="true" />
+            <element signature="e#720#721#0" expanded="true" />
+            <element signature="e#754#755#0" expanded="true" />
+            <element signature="e#794#795#0" expanded="true" />
+            <element signature="e#829#830#0" expanded="true" />
+            <element signature="e#886#887#0" expanded="true" />
+            <element signature="e#934#935#0" expanded="true" />
+            <element signature="e#969#970#0" expanded="true" />
+            <element signature="e#999#1000#0" expanded="true" />
+            <element signature="e#1046#1047#0" expanded="true" />
+            <element signature="e#1084#1085#0" expanded="true" />
+            <element signature="e#1137#1138#0" expanded="true" />
+            <element signature="e#1173#1174#0" expanded="true" />
+            <element signature="e#1244#1245#0" expanded="true" />
+            <element signature="e#1294#1295#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/OffLineLearningDao.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="55" column="33" lean-forward="true" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
+        <state relative-caret-position="164">
+          <caret line="105" column="42" lean-forward="true" selection-start-line="105" selection-start-column="42" selection-end-line="105" selection-end-column="42" />
           <folding>
-            <marker date="1526009536581" expanded="true" signature="707:1524" ph="INSERT INTO ke_configure... " />
-            <marker date="1526009536581" expanded="true" signature="1612:1688" ph="UPDATE ke_co... " />
-            <marker date="1526009536581" expanded="true" signature="2540:2574" ph="SELECT * FRO... ke_disease" />
+            <marker date="1526026026225" expanded="true" signature="707:1524" ph="INSERT INTO ke_configure... " />
+            <marker date="1526026026225" expanded="true" signature="1612:1688" ph="UPDATE ke_co... " />
+            <marker date="1526026026225" expanded="true" signature="2540:2574" ph="SELECT * FRO... ke_disease" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/offlineLearningController.java">
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/pojo/PatternDetail.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="139" column="34" lean-forward="true" selection-start-line="139" selection-start-column="34" selection-end-line="139" selection-end-column="34" />
+        <state relative-caret-position="135">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/dao/OffLineLearningDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10">
+          <caret line="11" column="37" lean-forward="true" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/task/LearningResultTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="22" column="39" lean-forward="true" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#698#699#0" expanded="true" />
+            <element signature="e#757#758#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/service/OffLineLearningService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="277" column="5" lean-forward="true" selection-start-line="277" selection-start-column="5" selection-end-line="277" selection-end-column="5" />
+        <state relative-caret-position="-5">
+          <caret line="283" column="50" selection-start-line="283" selection-start-column="50" selection-end-line="283" selection-end-column="50" />
           <folding>
-            <element signature="e#10415#10416#0" expanded="true" />
-            <element signature="e#10474#10475#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#10990#10991#0" expanded="true" />
+            <element signature="e#11049#11050#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/menu/menu_list.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="75" column="20" lean-forward="true" selection-start-line="42" selection-start-column="12" selection-end-line="75" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnList.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/menu/menu_edit.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1089">
+          <caret line="23" column="80" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="23" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/streams-example-master/src/main/java/examples/interactivequeries/Demo/ParaConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-255">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/streams-example-master/src/main/java/examples/interactivequeries/Demo/MEventBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-126">
+          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/streams-example-master/src/main/java/examples/interactivequeries/Demo/MetadataService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-690">
+          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/streams-example-master/src/main/java/examples/interactivequeries/Demo/test/PatternMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="769">
+          <caret line="54" column="36" lean-forward="true" selection-start-line="54" selection-start-column="36" selection-end-line="54" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/streams-example-master/src/main/java/examples/interactivequeries/Demo/PatternMatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="262" column="29" lean-forward="true" selection-start-line="262" selection-start-column="29" selection-end-line="262" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/streams-example-master/target/generated-sources/org/mhealth/open/data/avro/Measure.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2619">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/streams-example-master/src/main/java/examples/interactivequeries/Demo/PatternMatch1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-114">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/offlineLearnAdd.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1544">
+          <caret line="260" column="24" lean-forward="true" selection-start-line="260" selection-start-column="24" selection-end-line="260" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/java/org/smartloli/kafka/eagle/web/controller/offlineLearningController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="216" column="30" selection-start-line="216" selection-start-column="22" selection-end-line="216" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/static/UI_new/css/ace.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="5" column="63357" selection-start-line="5" selection-start-column="63357" selection-end-line="5" selection-end-column="63357" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/public/mycss.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="10" column="64" lean-forward="true" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/allConfigure.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="161" column="35" selection-start-line="161" selection-start-column="24" selection-end-line="161" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#td#5;n#tr#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka-eagle-web/src/main/webapp/WEB-INF/views/learning/showResult.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="66" column="119" selection-start-line="66" selection-start-column="119" selection-end-line="66" selection-end-column="119" />
+          <folding>
+            <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#td#4;n#tr#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#2;n#tr#0;n#table#0;n#td#4;n#tr#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

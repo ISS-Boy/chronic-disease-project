@@ -100,4 +100,14 @@
             #{item}
         </foreach>
     </delete>
+
+    <select id="getPatternByConfigureId" resultType="org.smartloli.kafka.eagle.web.pojo.Pattern">
+        select * from ke_symbolic_pattern
+        where configureId = #{configureId}
+    </select>
+
+    <select id="getAllDetail" resultType="org.smartloli.kafka.eagle.web.pojo.PatternDetail">
+        select * from ke_pattern_detail
+        where 1=1
+    </select>
 </mapper>

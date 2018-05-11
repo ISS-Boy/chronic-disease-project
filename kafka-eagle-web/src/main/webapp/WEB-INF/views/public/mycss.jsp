@@ -8,6 +8,7 @@
 <link href="/ke/media/css/public/show-hint.css" rel="stylesheet"/>
 <link href="/ke/media/css/public/jquery.terminal.min.css" rel="stylesheet"/>
 <link href="/ke/media/css/public/bootstrap-treeview.min.css" rel="stylesheet"/>
+<link href="/ke/media/js/ace/css/ace.min.css" rel="stylesheet"/>
 <link rel="shortcut icon" href="/ke/media/img/favicon.ico" />
 <%
 	String[] loader = request.getParameterValues("css");

@@ -1,19 +1,21 @@
+import com.iss.bigdata.health.patternrecognition.entity.PatternResult;
 import com.iss.bigdata.health.patternrecognition.entity.SAXAnalysisWindow;
-import com.iss.bigdata.health.patternrecognition.entity.SymbolicPattern;
 import com.iss.bigdata.health.patternrecognition.entity.TSSequence;
-import com.iss.bigdata.health.patternrecognition.service.OfflineMiningTask;
-import com.iss.bigdata.health.patternrecognition.util.TaskUtil;
+import com.iss.bigdata.health.patternrecognition.service.OfflineLearningTask;
 import la.io.IO;
 
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Created with IDEA
  * User : HHE
- * Date : 2018/4/29
+ * Date : 2018/5/11
  */
-public class OfflineMiningTaskTest {
+public class OfflineLearningTaskTest {
     public static void main(String[] args) {
         String file = "E:\\bigdata\\Stream data pattern\\data\\UserGroup-0\\the-user-0\\huizong.txt";
         TSSequence ts = new TSSequence(IO.loadDenseMatrix(file).getColumns(0,1));
@@ -25,8 +27,9 @@ public class OfflineMiningTaskTest {
 
         ExecutorService threadPool = Executors.newFixedThreadPool(10);
 
-        final OfflineMiningTask task = new OfflineMiningTask(user1, dataLengthArr, tmin, 3,2, 10000, 10, new String[]{"systolic_blood_pressure","diastolic_blood_pressure"});
-        final Future<List<SymbolicPattern>> future = threadPool.submit(task);
+
+        final OfflineLearningTask task = new OfflineLearningTask(user1, dataLengthArr, tmin, 3,2, 10000, 10, new String[]{"systolic_blood_pressure","diastolic_blood_pressure"});
+        final Future<List<PatternResult>> future = threadPool.submit(task);
 
 //        final Thread t = new Thread(new Runnable() {
 //            @Override
@@ -46,12 +49,17 @@ public class OfflineMiningTaskTest {
 //        threadPool.execute(t);
         threadPool.shutdown();
         try {
-            System.out.println("22222"+future.get());
+            while (!future.isDone()){
+                Thread.sleep(5000);
+            }
+            System.out.println("完成了");
+            System.out.println(future.get());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+//        System.out.println("22222"+future);
 //        try {
 //            Thread.sleep(1000);
 //            System.out.println(future);

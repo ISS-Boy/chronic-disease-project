@@ -1,6 +1,7 @@
 package com.iss.bigdata.health.patternrecognition.util;
 
 import com.iss.bigdata.health.patternrecognition.service.OfflineMiningTask;
+import com.iss.bigdata.health.patternrecognition.service.OfflineTask;
 
 import java.util.concurrent.Future;
 
@@ -10,12 +11,12 @@ import java.util.concurrent.Future;
  * Date : 2018/4/29
  */
 public class TaskUtil {
-    public static void cancellMiningTask(Future<?> future, OfflineMiningTask omt){
+    public static void cancelMiningTask(Future<?> future, OfflineTask omt){
         future.cancel(true);
-        omt.cancellMiningTask();
+        omt.cancelTask();
     }
 
-    public static boolean isCancelled(Future<?> future, OfflineMiningTask omt){
+    public static boolean isCancelled(Future<?> future, OfflineTask omt){
         return future.isCancelled() && omt.isCancelled();
     }
 

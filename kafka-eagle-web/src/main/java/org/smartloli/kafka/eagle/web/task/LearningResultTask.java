@@ -18,10 +18,10 @@ public class LearningResultTask {
     @Autowired
     private OffLineLearningService offLineLearningService;
 
-//    @Scheduled(cron = "0/5 * * * * ? ") // 间隔5秒执行
-//    public void saveLearningResult() {
-//        offLineLearningService.saveLearningResult();
-//    }
+    @Scheduled(cron = "0/5 * * * * ? ") // 间隔5秒执行
+    public void saveLearningResult() {
+        offLineLearningService.saveLearningResult();
+    }
 
     @Scheduled(cron = "0 */30 * * * ? ") // 间隔30分钟执行
     public void resetDisease() {
