@@ -64,7 +64,7 @@
 							<td class='center'>${detail.measureName}</td>
 							<td style="word-wrap:break-word;word-break:break-all;width: 72%;"class='center'>${detail.measureValue }</td>
 							<td class="center" style="width: 10%;">
-								<a class='btn btn-success' title="图形显示" onclick="showGraph1('${detail.measureValue }');" ><i class='fa fa-eye'></i></a>
+								<a class='btn btn-success' title="图形显示" onclick="showGraph1('${detail.id }');" ><i class='fa fa-eye'></i></a>
 							</td>
 						</tr>
 					</c:forEach>
@@ -87,8 +87,17 @@
 </jsp:include>
 <jsp:include page="../public/tscript.jsp"></jsp:include>
 <script>
-    function showGraph1(measureValue) {
-		alert("要什么图?" + measureValue);
+    function showGraph1(id) {
+        var diag = new Dialog();
+        diag.Drag=true;
+        diag.Title ="图形展示";
+        diag.URL = '/ke/offlineLearning/showGraph1?id=' + id;
+        diag.Width = 888;
+        diag.Height = 555;
+        diag.CancelEvent = function(){ //关闭事件
+            diag.close();
+        };
+        diag.show();
     }
 </script>
 </html>

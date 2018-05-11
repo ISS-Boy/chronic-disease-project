@@ -24,5 +24,5 @@ public interface OffLineLearningDao {
     void deleteConfigureById(String configureId);
     List<Pattern> getPatternByConfigureId(String configureId);
     List<PatternDetail> getAllDetail();
-
+    PatternDetail getDetailById(@Param("id")String id);
 }

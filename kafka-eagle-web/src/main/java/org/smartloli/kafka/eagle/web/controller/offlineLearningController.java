@@ -225,4 +225,19 @@ public class offlineLearningController {
         return mv;
     }
 
+
+    /**
+     * 请求新增离线学习任务页面
+     * @return
+     */
+    @RequestMapping(value="/showGraph1")
+    public ModelAndView showGraph1(@RequestParam("id")String id, HttpServletRequest request)throws Exception{
+        ModelAndView mv = new ModelAndView();
+        PatternDetail patternDetail = offLineLearningService.getDetailById(id);
+        mv.addObject("patternDetail", patternDetail);
+        System.out.println(patternDetail);
+        mv.setViewName("/learning/graph");
+        return mv;
+    }
+
 }

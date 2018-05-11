@@ -296,4 +296,8 @@ public class OffLineLearningService {
         return patterns;
     }
 
+    public PatternDetail getDetailById(String id){
+        return offLineLearningDao.getDetailById(id);
+    }
+
 }
