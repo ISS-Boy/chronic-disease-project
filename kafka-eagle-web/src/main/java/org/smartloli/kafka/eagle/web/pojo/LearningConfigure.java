@@ -12,8 +12,8 @@ public class LearningConfigure {
     private String gender;
     private String disease;
     private String metric;
-    private Date dateBegin;
-    private Date dateEnd;
+    private String dateBegin;
+    private String dateEnd;
     private Integer slidingWindowSize;
     private Integer paaSize;
     private Integer alphabetSize;
@@ -21,6 +21,7 @@ public class LearningConfigure {
     private Integer frequencyThreshold;
     private Integer rThreshold;
     private Integer k;
+    private String isDone;
 
     public String getConfigureId() {
         return configureId;
@@ -76,20 +77,20 @@ public class LearningConfigure {
         return this;
     }
 
-    public Date getDateBegin() {
+    public String getDateBegin() {
         return dateBegin;
     }
 
-    public LearningConfigure setDateBegin(Date dateBegin) {
+    public LearningConfigure setDateBegin(String dateBegin) {
         this.dateBegin = dateBegin;
         return this;
     }
 
-    public Date getDateEnd() {
+    public String getDateEnd() {
         return dateEnd;
     }
 
-    public LearningConfigure setDateEnd(Date dateEnd) {
+    public LearningConfigure setDateEnd(String dateEnd) {
         this.dateEnd = dateEnd;
         return this;
     }
@@ -155,5 +156,36 @@ public class LearningConfigure {
     public LearningConfigure setK(Integer k) {
         this.k = k;
         return this;
+    }
+
+    public String getIsDone() {
+        return isDone;
+    }
+
+    public void setIsDone(String isDone) {
+        this.isDone = isDone;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("LearningConfigure{");
+        sb.append("configureId='").append(configureId).append('\'');
+        sb.append(", configureName='").append(configureName).append('\'');
+        sb.append(", age='").append(age).append('\'');
+        sb.append(", gender='").append(gender).append('\'');
+        sb.append(", disease='").append(disease).append('\'');
+        sb.append(", metric='").append(metric).append('\'');
+        sb.append(", dateBegin=").append(dateBegin);
+        sb.append(", dateEnd=").append(dateEnd);
+        sb.append(", slidingWindowSize=").append(slidingWindowSize);
+        sb.append(", paaSize=").append(paaSize);
+        sb.append(", alphabetSize=").append(alphabetSize);
+        sb.append(", analysisWindowStartSize=").append(analysisWindowStartSize);
+        sb.append(", frequencyThreshold=").append(frequencyThreshold);
+        sb.append(", rThreshold=").append(rThreshold);
+        sb.append(", k=").append(k);
+        sb.append(", isDone='").append(isDone).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

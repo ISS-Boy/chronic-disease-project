@@ -20,13 +20,12 @@ import org.mhealth.open.data.avro.*;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
-
 /**
  * Created with IDEA
  * User : ZhangBo
  * Date : 2018/4/29
  */
-public class PatternMatch {
+public class PatternMatch implements Runnable{
 
     /**
      * SymbolicPattern对象有两个成员，一个是length，一个是Map<String, String> measures(key是measure的名字，value是对应的符号模式)
@@ -37,43 +36,54 @@ public class PatternMatch {
     private List<SymbolicPattern> symbolicPatterns;
     private SAXAnalysisWindow windows;
     private List<String> users;
+    private String appId;
 
+    KafkaStreams streams;
+
+    //alt+insert是构造器和get、set方法的快捷键，点第一个然后按shift点最后一个是全选
+//    public PatternMatch(List<SymbolicPattern> symbolicPatterns, SAXAnalysisWindow windows, List<String> users) {
+//        this.symbolicPatterns = symbolicPatterns;
+//        this.windows = windows;
+//        this.users = users;
+//    }
+
+    public PatternMatch() {
+    }
 
     //alt+insert是构造器和get、set方法的快捷键，点第一个然后按shift点最后一个是全选
     public PatternMatch(List<SymbolicPattern> symbolicPatterns, SAXAnalysisWindow windows, List<String> users) {
         this.symbolicPatterns = symbolicPatterns;
         this.windows = windows;
         this.users = users;
+        this.appId = UUID.randomUUID().toString();
     }
-
     public List<SymbolicPattern> getSymbolicPatterns() {
         return symbolicPatterns;
     }
-
     public void setSymbolicPatterns(List<SymbolicPattern> symbolicPatterns) {
         this.symbolicPatterns = symbolicPatterns;
     }
-
     public SAXAnalysisWindow getWindows() {
         return windows;
     }
-
     public void setWindows(SAXAnalysisWindow windows) {
         this.windows = windows;
     }
-
     public List<String> getUsers() {
         return users;
     }
-
     public void setUsers(List<String> users) {
         this.users = users;
     }
 
+    @Override
+    public void run() {
+        runKStream();
+    }
 
     public void runKStream() {
         final Properties streamsConfiguration = new Properties();
-        streamsConfiguration.put(StreamsConfig.APPLICATION_ID_CONFIG, "pattern_match49");//记得改这个，不然可能没数据
+        streamsConfiguration.put(StreamsConfig.APPLICATION_ID_CONFIG, this.appId);//记得改这个，不然可能没数据
         streamsConfiguration.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, ParaConfig.bootstrapServers);
         streamsConfiguration.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, ParaConfig.schemaRegistryUrl);
         streamsConfiguration.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
@@ -92,11 +102,12 @@ public class PatternMatch {
         mPatternSerde.configure(ParaConfig.serdeConfig, true);
 
 
+
         Set<String> mk = new HashSet<>(symbolicPatterns.get(0).getMeasures().keySet());     // mk是measures的集合
         List<String> measures = new ArrayList<>(mk);        // measures集合里存的是维度
 
         KStreamBuilder builder = new KStreamBuilder();
-        KStream<String, MEvent> kStream;
+        KStream<String, MEvent> kStream ;
 
 /**
  * join是基于key的，KStream需要指定时间窗口，会把时间窗口内的数据存起来等待两边KStream做join操作（因为到来的数据时间不
@@ -121,8 +132,8 @@ public class PatternMatch {
                         m2.put("unit", "mmHg");
                         m2.put("value", value.getMeasures().get("diastolic_blood_pressure").getValue());
                         Map map = new HashMap();
-                        map.put("systolic_blood_pressure", m1);
-                        map.put("diastolic_blood_pressure", m2);
+                        map.put("systolic_blood_pressure",m1);
+                        map.put("diastolic_blood_pressure",m2);
                         MEvent m = new MEvent();
                         m.put("user_id", value.getUserId());
                         m.put("timestamp", value.getTimestamp());
@@ -164,12 +175,12 @@ public class PatternMatch {
                                             Measure m = new Measure();
                                             m.put("unit", judgeUnit(mkey));
                                             m.put("value", rightValue.getMeasures().get(mkey).getValue());
-                                            map.put(mkey, m);
+                                            map.put(mkey,m);
                                         }
                                         Measure m2 = new Measure();
                                         m2.put("unit", judgeUnit(measure));
                                         m2.put("value", rightValue.getMeasures().get(measure).getValue());
-                                        map.put(measure, m2);
+                                        map.put(measure,m2);
                                         mEvent.put("measures", map);
                                         return mEvent;
                                     },
@@ -209,12 +220,12 @@ public class PatternMatch {
                                             Measure m = new Measure();
                                             m.put("unit", judgeUnit(mkey));
                                             m.put("value", rightValue.getMeasures().get(mkey).getValue());
-                                            map.put(mkey, m);
+                                            map.put(mkey,m);
                                         }
                                         Measure m2 = new Measure();
                                         m2.put("unit", judgeUnit(measure));
                                         m2.put("value", rightValue.getMeasures().get(measure).getValue());
-                                        map.put(measure, m2);
+                                        map.put(measure,m2);
                                         mEvent.put("measures", map);
                                         return mEvent;
                                     },
@@ -263,11 +274,11 @@ public class PatternMatch {
                                 Map<String, PatternResult> map2 = new HashMap();
                                 map1.put("final_result", endResult);
                                 patternResult.setResult(map1);
-                                if (mPattern.getMatchPattern() != null) {
-                                    mPattern.getMatchPattern().put("模式" + patternId, patternResult);
+                                if(mPattern.getMatchPattern() != null) {
+                                    mPattern.getMatchPattern().put("pattern" + patternId, patternResult);
                                     mPattern.put("matchPattern", mPattern.getMatchPattern());
-                                } else {
-                                    map2.put("模式" + patternId, patternResult);
+                                }else{
+                                    map2.put("pattern" + patternId, patternResult);
                                     mPattern.put("matchPattern", map2);
                                 }
                                 for (String measureName : mList) {          //measures的种数
@@ -323,8 +334,8 @@ public class PatternMatch {
                                     mPattern.put("timestamp", Value.getTimestamp());
 
                                     if (match) {
-                                        mPattern.getMatchPattern().get("模式" + patternId).getResult()
-                                                .get("final_result").setValue(mPattern.getMatchPattern().get("模式" + patternId).getResult()
+                                        mPattern.getMatchPattern().get("pattern" + patternId).getResult()
+                                                .get("final_result").setValue(mPattern.getMatchPattern().get("pattern" + patternId).getResult()
                                                 .get("final_result").getValue() + 1);
                                         list.removeAll(list);
                                         usersMap.get(Value.getUserId()).get(patternId).get(measureName)
@@ -332,12 +343,12 @@ public class PatternMatch {
                                     }
                                 }
 
-                                if (mPattern.getMatchPattern().get("模式" + patternId).getResult()
-                                        .get("final_result").getValue() == mList.size()) {
-                                    mPattern.getMatchPattern().get("模式" + patternId).getResult()
+                                if(mPattern.getMatchPattern().get("pattern" + patternId).getResult()
+                                        .get("final_result").getValue() == mList.size()){
+                                    mPattern.getMatchPattern().get("pattern" + patternId).getResult()
                                             .get("final_result").setValue(1);   //1表示匹配成功
-                                } else {
-                                    mPattern.getMatchPattern().get("模式" + patternId).getResult()
+                                }else{
+                                    mPattern.getMatchPattern().get("pattern" + patternId).getResult()
                                             .get("final_result").setValue(0);   //0表示不成功
                                 }
                             }
@@ -345,10 +356,11 @@ public class PatternMatch {
                         },
                         TimeWindows.of(60 * 1000), //等时间到了处理指定时间长度内的数据
                         mPatternSerde);
-        matchPatternKTable.to(windowedStringSerde, mPatternSerde, "matchpattern3");
+        matchPatternKTable.print();
+        matchPatternKTable.to(windowedStringSerde, mPatternSerde, "matchpattern5");
 
 
-        final KafkaStreams streams = new KafkaStreams(builder, streamsConfiguration);
+        streams = new KafkaStreams(builder, streamsConfiguration);
 
         streams.cleanUp();
         streams.start();
@@ -384,6 +396,11 @@ public class PatternMatch {
         return result;
     }
 
+
+    public void shutDown(){
+        streams.close();
+    }
+
     static boolean patternMatch(String alphabet1, String alphabet2, int length) throws SAXException {
         NormalAlphabet nal = new NormalAlphabet();
         double[][] distance = nal.getDistanceMatrix(length);
@@ -394,4 +411,4 @@ public class PatternMatch {
         return true;
     }
 }
-//({"user_id": null, "timestamp": 0, "matchPattern": {"模式1": {"Result": {"final_result": {"value": 0}}}, "模式0": {"Result": {"final_result": {"value": 0}}}, "模式3": {"Result": {"final_result": {"value": 0}}}, "模式2": {"Result": {"final_result": {"value": 0}}}}})
+//({"user_id": null, "timestamp": 0, "matchPattern": {"pattern1": {"Result": {"final_result": {"value": 0}}}, "pattern0": {"Result": {"final_result": {"value": 0}}}, "pattern3": {"Result": {"final_result": {"value": 0}}}, "pattern2": {"Result": {"final_result": {"value": 0}}}}})

@@ -16,8 +16,14 @@ public interface OffLineLearningDao {
     int insertConfigure(LearningConfigure learningConfigure);
     void truncateDisease(@Param("tableName") String tableName);
     int insertAllDisease(List<String> diseaseList);
-    int updateIsDone(String id);
+    int updateIsDone(@Param("isDone")String isDone, @Param("id")String id);
     int insertAllSymbolicPattern(List<SymbolicPatternDB> symbolicPatterns);
     int insertAllPatternDetail(List<PatternDetail> patternDetails);
     List<DiseaseDB> getAllDisease();
+    List<LearningConfigure> getAllConfigure();
+    List<String> getPatternIdByConfigureId(String configureId);
+    void deleteDetailByPatternId(List<String> patternIds);
+    void deletePatternByConfigureId(String configureId);
+    void deleteConfigureById(String configureId);
+
 }

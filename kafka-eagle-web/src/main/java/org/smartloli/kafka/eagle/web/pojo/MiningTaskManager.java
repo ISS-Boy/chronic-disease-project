@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
  */
 public class MiningTaskManager {
     public static Map<String, MiningTask> miningTaskMap = new ConcurrentHashMap<>();
-    private static ExecutorService threadPool = Executors.newFixedThreadPool(2);
+    private static ExecutorService threadPool = Executors.newFixedThreadPool(10);
 
     public void cancel(String taskId){
         if (miningTaskMap.containsKey(taskId)) {

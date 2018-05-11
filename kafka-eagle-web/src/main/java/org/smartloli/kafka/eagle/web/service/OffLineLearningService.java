@@ -14,6 +14,7 @@ import org.smartloli.kafka.eagle.web.dao.OffLineLearningDao;
 import org.smartloli.kafka.eagle.web.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -86,9 +87,9 @@ public class OffLineLearningService {
                 if (queryResults != null && queryResults.size() > 0) {
                     metricName = new String[queryResults.size()];
                     for (int i = 0; i < queryResults.size(); i++) {
-                        List<Double> doubles = new ArrayList<>();
                         QueryResult queryResult = queryResults.get(i);
                         metricName[i] = queryResult.getMetric();
+                        List<Double> doubles = new ArrayList<>();
                         dataLengthArr[u] = queryResult.getDps().size();
                         for (int key : queryResult.getDps().keySet()) {
                             doubles.add(queryResult.getDps().get(key).doubleValue());
@@ -98,7 +99,7 @@ public class OffLineLearningService {
                 }
             }
         }
-        Matrix data = new DenseMatrix(list2Array(dataPoint));
+        Matrix data = new DenseMatrix(list2Array(list2list(dataPoint, metrics.size())));
         tsSequence.setData(data);
         offLineUserData.setMetricName(metricName)
                 .setDataLengthArr(dataLengthArr)
@@ -106,6 +107,18 @@ public class OffLineLearningService {
         return offLineUserData;
     }
 
+
+    public List<List<Double>> list2list(List<List<Double>> dataPoint, int m){
+        List<List<Double>> listList = new ArrayList<>();
+        for (int i = 0; i < m; i++) {
+            List<Double> doubleList = new ArrayList<>();
+            for (int j = i; j < dataPoint.size(); j = j + m) {
+                doubleList.addAll(dataPoint.get(j));
+            }
+            listList.add(doubleList);
+        }
+        return listList;
+    }
 
     /***
      * list转数组
@@ -117,7 +130,7 @@ public class OffLineLearningService {
         double[][] out = new double[in.get(0).size()][in.size()];
         if (in != null && in.size() > 0){
             for (int i = 0; i < in.size(); i++) {
-                List<Double> doubles = new ArrayList<>();
+                List<Double> doubles = in.get(i);
                 if (doubles != null && doubles.size() > 0) {
                     for (int j = 0; j < doubles.size(); j++) {
                         out[j][i] = doubles.get(j);
@@ -140,7 +153,9 @@ public class OffLineLearningService {
     public List<PatientInfo> searchPatientByConditions(String startDate, String endDate, String gender, List<String> conditions){
         List<PatientInfo> patientInfos = new ArrayList<>();
         ArrayList<Condition> conditionArrayList = new ElasticSearchServiceImpl().searchCondition(conditions);
+        System.out.println(conditionArrayList.size());
         ArrayList<UserBasic> userBasicArrayList = new ElasticSearchServiceImpl().searchUserByConditions(startDate, endDate, gender);
+        System.out.println(userBasicArrayList.size());
         for (Condition condition : conditionArrayList) {
             for (UserBasic userBasic : userBasicArrayList) {
                 if (condition.getUser_id().equals(userBasic.getUser_id())) {
@@ -173,10 +188,10 @@ public class OffLineLearningService {
      * @param learningConfigure
      * @param userIds
      */
-    public void learning(LearningConfigure learningConfigure, String userIds){
+    public void learning(LearningConfigure learningConfigure, List<String> userIds){
 
         SAXAnalysisWindow tmin = new SAXAnalysisWindow(learningConfigure.getSlidingWindowSize(),learningConfigure.getPaaSize(),learningConfigure.getAlphabetSize());
-        OffLineUserData offLineUserData = getMetricByUserIds(learningConfigure.getDateBegin().getTime(), learningConfigure.getDateEnd().getTime(), string2ArrayList(learningConfigure.getMetric(), ",metrics,"), string2ArrayList(userIds,",userId,"));
+        OffLineUserData offLineUserData = getMetricByUserIds(Long.valueOf(learningConfigure.getDateBegin()), Long.valueOf(learningConfigure.getDateEnd()), string2ArrayList(learningConfigure.getMetric(), ",metrics,"), userIds);
         OfflineMiningTask task = new OfflineMiningTask(offLineUserData.getTsSequence(), offLineUserData.getDataLengthArr(), tmin, learningConfigure.getAnalysisWindowStartSize(),learningConfigure.getFrequencyThreshold(), learningConfigure.getrThreshold(), learningConfigure.getK(), offLineUserData.getMetricName());
         MiningTaskManager miningTaskManager = new MiningTaskManager();
         miningTaskManager.submit(learningConfigure.getConfigureId(), task);
@@ -215,10 +230,10 @@ public class OffLineLearningService {
                     for (SymbolicPattern symbolicPattern : symbolicPatterns) {
                         SymbolicPatternDB symbolicPatternDB = new SymbolicPatternDB();
                         String symbolicPatternId = UUID.randomUUID().toString();
-                        symbolicPatternDB.setLength(symbolicPattern.getLength())
+                        symbolicPatternDB.setLengths(symbolicPattern.getLength())
                                 .setId(symbolicPatternId)
                                 .setConfigureId(taskId)
-                                .setOrder(i)
+                                .setPatternOrder(i)
                                 .setAlias(String.valueOf(i));
                         symbolicPatternDBS.add(symbolicPatternDB);
                         for (String measure : symbolicPattern.getMeasures().keySet()) {
@@ -231,13 +246,35 @@ public class OffLineLearningService {
                         }
                         i++;
                     }
-                    offLineLearningDao.updateIsDone(taskId);
+                    offLineLearningDao.updateIsDone("已完成", taskId);
                     miningTaskManager.deleteMiningTask(taskId);
                 }
             }
         }
         offLineLearningDao.insertAllPatternDetail(patternDetails);
         offLineLearningDao.insertAllSymbolicPattern(symbolicPatternDBS);
+    }
+
+
+    public List<LearningConfigure> getAllConfigure() {
+        return offLineLearningDao.getAllConfigure();
+    }
+
+
+    public void stopLearning(String configureId){
+        new MiningTaskManager().cancel(configureId);
+        offLineLearningDao.updateIsDone("已停止", configureId);
+    }
+
+//    @Transactional
+    public void deleteConfigure(String configureId){
+        List<String> patternIds = offLineLearningDao.getPatternIdByConfigureId(configureId);
+        System.out.println("======" + patternIds);
+        offLineLearningDao.deleteConfigureById(configureId);
+        if (patternIds != null && patternIds.size() > 0) {
+            offLineLearningDao.deletePatternByConfigureId(configureId);
+            offLineLearningDao.deleteDetailByPatternId(patternIds);
+        }
     }
 
 }

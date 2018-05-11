@@ -7,8 +7,8 @@ public class SymbolicPatternDB {
     private String id;
     private String configureId;
     private String alias;
-    private Integer order;
-    private Integer length;
+    private Integer patternOrder;
+    private Integer lengths;
 
     public String getId() {
         return id;
@@ -37,21 +37,21 @@ public class SymbolicPatternDB {
         return this;
     }
 
-    public Integer getOrder() {
-        return order;
+    public Integer getPatternOrder() {
+        return patternOrder;
     }
 
-    public SymbolicPatternDB setOrder(Integer order) {
-        this.order = order;
+    public SymbolicPatternDB setPatternOrder(Integer patternOrder) {
+        this.patternOrder = patternOrder;
         return this;
     }
 
-    public Integer getLength() {
-        return length;
+    public Integer getLengths() {
+        return lengths;
     }
 
-    public SymbolicPatternDB setLength(Integer length) {
-        this.length = length;
+    public SymbolicPatternDB setLengths(Integer lengths) {
+        this.lengths = lengths;
         return this;
     }
 }
