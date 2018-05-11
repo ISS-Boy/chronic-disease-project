@@ -129,7 +129,7 @@
 				<ul id="offlineLearning" class="collapse">
 					<li><a href="/ke/offlineLearning/toAdd?type=0"><i
 							class="fa fa-plus-circle"></i> 新建学习任务</a></li>
-					<li id=""><a href="/ke/patient_analysis/realTime"><i
+					<li id=""><a href="/ke/offlineLearning/getAllConfigure"><i
 							class="fa fa-fw fa-bar-chart"></i> 管理学习任务</a></li>
 				</ul>
 			</li>

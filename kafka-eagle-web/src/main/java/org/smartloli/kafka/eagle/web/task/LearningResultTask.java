@@ -18,18 +18,10 @@ public class LearningResultTask {
     @Autowired
     private OffLineLearningService offLineLearningService;
 
-    @Scheduled(cron = "0/5 * * * * ? ") // 间隔5秒执行
-    public void saveLearningResult() {
-        if (!MiningTaskManager.miningTaskMap.isEmpty()) {
-            MiningTaskManager miningTaskManager = new MiningTaskManager();
-            for (String taskId: MiningTaskManager.miningTaskMap.keySet()) {
-                if (miningTaskManager.isDone(taskId)) {
-                    List<SymbolicPattern> symbolicPatternList = miningTaskManager.getSymbolicPatterns(taskId);
-                    miningTaskManager.deleteMiningTask(taskId);
-                }
-            }
-        }
-    }
+//    @Scheduled(cron = "0/5 * * * * ? ") // 间隔5秒执行
+//    public void saveLearningResult() {
+//        offLineLearningService.saveLearningResult();
+//    }
 
     @Scheduled(cron = "0 */30 * * * ? ") // 间隔30分钟执行
     public void resetDisease() {

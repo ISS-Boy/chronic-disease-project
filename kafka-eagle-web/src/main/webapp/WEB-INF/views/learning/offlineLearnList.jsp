@@ -22,7 +22,7 @@
 <body>
 	<jsp:include page="../public/navbar.jsp"></jsp:include>
 	<div id="wrapper">
-		<button onclick="showme()"></button>
+		<button onclick="showMe()"></button>
 	</div>
 </body>
 <jsp:include page="../public/script.jsp">
@@ -30,4 +30,9 @@
 	<jsp:param value="ace/js/jquery.tips.js" name="loader" />
 </jsp:include>
 <jsp:include page="../public/tscript.jsp"></jsp:include>
+<script>
+    function showMe(){
+        alert('${firstInfo.userIds }');
+    }
+</script>
 </html>

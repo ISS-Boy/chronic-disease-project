@@ -60,11 +60,14 @@
 									</c:forEach>
 								</select>
 							</div>
-							<div style="width: 50px;height:26px;float: left;overflow: hidden">
+							<div style="width: 50px;height:36px;float: left;overflow: hidden">
 								<a class='btn btn-primary' title="筛选" onclick="searchUsers();"><i class="fa fa-search"></i></a>
 							</div>
-							<div style="width: 50px;height:26px;float: right;overflow: hidden">
-								<a class='btn btn-primary' title="下一步" onclick="nextStep();"><i class="fa fa-search"></i></a>
+							<div style="width: 50px;height:36px;float: left;overflow: hidden">
+								<a class='btn btn-primary' id="nextStep" title="下一步" onclick="toNext();"><i class="fa fa-hand-o-right"></i></a>
+							</div>
+							<div style="width: 100px;height:36px;float: left;overflow: hidden">
+								<a class='btn btn-primary' id="whatever" title="实例开始" onclick="runDemo();">实例开始</a>
 							</div>
 						</form>
 					</div>
@@ -84,6 +87,9 @@
 							<table id="table_report" class="table table-bordered table-condensed">
 								<thead>
 								<tr>
+									<th class="center">
+										<label><input type="checkbox" onclick="selectAll();" id="zcheckbox" /><span class="lbl"></span></label>
+									</th>
 									<th class="center">序号</th>
 									<th class='center'>姓名</th>
 									<th class='center'>年龄</th>
@@ -96,6 +102,9 @@
 									<c:when test="${not empty patients}">
 										<c:forEach items="${patients}" var="patient" varStatus="vs">
 											<tr>
+												<td class='center' style="width: 30px;">
+													<label><input type='checkbox' name='ids' value="${patient.userId }" id="${patient.userId }"/><span class="lbl"></span></label>
+												</td>
 												<td class="center">${vs.index+1}</td>
 												<td class='center'>${patient.name }</td>
 												<td>${patient.age}</td>
@@ -159,4 +168,108 @@
 	<jsp:param value="ace/js/jquery.tips.js" name="loader" />
 </jsp:include>
 <jsp:include page="../public/tscript.jsp"></jsp:include>
+<script>
+    function checkAge() {
+        if (0 > $('#ageStart').val()) {
+            $("#ageStart").tips({
+                side:3,
+                msg:'年龄不能小于0',
+                bg:'#AE81FF',
+                time:3
+            });
+            $("#ageStart").focus();
+            setTimeout("$('#ageStart').val('')",2000);
+            return;
+        }
+
+        if (0 > $('#ageEnd').val()) {
+            $("#ageEnd").tips({
+                side:3,
+                msg:'年龄不能小于0',
+                bg:'#AE81FF',
+                time:3
+            });
+            $("#ageEnd").focus();
+            setTimeout("$('#ageEnd').val('')",2000);
+            return;
+        }
+
+        if ($('#ageStart').val() > $('#ageEnd').val()) {
+            $("#ageEnd").tips({
+                side:3,
+                msg:'年龄起止时间冲突',
+                bg:'#AE81FF',
+                time:3
+            });
+            $("#ageEnd").focus();
+            setTimeout("$('#ageEnd').val('')",2000);
+            return;
+        }
+    }
+
+    function searchUsers() {
+        $('#searchForm').submit();
+    }
+
+
+    var userIds = new Array();
+    var ages="", gender="", diseases="", metric="", dateTo="";
+    var kResult=0, rThreshold=0, frequencyThreshold=0, analysisWindowStartSize=3, alphabetSize=0, paaSize=0, slidingWindowSize=0;
+
+    function toNext() {
+        var j = 0;
+        for(var i=0;i < document.getElementsByName('ids').length;i++)
+        {
+            if(document.getElementsByName('ids')[i].checked){
+                userIds[j] = document.getElementsByName('ids')[i].value;
+                j++;
+            }
+        }
+        // userIds = "123456";
+        ages = $('#ageStart').val() + ",age," + $('#ageEnd').val();
+        gender = $('#gender').val();
+        diseases = $('#disease').val();
+        if (userIds == "") {
+            $("#nextStep").tips({
+                side:3,
+                msg:'还未选择用户',
+                bg:'#AE81FF',
+                time:3
+            });
+            $("#nextStep").focus();
+            return;
+        }
+        window.location.href="/ke/offlineLearning/nextStep?userIds=" + userIds + "&&ages=" + ages+ "&&gender=" + gender + "&&diseases=" + diseases;
+    }
+
+    var isCheckAll = false;
+    function selectAll() {
+        if (isCheckAll) {
+            $("input[type='checkbox']").each(function() {
+                this.checked = false;
+            });
+            isCheckAll = false;
+        } else {
+            $("input[type='checkbox']").each(function() {
+                this.checked = true;
+            });
+            isCheckAll = true;
+        }
+    }
+
+
+    function runDemo() {
+        $.ajax({
+            type: "POST",
+            url: '/ke/offlineLearning/runDemo',
+            dataType:'json',
+            cache: false,
+            success: function(rusult){
+                if (rusult.msg == "success") {
+                    window.location.href = "/ke/offlineLearning/getAllConfigure";
+                }
+            }
+        });
+    }
+</script>
 </html>
