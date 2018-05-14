@@ -76,7 +76,7 @@ public class DockerRestService {
 
     public String getAllTasks(String serviceName, String state){
         RestTemplate restTemplate = new RestTemplate();
-        String url = String.format("%s/service/getAllTasks?serviceName={serviceName}", PREFIX);
+        String url = String.format("%s/service/getAllTaskByState?serviceName={serviceName}", PREFIX);
         Map<String, String> params = new HashMap<>();
         if (!StringUtils.isEmpty(state)) {
             url += "&state={state}";

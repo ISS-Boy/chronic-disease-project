@@ -49,7 +49,7 @@
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <c:forEach items="${urls}" varStatus="i" var="url">
-                            <div class="row"><iframe name="iframe-${i}" src="${url}" width="1000" height="400" frameborder="0"></iframe></div>
+                            <div class="row"><iframe name="iframe-${i.count}" src="${url}" width="1000" height="400" frameborder="0"></iframe></div>
                         </c:forEach>
                     </div>
                 </div>
@@ -63,8 +63,6 @@
 </body>
 <jsp:include page="../public/script.jsp">
     <jsp:param value="main/patient/monitor_groups.js" name="loader" />
-    <jsp:param name="loader" value="monitor/refresh-grafana-dashboard.js" />
-    <jsp:param name="loader" value="public/jquery.timer.js" />
 </jsp:include>
 <jsp:include page="../public/tscript.jsp"></jsp:include>
 </html>

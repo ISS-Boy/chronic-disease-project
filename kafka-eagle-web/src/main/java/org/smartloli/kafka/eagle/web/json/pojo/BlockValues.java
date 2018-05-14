@@ -10,10 +10,20 @@ import java.util.List;
 public class BlockValues {
 
     private String monitorName;
+    private String imgUrl;
     private List<Source> source;
     private Aggregation aggregation;
     private List<Filters> filters;
     private List<Selects> selects;
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
     public void setMonitorName(String monitorName) {
          this.monitorName = monitorName;
      }

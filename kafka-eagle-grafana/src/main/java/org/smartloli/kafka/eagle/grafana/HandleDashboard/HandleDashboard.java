@@ -66,8 +66,8 @@ public class HandleDashboard {
     public boolean deletedashboard(String dashboardName) {
         try {
             int num = DashboardAPI.deletedashboard(GrafanaConfigUtil.getPropertyByKey("grafana.urlForCreate") + dashboardName);
-            if (num == 200)
-                return true;
+            System.out.println(num);
+            return true;
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

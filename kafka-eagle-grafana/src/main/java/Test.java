@@ -1,3 +1,4 @@
+import jdk.internal.org.objectweb.asm.Handle;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import org.smartloli.kafka.eagle.grafana.HandleDashboard.HandleDashboard;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARAMOfDashboard;
@@ -22,7 +23,31 @@ public class Test {
 //        HandleDashboard handleDashboard = new HandleDashboard();
 //        handleDashboard.deletedashboard("aaa");
 
-        pinyinTest();
+//        pinyinTest();
+
+        createSinglestat("test-Singlestat");
+    }
+
+    private static void createSinglestat(String dashboardName) {
+        PARAMOfDashboard dashboard = new PARAMOfDashboard();
+        dashboard.setFrom("now-20h");
+        dashboard.setTo("now-18h");
+        dashboard.setDashboardName(dashboardName);
+        List<PARMOfPanel> parmOfPanelspanels = new ArrayList<>();
+        List<PARMOfTarget> parmOfTargets = new ArrayList<>();
+        HashMap<String, String> tags = new HashMap<String, String>(){{
+            put("monitorId", "the-user-1-1525744065898_1");
+            put("item", "1");
+        }};
+        parmOfTargets.add(new PARMOfTarget("monitor", tags, "none"));
+        parmOfPanelspanels.add(new PARMOfPanel(0, "alert", "singlestat", "", parmOfTargets));
+        dashboard.setPanels(parmOfPanelspanels);
+        HandleDashboard handleDashboard = new HandleDashboard();
+        int code = handleDashboard.createdashboard(dashboard);
+        if(code == 200){
+            String url = handleDashboard.getDashboardUrl(dashboard, 0);
+            System.out.println(url);
+        }
     }
 
     private static void pinyinTest(){

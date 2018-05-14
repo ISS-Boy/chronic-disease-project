@@ -120,9 +120,11 @@
         .loading {
             width: 160px;
             height: 56px;
-            position: absolute;
+            position: fixed;
             top: 50%;
             left: 50%;
+            margin-left: auto;
+            margin-top: auto;
             line-height: 56px;
             color: #fff;
             padding-left: 60px;
@@ -628,9 +630,6 @@
 			<span onclick="remove_select(this)"><img src="/ke/media/img/02.gif"/></span>
 		</div>
     </div>
-
-
-
     </script>
 </head>
 <body>
@@ -964,10 +963,12 @@
                 </div>
                 <button type="button" class="btn btn-primary btn-lg block_submit">提交</button>
                 <button type="button" class="btn btn-primary btn-lg block_reset">重置</button>
+                <button type="button" class="btn btn-primary btn-lg block_test">测试</button>
             </form>
         </div>
-        <div id="loading" class="loading" style="display:none">Loading...</div>
     </div>
+    <div id="loading" class="loading" style="display: none">Loading...</div>
+    <div id="hideCopy"></div>
 </div>
 </body>
 <jsp:include page="../public/script.jsp">

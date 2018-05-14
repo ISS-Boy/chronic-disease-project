@@ -16,6 +16,18 @@ public class Gauge {
     private boolean show;
     private boolean thresholdLabels;
     private boolean thresholdMarkers;
+
+    public Gauge() {
+    }
+
+    public Gauge(int maxValue, int minValue, boolean show, boolean thresholdLabels, boolean thresholdMarkers) {
+        this.maxValue = maxValue;
+        this.minValue = minValue;
+        this.show = show;
+        this.thresholdLabels = thresholdLabels;
+        this.thresholdMarkers = thresholdMarkers;
+    }
+
     public void setMaxValue(int maxValue) {
          this.maxValue = maxValue;
      }

@@ -144,7 +144,8 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
                 Monitor monitor = new Monitor(monitorIdList.get(i),
                         block.getMonitorName(),
                         monitorGroupId,
-                        JSON.toJSON(block).toString());
+                        JSON.toJSON(block).toString(),
+                        block.getImgUrl());
 
                 monitors.add(monitor);
             }
@@ -204,23 +205,33 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
     // 至于MonitorGroup镜像的删除, Grafana的清理以及文件系统的清理, 应该由后台清理线程去完成
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void deleteMonitorGroup(String monitorGroupId) throws IOException {
+    public void deleteMonitorGroup(String monitorGroupId) throws IOException{
+
 
         MonitorGroup monitorGroup = getMonitorGroupById(monitorGroupId);
+
+        // 如果服务一直处于开启状态, 则需要将服务先关闭
+        if("started".equals(monitorGroup.getState()))
+            throw new InternalException("服务未关闭! 请先关闭服务，再删除monitor");
 
         // 由于设定外键级联删除，所以这里不需要手动删除monitor
         int n = deleteMonitorGroupById(monitorGroupId);
         if(n != 1)
             throw new InternalException("数据删除失败！");
 
+        // 如果之前的服务未创建成功, 则不清理对应资源
+        if("uncreated".equals(monitorGroup.getState())) {
+            return;
+        }
+
+        // 删除grafana的Dashboard
+        grafanaDashboardService.deleteDashboard(monitorGroupId);
+
+        // 删除Docker资源
         Map<String, String> resMap = DockerRestResolver.resolveResult(dockerRestService.deleteMonitorImage(monitorGroup.getImageId()));
         String resultCode = resMap.get("root.code");
-        if(!"200".equals(resultCode)) {
-            if (!"203".equals(resultCode))
-                throw new InternalException("Image清除: " + resMap.get("root.msg"));
-            else
-                logger.info("ImageId不存在, Image已清除! ");
-        }
+        if(!"200".equals(resultCode))
+            throw new InternalException("Image清除异常, 请重试！ " + resMap.get("root.msg"));
         logger.info("========数据删除完成========");
     }
 
@@ -237,9 +248,9 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
         if(n != 1)
             throw new InternalException("状态更新失败");
 
-
         logger.info("==========容器状态更新=========");
         String res = dockerRestService.stopMonitorServiceOnDocker(monitorGroup.getServiceId());
+        logger.info(res);
         Map<String, String> resMes = DockerRestResolver.resolveResult(res);
         if(!"200".equals(resMes.get("root.code")))
             throw new InternalException(monitorGroupId + ": 服务停止失败! " + resMes.get("root.msg"));

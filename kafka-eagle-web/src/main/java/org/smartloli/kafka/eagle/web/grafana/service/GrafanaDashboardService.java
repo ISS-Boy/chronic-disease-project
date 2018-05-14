@@ -15,13 +15,8 @@ import org.smartloli.kafka.eagle.web.json.pojo.BlockValues;
 import org.smartloli.kafka.eagle.web.json.pojo.Selects;
 import org.smartloli.kafka.eagle.web.pojo.Monitor;
 import org.smartloli.kafka.eagle.web.pojo.MonitorGroup;
-import org.smartloli.kafka.eagle.web.utils.ValidateResult;
 import org.springframework.stereotype.Service;
-import scala.None;
 
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 /**
@@ -34,7 +29,11 @@ public class GrafanaDashboardService {
 
     private static final String DEFAULT_GRAPH_TYPE = "graph";
 
-    private static final String DEFAULT_DISPLAY_TYPE = "bars";
+    private static final String SINGLESTAT_TYPE = "singlestat";
+
+    private static final String BAR_DISPLAY_TYPE = "bars";
+
+    private static final String LINE_DISPLAY_TYPE = "lines";
 
     public List<String> createDashboardAndGetUrl(String monitorGroupId, MonitorGroup monitorGroup, List<Monitor> monitors) {
         List<PARMOfPanel> panels = new ArrayList<>();
@@ -45,12 +44,7 @@ public class GrafanaDashboardService {
 
         dashboard.setDashboardName(monitorGroupId);
 
-        // 设置panel查询时间
-        Date start = Date.from(Instant.now().plus(-2, ChronoUnit.HOURS));
-        Date end = Date.from(Instant.now().plus(1, ChronoUnit.HOURS));
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.CHINA);
-        dashboard.setFrom(sdf.format(start) + "Z");
-        dashboard.setTo(sdf.format(end) + "Z");
+        // 设置动态时间
         dashboard.setFrom("now-2h");
         dashboard.setTo("now");
 
@@ -59,33 +53,53 @@ public class GrafanaDashboardService {
             BlockValues block = JSON.parseObject(monitor.getJson(), BlockValues.class);
             PARMOfPanel panel = new PARMOfPanel();
             List<PARMOfTarget> targets = new ArrayList<>();
-//            List<String> measureWithUnit = determineUnitForMeasure(block);
-            for (Selects select : block.getSelects()) {
+            List<Selects> selects = block.getSelects();
+            if (selects.size() == 1 &&
+                    "1".equals(selects.get(0).getS_meaOrCal())) {
                 PARMOfTarget target = new PARMOfTarget();
                 HashMap<String, String> tagsMap = new HashMap<>();
                 target.setTags(tagsMap);
                 target.setMetricName("monitor");
+                target.setAlias("警报");
+                target.setType("alert");
 
                 // 两个tagMap确定一个查询
                 tagsMap.put("monitorId", monitorGroupId + "_" + i);
 
-                // item对应目标measure
-                String item = select.getS_meaOrCal();
-                tagsMap.put("item", PinyinUtil.chineseToPinyin(item));
-
-                // 设置别名
-                target.setAlias(DefaultValues.getAlias(item));
-
-                // 确认item的单位
-                target.setType(determineUnitForMeasure(select, block));
+                // 警报的item对应1
+                tagsMap.put("item", "1");
 
                 targets.add(target);
+
+                panel.setType(SINGLESTAT_TYPE);
+            } else {
+                for (Selects select : selects) {
+                    PARMOfTarget target = new PARMOfTarget();
+                    HashMap<String, String> tagsMap = new HashMap<>();
+                    target.setTags(tagsMap);
+                    target.setMetricName("monitor");
+
+                    // 两个tagMap确定一个查询
+                    tagsMap.put("monitorId", monitorGroupId + "_" + i);
+
+                    // item对应目标measure
+                    String item = select.getS_meaOrCal();
+                    tagsMap.put("item", PinyinUtil.chineseToPinyin(item));
+
+                    // 设置别名
+                    target.setAlias(DefaultValues.getAlias(item));
+
+                    // 确认item的单位
+                    target.setType(determineUnitForMeasure(select, block));
+
+                    targets.add(target);
+                }
+                panel.setType(DEFAULT_GRAPH_TYPE);
+                panel.setDisplaytype(LINE_DISPLAY_TYPE);
             }
 
             panel.setTitle(monitor.getName());
             panel.setPanelId(i);
-            panel.setDisplaytype(DEFAULT_DISPLAY_TYPE);
-            panel.setType(DEFAULT_GRAPH_TYPE);
             panel.setTargets(targets);
             panels.add(panel);
 
@@ -126,7 +140,7 @@ public class GrafanaDashboardService {
         //
         // 如果它不是聚集值, 它的单位和原单位一致
         for (AggregationValues aggr : aggregationValues) {
-            if(select.getS_meaOrCal().equals(aggr.getName())){
+            if (select.getS_meaOrCal().equals(aggr.getName())) {
                 switch (aggr.getType()) {
                     case "count":
                     case "rate":
@@ -141,7 +155,7 @@ public class GrafanaDashboardService {
     }
 
 
-    public void cleanUselessDashboard(List<String> dashboardId){
+    public void cleanUselessDashboard(List<String> dashboardId) {
         // 获取所有grafana的Dashboard
         List<String> allGrafanaDashboards = new ArrayList<>();
 
@@ -150,7 +164,7 @@ public class GrafanaDashboardService {
         allGrafanaDashboards.removeIf(d -> !d.matches(".*-\\d+"));
 
         int i = 0;
-        for (String dId: allGrafanaDashboards){
+        for (String dId : allGrafanaDashboards) {
             deleteDashboard(dId);
             logger.info(String.format("成功删除第%d个dashboard!", i));
             i++;

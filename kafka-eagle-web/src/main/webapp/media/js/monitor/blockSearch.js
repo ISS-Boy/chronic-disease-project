@@ -5,7 +5,6 @@
         $('.selectpicker').selectpicker({
         'selectedText': 'cat'
         })
-
     }
     function remove_block() {
         var blockLength = $('.block').children().length;
@@ -134,15 +133,14 @@
     //data封装
     $(function (){
         $('.block_submit').click(function(){
-
-            var blockGroupName = $('.blockGroupName').val();
-            var monitorName = $('.monitorName').val();
-            var w_interval = $('.block_tmpl').find($('.window_row')).children("input[name='w_interval']").val();
+            var blockGroupName = $('.blockGroupName').val()
+            var monitorName = $('.monitorName').val()
+            var w_interval = $('.block_tmpl').find($('.window_row')).children("input[name='w_interval']").val()
             var w_length = $('.block_tmpl').find($('.window_row')).children("input[name='w_length']").val()
-            var f_threshlod = $('.filter_templ').children().children("input[name='f_threshold']").val();
-            var g_threshold = $('.aggregation_group_templ').children().children("input[name='g_threshold']").val();
+            var f_threshlod = $('.filter_templ').children().children("input[name='f_threshold']").val()
+            var g_threshold = $('.aggregation_group_templ').children().children("input[name='g_threshold']").val()
             if(blockGroupName.length==0||monitorName.length==0){
-                alert("命名不能为空！");
+                alert("命名不能为空！")
                 return false
             // }
             // else if(w_interval.length==0||w_length.length==0||f_threshlod.length==0||g_threshold.length==0){
@@ -150,11 +148,11 @@
             //     return false
             }else {
             // 遍历每个block块
-                var blockGroups = {};
-                var blockValues = [];
+                var blockGroups = {}
+                var blockValues = []
                 var empty = false
-                var blockGroupName = $('.blockGroupName').val();
-                blockGroups.blockGroupName = blockGroupName;
+                var blockGroupName = $('.blockGroupName').val()
+                blockGroups.blockGroupName = blockGroupName
 
                 $('.block_tmpl').each(function () {
                     var this_block = $(this)
@@ -259,7 +257,7 @@
                                 s_meaOrCal: meaOrCal
                             };
                             //console.log(select)
-                            selects.push(select);
+                            selects.push(select)
                         });
                     }else{
                         var select = {
@@ -268,17 +266,18 @@
                         }
                         selects.push(select)
                     }
-                    console.log(selects);
+                    console.log(selects)
 
-                    block.source  = sourceJson;
-                    block.aggregation = aggregation;
-                    block.filters = filters;
-                    block.selects = selects;
-                    console.log(block);
-                    blockValues.push(block);
+                    block.source  = sourceJson
+                    block.aggregation = aggregation
+                    block.filters = filters
+                    block.selects = selects
+                    console.log(block)
+                    blockValues.push(block)
                 })
+
                 // 封装最后的blockValues
-                blockGroups.blockValues = blockValues;
+                blockGroups.blockValues = blockValues
 
                 if(empty)
                     return;
@@ -289,24 +288,51 @@
                 // 出现加载等待进度条
                 $('.loading').show()
 
-                $.ajax({
-                    type: "POST",
-                    url: "/ke/monitor/submitMonitors",
-                    contentType:'application/json',
-                    data: JSON.stringify(blockGroups),
-                    success:function(data){
-                        $('.loading').hide()
-                        console.log(data)
-                        if(data == "success")
-                            window.location.href = "/ke/monitor/monitor_maintain"
-                        else
-                            alert(data)
-                    },
-                    error:function(textStatus, errorThrown){
-                        $('.loading').hide()
-                        console.log(textStatus)
-                        console.log(errorThrown)
-                    }
+                $('.container').disable()
+
+
+                var urls = []
+                var block_size = $('.block_tmpl').length
+                $('.block_tmpl').each(function(){
+                    var targetDom = $(this)
+                    var copyDom = targetDom.clone();
+                    $('#hideCopy').append(copyDom);
+                    html2canvas(copyDom, {
+                        onrendered: function(canvas) {
+                            canvas.id = "mycanvas";
+
+                            //生成base64图片数据
+                            var url = canvas.toDataURL();
+                            urls.push(url)
+                            if(urls.length == block_size){
+                                $('#hideCopy').children().remove()
+                                for(var i in urls){
+                                    blockGroups.blockValues[i].imgUrl = urls[i]
+                                }
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/ke/monitor/submitMonitors",
+                                    contentType:'application/json',
+                                    data: JSON.stringify(blockGroups),
+                                    success:function(data){
+                                        $('.loading').hide()
+                                        console.log(data)
+                                        if(data == "success")
+                                            window.location.href = "/ke/monitor/monitor_maintain"
+                                        else
+                                            alert(data)
+                                    },
+                                    error:function(textStatus, errorThrown){
+                                        $('.loading').hide()
+                                        console.log(textStatus)
+                                        console.log(errorThrown)
+                                    }
+                                })
+                            }
+
+                        }//此处可以放参数：width : wid , height : hei*2
+                    });
                 })
             }
         })
@@ -316,6 +342,41 @@
                 if(blockLength>1)
                     $(".block").children().last().remove();
             }
+        })
+        $('.block_test').click(function () {
+            var urls = []
+            var block_size = $('.block_tmpl').length
+            $('.block_tmpl').each(function(){
+                var targetDom = $(this)
+                var copyDom = targetDom.clone();
+                $('#hideCopy').append(copyDom);
+                html2canvas(copyDom, {
+                    onrendered: function(canvas) {
+                        canvas.id = "mycanvas";
 
+                        //生成base64图片数据
+                        var url = canvas.toDataURL();
+                        urls.push(url)
+                        if(urls.length == block_size){
+                            $('#hideCopy').children().remove()
+                            $.ajax({
+                                type: "POST",
+                                url: "/ke/monitor/test",
+                                contentType:'application/text',
+                                data: urls.join('ImageSeparator'),
+                                success:function(data){
+                                    if(data == 'success')
+                                        window.location.href = "/ke/monitor/getMonitorTest"
+                                },
+                                error:function(textStatus, errorThrown){
+                                    console.log(textStatus)
+                                    console.log(errorThrown)
+                                }
+                            })
+                        }
+
+                    }//此处可以放参数：width : wid , height : hei*2
+                });
+            })
         })
     })
