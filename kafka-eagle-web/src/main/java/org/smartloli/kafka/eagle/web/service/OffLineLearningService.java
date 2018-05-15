@@ -189,9 +189,21 @@ public class OffLineLearningService {
      */
     public void learning(LearningConfigure learningConfigure, List<String> userIds){
 
-        SAXAnalysisWindow tmin = new SAXAnalysisWindow(learningConfigure.getSlidingWindowSize(),learningConfigure.getPaaSize(),learningConfigure.getAlphabetSize());
-        OffLineUserData offLineUserData = getMetricByUserIds(Long.valueOf(learningConfigure.getDateBegin()), Long.valueOf(learningConfigure.getDateEnd()), string2ArrayList(learningConfigure.getMetric(), ",metrics,"), userIds);
-        OfflineLearningTask task = new OfflineLearningTask(offLineUserData.getTsSequence(), offLineUserData.getDataLengthArr(), tmin, learningConfigure.getAnalysisWindowStartSize(),learningConfigure.getFrequencyThreshold(), learningConfigure.getrThreshold(), learningConfigure.getK(), offLineUserData.getMetricName());
+        SAXAnalysisWindow tmin = new SAXAnalysisWindow(learningConfigure.getSlidingWindowSize(),
+                                                        learningConfigure.getPaaSize(),
+                                                        learningConfigure.getAlphabetSize());
+        OffLineUserData offLineUserData = getMetricByUserIds(Long.valueOf(learningConfigure.getDateBegin()),
+                                                            Long.valueOf(learningConfigure.getDateEnd()),
+                                                            string2ArrayList(learningConfigure.getMetric(), ",metrics,"),
+                                                            userIds);
+        OfflineLearningTask task = new OfflineLearningTask(offLineUserData.getTsSequence(),
+                                                            offLineUserData.getDataLengthArr(),
+                                                            tmin,
+                                                            learningConfigure.getAnalysisWindowStartSize(),
+                                                            learningConfigure.getFrequencyThreshold(),
+                                                            learningConfigure.getrThreshold(),
+                                                            learningConfigure.getK(),
+                                                            offLineUserData.getMetricName());
         MiningTaskManager miningTaskManager = new MiningTaskManager();
         miningTaskManager.submit(learningConfigure.getConfigureId(), task);
         offLineLearningDao.insertConfigure(learningConfigure);

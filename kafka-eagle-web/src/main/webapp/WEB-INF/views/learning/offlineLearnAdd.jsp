@@ -38,10 +38,10 @@
 							<input type="hidden" name="type" id="type" value="1"/>
 							<div style="width: 150px;float: left;overflow: hidden">
 								<div style="float: left">
-									年龄：<input id="ageStart" style="width: 42px" name="ageStart" onblur="checkAge();" type="number" placeholder="48"/>
+									年龄：<input id="ageStart" style="width: 42px" name="ageStart" onblur="checkAge();" type="number" placeholder="48" value="${ageStart}"/>
 								</div>
 								<div style="float: left">
-									 -<input id="ageEnd" name="ageEnd" style="width: 42px" onblur="checkAge();" type="number" placeholder="68"/>
+									 -<input id="ageEnd" name="ageEnd" style="width: 42px" onblur="checkAge();" type="number" placeholder="68" value="${ageEnd}"/>
 								</div>
 							</div>
 							<div style="width: 80px;height:26px;float: left;overflow: hidden">性别
@@ -172,6 +172,28 @@
 </jsp:include>
 <jsp:include page="../public/tscript.jsp"></jsp:include>
 <script>
+
+	$(document).ready(function () {
+
+	    if('${ageStart}' != '' && '${ageStart}' != '0')
+            $('input[name="ageStart"]').val(${ageStart})
+
+        if('${ageEnd}' != '' && '${ageEnd}' != '0')
+        	$('input[name="ageEnd"]').val(${ageEnd})
+
+	    if('${gender}' != '')
+			$('select[name="gender"]').find($('option')).each(function () {
+				if($(this).val() == '${gender}')
+				    $(this).attr('selected', true)
+            })
+
+		if('${disease}' != '')
+			$('select[name="disease"]').find($('option')).each(function () {
+				if($(this).val() == '${disease}')
+					$(this).attr('selected', true)
+			})
+    })
+
     function checkAge() {
         if (0 > $('#ageStart').val()) {
             $("#ageStart").tips({

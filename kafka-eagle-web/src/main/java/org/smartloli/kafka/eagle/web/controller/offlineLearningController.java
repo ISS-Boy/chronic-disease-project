@@ -1,23 +1,27 @@
 package org.smartloli.kafka.eagle.web.controller;
 
-import com.iss.bigdata.health.elasticsearch.entity.Disease;
 import org.smartloli.kafka.eagle.web.pojo.*;
 import org.smartloli.kafka.eagle.web.service.MenuService;
 import org.smartloli.kafka.eagle.web.service.OffLineLearningService;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import sun.rmi.runtime.Log;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by weidaping on 2018/5/7.
@@ -47,24 +51,35 @@ public class offlineLearningController {
             String gender = null;
             String startDate = null, endDate = null;
             List<String> conditions = null;
-            if (request.getParameter("ageEnd") != null && request.getParameter("ageEnd") != "") {
-                Long startAge = Long.valueOf(request.getParameter("ageEnd"));
+
+            String ageEnd = request.getParameter("ageEnd");
+            if (!StringUtils.isEmpty(ageEnd)) {
+                Long startAge = Long.valueOf(ageEnd);
                 startDate = LocalDate.now().minusYears(startAge).toString();
+                mv.addObject("ageEnd", ageEnd);
             }
-            if (request.getParameter("ageStart") != null && request.getParameter("ageStart") != "") {
-                Long endAge = Long.valueOf(request.getParameter("ageStart"));
+            String ageStart = request.getParameter("ageStart");
+            if (!StringUtils.isEmpty(ageStart)) {
+                Long endAge = Long.valueOf(ageStart);
                 endDate = LocalDate.now().minusYears(endAge).toString();
+                mv.addObject("ageStart", ageStart);
             }
-            if (request.getParameter("disease") != null && request.getParameter("disease") != "") {
-                String diseases = request.getParameter("disease");
+            String disease = request.getParameter("disease");
+            if (!StringUtils.isEmpty(disease)) {
+                String diseases = disease;
                 conditions = new ArrayList<>();
 //                String[] condition = diseases.split(",disease,");
                 conditions.add(diseases);
+                mv.addObject("disease", disease);
             }
-            if (request.getParameter("gender") != null && request.getParameter("gender") != "") {
-                gender = request.getParameter("gender");
+            String genderOrigin = request.getParameter("gender");
+            if (!StringUtils.isEmpty(genderOrigin)) {
+                gender = genderOrigin;
+                mv.addObject("gender", genderOrigin);
             }
-            System.out.println(conditions.size() + "===" + gender + "===" + startDate + "===" + endDate);
+
+
+            logger.info(conditions.size() + "===" + gender + "===" + startDate + "===" + endDate);
             List<PatientInfo> patientInfos = offLineLearningService.searchPatientByConditions(startDate, endDate, gender, conditions);
             System.out.println(patientInfos);
             mv.addObject("patients",patientInfos);
@@ -87,14 +102,14 @@ public class offlineLearningController {
         mv.addObject("firstInfo", firstInfo);
         mv.addObject("userIds", userIds);
         System.out.println(userIds);
-        mv.setViewName("/learning/offlineLearnList");
+        mv.setViewName("learning/offlineLearnNext");
         return mv;
     }
 
     @RequestMapping(value="/newNextStep")
     public ModelAndView newNextStep()throws Exception{
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("/learning/offineLearnNext");
+        mv.setViewName("learning/offlineLearnNext");
         return mv;
     }
     /**
@@ -109,10 +124,59 @@ public class offlineLearningController {
         mv.addObject("firstInfo", firstInfo);
         mv.addObject("userIds", userIds);
         System.out.println(userIds);
-        mv.setViewName("/learning/offlineLearnList");
+        mv.setViewName("learning/offlineLearnNext");
         return mv;
     }
 
+
+    @RequestMapping(value="/run", method = RequestMethod.POST)
+    public String run(String userIds,
+                   String ages,
+                   String gender,
+                   String diseases,
+                   String metric,
+                   String startTime,
+                   String endTime,
+                   String taskName,
+                   int windowLength,
+                   int segment,
+                   int alphabetCount,
+                   int windowSize,
+                   int frequencyThreshold,
+                   int distanceThreshold,
+                   int patternCount) throws ParseException {
+
+        Map<String, String> map = new HashMap<>();
+        String msg = "success";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        LearningConfigure learningConfigure = new LearningConfigure();
+        learningConfigure.setAge(ages.replaceAll(",age,", "~"))
+                .setAlphabetSize(alphabetCount)
+                .setAnalysisWindowStartSize(windowSize)
+                .setConfigureId(UUID.randomUUID().toString())
+                .setConfigureName(taskName)
+                .setDateBegin(String.valueOf(sdf.parse(startTime).getTime() / 1000))
+                .setDateEnd(String.valueOf(sdf.parse(endTime).getTime() / 1000))
+                .setSlidingWindowSize(windowLength)
+                .setDisease(diseases)
+                .setFrequencyThreshold(frequencyThreshold)
+                .setrThreshold(distanceThreshold)
+                .setPaaSize(segment)
+                .setGender(gender)
+                .setK(patternCount)
+                .setMetric(metric.replaceAll(",", ",metrics,"));
+
+
+        List<String> users = Stream.of(userIds.replaceAll("\\[|\\]| ", "")
+                                    .split(",")).collect(Collectors.toList());
+        try {
+            offLineLearningService.learning(learningConfigure, users);
+        } catch (Exception e) {
+            throw e;
+        }
+        System.out.println("=========" + msg);
+        return "redirect:/offlineLearning/getAllConfigure";
+    }
 
     /**
      * 请求新增离线学习任务页面

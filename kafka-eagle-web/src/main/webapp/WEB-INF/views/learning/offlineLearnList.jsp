@@ -21,8 +21,13 @@
 
 <body>
 	<jsp:include page="../public/navbar.jsp"></jsp:include>
-	<div id="wrapper">
-		<button onclick="showMe()"></button>
+	<div class="wrapper" style="background-color: #ffffff">
+		<div class="page-wrapper">
+			<div class="container">
+				<div class="row">
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 <jsp:include page="../public/script.jsp">
@@ -31,8 +36,6 @@
 </jsp:include>
 <jsp:include page="../public/tscript.jsp"></jsp:include>
 <script>
-    function showMe(){
-        alert('${firstInfo.userIds }');
-    }
+	alert('${userIds}');
 </script>
 </html>

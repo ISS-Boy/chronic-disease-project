@@ -59,57 +59,61 @@
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <form>
+                        <form action="/ke/offlineLearning/run" method="post">
                             <div class="outerchoose col-md-5" style="border: 1px solid #eee;margin-right: 20px">
+                                <input name="userIds" value="${userIds}" hidden />
+                                <input name="ages" value="${firstInfo.ages}" hidden />
+                                <input name="gender" value="${firstInfo.gender}" hidden />
+                                <input name="diseases" value="${firstInfo.diseases}" hidden />
                                 <div class="sameRow">
-                                    <input type="checkbox"/> 心率
+                                    <input type="checkbox" name="metric" value="heart_rate"/> 心率
                                 </div>
                                 <div class="sameRow">
-                                    <input type="checkbox"/> 舒张压
+                                    <input type="checkbox" name="metric" value="systolic_blood_pressure"/> 舒张压
                                 </div>
                                 <div class="sameRow">
 
-                                    <input type="checkbox"/> 收缩压
+                                    <input type="checkbox" name="metric" value="diastolic_blood_pressure"/> 收缩压
                                 </div>
                                 <div class="sameRow">
                                     <span>时间段</span>
-                                    <input class="datetime" type="datetime-local" id="fromtime" value=""/>至
-                                    <input class="datetime" type="datetime-local" id="totime" value=""/>
+                                    <input name="startTime" class="datetime" type="datetime-local" id="fromtime" value=""/>至
+                                    <input name="endTime" class="datetime" type="datetime-local" id="totime" value=""/>
                                 </div>
                             </div>
                             <div class="outerchoose col-md-6" style="border: 1px solid #eee;">
                                 <div class="secondRow input-group col-xs-10">
                                     <span class="input-group-addon">名称：</span>
-                                    <input type="text" min="0"  class="form-control" required/>
+                                    <input name="taskName" type="text" min="0"  class="form-control" required/>
                                 </div>
                                 <div class="secondRow input-group col-xs-10">
                                     <span class="input-group-addon">窗口长度：</span>
-                                    <input type="number" min="0" class="form-control"/>
+                                    <input name="windowLength" type="number" min="0" class="form-control"/>
                                 </div>
                                 <div class="secondRow input-group col-xs-10">
                                     <span class="input-group-addon">段数：</span>
-                                    <input type="number" min="0"  class="form-control"/>
+                                    <input name="segment" type="number" min="0"  class="form-control"/>
                                 </div>
                                 <div class="secondRow input-group col-xs-10">
                                     <span class="input-group-addon">字母表个数：</span>
-                                    <input type="number" min="0"  class="form-control"/>
+                                    <input name="alphabetCount" type="number" min="0"  class="form-control"/>
                                 </div>
                                 <div class="secondRow input-group col-xs-10">
                                     <span class="input-group-addon">窗口大小：</span>
-                                    <input type="number" min="0" class="form-control"/>
+                                    <input name="windowSize" type="number" min="0" class="form-control"/>
                                 </div>
                                 <div class="secondRow input-group col-xs-10">
                                     <span class="input-group-addon">频率阈值：</span>
-                                    <input type="number" min="0" class="form-control"/>
+                                    <input name="frequencyThreshold" type="number" min="0" class="form-control"/>
                                 </div>
                                 <div class="secondRow input-group col-xs-10">
-                                    <span class="input-group-addon">频率阈值：</span>
-                                    <input type="number" min="0" class="form-control"/>
+                                    <span class="input-group-addon">距离阈值：</span>
+                                    <input name="distanceThreshold" type="number" min="0" class="form-control"/>
                                 </div>
                                 <hr>
                                 <div class="secondRow input-group col-xs-10">
                                     <span class="input-group-addon">模式集个数：</span>
-                                    <input type="number" min="0"  class="form-control"/>
+                                    <input name="patternCount" type="number" min="0"  class="form-control"/>
                                 </div>
 
                             </div>
