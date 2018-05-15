@@ -138,6 +138,19 @@
             filter: progid:DXImageTransform.Microsoft.Alpha(opacity=70);
         }
 
+        .cover {
+            width: 2000px;
+            height: 2000px;
+            position: fixed;
+            top: 0%;
+            left: 0%;
+            margin-left: auto;
+            margin-top: auto;
+            background-color: #000000;
+            opacity: 0.6;
+            z-index: 9998;
+        }
+
     </style>
 
     <script id="blockTmpl" type="text/x-jquery-tmpl">
@@ -963,11 +976,11 @@
                 </div>
                 <button type="button" class="btn btn-primary btn-lg block_submit">提交</button>
                 <button type="button" class="btn btn-primary btn-lg block_reset">重置</button>
-                <button type="button" class="btn btn-primary btn-lg block_test">测试</button>
             </form>
         </div>
     </div>
     <div id="loading" class="loading" style="display: none">Loading...</div>
+    <div id="cover" class="cover" style="display: none"></div>
     <div id="hideCopy"></div>
 </div>
 </body>

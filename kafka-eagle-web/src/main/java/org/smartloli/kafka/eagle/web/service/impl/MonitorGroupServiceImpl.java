@@ -141,11 +141,14 @@ public class MonitorGroupServiceImpl implements MonitorGroupService {
             for (int i = 0; i < blocksEntity.size(); i++) {
                 BlockValues block = blocksEntity.get(i);
 
+                // 为了不让json的数据量膨胀, 单独抽取出imgUrl来
+                String imgUrl = block.getImgUrl();
+                block.setImgUrl("");
                 Monitor monitor = new Monitor(monitorIdList.get(i),
                         block.getMonitorName(),
                         monitorGroupId,
                         JSON.toJSON(block).toString(),
-                        block.getImgUrl());
+                        imgUrl);
 
                 monitors.add(monitor);
             }

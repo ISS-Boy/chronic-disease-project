@@ -287,9 +287,7 @@
 
                 // 出现加载等待进度条
                 $('.loading').show()
-
-                $('.container').disable()
-
+                $('.cover').show()
 
                 var urls = []
                 var block_size = $('.block_tmpl').length
@@ -317,6 +315,8 @@
                                     data: JSON.stringify(blockGroups),
                                     success:function(data){
                                         $('.loading').hide()
+                                        $('.cover').hide()
+
                                         console.log(data)
                                         if(data == "success")
                                             window.location.href = "/ke/monitor/monitor_maintain"
@@ -325,6 +325,8 @@
                                     },
                                     error:function(textStatus, errorThrown){
                                         $('.loading').hide()
+                                        $('.cover').hide()
+
                                         console.log(textStatus)
                                         console.log(errorThrown)
                                     }
@@ -342,41 +344,5 @@
                 if(blockLength>1)
                     $(".block").children().last().remove();
             }
-        })
-        $('.block_test').click(function () {
-            var urls = []
-            var block_size = $('.block_tmpl').length
-            $('.block_tmpl').each(function(){
-                var targetDom = $(this)
-                var copyDom = targetDom.clone();
-                $('#hideCopy').append(copyDom);
-                html2canvas(copyDom, {
-                    onrendered: function(canvas) {
-                        canvas.id = "mycanvas";
-
-                        //生成base64图片数据
-                        var url = canvas.toDataURL();
-                        urls.push(url)
-                        if(urls.length == block_size){
-                            $('#hideCopy').children().remove()
-                            $.ajax({
-                                type: "POST",
-                                url: "/ke/monitor/test",
-                                contentType:'application/text',
-                                data: urls.join('ImageSeparator'),
-                                success:function(data){
-                                    if(data == 'success')
-                                        window.location.href = "/ke/monitor/getMonitorTest"
-                                },
-                                error:function(textStatus, errorThrown){
-                                    console.log(textStatus)
-                                    console.log(errorThrown)
-                                }
-                            })
-                        }
-
-                    }//此处可以放参数：width : wid , height : hei*2
-                });
-            })
         })
     })

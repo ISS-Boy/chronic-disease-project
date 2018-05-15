@@ -45,7 +45,7 @@ public class GrafanaDashboardService {
         dashboard.setDashboardName(monitorGroupId);
 
         // 设置动态时间
-        dashboard.setFrom("now-2h");
+        dashboard.setFrom("now-20m");
         dashboard.setTo("now");
 
         int i = 0;
