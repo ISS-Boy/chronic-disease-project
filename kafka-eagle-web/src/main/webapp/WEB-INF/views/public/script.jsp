@@ -10,6 +10,8 @@
 <script src="/ke/media/js/public/navbar.js" type="text/javascript"></script>
 <script src="/ke/media/js/public/bootstrap-treeview.min.js" type="text/javascript"></script>
 <script src="/ke/media/js/plugins/handlebars/handlebars-v4.0.10.js" type="text/javascript"></script>
+<script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+
 <!--提示框-->
 <script src="/ke/media/js/ace/js/jquery.tips.js" type="text/javascript"></script>
 
