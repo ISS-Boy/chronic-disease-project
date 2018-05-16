@@ -22,7 +22,7 @@
         from cvx
     </select>
 
-    <select id="cvxOf" resultMap="cvx">
+    <select id="cvxof" resultMap="cvx">
         select
         <include refid="Base_Column_List"/>
         from cvx
@@ -44,7 +44,7 @@
         cvx(cvxcode,cvxDescription,helpCode)
         values(#{cvxcode},#{cvxDescription},#{helpCode})
     </insert>
-    <delete id="deleteCvxByCode" parameterType="org.smartloli.kafka.eagle.web.pojo.Cvx">
+    <delete id="deleteCvxBycode" parameterType="org.smartloli.kafka.eagle.web.pojo.Cvx">
         delete FROM
         cvx where cvxcode=#{cvxcode}
     </delete>

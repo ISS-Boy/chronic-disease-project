@@ -65,26 +65,36 @@ public class LoincController {
         System.out.println(map);
         return map;
     }
-
+    @ResponseBody
     @RequestMapping(value = "/patient_analysis/loinc_add", method = RequestMethod.POST)
-    public String add_loinc(Loinc loinc) {
-//        String loinc_code = request.getParameter("ke_snomed_code");
-//        String loincComponent = request.getParameter("ke_loincComponent");
-//        String loincProperty = request.getParameter("ke_loincProperty");
-//        if(loinc_code.equals(loinc.getLoincCode())){
-//            request.setAttribute("msg","编码已存在");
-//            return "redirect:/patient_analysis/loinc";
-//        }else{
-//            loinc.setLoincCode(loinc_code);
-//            loinc.setLoincComponent(loincComponent);
-//            loinc.setLoincProperty(loincProperty);
-        boolean flag = loincService.addLoinc(loinc) > 0 ? true : false;
+    public String addloinc(@RequestBody Loinc loinc) {
+//        if(loincService.checkLoincCode(loinc)) {
+//            return "false";
+//        }
+       return loincService.addLoinc(loinc) > 0 ? "true" : "false";
+    }
+    //删除
+    @ResponseBody
+    @RequestMapping(value = "/loinc/deleteLoincByCode",method = RequestMethod.GET)
+    public String deleteLoinc(@RequestParam("code") String code){
+        //JSONArray jsonArray = JSONArray.parseArray(ids);
+        if(!StringUtils.isEmpty(code)){
+            loincService.deleteLoincBycode(code);
+        }
+        return "success";//
+    }
+    //修改 /patient_analysis/loinc_modify
+    @ResponseBody
+    @RequestMapping(value = "/patient_analysis/loinc_modify",method = RequestMethod.POST)
+    public String modifyLoinc(@RequestBody Loinc loinc) {
+        boolean flag = loincService.modifyLoinc(loinc) > 0 ? true : false;
         if (flag) {
-            return "/patient_analysis/loinc";
+            return "true";
         } else {
-            return "redirect:/errors/500";
+            return "false";
         }
     }
+
     /**
      * 根据code 查找 loincComponent
      * */

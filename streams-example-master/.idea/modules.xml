@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../慢病项目/FindPattern/FindPattern.iml" filepath="$PROJECT_DIR$/../慢病项目/FindPattern/FindPattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/streams-example.iml" filepath="$PROJECT_DIR$/streams-example.iml" />
+    </modules>
+  </component>
+</project>

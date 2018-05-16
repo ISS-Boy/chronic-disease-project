@@ -49,6 +49,10 @@
 				/account/signin = anon
 				/account/signout = anon
 				/media/** = anon
+				/media/js/plugins/zDialog/images/** = anon
+				/static/js/** = anon
+				/plugins/** = anon
+				/code	= anon
 				/** = authc
 			</value>
 		</property>

@@ -1,6 +1,0 @@
-org/smartloli/kafka/eagle/plugin/mysql/MySqlRecordSchema.class
-org/smartloli/kafka/eagle/plugin/mysql/MySqlStoragePlugin.class
-org/smartloli/kafka/eagle/plugin/server/TomcatServerListen.class
-org/smartloli/kafka/eagle/plugin/util/JConstants$1.class
-org/smartloli/kafka/eagle/plugin/util/DomUtils.class
-org/smartloli/kafka/eagle/plugin/util/JConstants.class

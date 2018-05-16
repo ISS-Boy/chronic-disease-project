@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.smartloli.kafka.eagle.web.dao.OffLineLearningDao">
+
+    <!-- 清空疾病表 -->
+    <update id="truncateDisease">
+        truncate table ${tableName}
+    </update>
+
+    <!-- 插入所有疾病 -->
+    <insert id="insertAllDisease" parameterType="java.util.List">
+        INSERT INTO ke_disease (diseaseName) VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item})
+        </foreach>
+    </insert>
+
+    <insert id="insertConfigure" parameterType="org.smartloli.kafka.eagle.web.pojo.LearningConfigure">
+        INSERT INTO ke_configure (
+            configureId,
+            configureName,
+            age,
+            gender,
+            disease,
+            metric,
+            dateBegin,
+            dateEnd,
+            slidingWindowSize,
+            paaSize,
+            alphabetSize,
+            analysisWindowStartSize,
+            frequencyThreshold,
+            rThreshold,
+            k
+        ) VALUE (
+            #{configureId},
+            #{configureName},
+            #{age},
+            #{gender},
+            #{disease},
+            #{metric},
+            #{dateBegin},
+            #{dateEnd},
+            #{slidingWindowSize},
+            #{paaSize},
+            #{alphabetSize},
+            #{analysisWindowStartSize},
+            #{frequencyThreshold},
+            #{rThreshold},
+            #{k}
+        )
+    </insert>
+
+    <update id="updateIsDone" parameterType="java.lang.String">
+        UPDATE ke_configure SET isDone = #{isDone}
+        WHERE configureId = #{id}
+    </update>
+
+    <insert id="insertAllSymbolicPattern" parameterType="java.util.List">
+        INSERT INTO ke_symbolic_pattern (id,configureId,alias,patternOrder,lengths) VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.configureId},#{item.alias},#{item.patternOrder},#{item.lengths})
+        </foreach>
+    </insert>
+
+    <insert id="insertAllPatternDetail" parameterType="java.util.List">
+        INSERT INTO ke_pattern_detail (id,symbolicPatternId,measureName,measureValue,datas) VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id},#{item.symbolicPatternId},#{item.measureName},#{item.measureValue},#{item.datas})
+        </foreach>
+    </insert>
+
+    <select id="getAllDisease" resultType="org.smartloli.kafka.eagle.web.pojo.DiseaseDB">
+        SELECT * FROM ke_disease WHERE 1=1
+    </select>
+
+    <select id="getAllConfigure" resultType="org.smartloli.kafka.eagle.web.pojo.LearningConfigure">
+        select * from ke_configure where 1=1
+    </select>
+    
+    <select id="getPatternIdByConfigureId" resultType="java.lang.String">
+        select id from ke_symbolic_pattern
+        where configureId = #{configureId}
+    </select>
+
+    <delete id="deleteConfigureById">
+        delete from ke_configure where
+        configureId = #{configureId}
+    </delete>
+
+    <delete id="deletePatternByConfigureId">
+        delete from ke_symbolic_pattern where
+        configureId = #{configureId}
+    </delete>
+
+    <delete id="deleteDetailByPatternId" parameterType="java.util.List">
+        delete from ke_pattern_detail
+        where symbolicPatternId in
+        <foreach collection="list" item="item" open="(" close=")" index="index" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="getPatternByConfigureId" resultType="org.smartloli.kafka.eagle.web.pojo.Pattern">
+        select * from ke_symbolic_pattern
+        where configureId = #{configureId}
+    </select>
+
+    <select id="getAllDetail" resultType="org.smartloli.kafka.eagle.web.pojo.PatternDetail">
+        select * from ke_pattern_detail
+        where 1=1
+    </select>
+
+    <select id="getDetailById" resultType="org.smartloli.kafka.eagle.web.pojo.PatternDetail">
+        select * from ke_pattern_detail
+        where id = #{id}
+    </select>
+</mapper>

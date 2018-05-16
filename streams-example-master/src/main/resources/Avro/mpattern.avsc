@@ -1,0 +1,40 @@
+{
+    "namespace": "org.mhealth.open.data.avro",
+    "name": "MPattern",
+    "type": "record",
+    "fields": [
+        {"name": "user_id", "type": ["string","null"] },
+        {"name": "timestamp", "type": "long"},
+        {"name": "matchPattern" ,"type": {
+            "type":"map","values":{"name": "PatternResult", "type": "record","fields":[
+                    {"name": "Result","type": {
+                        "type":"map","values":{"name":"EndResult", "type": "record","fields":[
+                            {"name":"value", "type": "int"}
+                            ]}
+                        }
+                    }
+                ]}
+            }
+        }
+    ]
+}
+
+/**
+ * Avro里面有个map，map里面又是Avro的格式，Avro里面又有个map，map里面又是Avro的格式
+ * matchPattern的格式：先是一个map，map里面的key是模式id，是put的时候自己指定的，value是PatternResult类型，PatternResult
+ * 包含一些字段（fields），这里字段的name是Result，类型是个map型，key是measure名字，也是put的时候自己指定的，value是EndResult
+ * 类型，包含一些字段，这里字段的name是value，表示对应的measure值
+ *
+ * the value is {"user_id": "the-user-1681", "timestamp": 1483457520000, "matchPattern": {
+ * "模式1": {"Result": {"systolic_blood_pressure": {"value": 1}, "diastolic_blood_pressure": {"value": 0}}},
+ * "模式0": {"Result": {"systolic_blood_pressure": {"value": 1}, "diastolic_blood_pressure": {"value": 0}}},
+ * "模式3": {"Result": {"systolic_blood_pressure": {"value": 1}, "diastolic_blood_pressure": {"value": 0}}},
+ * "模式2": {"Result": {"systolic_blood_pressure": {"value": 1}, "diastolic_blood_pressure": {"value": 0}}}}}
+ */
+//加个总的结果的字段
+
+/**
+ * 最外层的Map的key-value是<user_id,模式的集合>，list的长度就是模式的种数
+ * 中间的Map的key-value是<measure,存储数据的集合>，list的长度就是length
+ * Map<String, List<Map<String, List<Float>>>> map = new HashMap<>();
+ */

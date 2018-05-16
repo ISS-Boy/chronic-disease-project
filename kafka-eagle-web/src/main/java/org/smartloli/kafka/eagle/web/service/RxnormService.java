@@ -8,4 +8,10 @@ public interface RxnormService {
     List<Rxnorm> getRxnormList();
 
     Rxnorm findRxnormDescription(String rxcode);
+
+    int addRxnorm(Rxnorm rxnorm);
+
+    void deleteRxnormBycode(String code);
+
+    int modifyRxnorm(Rxnorm rxnorm);
 }

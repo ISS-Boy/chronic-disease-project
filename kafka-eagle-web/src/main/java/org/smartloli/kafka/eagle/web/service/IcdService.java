@@ -8,5 +8,9 @@ public interface IcdService {
 
     List<Icd> getAllIcd();
 
-     boolean addIcd(Icd icd);
+    int addIcd(Icd icd);
+
+    void deleteIcdBycode(String code);
+
+    int modifyIcd(Icd icd);
 }

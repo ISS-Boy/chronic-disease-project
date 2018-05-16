@@ -1,5 +1,6 @@
 package com.iss.bigdata.health.elasticsearch.service;
 
+import com.aliyun.hitsdb.client.value.response.QueryResult;
 import com.iss.bigdata.health.elasticsearch.entity.*;
 import com.iss.bigdata.health.elasticsearch.help.EventMap;
 import com.iss.bigdata.health.elasticsearch.help.QueryObject;
@@ -184,4 +185,23 @@ public interface ElasticSearchService {
     int getDiseaseUserNum_per(String years, String diseases);
 
     ArrayList<String> getDiseaseUserNum_timeline(String diseases, String years);
+
+
+    /**
+     * 根据性别和年龄（起止初始日期）这个条件筛选用户
+     * */
+    ArrayList<UserBasic> searchUserByConditions(String startDate, String endDate, String gender);
+
+    /***
+     * 查询病历数据
+     * @param conditions
+     * @return
+     */
+    ArrayList<Condition> searchCondition(List<String> conditions);
+
+    /***
+     * 查询度量值
+     */
+    List<QueryResult> searchMetric(Long start, Long end, List<String> metrics, String userId);
+
 }

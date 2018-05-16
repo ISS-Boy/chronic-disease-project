@@ -11,7 +11,7 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="/ke">慢性病大数据监控平台</a>
+		<p class="navbar-brand">慢性病大数据监控平台</p>
 		<div class="modal fade" aria-labelledby="mfModalLabel"
 			aria-hidden="true" id="ke_account_reset_dialog" tabindex="-1"
 			role="dialog">
@@ -65,9 +65,9 @@
 				class="caret"></b></a>
 			<ul class="dropdown-menu">
 				<li><a name="ke_account_reset" href="#"><i
-						class="fa fa-fw fa-gear"></i> Reset</a></li>
+						class="fa fa-fw fa-gear"></i> 修改信息</a></li>
 				<li><a href="/ke/account/signout"><i
-						class="fa fa-fw fa-power-off"></i> Signout</a></li>
+						class="fa fa-fw fa-power-off"></i> 退出</a></li>
 			</ul>
 		</li>
 	</ul>
@@ -76,6 +76,7 @@
 		<ul class="nav navbar-nav side-nav">
 			<li id="navbar_dash"><a href="/ke"><i
 					class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
+			<li><a class="" title="菜单管理" id="adminmenu" href="/ke/menu/menu"><i class="fa fa-book">菜单管理</i></a></li>
 			<li><a href="#" data-toggle="collapse" data-target="#demo"><i
 					class="fa fa-fw fa-comments-o"></i> Topic <i
 					class="fa fa-fw fa-caret-down"></i></a>
@@ -119,6 +120,17 @@
 							class="fa fa-info-circle fa-fw"></i> Add</a></li>
 					<li id="navbar_modify"><a href="/ke/alarm/modify"><i
 							class="fa fa-edit fa-fw"></i> Modify</a></li>
+				</ul>
+			</li>
+
+			<li><a href="#" data-toggle="collapse" data-target="#offlineLearning"><i
+					class="fa fa-calendar-minus-o"></i> 离线学习 <i
+					class="fa fa-fw fa-caret-down"></i></a>
+				<ul id="offlineLearning" class="collapse">
+					<li><a href="/ke/offlineLearning/toAdd?type=0"><i
+							class="fa fa-plus-circle"></i> 新建学习任务</a></li>
+					<li id=""><a href="/ke/offlineLearning/getAllConfigure"><i
+							class="fa fa-fw fa-bar-chart"></i> 管理学习任务</a></li>
 				</ul>
 			</li>
 
@@ -220,4 +232,20 @@
 
 		return true;
 	}
+
+    //菜单
+    function menu(){
+	    alert("menu");
+        var diag = new Dialog();
+        diag.Drag=true;
+        diag.Title ="菜单编辑";
+        diag.URL = '/ke/menu';
+        diag.Width = 720;
+        diag.Height = 390;
+        diag.CancelEvent = function(){ //关闭事件
+            diag.close();
+        };
+        diag.show();
+
+    }
 </script>

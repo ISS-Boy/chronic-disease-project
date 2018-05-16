@@ -1,0 +1,21 @@
+{
+    "namespace": "org.mhealth.open.data.avro",
+    "name": "Demo",
+    "type": "record",
+    "fields": [
+        {"name": "user_id", "type": ["string","null"] },
+        {"name": "timestamp", "type": "long"},
+        {"name": "name", "type": "string"},
+        {"name": "birthdate", "type": "string"},
+        {"name": "deathdate", "type": ["string","null"]},
+        {"name": "gender", "type": "string"},
+        {"name": "race", "type": "string"},
+        {"name": "measures" ,"type": {
+            "type":"map","values":{"type":"record", "name": "Measure", "fields":[
+                    {"name": "unit", "type": "string"},
+                    {"name": "value", "type": "float"}
+                ]}
+            }
+        }
+    ]
+}

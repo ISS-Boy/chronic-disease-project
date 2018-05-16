@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.smartloli.kafka.eagle.web.dao.MenuDao">
+    <select id="listAllParentMenu" resultType="org.smartloli.kafka.eagle.web.pojo.Menu">
+        select * from ke_menu
+        where parentId = '0' order by menuOrder
+    </select>
+
+    <select id="listAllMenu" resultType="org.smartloli.kafka.eagle.web.pojo.Menu">
+        SELECT * FROM ke_menu
+        WHERE 1=1
+    </select>
+
+    <insert id="saveAddMenu" parameterType="org.smartloli.kafka.eagle.web.pojo.Menu">
+        INSERT INTO ke_menu (
+          menuName,
+          menuUrl,
+          menuOrder,
+          parentId
+        )VALUE(
+          #{menuName},
+          #{menuUrl},
+          #{menuOrder},
+          #{parentId}
+        )
+    </insert>
+
+
+    <select id="findMenuById" parameterType="java.lang.Integer" resultType="org.smartloli.kafka.eagle.web.pojo.Menu">
+        SELECT * FROM ke_menu
+        WHERE id = #{id}
+    </select>
+
+
+    <update id="updateMenuById" parameterType="org.smartloli.kafka.eagle.web.pojo.Menu">
+        UPDATE ke_menu SET
+          menuName = #{menuName},
+          menuUrl = #{menuUrl},
+          menuOrder = #{menuOrder},
+          parentId = #{parentId}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteMenuById" parameterType="java.lang.Integer">
+        DELETE FROM ke_menu
+        WHERE id = #{id}
+        OR parentId = #{id}
+    </delete>
+</mapper>

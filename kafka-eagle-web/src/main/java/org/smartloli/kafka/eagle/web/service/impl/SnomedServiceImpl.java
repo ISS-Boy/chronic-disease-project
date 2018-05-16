@@ -5,6 +5,7 @@ import org.smartloli.kafka.eagle.web.pojo.Snomed;
 import org.smartloli.kafka.eagle.web.service.SnomedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
@@ -20,17 +21,20 @@ public class SnomedServiceImpl implements SnomedService {
         return snomedDao.getAllSnomeds();
     }
 
+    @Transactional
     @Override
     public boolean addSnomed(Snomed snomed) {
         boolean flag = snomedDao.insertSnomed(snomed);
         return flag;
     }
 
+    @Transactional
     @Override
     public void deleteSnomedBycode(String code) {
         snomedDao.deleteSnomedByCode(code);
     }
 
+    @Transactional
     @Override
     public int modifySnomed(Snomed snomed) {
         List<Snomed> list = snomedDao.snomesOf(snomed);
@@ -51,5 +55,10 @@ public class SnomedServiceImpl implements SnomedService {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public int checkSnomedCode(String snomedCode) {
+        return snomedDao.countOfSnomedCnomen(snomedCode);
     }
 }

@@ -1,0 +1,124 @@
+[2018-05-03 14:45:19] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 14:45:49] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:46:19] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:46:49] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:47:19] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:47:49] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:48:19] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:48:49] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:49:19] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:49:49] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:50:19] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:50:55] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 14:52:41] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:52:41] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:52:41] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:53:50] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:53:50] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:53:55] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:54:25] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:54:55] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:55:25] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:55:55] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:56:25] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:56:55] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:57:25] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:57:55] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:58:25] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:58:55] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:59:25] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 14:59:55] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:00:25] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:00:40] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 15:01:37] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 15:01:51] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:01:51] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:07:25] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 15:07:49] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 15:08:02] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 15:08:32] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:09:02] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:09:13] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 15:15:21] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:15:21] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:15:21] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:15:21] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:15:21] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:15:21] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:15:21] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:15:21] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:15:21] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:15:21] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:15:21] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:15:21] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:24:44] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 15:25:14] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:25:28] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 15:25:59] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:26:31] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:27:12] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:28:12] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:28:12] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:28:28] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:28:58] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:29:28] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:32:00] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 15:32:30] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:33:00] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:33:30] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:34:00] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:34:30] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:35:00] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:35:29] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 15:35:59] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:36:29] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:36:59] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:37:23] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 15:37:55] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:38:32] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 15:40:24] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:40:24] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:40:24] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:40:36] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 15:41:14] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:41:36] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:42:06] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:42:36] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:43:06] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:43:36] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:44:06] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:45:49] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 15:46:19] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:46:49] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:47:19] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:47:49] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:48:19] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:48:49] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:49:19] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:49:49] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:50:19] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:50:49] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:51:19] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:51:49] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:58:32] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 15:59:02] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 15:59:32] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 16:00:05] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 16:00:35] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 16:03:04] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 16:03:34] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 16:04:14] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 16:04:41] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 16:05:11] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 16:05:32] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 16:06:02] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 16:10:08] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 16:10:38] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 16:11:08] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 16:11:38] HttpClientFactory.Fixed-Cycle-Close-Connection - INFO  - Close idle connections, fixed cycle operation
+ [2018-05-03 17:16:43] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 17:19:01] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 17:21:48] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 17:22:49] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ [2018-05-03 17:23:51] HiTSDBClient.main - INFO  - The hitsdb-client has started.
+ 

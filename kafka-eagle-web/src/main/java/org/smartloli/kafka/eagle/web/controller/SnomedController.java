@@ -65,51 +65,53 @@ public class SnomedController {
         System.out.println(map);
         return map;
     }
+
     @RequestMapping(value ="/patient_analysis/snomed_add",method = RequestMethod.POST)
-    public String add_snomed(HttpServletRequest request,Snomed snomed){
+    public String add_snomed(HttpServletRequest request, Snomed snomed){
         String snomed_code = request.getParameter("ke_snomed_code");
         String snomedCnomen = request.getParameter("ke_snomedCnomen");
         String helpCode = request.getParameter("ke_helpCode");
-        if(snomed_code.equals(snomed.getSnomedCode())){
-            request.setAttribute("msg","编码已存在！");
-            return "redirect:/patient_analysis/snomed";
+        snomed.setSnomedCode(snomed_code);
+        snomed.setSnomedCnomen(snomedCnomen);
+        snomed.setHelpCode(helpCode);
+        if(snomedService.addSnomed(snomed)){
+            return "redirect:/patient_analysis/snomedlist";
         }else{
-            snomed.setSnomedCode(snomed_code);
-            snomed.setSnomedCnomen(snomedCnomen);
-            snomed.setHelpCode(helpCode);
-            if(snomedService.addSnomed(snomed)){
-                return "/patient_analysis/snomed";
-            }else{
-                return "redirect:/errors/500";
-            }
-
+            return "redirect:/errors/500";
         }
+
+//        }
 
     }
 
+    @RequestMapping(value = "/patient_analysis/checkSnomedCode",method = RequestMethod.GET)
+    public @ResponseBody String checkSnomedCode(@RequestParam("snomedCode") String snomedCode){
+        return snomedService.checkSnomedCode(snomedCode) > 0 ? "true" : "false";
+    }
+
     @ResponseBody
-    @RequestMapping(value = "/snomed/deteteSnomedByCode",method = RequestMethod.GET)
+    @RequestMapping(value = "/snomed/deleteSnomedByCode",method = RequestMethod.GET)
     public String deleteSnomed(@RequestParam("code") String code){
         //JSONArray jsonArray = JSONArray.parseArray(ids);
         if(!StringUtils.isEmpty(code)){
             snomedService.deleteSnomedBycode(code);
         }
-        return "success";//为什么这里 写redirect 就不可以？为啥 这里咋写
+        return "success";//
     }
 
     @ResponseBody
     @RequestMapping(value = "/patient_analysis/snomed_modify",method = RequestMethod.POST)
     public String modifySnomed(@RequestBody Snomed snomed) {
-         boolean flag = snomedService.modifySnomed(snomed) > 0 ? true : false;
+        boolean flag = snomedService.modifySnomed(snomed) > 0 ? true : false;
         if (flag) {
             return "true";
         } else {
             return "false";
         }
     }
-/**
- * 根据编码查找snomed
- * */
+    /**
+     * 根据编码查找snomed
+     * */
     @ResponseBody
     @RequestMapping(value = "patient_analysis/findSnomedCnomen",method = RequestMethod.GET)
     public Map<String,String> findSnomedCnomen(@RequestParam("scode") String scode) {

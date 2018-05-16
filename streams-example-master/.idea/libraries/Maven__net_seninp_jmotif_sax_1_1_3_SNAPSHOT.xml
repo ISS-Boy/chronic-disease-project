@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: net.seninp:jmotif-sax:1.1.3-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.m2/repository/net/seninp/jmotif-sax/1.1.3-SNAPSHOT/jmotif-sax-1.1.3-20180110.144031-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.m2/repository/net/seninp/jmotif-sax/1.1.3-SNAPSHOT/jmotif-sax-1.1.3-20180110.144031-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.m2/repository/net/seninp/jmotif-sax/1.1.3-SNAPSHOT/jmotif-sax-1.1.3-20180110.144031-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -6,10 +6,13 @@ import org.smartloli.kafka.eagle.web.pojo.Icd;
 import java.util.List;
 
 public interface IcdDao {
-      List<Icd> getAllicds();
+    List<Icd> getAllicds();
 
-     boolean insertIcd(Icd icd);
+    int insertIcd(Icd icd);
 
+    List<Icd> icdof(Icd icd);
 
-    //public List<Icd> getAllicds();
+    void deleteIcdByCode(String code);
+
+    int updateIcd(Icd icd);
 }

@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="FindPattern" />
         <module name="kafka-eagle-api" />
         <module name="kafka-eagle-common" />
         <module name="kafka-eagle-core" />
@@ -13,9 +14,11 @@
         <module name="kafka-eagle-grafana" />
         <module name="kafka-eagle-plugin" />
         <module name="kafka-eagle-web" />
+        <module name="streams-examples" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="FindPattern" target="1.6" />
       <module name="kafka-eagle" target="1.8" />
       <module name="kafka-eagle-api" target="1.8" />
       <module name="kafka-eagle-common" target="1.8" />
@@ -24,6 +27,7 @@
       <module name="kafka-eagle-grafana" target="1.8" />
       <module name="kafka-eagle-plugin" target="1.8" />
       <module name="kafka-eagle-web" target="1.8" />
+      <module name="streams-examples" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

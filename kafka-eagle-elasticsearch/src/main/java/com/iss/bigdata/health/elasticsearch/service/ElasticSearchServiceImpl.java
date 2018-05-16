@@ -1,6 +1,14 @@
 package com.iss.bigdata.health.elasticsearch.service;
 
 import com.alibaba.fastjson.JSON;
+import com.aliyun.hitsdb.client.HiTSDB;
+import com.aliyun.hitsdb.client.HiTSDBClient;
+import com.aliyun.hitsdb.client.HiTSDBClientFactory;
+import com.aliyun.hitsdb.client.HiTSDBConfig;
+import com.aliyun.hitsdb.client.value.request.Query;
+import com.aliyun.hitsdb.client.value.request.SubQuery;
+import com.aliyun.hitsdb.client.value.response.QueryResult;
+import com.aliyun.hitsdb.client.value.type.Aggregator;
 import com.iss.bigdata.health.elasticsearch.entity.*;
 import com.iss.bigdata.health.elasticsearch.help.EventMap;
 import com.iss.bigdata.health.elasticsearch.help.QueryObject;
@@ -10,6 +18,7 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
@@ -46,6 +55,8 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
         this.client = new RestHighLevelClient(lowLevelRestClient);
 
     }
+
+    HiTSDBConfig hiTSDBConfig = HiTSDBConfig.address("192.168.222.233", 4242).config();
 
     @Override
     public EventMap getAllTypeEventByUserId(String userId, Date start, Date end){
@@ -952,5 +963,100 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
     }
 
 
+    @Override
+    public ArrayList<UserBasic> searchUserByConditions(String startDate, String endDate, String gender) {
+        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+        SearchRequest searchRequest = new SearchRequest("patient");
+        searchRequest.types("synthea");
+        if (gender != null) {//如果传入起始时间，就加入起始时间作为筛选条件
+            sourceBuilder.query(QueryBuilders.boolQuery().must(QueryBuilders.rangeQuery("birthdate").gt(startDate).lt(endDate))
+                    .must(QueryBuilders.matchQuery("gender", gender)));
+        } else {
+            sourceBuilder.query(QueryBuilders.boolQuery().must(QueryBuilders.rangeQuery("birthdate").gt(startDate).lt(endDate)));
+        }
+//        sourceBuilder.query(QueryBuilders.boolQuery().must(QueryBuilders.rangeQuery("birthdate").gt(startDate).lt(endDate))
+//                                                    .must(QueryBuilders.matchQuery("gender", gender)));
 
+        sourceBuilder.size(MAX_QUERY_SIZE);
+        searchRequest.source(sourceBuilder);
+        SearchResponse result = null;
+        try {
+            result = client.search(searchRequest);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("连接或查询有误, 请检查您的网络连接是否畅通，并检查查询项是否有误!");
+        }
+        SearchHits hits = result.getHits();
+        ArrayList<UserBasic> userBasics = new ArrayList<UserBasic>();
+        for (SearchHit hit : hits.getHits()) {
+            UserBasic dis = JSON.parseObject(hit.getSourceAsString(), UserBasic.class);
+            if (gender != null) { //对年龄（起止时间）的传入与否进行筛选
+                if (dis.getGender().equals(gender)) {
+                    //只传入起始时间
+                    userBasics.add(dis);
+                }
+            } else {
+                //没有传入起止时间
+                userBasics.add(dis);
+            }
+
+        }
+        return userBasics;
+    }
+
+
+    @Override
+    public ArrayList<Condition> searchCondition(List<String> conditions) {
+        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+        SearchRequest searchRequest = new SearchRequest("conditions");
+        searchRequest.types("synthea");
+        BoolQueryBuilder queryBuilder = new BoolQueryBuilder();
+        if (conditions != null && conditions.size() > 0) {
+            for (String condition : conditions) {
+                queryBuilder.should(QueryBuilders.matchQuery("description", condition));
+            }
+        } else {
+            queryBuilder.must(QueryBuilders.matchAllQuery());
+        }
+
+        sourceBuilder.query(queryBuilder);
+        sourceBuilder.size(MAX_QUERY_SIZE);
+        searchRequest.source(sourceBuilder);
+        SearchResponse result = null;
+        try {
+            result = client.search(searchRequest);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("连接或查询有误, 请检查您的网络连接是否畅通，并检查查询项是否有误!");
+        }
+        SearchHits hits = result.getHits();
+        ArrayList<Condition> diseaseusers = new ArrayList<Condition>();
+        for (SearchHit hit : hits.getHits()) {
+            Condition dis = JSON.parseObject(hit.getSourceAsString(), Condition.class);
+            diseaseusers.add(dis);
+        }
+        return diseaseusers;
+    }
+
+
+    @Override
+    public List<QueryResult> searchMetric(Long start, Long end, List<String> metrics, String userId) {
+        HiTSDB hiTSDB = HiTSDBClientFactory.connect(hiTSDBConfig);
+        Query query = new Query();//Query.timeRange(start, end)
+//                .sub(SubQuery.metric("heart_rate").aggregator(Aggregator.FIRST).tag("userId", "the-user-0").build()).build();
+        Query.Builder builder = query.timeRange(start, end);
+//                .sub(SubQuery.metric("heart_rate").aggregator(Aggregator.FIRST).tag("userId", "the-user-0").build());
+        if (metrics != null && metrics.size() > 0) {
+            for (String metric : metrics) {
+                builder = builder.sub(SubQuery.metric(metric).aggregator(Aggregator.FIRST).tag("userId", userId).build());
+            }
+        }
+        query = builder.build();
+        List<QueryResult> result = hiTSDB.query(query);
+        System.out.println("==============" + result);
+        System.out.println("==============" + result.size());
+        return result;
+    }
 }
