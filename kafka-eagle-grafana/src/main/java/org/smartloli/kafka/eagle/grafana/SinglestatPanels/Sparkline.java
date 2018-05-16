@@ -15,6 +15,17 @@ public class Sparkline {
     private boolean full;
     private String lineColor;
     private boolean show;
+
+    public Sparkline() {
+    }
+
+    public Sparkline(String fillColor, boolean full, String lineColor, boolean show) {
+        this.fillColor = fillColor;
+        this.full = full;
+        this.lineColor = lineColor;
+        this.show = show;
+    }
+
     public void setFillColor(String fillColor) {
          this.fillColor = fillColor;
      }

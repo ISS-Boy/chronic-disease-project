@@ -14,6 +14,17 @@ public class RangeMaps {
     private String from;
     private String text;
     private String to;
+
+
+    public RangeMaps() {
+    }
+
+    public RangeMaps(String from, String text, String to) {
+        this.from = from;
+        this.text = text;
+        this.to = to;
+    }
+
     public void setFrom(String from) {
          this.from = from;
      }

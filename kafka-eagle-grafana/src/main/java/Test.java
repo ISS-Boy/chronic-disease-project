@@ -20,12 +20,38 @@ public class Test {
         //boolean recode = createDashboard("shaoyifei",new ArrayList<PARMOfPanel>());
         //System.out.println(recode);
 
+//        HandleDashboard handleDashboard = new HandleDashboard();
+//        handleDashboard.deletedashboard("aaa");
+
+//        pinyinTest();
+
+        createSinglestat("test-Singlestat");
+    }
+
+    private static void createSinglestat(String dashboardName) {
+        PARAMOfDashboard dashboard = new PARAMOfDashboard();
+        dashboard.setFrom("now-20h");
+        dashboard.setTo("now-18h");
+        dashboard.setDashboardName(dashboardName);
+        List<PARMOfPanel> parmOfPanelspanels = new ArrayList<>();
+        List<PARMOfTarget> parmOfTargets = new ArrayList<>();
+        HashMap<String, String> tags = new HashMap<String, String>(){{
+            put("monitorId", "the-user-1-1525744065898_1");
+            put("item", "1");
+        }};
+        parmOfTargets.add(new PARMOfTarget("monitor", tags, "none"));
+        parmOfPanelspanels.add(new PARMOfPanel(0, "alert", "singlestat", "", parmOfTargets));
+        dashboard.setPanels(parmOfPanelspanels);
         HandleDashboard handleDashboard = new HandleDashboard();
-        handleDashboard.deletedashboard("aaa");
+        int code = handleDashboard.createdashboard(dashboard);
+        if(code == 200){
+            String url = handleDashboard.getDashboardUrl(dashboard, 0);
+            System.out.println(url);
+        }
     }
 
     private static void pinyinTest(){
-        char[] cs = "历史的咖啡机".toCharArray();
+        char[] cs = "心率".toCharArray();
         StringBuilder sb = new StringBuilder();
         boolean hanyu = false;
         for(char c: cs){
@@ -34,7 +60,7 @@ public class Test {
                 hanyu = false;
             }else{
                 String[] pinyins = PinyinHelper.toHanyuPinyinStringArray(c);
-                String pinyin = pinyins[0].substring(0, pinyins[0].length() - 1);
+                String pinyin = pinyins[0].replaceAll("[^a-z]", "");
                 System.out.println(pinyin);
                 if(hanyu)
                     sb.append('-');

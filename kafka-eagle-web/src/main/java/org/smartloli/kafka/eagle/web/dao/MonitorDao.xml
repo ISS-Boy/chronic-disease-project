@@ -6,9 +6,10 @@
         <result property="name" column="name" />
         <result property="monitorGroupId" column="monitor_group_id" />
         <result property="json" column="json" />
+        <result property="imgUrl" column="img_url" />
     </resultMap>
     <sql id="Base_Column_List">
-        monitor_id,name,monitor_group_id,json
+        monitor_id,name,monitor_group_id,json,img_url
     </sql>
 
     <select id="getAllMonitorByGroupId" parameterType="String" resultMap="monitor">
@@ -29,7 +30,8 @@
             #{monitorId},
             #{name},
             #{monitorGroupId},
-            #{json}
+            #{json},
+            #{imgUrl}
         )
     </insert>
 

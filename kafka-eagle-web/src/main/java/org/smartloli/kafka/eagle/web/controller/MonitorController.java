@@ -3,14 +3,13 @@ package org.smartloli.kafka.eagle.web.controller;
 import com.alibaba.fastjson.JSON;
 import net.sf.json.JSONArray;
 import org.apache.log4j.Logger;
-import org.smartloli.kafka.eagle.web.exception.entity.NormalException;
 import org.smartloli.kafka.eagle.web.grafana.service.GrafanaDashboardService;
 import org.smartloli.kafka.eagle.web.json.pojo.BlockGroup;
+import org.smartloli.kafka.eagle.web.pojo.Monitor;
 import org.smartloli.kafka.eagle.web.pojo.MonitorGroup;
-import org.smartloli.kafka.eagle.web.pojo.Signiner;
 import org.smartloli.kafka.eagle.web.service.MonitorGroupService;
 import org.smartloli.kafka.eagle.web.service.MonitorService;
-import org.smartloli.kafka.eagle.web.utils.DataValidator;
+import org.smartloli.kafka.eagle.web.utils.DataValidatorUtil;
 import org.smartloli.kafka.eagle.web.utils.ValidateResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,15 +20,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author LH
- *
- *
- * */
+ */
 @Controller
 public class MonitorController {
-    String  years_area = "2014";
+    String years_area = "2014";
     String diseases_area = "Hypertension";
     String years_mon = "2018";
     String diseases_mon = "Hypertension";
@@ -45,47 +43,57 @@ public class MonitorController {
     @Autowired
     private GrafanaDashboardService grafanaDashboardService;
 
-    /**whole-country Viewer*/
+    /**
+     * whole-country Viewer
+     */
     @RequestMapping(value = "/monitor/whole-country", method = RequestMethod.GET)
-    public ModelAndView wholeView(HttpSession session){
+    public ModelAndView wholeView(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/monitor/whole-country");
         return mav;
     }
 
-    /**area Viewer*/
+    /**
+     * area Viewer
+     */
     @RequestMapping(value = "/monitor/area", method = RequestMethod.GET)
-    public ModelAndView areaView(HttpSession session){
+    public ModelAndView areaView(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/monitor/area");
         return mav;
     }
-    /**city Viewer*/
+
+    /**
+     * city Viewer
+     */
     @RequestMapping(value = "/monitor/city", method = RequestMethod.GET)
-    public ModelAndView cityView(HttpSession session){
+    public ModelAndView cityView(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/monitor/city");
         return mav;
     }
-    /**location Viewer*/
+
+    /**
+     * location Viewer
+     */
     @RequestMapping(value = "/monitor/location", method = RequestMethod.GET)
-    public ModelAndView locationView(HttpSession session){
+    public ModelAndView locationView(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/monitor/location");
         return mav;
     }
 
     ///ke/monitor/monitor_block
-    @RequestMapping(value = "/monitor/goto_monitor_block_add",method = RequestMethod.GET)
-    public ModelAndView blockView(HttpSession session){
+    @RequestMapping(value = "/monitor/goto_monitor_block_add", method = RequestMethod.GET)
+    public ModelAndView blockView(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("monitor/monitor_block_add");
         return mav;
     }
 
     // 获取monitorGroup界面
-    @RequestMapping(value = "/monitor/monitor_maintain",method = RequestMethod.GET)
-    public ModelAndView monitorView(HttpSession session){
+    @RequestMapping(value = "/monitor/monitor_maintain", method = RequestMethod.GET)
+    public ModelAndView monitorView(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("monitor/monitor_maintain");
         return mav;
@@ -100,10 +108,10 @@ public class MonitorController {
         logger.info("========" + blockGroup + "=========");
 
         // 进行block检验
-        List<ValidateResult> validateResults = DataValidator.validateBlocks(blockGroup);
+        List<ValidateResult> validateResults = DataValidatorUtil.validateBlocks(blockGroup);
 
         // 校验失败
-        if(!(validateResults.size() == 1 &&
+        if (!(validateResults.size() == 1 &&
                 validateResults.get(0).getResultCode() == ValidateResult.ResultCode.SUCCESS))
             return validateResults.toString();
 
@@ -114,9 +122,9 @@ public class MonitorController {
 
         // 校验成功, 开始创建镜像
         logger.info("======数据校验成功========");
-        ValidateResult result = monitorGroupService.createImage(creator, blockGroup);
-        if(result.getResultCode() == ValidateResult.ResultCode.FAILURE)
-            return result.getMes();
+
+        // 创建镜像, 若创建失败, 则会抛出异常到异常捕捉方法中
+        monitorGroupService.createImage(creator, blockGroup);
 
         // 镜像创建成功
         return "success";
@@ -124,19 +132,17 @@ public class MonitorController {
 
     /**
      * 运行一个monitorGroup
+     *
      * @param monitorGroupId
      * @return
      * @throws Exception
      */
     @RequestMapping(value = "/monitor/runMonitorGroup", method = RequestMethod.GET)
-    public String runMonitorGroup(@RequestParam("monitorGroupId") String monitorGroupId, HttpSession session){
+    public String runMonitorGroup(@RequestParam("monitorGroupId") String monitorGroupId, HttpSession session) {
         logger.info("monitorGroupId:" + monitorGroupId);
-        ValidateResult serviceExecutionResult = monitorGroupService.runService(monitorGroupId);
-        if(serviceExecutionResult.getResultCode() == ValidateResult.ResultCode.FAILURE)
-            throw new NormalException(serviceExecutionResult.getMes());
 
-        if(serviceExecutionResult.getResultCode() == ValidateResult.ResultCode.WARNING)
-            logger.info(serviceExecutionResult.getResultCode() + "-" + serviceExecutionResult.getMes());
+        // 启动Monitor服务
+        monitorGroupService.runService(monitorGroupId);
 
         session.setAttribute("monitorGroupId", monitorGroupId);
         return "redirect:/visualizer/visShow";
@@ -144,6 +150,7 @@ public class MonitorController {
 
     /**
      * 删除一个monitorGroup的镜像
+     *
      * @param monitorGroupId
      * @return
      * @throws Exception
@@ -151,15 +158,14 @@ public class MonitorController {
     @RequestMapping(value = "/monitor/deleteMonitorGroup", method = RequestMethod.GET)
     public String deleteMonitorGroup(@RequestParam("monitorGroupId") String monitorGroupId) throws Exception {
         logger.info("monitorGroupId:" + monitorGroupId);
-        // 先停止服务
-        ValidateResult stopResult = monitorGroupService.stopMonitorGroupService(monitorGroupId);
-        if(stopResult.getResultCode() != ValidateResult.ResultCode.SUCCESS)
-            throw new NormalException(stopResult.getMes());
+
+        // 不能先停止服务后再删除镜像, 因为docker的异步清除机制,
+        // Docker返回删除成功之后仍然尚未删除container
+        // 此时立马删除镜像是有危险的
+//         monitorGroupService.stopMonitorGroupService(monitorGroupId);
 
         // 再删除镜像
-        ValidateResult validateResult = monitorGroupService.deleteMonitorGroup(monitorGroupId);
-        if(validateResult.getResultCode() != ValidateResult.ResultCode.SUCCESS)
-            throw new NormalException(validateResult.getMes());
+        monitorGroupService.deleteMonitorGroup(monitorGroupId);
 
         return "monitor/monitor_maintain";
 
@@ -167,6 +173,7 @@ public class MonitorController {
 
     /**
      * 停止MonitorGroup的Service
+     *
      * @param monitorGroupId
      * @return
      * @throws Exception
@@ -174,31 +181,38 @@ public class MonitorController {
     @RequestMapping(value = "/monitor/stopMonitorGroup", method = RequestMethod.GET)
     public String stopMonitorGroup(@RequestParam("monitorGroupId") String monitorGroupId) throws Exception {
         logger.info("monitorGroupId:" + monitorGroupId);
-        ValidateResult validateResult = monitorGroupService.stopMonitorGroupService(monitorGroupId);
-        if(validateResult.getResultCode() == ValidateResult.ResultCode.SUCCESS)
-            return "redirect:/visualizer/visShow";
-        else
-            throw new NormalException(validateResult.getMes());
+
+        // 停止MonitorGroupService
+        monitorGroupService.stopMonitorGroupService(monitorGroupId);
+        return "redirect:/visualizer/visShow";
     }
 
     @RequestMapping(value = "/monitor/showMonitorGroup", method = RequestMethod.GET)
     public ModelAndView showMonitorGroup(@RequestParam("monitorGroupId") String monitorGroupId) throws Exception {
         logger.info("monitorGroupId:" + monitorGroupId);
         ModelAndView mav = new ModelAndView("monitor/grafana-dashboard-test");
-        ValidateResult getDashboardUrlResult = monitorGroupService.createMonitorDashBoardAndGetUrl(monitorGroupId);
 
-        if(getDashboardUrlResult.getResultCode() != ValidateResult.ResultCode.SUCCESS)
-            throw new NormalException(getDashboardUrlResult.getMes());
+        List<String> urls = monitorGroupService.createMonitorDashBoardAndGetUrl(monitorGroupId);
 
         // 如果没有失败，则将数据url封装至ModelAndView中
-        logger.info("==========" + getDashboardUrlResult.getAttach() + "==========");
-        mav.addObject("urls", getDashboardUrlResult.getAttach());
+        logger.info("==========" + urls + "==========");
+        mav.addObject("urls", urls);
+        return mav;
+    }
+
+    @RequestMapping(value = "/monitor/reviewMonitorGroup", method = RequestMethod.GET)
+    public ModelAndView reviewMonitorGroup(@RequestParam("monitorGroupId") String monitorGroupId) {
+
+        ModelAndView mav = new ModelAndView("monitor/monitor_review");
+        List<Monitor> monitors = monitorService.getAllMonitorByGroupId(monitorGroupId);
+        List<String> urls = monitors.stream().map(Monitor::getImgUrl).filter(s -> s != null).collect(Collectors.toList());
+        mav.addObject("urls", urls);
         return mav;
     }
 
     /**
      * 获取monitorGroupList
-     * */
+     */
     @ResponseBody
     @RequestMapping(value = "/monitor/monitorGroupList", method = RequestMethod.GET)
     public Map getMonitorGroupList() {
@@ -211,17 +225,18 @@ public class MonitorController {
 
     //通过ajax请求数据 将请求的数据返回到页面进行地图区域的显示
     @ResponseBody
-    @RequestMapping(value = "/monitor/countryFM",method = RequestMethod.GET)
+    @RequestMapping(value = "/monitor/countryFM", method = RequestMethod.GET)
     public JSONArray getDiseaseUserFM(HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=utf-8");
-        List<String > list=new ArrayList<String>();
-        list = monitorService.getDireaseUserFM(diseases_area,years_area);
-        JSONArray jsonArray = JSONArray.fromObject( list );//转化成json对象
+        List<String> list = new ArrayList<String>();
+        list = monitorService.getDireaseUserFM(diseases_area, years_area);
+        JSONArray jsonArray = JSONArray.fromObject(list);//转化成json对象
         return jsonArray;
     }
+
     @ResponseBody
-    @RequestMapping(value = "/monitor/whole_country/getData",method = RequestMethod.GET)
-    public String getData(@RequestParam("value1") String value1,@RequestParam("value2") String value2){
+    @RequestMapping(value = "/monitor/whole_country/getData", method = RequestMethod.GET)
+    public String getData(@RequestParam("value1") String value1, @RequestParam("value2") String value2) {
         years_area = value1;
         diseases_area = value2;
         return "success";
@@ -229,67 +244,86 @@ public class MonitorController {
 
 //将请求的数据返回到页面进行月份的显示
 
-    @RequestMapping(value = "/monitor/disease_history_mon",method = RequestMethod.GET)
-    public ModelAndView diseaseView(HttpSession session){
+    @RequestMapping(value = "/monitor/disease_history_mon", method = RequestMethod.GET)
+    public ModelAndView diseaseView(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/monitor/disease_history_mon");
         return mav;
     }
+
     @ResponseBody
-    @RequestMapping(value = "/monitor/disease_history_mon/getData",method = RequestMethod.GET)
-    public String getData_mon(@RequestParam("value1") String value1,@RequestParam("value2") String value2,HttpSession session){
+    @RequestMapping(value = "/monitor/disease_history_mon/getData", method = RequestMethod.GET)
+    public String getData_mon(@RequestParam("value1") String value1, @RequestParam("value2") String value2, HttpSession session) {
         years_mon = value1.toString();
         diseases_mon = value2.toString();
-        System.out.println("-----"+years_mon+diseases_mon);
+        System.out.println("-----" + years_mon + diseases_mon);
         return "success";
     }
+
     @ResponseBody
-    @RequestMapping(value = "/monitor/disease_history_mon/setData",method = RequestMethod.GET)
-    public JSONArray  getDiseaseUserNum(HttpServletResponse response) throws IOException {
+    @RequestMapping(value = "/monitor/disease_history_mon/setData", method = RequestMethod.GET)
+    public JSONArray getDiseaseUserNum(HttpServletResponse response) throws IOException {
 
         response.setContentType("text/html;charset=utf-8");
-        ArrayList returnArraylist = monitorService.getDiseaseUserNum_mon(  diseases_mon,years_mon);
-        JSONArray jsonArray = JSONArray.fromObject( returnArraylist );//转化成json对象
+        ArrayList returnArraylist = monitorService.getDiseaseUserNum_mon(diseases_mon, years_mon);
+        JSONArray jsonArray = JSONArray.fromObject(returnArraylist);//转化成json对象
         return jsonArray;
     }
 
 
-    @RequestMapping(value = "/monitor/disease_history_per",method = RequestMethod.GET)
-    public ModelAndView returnhisory_per(HttpSession session){
+    @RequestMapping(value = "/monitor/disease_history_per", method = RequestMethod.GET)
+    public ModelAndView returnhisory_per(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/monitor/disease_history_per");
         return mav;
     }
+
     @ResponseBody
-    @RequestMapping(value = "/monitor/disease_history_per/getData",method = RequestMethod.GET)
-    public String getData_per(@RequestParam("value1") String value1,@RequestParam("value2") String value2){
+    @RequestMapping(value = "/monitor/disease_history_per/getData", method = RequestMethod.GET)
+    public String getData_per(@RequestParam("value1") String value1, @RequestParam("value2") String value2) {
         years_per = value1.toString();
         return "success";
     }
+
     @ResponseBody
-    @RequestMapping(value = "/monitor/disease_history_per/setData",method = RequestMethod.GET)
-    public JSONArray  getDiseaseUserNum_per(HttpServletResponse response) throws IOException {
+    @RequestMapping(value = "/monitor/disease_history_per/setData", method = RequestMethod.GET)
+    public JSONArray getDiseaseUserNum_per(HttpServletResponse response) throws IOException {
 
         response.setContentType("text/html;charset=utf-8");
-        ArrayList returnArraylist = monitorService.getDiseaseUserNum_per(years_per );
-        JSONArray jsonArray = JSONArray.fromObject( returnArraylist );//转化成json对象
+        ArrayList returnArraylist = monitorService.getDiseaseUserNum_per(years_per);
+        JSONArray jsonArray = JSONArray.fromObject(returnArraylist);//转化成json对象
         return jsonArray;
     }
 
-    @RequestMapping(value = "/monitor/disease_history_timeline",method = RequestMethod.GET)
-    public ModelAndView returnhisory_timeline(HttpSession session){
+    @RequestMapping(value = "/monitor/disease_history_timeline", method = RequestMethod.GET)
+    public ModelAndView returnhisory_timeline(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/monitor/disease_history_timeline");
         return mav;
     }
+
     @ResponseBody
-    @RequestMapping(value = "/monitor/disease_history_timeline/setData",method = RequestMethod.GET)
-    public JSONArray  getDiseaseUserNum_disease_timeline(HttpServletResponse response) throws IOException {
+    @RequestMapping(value = "/monitor/disease_history_timeline/setData", method = RequestMethod.GET)
+    public JSONArray getDiseaseUserNum_disease_timeline(HttpServletResponse response) throws IOException {
 
         response.setContentType("text/html;charset=utf-8");
         Map returnArraylist = monitorService.getDiseaseUserNum_timeline();
-        JSONArray jsonArray = JSONArray.fromObject( returnArraylist );//转化成json对象
+        JSONArray jsonArray = JSONArray.fromObject(returnArraylist);//转化成json对象
         return jsonArray;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/monitor/test", method = RequestMethod.POST)
+    public String testMonitor2(@RequestBody String urls, HttpSession session) {
+        logger.info(urls);
+        String[] imgUrls = urls.split("ImageSeparator");
+        session.setAttribute("urls", imgUrls);
+        return "success";
+    }
+
+    @RequestMapping(value = "/monitor/getMonitorTest")
+    public String getMonitorTest() {
+        return "monitor/monitor_review";
     }
 
 }

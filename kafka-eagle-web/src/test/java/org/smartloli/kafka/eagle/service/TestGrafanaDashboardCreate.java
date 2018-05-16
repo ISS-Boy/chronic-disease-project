@@ -10,6 +10,9 @@ import org.smartloli.kafka.eagle.grafana.Parameter.PARMOfTarget;
 //import org.smartloli.kafka.eagle.web.grafana.Parameter.Dashboard;
 //import org.smartloli.kafka.eagle.web.grafana.Parameter.PARMOfPanel;
 //import org.smartloli.kafka.eagle.web.grafana.Parameter.PARMOfTarget;
+import org.smartloli.kafka.eagle.grafana.utils.GrafanaConfigUtil;
+import org.smartloli.kafka.eagle.web.grafana.service.GrafanaDashboardService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.ResourceUtils;
@@ -23,6 +26,16 @@ import java.io.*;
 // 对于多module项目来说需要classpath*
 @ContextConfiguration("classpath*:spring-*.xml")
 public class TestGrafanaDashboardCreate {
+
+	@Autowired
+	private GrafanaDashboardService grafanaDashboardService;
+
+	@Test
+	public void deleteDashboardTest(){
+		String key = GrafanaConfigUtil.getPropertyByKey("grafana.urlForCreate");
+		System.out.println(key);
+		grafanaDashboardService.deleteDashboard("..");
+	}
 
 	@Test
 	public void getPathTest() throws IOException {

@@ -1,13 +1,11 @@
 package org.smartloli.kafka.eagle.grafana.GraphPanels;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import org.smartloli.kafka.eagle.grafana.JavaBean.DefaultValues;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARMOfPanel;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARMOfTarget;
+import org.smartloli.kafka.eagle.grafana.utils.PinyinUtil;
 import org.springframework.util.StringUtils;
 
 
@@ -48,13 +46,9 @@ public class WriteGraPanels {
 
         celsiusSet = new HashSet<>();
         celsiusSet.add("body-temperature");
-        celsiusSet.add("body_temperature");
         celsiusSet.add("body-fat-percentage");
-        celsiusSet.add("body_fat_percentage");
 
         pressurembarSet = new HashSet<>();
-        pressurembarSet.add("diastolic_blood_pressure");
-        pressurembarSet.add("systolic_blood_pressure");
         pressurembarSet.add("blood-pressure");
     }
 
@@ -62,11 +56,11 @@ public class WriteGraPanels {
         makeXaxis();
 
         makeYaxesList(parmOfTargetslist);
+        makeTargetsList(parmOfTargetslist);
         makeSeriesOverrides(parmOfTargetslist);
         makeTooltip();
         makeAliasColors();
         makeLegend();
-        makeTargetsList(parmOfTargetslist);
         makePanels(parmOfPanel);
         return panel;
 
@@ -134,24 +128,24 @@ public class WriteGraPanels {
 
     public List<Targets> makeTargetsList(List<PARMOfTarget> parmOfTargetslist) {
 
+        int i = 0;
         for (PARMOfTarget target : parmOfTargetslist) {
             Targets newTarget = new Targets();
             newTarget.setAggregator("last");
-            String alias = DefaultValues.getAlias(target.getTags().get("item"));
-            if (StringUtils.isEmpty(alias))
-                alias = target.getTags().get("item");
-            newTarget.setAlias(alias);
-            newTarget.setTags(target.getTags());//设置tags标签的key和value;
+            HashMap<String, String> tags = target.getTags();
+
+            newTarget.setAlias(target.getAlias());
+
+            newTarget.setTags(tags);//设置tags标签的key和value;
             newTarget.setDisableDownsampling(false);
             newTarget.setDownsampleAggregator("avg");
             newTarget.setDownsampleFillPolicy("none");
             newTarget.setDownsampleInterval("");
             newTarget.setMetric(target.getMetricName());
-            newTarget.setRefId("A");
+            newTarget.setRefId(String.valueOf((char)('A' + i++)));
             targetslist.add(newTarget);
         }
         return targetslist;
-
     }
 
     public List<SeriesOverrides> makeSeriesOverrides(List<PARMOfTarget> parmOfTargetslist) {
@@ -178,27 +172,44 @@ public class WriteGraPanels {
         } else {
             // 设置左Y轴和右Y轴
             // 元素的单位有三种情况: 无单位, 血压系单位, 其它系单位
-            // 由于Y轴只能有两条, 所以我们一直看单位, 到出现三个单位, 或者遍历完整个集合为止
-            int axis = 1;
-            String unit = "";
             for (PARMOfTarget target : parmOfTargetslist) {
-                String item = target.getTags().get("item");
-                int unitStart = item.lastIndexOf("@");
-                if (unitStart != -1)
-                    item = item.substring(unitStart + 1);
+                String type = target.getType();
+                String alias = target.getAlias();
 
+                SeriesOverrides series = new SeriesOverrides();
+
+                // 判断单位类型
+                String format = "none";
+                if(celsiusSet.contains(type))
+                    format = "celsius";
+                else if(pressurembarSet.contains(type))
+                    format = "pressurembar";
+
+                // 循环遍历y轴列表看是否有需要的单位
+                for(int i = 1; i <= yaxeslist.size(); i++){
+                    if(yaxeslist.get(i - 1).getFormat().equals(format)){
+                        series.setYaxis(i);
+                        break;
+                    }
+                }
+
+                // 设置别名
+                series.setAlias(alias);
+
+                seriesOverrideslist.add(series);
+                /*
                 Object[] unitAndAxis;
-                if (celsiusSet.contains(item)) {
+                if (celsiusSet.contains(type)) {
                     unitAndAxis = jugdeStateAndConstruct(unit, "celsius", item, axis, seriesOverrideslist);
-                } else if (pressurembarSet.contains(item)) {
+                } else if (pressurembarSet.contains(type)) {
                     unitAndAxis = jugdeStateAndConstruct(unit, "pressurembar", item, axis, seriesOverrideslist);
                 } else {
                     unitAndAxis = jugdeStateAndConstruct(unit, "none", item, axis, seriesOverrideslist);
                 }
                 unit = (String) unitAndAxis[0];
                 axis = (int) unitAndAxis[1];
+                */
             }
-
         }
         return seriesOverrideslist;
     }
@@ -209,22 +220,15 @@ public class WriteGraPanels {
         SeriesOverrides series;
         if (StringUtils.isEmpty(curUnit))
             curUnit = flag;
-        if (curUnit.equals(flag)) {
-            series = sList.size() > 0 ? sList.get(sList.size() - 1) : new SeriesOverrides();
-            series.setYaxis(curAxis);
-            String alias = DefaultValues.getAlias(item);
-            if (StringUtils.isEmpty(alias))
-                alias = item;
-            series.setAlias(alias);
-        } else {
-            series = new SeriesOverrides();
-            series.setYaxis(++curAxis);
-            String alias = DefaultValues.getAlias(item);
-            if (StringUtils.isEmpty(alias))
-                alias = item;
-            series.setAlias(alias);
 
-        }
+        series = new SeriesOverrides();
+        if (curUnit.equals(flag))
+            series.setYaxis(curAxis);
+        else
+            series.setYaxis(++curAxis);
+
+        String alias = DefaultValues.getAlias(item);
+        series.setAlias(alias);
         seriesOverrideslist.add(series);
         return new Object[]{curUnit, curAxis};
     }
@@ -245,18 +249,17 @@ public class WriteGraPanels {
         xaxis.setShow(true);
         xaxis.setValues(null);//a
         return xaxis;
-
     }
 
     //设置y轴
     public List<Yaxes> makeYaxesList(List<PARMOfTarget> parmOfTargetslist) {
+        Set<String> typeSet = new HashSet<>();
         for (PARMOfTarget target : parmOfTargetslist) {
-            String item = target.getTags().get("item");
-            String format = DefaultValues.getFormat(item);
-            int replaceStart = item.lastIndexOf("@");
-            if (replaceStart != -1)
-                item = item.substring(0, replaceStart);
-            target.getTags().put("item", item);
+            String type = target.getType();
+            String format = DefaultValues.getFormat(type);
+            if(typeSet.contains(format))
+                continue;
+            typeSet.add(format);
 
             Yaxes newYaxes = new Yaxes();
             newYaxes.setFormat(format);
@@ -268,6 +271,12 @@ public class WriteGraPanels {
             yaxeslist.add(newYaxes);
         }
 
+        // 如果y轴上的指标少于一个，则添加一个空的
+        if(yaxeslist.size() < 2) {
+            Yaxes emptyY = new Yaxes();
+            emptyY.setFormat("");
+            yaxeslist.add(emptyY);
+        }
         return yaxeslist;
     }
 

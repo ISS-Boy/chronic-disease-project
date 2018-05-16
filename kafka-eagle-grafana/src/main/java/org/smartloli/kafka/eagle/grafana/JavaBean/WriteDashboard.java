@@ -9,6 +9,7 @@ import org.smartloli.kafka.eagle.grafana.Parameter.PARAMOfDashboard;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARMOfPanel;
 import org.smartloli.kafka.eagle.grafana.Parameter.PARMOfTarget;
 import net.sf.json.JSONObject;
+import org.smartloli.kafka.eagle.grafana.SinglestatPanels.WriteSingleStatPanels;
 
 public class WriteDashboard {
     private Rows rows;
@@ -34,14 +35,16 @@ public class WriteDashboard {
             List<PARMOfTarget> parmOfTargetslist = parmOfPanel.getTargets();
             if ("graph".equals(parmOfPanel.getType())) {
                 WriteGraPanels graPanels = new WriteGraPanels();
-                Panels panel = new Panels();
-                panel = graPanels.makeGraPanels(parmOfPanel, parmOfTargetslist);
+                Panels panel = graPanels.makeGraPanels(parmOfPanel, parmOfTargetslist);
                 panelslist.add(panel);
             }
-            if ("briangann-gauge-panel".equals(parmOfPanel.getType())) {
+            else if ("briangann-gauge-panel".equals(parmOfPanel.getType())) {
                 WriteD3Panels d3Panels = new WriteD3Panels();
-                Panels panel = new Panels();
-                panel = d3Panels.makeD3Panel(parmOfPanel, parmOfTargetslist);
+                Panels panel = d3Panels.makeD3Panel(parmOfPanel, parmOfTargetslist);
+                panelslist.add(panel);
+            }else if ("singlestat".equals(parmOfPanel.getType())){
+                WriteSingleStatPanels sinPanels = new WriteSingleStatPanels(i);
+                Panels panel = sinPanels.makeSingleStatPanel(parmOfPanel, parmOfTargetslist);
                 panelslist.add(panel);
             }
         }
@@ -54,7 +57,7 @@ public class WriteDashboard {
         dashboard.setTitle(parmOfDashboard.getDashboardName());
         tagslist.add("templated");
         dashboard.setTags(tagslist);
-        dashboard.setTimezone("utc");
+        dashboard.setTimezone("browser");
         dashboard.setRows(rowslist);
         dashboard.setSchemaVersion(6);
         dashboard.setVersion(0);

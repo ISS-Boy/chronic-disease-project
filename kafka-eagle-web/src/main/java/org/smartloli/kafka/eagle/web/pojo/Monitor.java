@@ -11,6 +11,7 @@ public class Monitor {
     private String name;
     private String monitorGroupId;
     private String json;
+    private String imgUrl;
 
     @Override
     public String toString() {
@@ -19,7 +20,16 @@ public class Monitor {
                 ", name='" + name + '\'' +
                 ", monitorGroupId='" + monitorGroupId + '\'' +
                 ", json='" + json + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
                 '}';
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public String getMonitorId() {
@@ -57,10 +67,11 @@ public class Monitor {
     public Monitor() {
     }
 
-    public Monitor(String monitorId, String name, String monitorGroupId, String json) {
+    public Monitor(String monitorId, String name, String monitorGroupId, String json, String imgUrl) {
         this.monitorId = monitorId;
         this.name = name;
         this.monitorGroupId = monitorGroupId;
         this.json = json;
+        this.imgUrl = imgUrl;
     }
 }

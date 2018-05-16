@@ -13,6 +13,16 @@ public class MappingTypes {
 
     private String name;
     private int value;
+
+
+    public MappingTypes() {
+    }
+
+    public MappingTypes(String name, int value) {
+        this.name = name;
+        this.value = value;
+    }
+
     public void setName(String name) {
          this.name = name;
      }

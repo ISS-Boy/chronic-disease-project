@@ -17,6 +17,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>chronic - disease</title>
+
     <jsp:include page="../public/css.jsp"></jsp:include>
     <jsp:include page="../public/tcss.jsp"></jsp:include>
 </head>
@@ -48,9 +49,7 @@
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <c:forEach items="${urls}" varStatus="i" var="url">
-                            <div>
-                                <iframe src="${url}" width="650" height="400" frameborder="0"/>
-                            </div>
+                            <div class="row"><iframe name="iframe-${i.count}" src="${url}" width="1000" height="400" frameborder="0"></iframe></div>
                         </c:forEach>
                     </div>
                 </div>

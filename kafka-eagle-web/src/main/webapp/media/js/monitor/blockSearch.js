@@ -5,7 +5,6 @@
         $('.selectpicker').selectpicker({
         'selectedText': 'cat'
         })
-
     }
     function remove_block() {
         var blockLength = $('.block').children().length;
@@ -134,15 +133,14 @@
     //data封装
     $(function (){
         $('.block_submit').click(function(){
-
-            var blockGroupName = $('.blockGroupName').val();
-            var monitorName = $('.monitorName').val();
-            var w_interval = $('.block_tmpl').find($('.window_row')).children("input[name='w_interval']").val();
+            var blockGroupName = $('.blockGroupName').val()
+            var monitorName = $('.monitorName').val()
+            var w_interval = $('.block_tmpl').find($('.window_row')).children("input[name='w_interval']").val()
             var w_length = $('.block_tmpl').find($('.window_row')).children("input[name='w_length']").val()
-            var f_threshlod = $('.filter_templ').children().children("input[name='f_threshold']").val();
-            var g_threshold = $('.aggregation_group_templ').children().children("input[name='g_threshold']").val();
+            var f_threshlod = $('.filter_templ').children().children("input[name='f_threshold']").val()
+            var g_threshold = $('.aggregation_group_templ').children().children("input[name='g_threshold']").val()
             if(blockGroupName.length==0||monitorName.length==0){
-                alert("命名不能为空！");
+                alert("命名不能为空！")
                 return false
             // }
             // else if(w_interval.length==0||w_length.length==0||f_threshlod.length==0||g_threshold.length==0){
@@ -150,11 +148,11 @@
             //     return false
             }else {
             // 遍历每个block块
-                var blockGroups = {};
-                var blockValues = [];
+                var blockGroups = {}
+                var blockValues = []
                 var empty = false
-                var blockGroupName = $('.blockGroupName').val();
-                blockGroups.blockGroupName = blockGroupName;
+                var blockGroupName = $('.blockGroupName').val()
+                blockGroups.blockGroupName = blockGroupName
 
                 $('.block_tmpl').each(function () {
                     var this_block = $(this)
@@ -246,28 +244,40 @@
                     console.log(filters)
                     // 获取select键值对
                     var selects = []
-                    var selectList = this_block.find($('.select_templ'))
-                    selectList.each(function(){
-                        var meaOrCal = $(this).children().children().children("select[name='s_meaOrCal']").val();
-                        if(localizeDictionary[meaOrCal] != undefined)
-                            meaOrCal = localizeDictionary[meaOrCal]
+                    var alertOnly = this_block.find($('input[type="checkbox"]')).prop('checked')
+                    // 若不是只看警报, 则添加所有select和measure项
+                    if(!alertOnly) {
+                        var selectList = this_block.find($('.select_templ'))
+                        selectList.each(function () {
+                            var meaOrCal = $(this).children().children().children("select[name='s_meaOrCal']").val();
+                            if (localizeDictionary[meaOrCal] != undefined)
+                                meaOrCal = localizeDictionary[meaOrCal]
+                            var select = {
+                                s_source: localizeDictionary[$(this).children().children().children("select[name='s_source']").val()],
+                                s_meaOrCal: meaOrCal
+                            };
+                            //console.log(select)
+                            selects.push(select)
+                        });
+                    }else{
                         var select = {
-                            s_source: localizeDictionary[$(this).children().children().children("select[name='s_source']").val()],
-                            s_meaOrCal: meaOrCal
-                        };
-                        //console.log(select)
-                        selects.push(select);
-                    });
-                    console.log(selects);
-                    block.source  = sourceJson;
-                    block.aggregation = aggregation;
-                    block.filters = filters;
-                    block.selects = selects;
-                    console.log(block);
-                    blockValues.push(block);
+                            s_source: '1',
+                            s_meaOrCal: '1'
+                        }
+                        selects.push(select)
+                    }
+                    console.log(selects)
+
+                    block.source  = sourceJson
+                    block.aggregation = aggregation
+                    block.filters = filters
+                    block.selects = selects
+                    console.log(block)
+                    blockValues.push(block)
                 })
+
                 // 封装最后的blockValues
-                blockGroups.blockValues = blockValues;
+                blockGroups.blockValues = blockValues
 
                 if(empty)
                     return;
@@ -277,25 +287,54 @@
 
                 // 出现加载等待进度条
                 $('.loading').show()
+                $('.cover').show()
 
-                $.ajax({
-                    type: "POST",
-                    url: "/ke/monitor/submitMonitors",
-                    contentType:'application/json',
-                    data: JSON.stringify(blockGroups),
-                    success:function(data){
-                        $('.loading').hide()
-                        console.log(data)
-                        if(data == "success")
-                            window.location.href = "/ke/monitor/monitor_maintain"
-                        else
-                            alert(data)
-                    },
-                    error:function(textStatus, errorThrown){
-                        $('.loading').hide()
-                        console.log(textStatus)
-                        console.log(errorThrown)
-                    }
+                var urls = []
+                var block_size = $('.block_tmpl').length
+                $('.block_tmpl').each(function(){
+                    var targetDom = $(this)
+                    var copyDom = targetDom.clone();
+                    $('#hideCopy').append(copyDom);
+                    html2canvas(copyDom, {
+                        onrendered: function(canvas) {
+                            canvas.id = "mycanvas";
+
+                            //生成base64图片数据
+                            var url = canvas.toDataURL();
+                            urls.push(url)
+                            if(urls.length == block_size){
+                                $('#hideCopy').children().remove()
+                                for(var i in urls){
+                                    blockGroups.blockValues[i].imgUrl = urls[i]
+                                }
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/ke/monitor/submitMonitors",
+                                    contentType:'application/json',
+                                    data: JSON.stringify(blockGroups),
+                                    success:function(data){
+                                        $('.loading').hide()
+                                        $('.cover').hide()
+
+                                        console.log(data)
+                                        if(data == "success")
+                                            window.location.href = "/ke/monitor/monitor_maintain"
+                                        else
+                                            alert(data)
+                                    },
+                                    error:function(textStatus, errorThrown){
+                                        $('.loading').hide()
+                                        $('.cover').hide()
+
+                                        console.log(textStatus)
+                                        console.log(errorThrown)
+                                    }
+                                })
+                            }
+
+                        }//此处可以放参数：width : wid , height : hei*2
+                    });
                 })
             }
         })
@@ -305,6 +344,5 @@
                 if(blockLength>1)
                     $(".block").children().last().remove();
             }
-
         })
     })

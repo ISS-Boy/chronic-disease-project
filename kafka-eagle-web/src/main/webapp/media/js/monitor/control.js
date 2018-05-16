@@ -24,7 +24,7 @@ var localizeDictionary = {
     '体温': 'body-temperature',
     '体温.': 'body_temperature',
     '滑动窗口': 'sliding-window',
-    '滚动窗口': 'tumbling-window',
+    '翻滚窗口': 'tumbling-window',
     '跳跃窗口': 'hopping-window',
     '最小值': 'min',
     '最大值': 'max',
@@ -32,7 +32,7 @@ var localizeDictionary = {
     '计数': 'count',
     '求和': 'sum',
     '增幅': 'amplitude',
-    '增比': 'growth radio',
+    '增比': 'rate',
     '且': 'and',
     '或': 'or'
 }
@@ -81,6 +81,27 @@ function initFunc(new_block){
 
     // 为Calculation块的name输入框创建联动事件
     onCalNameDefine(new_block)
+
+    // 为复选框添加事件
+    readyForCheckBox(new_block)
+}
+
+function readyForCheckBox(this_block){
+    this_block.find($('input[type="checkbox"]')).change(function () {
+        var select_block = $(this).parents(".select_parent")
+        var shouldDisabled = $(this).prop('checked')
+        select_block.find($('select')).each(function () {
+            $(this).attr('disabled', shouldDisabled)
+            $(this).selectpicker('refresh')
+        })
+
+        var add = select_block.find($('span[name="add_select_block"]'))
+        if(shouldDisabled)
+            add.attr('onclick', "")
+        else
+            add.attr('onclick', 'add_select(this)')
+        add.selectpicker('refresh')
+    })
 }
 
 // 为source和measure创建联动事件
@@ -131,6 +152,8 @@ function update(selectedOptions, this_block, block_class, sourceName, measureNam
                     })
                 }
             }
+
+
         }
     })
 
@@ -206,6 +229,12 @@ function onCalNameDefine(this_block, nameBlock){
         nameBlock = $(this_block).find($('.calculation input[name="a_name"]'))
     nameBlock.blur(function () {
         var pBlock = $(this).parents('.block_tmpl')
+        // 命名不允许和现有命名冲突
+        if(localizeDictionary[$(this).val()] != undefined){
+            alert("命名与现有命名冲突, 请更换您的命名")
+            $(this).val("")
+            return false
+        }
 
         // 手动触发事件更新内容
         var selectSources = pBlock.find($('.select select[name="s_source"]'))

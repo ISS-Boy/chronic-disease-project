@@ -14,6 +14,16 @@ public class ValueMaps {
     private String op;
     private String text;
     private String value;
+
+    public ValueMaps() {
+    }
+
+    public ValueMaps(String op, String text, String value) {
+        this.op = op;
+        this.text = text;
+        this.value = value;
+    }
+
     public void setOp(String op) {
          this.op = op;
      }
