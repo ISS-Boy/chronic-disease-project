@@ -12,8 +12,6 @@ public interface MonitorService{
 
      ArrayList<String> getDiseaseUserNum_mon(String disease,String year);
 
-     ArrayList getDiseaseUserNum_per(String year);
-
      Map<String,ArrayList> getDiseaseUserNum_timeline();
 
      List<Monitor> getAllMonitorByGroupId(String monitorGroupId);
@@ -22,5 +20,6 @@ public interface MonitorService{
 
      int deleteMonitorsByGroupId(String monitorId);
 
+     ArrayList<String> getLongtitude(String userid);
 
 }

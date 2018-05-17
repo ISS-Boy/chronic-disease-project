@@ -26,8 +26,7 @@
             <div class="col-lg-12">
 
                 <div>
-                    <select  id="val1"  name="val1" >
-                        <option >2009</option>
+                    <select  id="year"  name="val1" >
                         <option >2010</option>
                         <option >2011</option>
                         <option >2012</option>
@@ -38,10 +37,15 @@
                         <option >2017</option>
                         <option >2018</option>
                     </select>
-                    <select  id="val2"  name="val2" >
+                    <select  id="disease"  name="val2" >
                         <option >Hypertension</option>
                         <option >Chronic sinusitis (disorder)</option>
                         <option >History of appendectomy</option>
+                        <option >Malignant tumor of colon</option>
+                        <option >Asthma</option>
+                        <option >Coronary Heart Disease</option>
+                        <option >Prediabetes</option>
+                        <option >Non-small cell lung cancer (disorder)</option>
                     </select>
                     <button id="sub" type="button">确定</button>
                 </div>
@@ -69,32 +73,31 @@
 </body>
 
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script type="text/javascript">
-    $(function (){
-        $('#sub').click(function(){
-            var value1 = $('#val1').val();
-            var value2 = $('#val2').val();
-            console.log(value1+value2);
-            $.ajax({
-                url:"/ke/monitor/whole_country/getData?value1="+value1+"&value2="+value2,
-                type:"get",
-                dataType:'json',
-                success:function(result){
-                    if(!result){
-
-                    }
-                }
-            })
-            location.reload();
-        })
-    })
-</script>
-
-<script type="text/javascript" src="/ke/media/js/monitor/jquery.js"></script>
 <script type="text/javascript" src="/ke/media/js/monitor/echarts.js"></script>
 <script type="text/javascript" src="/ke/media/js/monitor/bmap.js"></script>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ogQzr2weGLe00PmSAZWf1eZ912ldWp1s"></script>
 <script type="text/javascript" src="/ke/media/js/monitor/disease_history_mon.js"></script>
+<script type="text/javascript">
+    $(function (){
+        $('#sub').click(function(){
+            var value1 = $('#year').val();
+            var value2 = $('#disease').val();
+            $.ajax({
+                url:"/ke/monitor/disease_history_mon/selected?value1="+value1+"&value2="+value2,
+                type:"get",
+                dataType:'json',
+                success:function(){
+                    myChart.showLoading();
+                    setData()
+                },
+                error : function() {
+                }
+            })
+
+        })
+    })
+</script>
+
 <jsp:include page="../public/script.jsp">
     <jsp:param value="main/patient/currentTime.js" name="loader" />
 </jsp:include>

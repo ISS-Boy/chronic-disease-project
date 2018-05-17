@@ -26,63 +26,90 @@
 </head>
 <body>
 <jsp:include page="../public/navbar.jsp"></jsp:include>
+
 <div id="wrapper">
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">
-                    monitor<small>overview</small>
-                </h1>
-                <h3 class="current-time">
-
-                </h3>
+                <div>
+                    <select  id="user_id"  name="val1" >
+                        <option >the-user-1</option>
+                        <option >the-user-2</option>
+                        <option >the-user-3</option>
+                        <option >the-user-4</option>
+                        <option >the-user-5</option>
+                        <option >the-user-6</option>
+                        <option >the-user-7</option>
+                        <option >the-user-8</option>
+                        <option >the-user-9</option>
+                        <option >the-user-10</option>
+                        <option >the-user-11</option>
+                        <option >the-user-12</option>
+                        <option >the-user-13</option>
+                        <option >the-user-14</option>
+                        <option >the-user-15</option>
+                        <option >the-user-16</option>
+                        <option >the-user-17</option>
+                        <option >the-user-18</option>
+                        <option >the-user-19</option>
+                        <option >the-user-20</option>
+                    </select>
+                    <button id="longitude_sub" type="button">刷新</button>
+                </div>
             </div>
         </div>
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
+
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-cogs fa-fw"></i> 实时状态信息
+                        <i class="fa fa-cogs fa-fw"></i> 个人轨迹信息
                     </div>
                     <!-- /.panel-heading -->
-                    <%--<div class="panel-body" style="position: relative;">--%>
-                        <%--<div id="status_info" >--%>
-                            <%--<div class="status_detail"  id="userid">--%>
-                                <%--<i class="fa fa-user"></i>&nbsp;ID：XXX--%>
-                            <%--</div>--%>
-                            <%--<div class="status_detail" id="steps">--%>
-                                <%--<i class="fa fa-angellist"></i>&nbsp;步数：XXX--%>
-                            <%--</div>--%>
-                            <%--<div class="status_detail" id="blood_pressure">--%>
-                                <%--<i class="fa fa-stethoscope"></i>&nbsp;血压：XXX--%>
-                            <%--</div>--%>
-                            <%--<div class="status_detail" id="heart_rate">--%>
-                                <%--<i class="fa fa-heartbeat"></i>&nbsp;心率:XXX--%>
-                            <%--</div>--%>
-                            <%--<div class="status_detail" id="mood_">--%>
-                                <%--<i class="fa fa-smile-o"></i>&nbsp;情绪：XXX--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                        <%--<div id="main" style="height:800px;"></div>--%>
-                        <%--&lt;%&ndash;<img style="margin:20px" width="280" height="140"--%>
-                             <%--src="http://api.map.baidu.com/staticimage/v2?ak=etLBbgQqfQQE3Cb25G29FjDKZtQnzVCp&width=680&height=640&zoom=11"/>&ndash;%&gt;--%>
-                            <%--<script src="/ke/media/js/track/echarts/echarts.js"></script>--%>
-                            <%--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ogQzr2weGLe00PmSAZWf1eZ912ldWp1s"></script>--%>
-                            <%--<script src="/ke/media/js/track/t_js/jquery.min.js"></script>--%>
-                            <%--<script src="/ke/media/js/track/t_js/require.js"></script>--%>
-                            <%--<script src="/ke/media/js/track/t_js/example3.js"></script>--%>
-
-                    <%--</div>--%>
+                    <div id = panel_loading>
+                        <div class="panel-body">
+                            <div id="main" style="height:800px;"></div>
+                            <%--<img style="margin:20px" width="280" height="140"
+                                 src="http://api.map.baidu.com/staticimage/v2?ak=etLBbgQqfQQE3Cb25G29FjDKZtQnzVCp&width=680&height=640&zoom=11"/>--%>
+                            <script src="/ke/media/js/track/echarts/echarts.js"></script>
+                            <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ogQzr2weGLe00PmSAZWf1eZ912ldWp1s"></script>
+                            <script src="/ke/media/js/track/t_js/jquery.min.js"></script>
+                            <script src="/ke/media/js/track/t_js/require.js"></script>
+                            <script src="/ke/media/js/track/t_js/example3.js"></script>
+                        </div>
+                    </div>
                 </div>
-                <!-- /.col-lg-4 -->
             </div>
-            <!-- /.row -->
         </div>
-
     </div>
 </div>
 </body>
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function (){
+        $('#longitude_sub').click(function(){
+            var value1 = $('#user_id').val();
+            $.ajax({
+                url:"/ke/monitor/longtitude/selected?value1="+value1,
+                type:"get",
+                dataType:'json',
+                success:function(){
+                    getdata()
+                },
+                error : function() {
+                }
+            })
+
+        })
+    })
+</script>
+
+
+
+
+
 <jsp:include page="../public/script.jsp">
     <jsp:param value="main/patient/currentTime.js" name="loader" />
 </jsp:include>

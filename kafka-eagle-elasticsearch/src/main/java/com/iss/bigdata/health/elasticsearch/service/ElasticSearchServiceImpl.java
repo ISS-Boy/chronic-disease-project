@@ -554,94 +554,144 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
         return userList.size() == 0 ? null : userList.get(0);
     }
 
+
+    /**
+     * 获取DiseaseUser信息
+     */
+    public ArrayList<UserBasic> getDiseaseUserBasics(String disease,String year){
+        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+        SearchRequest searchRequest = new SearchRequest("conditions");
+        searchRequest.types("synthea");
+        sourceBuilder.query(QueryBuilders.boolQuery().must(QueryBuilders.matchQuery("description.keyword", disease))
+                .must(QueryBuilders.rangeQuery("start").gt(year + "-01-01T00:00:00Z").lt(year+ "-12-31T23:59:59Z")));
+        sourceBuilder.size(MAX_QUERY_SIZE);
+        searchRequest.source(sourceBuilder);
+        SearchResponse result = null;
+        try {
+            result = client.search(searchRequest);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("连接或查询有误, 请检查您的网络连接是否畅通，并检查查询项是否有误!");
+        }
+        SearchHits hits = result.getHits();
+        ArrayList<String> diseaseuser_ids = new ArrayList<String>();
+        for (SearchHit hit : hits.getHits()) {
+            Diseaseuser dis = JSON.parseObject(hit.getSourceAsString(), Diseaseuser.class);
+            diseaseuser_ids.add(dis.getUser_id());
+        }
+        int mod = diseaseuser_ids.size() / 1024;
+        if(mod == 0){
+            mod = 1;
+        }
+        ArrayList<UserBasic> userBasics = new ArrayList<UserBasic>();
+        if(diseaseuser_ids.size()!= 0) {
+            for (int i = 0; i < mod; i++) {
+                SearchRequest searchRequest1 = new SearchRequest("patient");
+                searchRequest1.types("synthea");
+                BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
+                for (String arr : splitList(diseaseuser_ids, 1024).get(i)) {
+                    boolQueryBuilder.should(QueryBuilders.matchQuery("user_id.keyword", arr));
+                }
+                sourceBuilder.query(boolQueryBuilder);
+                sourceBuilder.size(MAX_QUERY_SIZE);
+                searchRequest1.source(sourceBuilder);
+                try {
+                    result = client.search(searchRequest1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    throw new RuntimeException("连接或查询有误, 请检查您的网络连接是否畅通，并检查查询项是否有误!");
+                }
+                SearchHits hits1 = result.getHits();
+                for (SearchHit hit : hits1.getHits()) {
+                    UserBasic userBasic = JSON.parseObject(hit.getSourceAsString(), UserBasic.class);
+                    userBasics.add(userBasic);
+                }
+            }
+        }
+        else{
+            userBasics=null;
+        }
+        return userBasics;
+    }
     /**
      * 获取DiseaseUser某年某地区数量
      */
     @Override
     public ArrayList<String> getDiseaseUserNum_area(String disease,String year) {
 
-
-        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
-        SearchRequest searchRequest = new SearchRequest("conditions");
-        searchRequest.types("synthea");
-
-        sourceBuilder.query(QueryBuilders.boolQuery().must(QueryBuilders.matchQuery("description", disease))
-                .must(QueryBuilders.rangeQuery("start").gt(year+"-01-01T00:00:00Z").lt(year+"-12-31T23:59:59Z")));
-
-        sourceBuilder.size(MAX_QUERY_SIZE);
-        searchRequest.source(sourceBuilder);
-        SearchResponse result = null;
-        try {
-            result = client.search(searchRequest);
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
-            throw new RuntimeException("连接或查询有误, 请检查您的网络连接是否畅通，并检查查询项是否有误!");
-        }
-
-        SearchHits hits = result.getHits();
-
-        ArrayList<Diseaseuser> diseaseusers = new ArrayList<Diseaseuser>();
-        for (SearchHit hit : hits.getHits()) {
-            Diseaseuser dis = JSON.parseObject(hit.getSourceAsString(), Diseaseuser.class);
-            //UserBasic user = getUserBasicByUserId(dis.getUser_id());
-            diseaseusers.add(dis);
-        }
-        ArrayList<String> arrayListNum = new ArrayList<String>();
-        ArrayList<String> arrayListMF = new ArrayList<String>();
-        for (Diseaseuser user : diseaseusers) {
-            String[] array = getUserBasicByUserId(user.getUser_id()).getAddress().split(" ");
-            String gender = getUserBasicByUserId(user.getUser_id()).getGender();
-            if (array[1] == null || array[1].isEmpty()) {
-                array[1] = array[2];
-            }
-            arrayListNum.add(array[1]+":"+gender);
-            arrayListMF.add(array[1]);
-        }
-        Set set = new HashSet(arrayListNum);
-        ArrayList arrNum = new ArrayList();
-        for (Object addr : set) {
-            arrNum.add(addr + ":" + Collections.frequency(arrayListNum, addr));
-        }
-        Collections.sort(arrNum);
-
+        ArrayList<UserBasic> userBasics =getDiseaseUserBasics(disease,year);
         ArrayList<String> arrFM = new ArrayList<String>();
-        String addr1;
-        String addr2;
-        String numberF;
-        String numberM;
-        for (int i = 0; i < arrNum.size() - 1; i++) {
-            addr1 = arrNum.get(i).toString().split(":")[0];
-            addr2 = arrNum.get(i + 1).toString().split(":")[0];
-            if (addr1.equals(addr2)) {
-                numberF = arrNum.get(i).toString().split(":")[2];
-                numberM = arrNum.get(i + 1).toString().split(":")[2];
-                i = i + 1;
-            } else {
-                if (arrNum.get(i).toString().split(":")[1].equals("F")) {
-
-                    numberF = arrNum.get(i).toString().split(":")[2];
+        if(userBasics.size()!=0){
+            ArrayList<String> arrayListMF = new ArrayList<String>();
+            ArrayList<String> arrayListNum = new ArrayList<String>();
+            for (UserBasic user : userBasics) {
+                String[] array = user.getAddress().split(" ");
+                String gender =  user.getGender();
+                if (array[1] == null || array[1].isEmpty()) {
+                    array[1] = array[2];
+                }
+                switch ( array[1]) {
+                    case "广西壮族自治区":
+                        array[1] = "广西";
+                        break;
+                    case "新疆自治区":
+                        array[1] = "新疆";
+                        break;
+                    case "内蒙古自治区":
+                        array[1] = "内蒙古";
+                        break;
+                    case "宁夏回族自治区":
+                        array[1] = "宁夏";
+                        break;
+                }
+                System.out.println(array[1]);
+                arrayListNum.add(array[1] + ":" + gender);
+                arrayListMF.add(array[1]);
+            }
+            Set set = new HashSet(arrayListNum);
+            ArrayList arrNum = new ArrayList();
+            for (Object addr : set) {
+                arrNum.add(addr + ":" + Collections.frequency(arrayListNum, addr));
+            }
+            Collections.sort(arrNum);
+            String addr1;
+            String addr2;
+            String numberF;
+            String numberM;
+            for (int j = 0; j < arrNum.size() - 1; j++) {
+                addr1 = arrNum.get(j).toString().split(":")[0];
+                addr2 = arrNum.get(j + 1).toString().split(":")[0];
+                if (addr1.equals(addr2)) {
+                    numberF = arrNum.get(j).toString().split(":")[2];
+                    numberM = arrNum.get(j + 1).toString().split(":")[2];
+                    j = j + 1;
+                } else {
+                    if (arrNum.get(j).toString().split(":")[1].equals("F")) {
+                        numberF = arrNum.get(j).toString().split(":")[2];
+                        numberM = "0";
+                    } else {
+                        numberF = "0";
+                        numberM = arrNum.get(j).toString().split(":")[2];
+                    }
+                }
+                arrFM.add(addr1 + ":" + numberF + ":" + numberM);
+            }
+            if (!arrNum.get(arrNum.size() - 2).toString().split(":")[0].equals(arrNum.get(arrNum.size() - 1).toString().split(":")[0])) {
+                if (arrNum.get(arrNum.size() - 1).toString().split(":")[0].equals("F")) {
+                    numberF = arrNum.get(arrNum.size() - 1).toString().split(":")[2];
                     numberM = "0";
                 } else {
+                    numberM = arrNum.get(arrNum.size() - 1).toString().split(":")[2];
                     numberF = "0";
-                    numberM = arrNum.get(i).toString().split(":")[2];
                 }
+                arrFM.add(arrNum.get(arrNum.size() - 1).toString().split(":")[0] + ":" + numberF + ":" + numberM);
             }
-            arrFM.add(addr1 + ":" + numberF + ":" + numberM);
+            System.out.println(arrFM);
         }
-
-        if (!arrNum.get(arrNum.size()-2).toString().split(":")[0].equals(arrNum.get(arrNum.size()-1).toString().split(":")[0])) {
-            if (arrNum.get(arrNum.size() - 1).toString().split(":")[0].equals("F")) {
-                numberF = arrNum.get(arrNum.size() - 1).toString().split(":")[2];
-                numberM = "0";
-            } else {
-                numberM = arrNum.get(arrNum.size() - 1).toString().split(":")[2];
-                numberF = "0";
-            }
-            arrFM.add(arrNum.get(arrNum.size() - 1).toString().split(":")[0]  + ":" + numberF + ":" + numberM);
+        else{
+            arrFM = null;
         }
-             return  arrFM;
+        return arrFM;
     }
 
 
@@ -649,119 +699,147 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
      * 获取DiseaseUser某年月数量
      */
  @Override
- public ArrayList<String> getDiseaseUserNum_month(String diseases,String years) {
+ public ArrayList<String> getDiseaseUserNum_month(String disease,String year) {
 
-        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
-        SearchRequest searchRequest = new SearchRequest("conditions");
-        searchRequest.types("synthea");
-        sourceBuilder.query(QueryBuilders.boolQuery().must(QueryBuilders.matchQuery("description", diseases))
-                .must(QueryBuilders.rangeQuery("start").gt(years+"-01-01T00:00:00Z").lt(years+"-12-31T23:59:59Z")));
-        sourceBuilder.size(MAX_QUERY_SIZE);
-        searchRequest.source(sourceBuilder);
-        SearchResponse result = null;
-        try {
-            result = client.search(searchRequest);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException("连接或查询有误, 请检查您的网络连接是否畅通，并检查查询项是否有误!");
-        }
-        SearchHits hits = result.getHits();
-        ArrayList<Diseaseuser> diseaseusers = new ArrayList<Diseaseuser>();
-        for (SearchHit hit : hits.getHits()) {
-            Diseaseuser dis = JSON.parseObject(hit.getSourceAsString(), Diseaseuser.class);
-            diseaseusers.add(dis);
-        }
-        ArrayList<String> arrayListNum = new ArrayList<String>();
-
-        for (Diseaseuser user : diseaseusers) {
-            String gender = getUserBasicByUserId(user.getUser_id()).getGender();
-            String time = user.getStart().toString().split(" ")[1];
-            arrayListNum.add(time+":"+gender);
-        }
-        Set set = new HashSet(arrayListNum);
-        ArrayList arrNum = new ArrayList();
-        for (Object addr : set) {
-            arrNum.add(addr + ":" + Collections.frequency(arrayListNum, addr));
-        }
-        Collections.sort(arrNum);
-        Map<String, ArrayList> mapNum = new HashMap<String, ArrayList>();
-
-        for (int i = 0; i < arrNum.size() - 1; i++) {
-            String  month = arrNum.get(i).toString().split(":")[0];
-            switch (month){
-                case "Jan":
-                    month = "1";
-                    break;
-                case "Feb":
-                    month = "2";
-                    break;
-                case "Mar":
-                    month = "3";
-                    break;
-                case "Apr":
-                    month = "4";
-                    break;
-                case "May":
-                    month = "5";
-                    break;
-                case "Jun":
-                    month = "6";
-                    break;
-                case "Jul":
-                    month = "7";
-                    break;
-                case "Aug":
-                    month = "8";
-                    break;
-                case "Sep":
-                    month = "9";
-                    break;
-                case "Oct":
-                    month = "10";
-                    break;
-                case "Nov":
-                    month = "11";
-                    break;
-                case "Dec":
-                    month = "12";
-                    break;
-            }
-            String  diseaseusernum = arrNum.get(i).toString().split(":")[1]+":"+arrNum.get(i).toString().split(":")[2];
-            if (!mapNum.containsKey(month)) {
-                ArrayList array = new ArrayList();
-                array.add(diseaseusernum);
-                mapNum.put(month,array);
-            }
-            else {
-                mapNum.get(month).add(diseaseusernum);
-            }
-
-        }
-
-     ArrayList returnArraylist = new ArrayList();
-     for (String key : mapNum.keySet()) {
-         if(mapNum.get(key).size()==1){
-             if(mapNum.get(key).get(0).toString().split(":")[1].equals("F")){
-                 returnArraylist.add(key + ":" + mapNum.get(key).get(0).toString().split(":")[1]+":"+"0");
-             }
-             else{
-                 returnArraylist.add(key  +":"+"0"+ ":"+mapNum.get(key).get(0).toString().split(":")[1]);
-             }
-         }
-         else{
-             returnArraylist.add(key + ":" + mapNum.get(key).get(0).toString().split(":")[1]+":"+mapNum.get(key).get(1).toString().split(":")[1]);
-         }
+     SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+     SearchRequest searchRequest = new SearchRequest("conditions");
+     searchRequest.types("synthea");
+     sourceBuilder.query(QueryBuilders.boolQuery().must(QueryBuilders.matchQuery("description.keyword", disease))
+             .must(QueryBuilders.rangeQuery("start").gt(year+"-01-01T00:00:00Z").lt(year+"-12-31T23:59:59Z")));
+     sourceBuilder.size(MAX_QUERY_SIZE);
+     searchRequest.source(sourceBuilder);
+     SearchResponse result = null;
+     try {
+         result = client.search(searchRequest);
+     } catch (IOException e) {
+         e.printStackTrace();
+         throw new RuntimeException("连接或查询有误, 请检查您的网络连接是否畅通，并检查查询项是否有误!");
      }
-     returnArraylist.sort(new Comparator<String>(){
-         public int compare(String o1, String o2) {
-             int i1 = Integer.parseInt(o1.split(":")[0]);
-             int i2 = Integer.parseInt(o2.split(":")[0]);
-             return (i1 - i2);
-
+     SearchHits hits = result.getHits();
+     ArrayList<Diseaseuser> diseaseusers = new ArrayList<Diseaseuser>();
+     ArrayList<String> diseaseuser_ids = new ArrayList<String>();
+     for (SearchHit hit : hits.getHits()) {
+         Diseaseuser dis = JSON.parseObject(hit.getSourceAsString(), Diseaseuser.class);
+         diseaseusers.add(dis);
+     }
+     for (SearchHit hit : hits.getHits()) {
+         Diseaseuser dis = JSON.parseObject(hit.getSourceAsString(), Diseaseuser.class);
+         diseaseuser_ids.add(dis.getUser_id());
+     }
+     ArrayList returnArraylist = new ArrayList();
+     if(diseaseuser_ids.size()!=0) {
+         int mod = diseaseuser_ids.size() / 1024;
+         if (mod == 0) {
+             mod++;
          }
-     });
-       return returnArraylist;
+         ArrayList<UserBasic> userBasics = new ArrayList<UserBasic>();
+         ArrayList<String> arrayListNum = new ArrayList<String>();
+         for (int i = 0; i < mod; i++) {
+             SearchRequest searchRequest1 = new SearchRequest("patient");
+             searchRequest1.types("synthea");
+             BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
+             for (String arr : splitList(diseaseuser_ids, 1024).get(i)) {
+                 boolQueryBuilder.should(QueryBuilders.matchQuery("user_id.keyword", arr));
+             }
+             sourceBuilder.query(boolQueryBuilder);
+             sourceBuilder.size(MAX_QUERY_SIZE);
+             searchRequest1.source(sourceBuilder);
+             try {
+                 result = client.search(searchRequest1);
+             } catch (IOException e) {
+                 e.printStackTrace();
+                 throw new RuntimeException("连接或查询有误, 请检查您的网络连接是否畅通，并检查查询项是否有误!");
+             }
+             SearchHits hits1 = result.getHits();
+             for (SearchHit hit : hits1.getHits()) {
+                 UserBasic userBasic = JSON.parseObject(hit.getSourceAsString(), UserBasic.class);
+                 userBasics.add(userBasic);
+             }
+         }
+         for (int i = 0; i < userBasics.size(); i++) {
+             String gender = userBasics.get(i).getGender();
+             String time = diseaseusers.get(i).getStart().toString().split(" ")[1];
+             arrayListNum.add(time + ":" + gender);
+         }
+         Set set = new HashSet(arrayListNum);
+         ArrayList arrNum = new ArrayList();
+         for (Object addr : set) {
+             arrNum.add(addr + ":" + Collections.frequency(arrayListNum, addr));
+         }
+         Collections.sort(arrNum);
+         Map<String, ArrayList> mapNum = new HashMap<String, ArrayList>();
+         for (int i = 0; i < arrNum.size(); i++) {
+             String month = arrNum.get(i).toString().split(":")[0];
+             switch (month) {
+                 case "Jan":
+                     month = "1";
+                     break;
+                 case "Feb":
+                     month = "2";
+                     break;
+                 case "Mar":
+                     month = "3";
+                     break;
+                 case "Apr":
+                     month = "4";
+                     break;
+                 case "May":
+                     month = "5";
+                     break;
+                 case "Jun":
+                     month = "6";
+                     break;
+                 case "Jul":
+                     month = "7";
+                     break;
+                 case "Aug":
+                     month = "8";
+                     break;
+                 case "Sep":
+                     month = "9";
+                     break;
+                 case "Oct":
+                     month = "10";
+                     break;
+                 case "Nov":
+                     month = "11";
+                     break;
+                 case "Dec":
+                     month = "12";
+                     break;
+             }
+             String diseaseusernum = arrNum.get(i).toString().split(":")[1] + ":" + arrNum.get(i).toString().split(":")[2];
+             if (!mapNum.containsKey(month)) {
+                 ArrayList array = new ArrayList();
+                 array.add(diseaseusernum);
+                 mapNum.put(month, array);
+             } else {
+                 mapNum.get(month).add(diseaseusernum);
+             }
+         }
+         for (String key : mapNum.keySet()) {
+             if (mapNum.get(key).size() == 1) {
+                 if (mapNum.get(key).get(0).toString().split(":")[1].equals("F")) {
+                     returnArraylist.add(key + ":" + mapNum.get(key).get(0).toString().split(":")[1] + ":" + "0");
+                 } else {
+                     returnArraylist.add(key + ":" + "0" + ":" + mapNum.get(key).get(0).toString().split(":")[1]);
+                 }
+             } else {
+                 returnArraylist.add(key + ":" + mapNum.get(key).get(0).toString().split(":")[1] + ":" + mapNum.get(key).get(1).toString().split(":")[1]);
+             }
+         }
+         returnArraylist.sort(new Comparator<String>() {
+             public int compare(String o1, String o2) {
+                 int i1 = Integer.parseInt(o1.split(":")[0]);
+                 int i2 = Integer.parseInt(o2.split(":")[0]);
+                 return (i1 - i2);
+             }
+         });
+     }
+     else{
+         returnArraylist.add("");
+     }
+     return returnArraylist;
 
     }
     @Override
@@ -799,168 +877,64 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
     }
 
 @Override
-    public   ArrayList<String> getDiseaseUserNum_timeline(String diseases,String years){
-        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
-        SearchRequest searchRequest = new SearchRequest("conditions");
-        searchRequest.types("synthea");
-        sourceBuilder.query(QueryBuilders.boolQuery().must(QueryBuilders.matchQuery("description", diseases))
-                .must(QueryBuilders.rangeQuery("start").gt(years+"-01-01T00:00:00Z").lt(years+"-12-31T23:59:59Z")));
-        sourceBuilder.size(MAX_QUERY_SIZE);
-        searchRequest.source(sourceBuilder);
-        SearchResponse result = null;
-        try {
-            result = client.search(searchRequest);
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
-            throw new RuntimeException("连接或查询有误, 请检查您的网络连接是否畅通，并检查查询项是否有误!");
-        }
-        SearchHits hits = result.getHits();
-        ArrayList<Diseaseuser> diseaseusers = new ArrayList<Diseaseuser>();
-        for (SearchHit hit : hits.getHits()) {
-            Diseaseuser dis = JSON.parseObject(hit.getSourceAsString(), Diseaseuser.class);
-            diseaseusers.add(dis);
-        }
-        ArrayList<String> arrayListNum = new ArrayList<String>();
-
-        for (Diseaseuser user : diseaseusers) {
-            String[] array = getUserBasicByUserId(user.getUser_id()).getAddress().split(" ");
-
+    public   ArrayList<String> getDiseaseUserNum_timeline(String disease,String year){
+    ArrayList<UserBasic> userBasics =getDiseaseUserBasics(disease,year);
+    ArrayList returnarr = new ArrayList();
+    ArrayList arrayListNum = new ArrayList();
+    if(userBasics.size()!=0) {
+        for (UserBasic user : userBasics) {
+            String[] array = user.getAddress().split(" ");
             if (array[1] == null || array[1].isEmpty()) {
                 array[1] = array[2];
             }
+            switch ( array[1]) {
+                case "广西壮族自治区":
+                    array[1] = "广西";
+                    break;
+                case "新疆自治区":
+                    array[1] = "新疆";
+                    break;
+                case "内蒙古自治区":
+                    array[1] = "内蒙古";
+                    break;
+                case "宁夏回族自治区":
+                    array[1] = "宁夏";
+                    break;
+            }
             arrayListNum.add(array[1]);
-
         }
         Set set = new HashSet(arrayListNum);
         ArrayList arrNum = new ArrayList();
         for (Object addr : set) {
             arrNum.add(addr + ":" + Collections.frequency(arrayListNum, addr));
         }
-    ArrayList returnarr = new ArrayList();
-    for (Signal e : Signal.values()) {
-        returnarr.add(e.toString()+":"+0);
-    }
-
-    for (int i = 0; i < arrNum.size(); i++) {
-        for(int j = 0; j < returnarr.size(); j++){
-            String addr1 = arrNum.get(i).toString().split(":")[0];
-            String value = arrNum.get(i).toString().split(":")[1];
-            String addr2 =returnarr.get(j).toString().split(":")[0];
-            if(addr1.equals(addr2)){
-                returnarr.set(j,addr1+":"+value);
-                break;
+        for (Signal e : Signal.values()) {
+            returnarr.add(e.toString() + ":" + 0);
+        }
+        for (int i = 0; i < arrNum.size(); i++) {
+            for (int j = 0; j < returnarr.size(); j++) {
+                String addr1 = arrNum.get(i).toString().split(":")[0];
+                String value = arrNum.get(i).toString().split(":")[1];
+                String addr2 = returnarr.get(j).toString().split(":")[0];
+                if (addr1.equals(addr2)) {
+                    returnarr.set(j, addr1 + ":" + value);
+                    break;
+                }
             }
         }
     }
-
-  return  returnarr;
+    else{
+        returnarr.add("");
+    }
+    return  returnarr;
     }
 
 
-@Test
-
-    public void getDiseaseUserNum_area_test() {
-    SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
-    SearchRequest searchRequest = new SearchRequest("conditions");
-    searchRequest.types("synthea");
-    sourceBuilder.query(QueryBuilders.boolQuery().must(QueryBuilders.matchQuery("description", "Hypertension"))
-            .must(QueryBuilders.rangeQuery("start").gt("2018-01-01T00:00:00Z").lt("2018-12-31T23:59:59Z")));
-    sourceBuilder.size(MAX_QUERY_SIZE);
-    searchRequest.source(sourceBuilder);
-    SearchResponse result = null;
-    try {
-        result = client.search(searchRequest);
-
-    } catch (IOException e) {
-
-        e.printStackTrace();
-        throw new RuntimeException("连接或查询有误, 请检查您的网络连接是否畅通，并检查查询项是否有误!");
-    }
-    SearchHits hits = result.getHits();
-    ArrayList<Diseaseuser> diseaseusers = new ArrayList<Diseaseuser>();
-    for (SearchHit hit : hits.getHits()) {
-        Diseaseuser dis = JSON.parseObject(hit.getSourceAsString(), Diseaseuser.class);
-        diseaseusers.add(dis);
-    }
-    ArrayList<String> arrayListNum = new ArrayList<String>();
-
-    for (Diseaseuser user : diseaseusers) {
-        String[] array = getUserBasicByUserId(user.getUser_id()).getAddress().split(" ");
-
-        if (array[1] == null || array[1].isEmpty()) {
-            array[1] = array[2];
-        }
-        if (array[1].length() != 2) {
-            array[1] = array[1].substring(0, 2);
-        }
-        arrayListNum.add(array[1]);
-
-    }
-    Set set = new HashSet(arrayListNum);
-    ArrayList arrNum = new ArrayList();
-    for (Object addr : set) {
-        arrNum.add(addr + ":" + Collections.frequency(arrayListNum, addr));
-    }
-
-    ArrayList returnarr = new ArrayList();
-    for (Signal e : Signal.values()) {
-        returnarr.add(e.toString()+":"+0);
-    }
-
-    for (int i = 0; i < arrNum.size(); i++) {
-        for(int j = 0; j < returnarr.size(); j++){
-            String addr1 = arrNum.get(i).toString().split(":")[0];
-            String value = arrNum.get(i).toString().split(":")[1];
-            String addr2 =returnarr.get(j).toString().split(":")[0];
-            if(addr1.equals(addr2)){
-                returnarr.set(j,addr1+":"+value);
-                break;
-        }
-        }
-    }
-    System.out.println(arrNum);
-    System.out.println(returnarr);
-
-}
 
 
 
 
-    @Test
-    public void getDiseaseUserNumTest1() {
 
-        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
-        SearchRequest searchRequest = new SearchRequest("conditions");
-        searchRequest.types("synthea");
-        sourceBuilder.query(QueryBuilders.boolQuery().must(QueryBuilders.matchQuery("description", "Hypertension"))
-                .must(QueryBuilders.rangeQuery("start").gt("2018-01-01T00:00:00Z").lt("2018-12-31T23:59:59Z")));
-        sourceBuilder.size(MAX_QUERY_SIZE);
-        searchRequest.source(sourceBuilder);
-        SearchResponse result = null;
-        try {
-            result = client.search(searchRequest);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException("连接或查询有误, 请检查您的网络连接是否畅通，并检查查询项是否有误!");
-        }
-        SearchHits hits = result.getHits();
-        ArrayList<Diseaseuser> diseaseusers = new ArrayList<Diseaseuser>();
-        for (SearchHit hit : hits.getHits()) {
-            Diseaseuser dis = JSON.parseObject(hit.getSourceAsString(), Diseaseuser.class);
-            diseaseusers.add(dis);
-        }
-        ArrayList<String> arrayListNum = new ArrayList<String>();
-        int i = 0;
-        for (Diseaseuser user : diseaseusers) {
-            String gender = getUserBasicByUserId(user.getUser_id()).getGender();
-              i ++;
-        }
-        System.out.print(i);
-
-    }
 
 
     @Override
@@ -1058,5 +1032,18 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
         System.out.println("==============" + result);
         System.out.println("==============" + result.size());
         return result;
+    }
+
+    public static <T> List<List<T>> splitList(List<T> list, int pageSize) {
+        List<List<T>> listArray = new ArrayList<List<T>>();
+        List<T> subList = null;
+        for (int i = 0; i < list.size(); i++) {
+            if (i % pageSize == 0) {//每次到达页大小的边界就重新申请一个subList
+                subList = new ArrayList<T>();
+                listArray.add(subList);
+            }
+            subList.add(list.get(i));
+        }
+        return listArray;
     }
 }
