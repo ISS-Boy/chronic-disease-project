@@ -252,6 +252,26 @@ function onCalNameDefine(this_block, nameBlock){
     })
 }
 
+function addListenerForBlockWithElement(this_block, curElement, blockSourceName){
+    var sourceSelected = this_block.find($(".source select"))
+    var sources = sourceSelected.children('option:selected')
+    // 添加选中元素
+    var sourceBlock = curElement.find($('select[name="' + blockSourceName + '"]')).last()
+    sourceBlock.empty()
+    sources.each(function () {
+        sourceBlock.append("<option value='" + $(this).text() + "'>" + $(this).text() + "</option>")
+    })
+    sourceBlock.selectpicker('refresh')
+
+    var measureBlock = sourceBlock.parent().parent().next().find('select')
+
+    // 创建触发函数
+    onchange(sourceBlock, measureBlock)
+
+    // 依据source里的值修改measure的值
+    changeContent(sourceBlock, measureBlock)
+}
+
 function addListenerForBlock(this_block, blockClassName, blockSourceName) {
     var sourceSelected = this_block.find($(".source select"))
     var sources = sourceSelected.children('option:selected')

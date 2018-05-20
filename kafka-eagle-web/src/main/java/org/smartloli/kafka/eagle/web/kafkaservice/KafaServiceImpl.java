@@ -9,6 +9,7 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.smartloli.kafka.eagle.web.help.LimitQueue;
 
+import java.time.Instant;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -27,7 +28,7 @@ public class KafaServiceImpl {
             Properties props = new Properties();
             //配置kafka集群的broker地址，建议配置两个以上，以免其中一个失效，但不需要配全，集群会自动查找leader节点。
             props.put("bootstrap.servers", "192.168.222.226:9092");
-            props.put("group.id", "chronic-lalo-consumer-33");
+            props.put("group.id", "chronic-lalo-consumer-" + Instant.now().toEpochMilli());
             props.put("schema.registry.url", "http://192.168.222.226:8081");
             props.put("enable.auto.commit", true);
             //配置value的序列化类

@@ -64,28 +64,26 @@
         var this_block = $(span).parents('.block_tmpl')
         if(!checkTopicEmpty(this_block))
             return;
-        var aggregations = $(span).parents('.block_tmpl').find($('.aggregation_group')).children();
+        var aggregation_group = $(span).parents('.aggregation_group_panel').find($('.aggregation_group'));
+        var aggregations = aggregation_group.children();
         var length = aggregations.length;
         console.log(length);
         if(length==0)
             $('.aggregation_group').css("border","1px solid #eee");
-        var aggregation_group = $(span).parents('.aggregation_group_panel').find('.aggregation_group');
         $('#calculationTmpl').tmpl().appendTo(aggregation_group);
         $('.selectpicker').selectpicker({
         'selectedText': 'cat'  
         });
         // 为input添加响应事件
-        addListenerForBlock(this_block, '.aggregation_group', 'g_source')
+        addListenerForBlockWithElement(this_block, aggregation_group, 'g_source')
     }
 
     function remove_aggregation_predicate(span) {
-        var aggregations = $(span).parents('.block_tmpl').find($('.aggregation_group')).children();
+        var aggregations = $(span).parents('.aggregation_group_panel').find($('.aggregation_group')).children();
         var length = aggregations.length;
         console.log(length);
         if (length < 2)
             $('.aggregation_group').css("border","none");
-        //  var aggregations = $(span).parents('.block_tmpl').find($('.aggregation_group')).children();
-        // if (aggregations.length>1)
         $(span).parents('.aggregation_group_templ').remove();
     }
 

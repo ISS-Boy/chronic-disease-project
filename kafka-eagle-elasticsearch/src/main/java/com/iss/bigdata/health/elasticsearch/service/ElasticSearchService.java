@@ -179,10 +179,7 @@ public interface ElasticSearchService {
      */
     ArrayList<String> getDiseaseUserNum_month(String diseases, String years);
 
-    /**获取各个病种总近十年人数统计
-     *
-     */
-    int getDiseaseUserNum_per(String years, String diseases);
+
 
     ArrayList<String> getDiseaseUserNum_timeline(String diseases, String years);
 

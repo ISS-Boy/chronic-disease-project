@@ -380,15 +380,17 @@
 			<div class="panel-body">
                 <div class="input-group select_parent">
 					<div class="row">
-						<span>选择</span>
-                        <span onclick="add_select(this)"><img
-                                src="/ke/media/img/01.gif"/></span>
-                        <span style="margin-left: 10%">
-                            <input type="checkbox" name="s_alert" value="只看警报">只看警报
-                        </span>
+					    <div class="col-md-12">
+                            <span>选择</span>
+                            <span onclick="add_select(this)"><img
+                                    src="/ke/media/img/01.gif"/></span>
+                            <span style="margin-left: 10%">
+                                <input type="checkbox" name="s_alert" value="只看警报">只看警报
+                            </span>
+                        </div>
 					</div>
 					<div class="row select">
-						<div class="select_templ">
+						<div class="select_templ col-md-12">
 							<div class="select_row">
 								<select class="selectpicker"  data-live-search="true" name="s_source">
 									<option>数据源</option>
@@ -410,10 +412,8 @@
 		</div>
 	</div>
 </div>
+</script>
 
-
-
-    </script>
     <script id="aggregationWindowTmpl" type="text/x-jquery-tmpl">
     <div class="panel window_">
 
