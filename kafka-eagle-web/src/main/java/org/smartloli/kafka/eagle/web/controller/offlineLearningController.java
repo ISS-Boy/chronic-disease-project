@@ -80,7 +80,7 @@ public class offlineLearningController {
 
 
             logger.info(conditions.size() + "===" + gender + "===" + startDate + "===" + endDate);
-            List<PatientInfo> patientInfos = offLineLearningService.searchPatientByConditions(startDate, endDate, gender, conditions);
+            List<PatientInfo> patientInfos = offLineLearningService.searchPatientByConditions(ageStart, ageEnd, gender, conditions);
             System.out.println(patientInfos);
             mv.addObject("patients",patientInfos);
         } else if (type.equals("0")) {

@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Alarm - KafkaEagle</title>
+<title>慢病大数据 - 警报</title>
 <jsp:include page="../public/css.jsp"></jsp:include>
 <jsp:include page="../public/tcss.jsp"></jsp:include>
 </head>
@@ -25,7 +25,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">
-						Alarm <small>configure</small>
+						警报 <small>配置</small>
 					</h1>
 				</div>
 				<!-- /.col-lg-12 -->
@@ -36,8 +36,7 @@
 					<div class="alert alert-info alert-dismissable">
 						<button type="button" class="close" data-dismiss="alert"
 							aria-hidden="true">×</button>
-						<i class="fa fa-info-circle"></i> <strong>Manage alarm
-							records .</strong>
+						<i class="fa fa-info-circle"></i> <strong>管理警报记录.</strong>
 					</div>
 				</div>
 			</div>
@@ -46,7 +45,7 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<i class="fa fa-pencil"></i> Alarm list
+							<i class="fa fa-pencil"></i> 警报列表
 							<div class="pull-right"></div>
 						</div>
 						<!-- /.panel-heading -->
@@ -55,13 +54,13 @@
 								width="100%">
 								<thead>
 									<tr>
-										<th>Group</th>
-										<th>Topic</th>
-										<th>Lag</th>
-										<th>Owner</th>
-										<th>Created</th>
-										<th>Modify</th>
-										<th>Operate</th>
+										<th>组</th>
+										<th>主题</th>
+										<th>之后</th>
+										<th>警报接受者</th>
+										<th>创建时间</th>
+										<th>修改时间</th>
+										<th>操作</th>
 									</tr>
 								</thead>
 							</table>
@@ -82,7 +81,7 @@
 						</div>
 						<!-- /.row -->
 						<div class="modal-body">
-							<p>Are you sure you want to delete it?
+							<p>您是否确定删除?
 							<p>
 						</div>
 						<div id="remove_div" class="modal-footer"></div>

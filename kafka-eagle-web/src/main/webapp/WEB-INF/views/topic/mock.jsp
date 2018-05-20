@@ -14,7 +14,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Mock - KafkaEagle</title>
+<title>慢病大数据 - 伪生产者</title>
 <jsp:include page="../public/css.jsp">
 	<jsp:param value="plugins/select2/select2.min.css" name="css" />
 </jsp:include>
@@ -27,7 +27,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">
-						Mock <small>message</small>
+						伪生产者
 					</h1>
 				</div>
 				<!-- /.col-lg-12 -->
@@ -38,9 +38,7 @@
 					<div class="alert alert-info alert-dismissable">
 						<button type="button" class="close" data-dismiss="alert"
 							aria-hidden="true">×</button>
-						<i class="fa fa-info-circle"></i> <strong>Select kafka
-							topic, then edit the simulation message, and then click send to
-							produce the message.</strong>
+						<i class="fa fa-info-circle"></i> <strong>选择一个主题，然后向他发送一些信息.</strong>
 					</div>
 				</div>
 			</div>
@@ -49,39 +47,36 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<i class="fa fa-cogs fa-fw"></i> Content
+							<i class="fa fa-cogs fa-fw"></i> 内容
 							<div class="pull-right"></div>
 						</div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<div class="form-group">
-								<label>Topic Name (*)</label> <select id="select2val"
+								<label>主题名 (*)</label> <select id="select2val"
 									name="select2val" tabindex="-1"
 									style="width: 100%; font-family: 'Microsoft Yahei', 'HelveticaNeue', Helvetica, Arial, sans-serif; font-size: 1px;"></select>
 								<input id="ke_topic_mock" name="ke_topic_mock" type="hidden" />
 								<label for="inputError" class="control-label text-danger"><i
-									class="fa fa-info-circle"></i> Select the topic you need to
-									alarm .</label>
+									class="fa fa-info-circle"></i> 选择你想要发送信息的.</label>
 							</div>
 							<div class="form-group">
-								<label>Message (*)</label>
+								<label>消息 (*)</label>
 								<textarea id="ke_mock_content" name="ke_mock_content"
-									class="form-control" placeholder="Limit 120 words." rows="3"
+									class="form-control" placeholder="限制120词." rows="3"
 									maxlength="120"></textarea>
 								<label for="inputError" class="control-label text-danger"><i
-									class="fa fa-info-circle"></i> Write something and send message
-									to topic .</label>
+									class="fa fa-info-circle"></i> 写入一些消息发送到主题中.</label>
 							</div>
 							<button type="button" class="btn btn-primary" id="btn_send">Send
 							</button>
 							<div id="alert_mssage_mock" style="display: none"
 								class="alert alert-danger">
-								<label>Oops! Please make some changes . (*) is required
-									.</label>
+								<label>错误！需要 (*).</label>
 							</div>
 							<div id="success_mssage_mock" style="display: none"
 								class="alert alert-success">
-								<label>Message sent success .</label>
+								<label>消息发送成功.</label>
 							</div>
 						</div>
 					</div>

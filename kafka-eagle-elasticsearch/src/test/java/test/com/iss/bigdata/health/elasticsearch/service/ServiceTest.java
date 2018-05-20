@@ -32,7 +32,6 @@ public class ServiceTest {
         start = calendar.getTime();
         calendar.set(Calendar.YEAR, 3000);
         end = calendar.getTime();
-
     }
 
     @Test
@@ -71,8 +70,22 @@ public class ServiceTest {
                 System.out.println(encounter.get(i));
             }
         }
+    }
 
+    @Test
+    public void getAllEncountersTest(){
+        TreeMap<Integer, String> resultMap = new TreeMap<>();
+        for(int i = 0; i < 10000; i++){
+            String userId = "the-user-" + i;
+            Map<String, List<Encounter>> encounters = service.getEncounterEventsByUserId(userId, start, end);
+            Optional<Integer> result = encounters.entrySet()
+                                                 .stream()
+                                                 .map(e -> e.getValue().size())
+                                                 .reduce((i1, i2) -> i1 + i2);
+            resultMap.put(result.get(), userId);
+        }
 
+        System.out.println(resultMap);
     }
 
     @Test

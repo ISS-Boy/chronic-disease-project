@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Dashboard - KafkaEagle</title>
+<title>慢病大数据 - 集群资源总览</title>
 <jsp:include page="../public/css.jsp"></jsp:include>
 </head>
 <style type="text/css">
@@ -41,7 +41,7 @@ path.link {
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">
-						Dashboard <small>overview</small>
+						Kafka资源状况 <small>总览</small>
 					</h1>
 				</div>
 				<!-- /.col-lg-12 -->
@@ -52,14 +52,15 @@ path.link {
 					<div class="alert alert-info alert-dismissable">
 						<button type="button" class="close" data-dismiss="alert"
 							aria-hidden="true">×</button>
-						<i class="fa fa-info-circle"></i> <strong>Dashboard
-							display topic Kafka related information and Kafka cluster
-							information as well as Zookeeper cluster information</strong> If you don't
-						know the usage of Kafka and Zookeeper, you can visit the website
-						of <a href="http://kafka.apache.org/" target="_blank"
-							class="alert-link">Kafka</a> and <a
+						<i class="fa fa-info-circle"></i>
+						<strong>
+						集群状态管理部分展示了Kafka和Zookeeper的一些相关集群信息，
+						并提供相应的管理功能
+						</strong>
+						如果不了解这些信息，请通过访问<a href="http://kafka.apache.org/" target="_blank"
+							class="alert-link">Kafka</a> 和 <a
 							href="http://zookeeper.apache.org/" target="_blank"
-							class="alert-link">Zookeeper</a> to view the relevant usage.
+							class="alert-link">Zookeeper</a> 去了解相关概念.
 					</div>
 				</div>
 			</div>
@@ -74,13 +75,13 @@ path.link {
 								</div>
 								<div class="col-xs-9 text-right">
 									<div id="brokers_count" class="huge">0</div>
-									<div>Brokers</div>
+									<div>Kafka服务器</div>
 								</div>
 							</div>
 						</div>
 						<a href="/ke/cluster/info">
 							<div class="panel-footer">
-								<span class="pull-left">View Details</span> <span
+								<span class="pull-left">查看详情</span> <span
 									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 								<div class="clearfix"></div>
 							</div>
@@ -96,13 +97,13 @@ path.link {
 								</div>
 								<div class="col-xs-9 text-right">
 									<div id="topics_count" class="huge">0</div>
-									<div>Topics</div>
+									<div>Kafka主题</div>
 								</div>
 							</div>
 						</div>
 						<a href="/ke/topic/list">
 							<div class="panel-footer">
-								<span class="pull-left">View Details</span> <span
+								<span class="pull-left">查看详情</span> <span
 									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 								<div class="clearfix"></div>
 							</div>
@@ -124,7 +125,7 @@ path.link {
 						</div>
 						<a href="/ke/cluster/info">
 							<div class="panel-footer">
-								<span class="pull-left">View Details</span> <span
+								<span class="pull-left">查看详情</span> <span
 									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 								<div class="clearfix"></div>
 							</div>
@@ -140,13 +141,13 @@ path.link {
 								</div>
 								<div class="col-xs-9 text-right">
 									<div id="consumers_count" class="huge">0</div>
-									<div>ConsumerGroups</div>
+									<div>Kafka消费者组</div>
 								</div>
 							</div>
 						</div>
 						<a href="/ke/consumers">
 							<div class="panel-footer">
-								<span class="pull-left">View Details</span> <span
+								<span class="pull-left">查看详情</span> <span
 									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 								<div class="clearfix"></div>
 							</div>
@@ -159,7 +160,7 @@ path.link {
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<i class="fa fa-tasks fa-fw"></i> Kafka Brokers
+							<i class="fa fa-tasks fa-fw"></i> Kafka 服务器概览
 							<div class="pull-right"></div>
 						</div>
 						<!-- /.panel-heading -->

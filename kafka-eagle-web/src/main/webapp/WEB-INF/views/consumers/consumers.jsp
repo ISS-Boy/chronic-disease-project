@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Consumers - KafkaEagle</title>
+<title>慢病大数据 - 消费者</title>
 <jsp:include page="../public/css.jsp"></jsp:include>
 <jsp:include page="../public/tcss.jsp"></jsp:include>
 </head>
@@ -44,7 +44,7 @@ path.link {
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">
-						Consumers <small>overview</small>
+						消费者 <small>总览</small>
 					</h1>
 				</div>
 				<!-- /.col-lg-12 -->
@@ -55,8 +55,7 @@ path.link {
 					<div class="alert alert-info alert-dismissable">
 						<button type="button" class="close" data-dismiss="alert"
 							aria-hidden="true">×</button>
-						<i class="fa fa-info-circle"></i> <strong>List all
-							consumers information.</strong>
+						<i class="fa fa-info-circle"></i> <strong>列出所有的消费者.</strong>
 					</div>
 				</div>
 			</div>
@@ -65,7 +64,7 @@ path.link {
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<i class="fa fa-user fa-fw"></i> Consumers Info
+							<i class="fa fa-user fa-fw"></i> 消费者信息
 							<div class="pull-right"></div>
 						</div>
 						<!-- /.panel-heading -->
@@ -75,10 +74,10 @@ path.link {
 									<thead>
 										<tr>
 											<th>ID</th>
-											<th>Group</th>
-											<th>Topics</th>
-											<th>Node</th>
-											<th>Active Numbers</th>
+											<th>消费者组</th>
+											<th>主题</th>
+											<th>节点</th>
+											<th>活动节点数量</th>
 										</tr>
 									</thead>
 								</table>
@@ -94,7 +93,7 @@ path.link {
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<i class="fa fa-comment fa-fw"></i> Active Topic
+							<i class="fa fa-comment fa-fw"></i> 活动主题
 							<div class="pull-right"></div>
 						</div>
 						<!-- /.panel-heading -->
@@ -113,8 +112,7 @@ path.link {
 					<div class="modal-content">
 						<div class="modal-header">
 							<button class="close" type="button" data-dismiss="modal">×</button>
-							<h4 class="modal-title" id="keModalLabel">Details of the
-								consumer group</h4>
+							<h4 class="modal-title" id="keModalLabel">消费者组细节</h4>
 						</div>
 						<div class="modal-body">
 							<!-- /.row -->
@@ -122,7 +120,7 @@ path.link {
 								<div class="col-lg-12">
 									<div id="consumer_detail_children" class="panel panel-default">
 										<div class="panel-heading">
-											<i class="fa fa-comment fa-fw"></i> Consumer Topic
+											<i class="fa fa-comment fa-fw"></i> 消费者主题
 											<div class="pull-right"></div>
 										</div>
 										<!-- /.panel-heading -->

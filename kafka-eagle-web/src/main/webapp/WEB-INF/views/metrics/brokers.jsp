@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Brokers - KafkaEagle</title>
+<title>慢病大数据 - 服务器监控</title>
 <jsp:include page="../public/css.jsp"></jsp:include>
 </head>
 
@@ -24,7 +24,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">
-						Brokers Metrics <small>overview</small>
+						服务器监控<small>总览</small>
 					</h1>
 				</div>
 				<!-- /.col-lg-12 -->
@@ -35,10 +35,9 @@
 					<div class="alert alert-info alert-dismissable">
 						<button type="button" class="close" data-dismiss="alert"
 							aria-hidden="true">×</button>
-						<i class="fa fa-info-circle"></i> <strong>Through JMX to
-							obtain data, monitor the Kafka client, the production side, the
-							number of messages, the number of requests, processing time and
-							other data to visualize performance .</strong>
+						<i class="fa fa-info-circle"></i> <strong>
+						通过JMX监控去获取数据，监控Kafka客户端，生产者和消费者，请求数据
+						，处理数据性能参数问题.</strong>
 					</div>
 				</div>
 			</div>
@@ -47,7 +46,7 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<i class="fa fa-tasks fa-fw"></i> Kafka Brokers MBean
+							<i class="fa fa-tasks fa-fw"></i> Kafka服务器MBean
 							<div class="pull-right"></div>
 						</div>
 						<!-- /.panel-heading -->

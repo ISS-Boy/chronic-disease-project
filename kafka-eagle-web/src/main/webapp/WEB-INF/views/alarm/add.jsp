@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Alarm - KafkaEagle</title>
+<title>慢病大数据 - 警报</title>
 <jsp:include page="../public/css.jsp"></jsp:include>
 <jsp:include page="../public/tagcss.jsp"></jsp:include>
 </head>
@@ -25,7 +25,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">
-						Alarm <small>add</small>
+						警报 <small>添加</small>
 					</h1>
 				</div>
 				<!-- /.col-lg-12 -->
@@ -36,8 +36,8 @@
 					<div class="alert alert-info alert-dismissable">
 						<button type="button" class="close" data-dismiss="alert"
 							aria-hidden="true">×</button>
-						<i class="fa fa-info-circle"></i> <strong>Create a
-							certain threshold topic, and alarm.</strong>
+						<i class="fa fa-info-circle"></i> <strong>
+						创建一个包含某阈值的主题以及相关的警报.</strong>
 					</div>
 				</div>
 			</div>
@@ -46,7 +46,7 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<i class="fa fa-tasks fa-fw"></i> Topic Setting
+							<i class="fa fa-tasks fa-fw"></i> 主题设置
 							<div class="pull-right"></div>
 						</div>
 						<!-- /.panel-heading -->
@@ -56,44 +56,40 @@
 									<form role="form" action="/ke/alarm/add/form" method="post"
 										onsubmit="return contextFormValid();return false;">
 										<div class="form-group">
-											<label>Topic Group (*)</label> <input id="ke_group_alarm"
+											<label>主题组 (*)</label> <input id="ke_group_alarm"
 												name="ke_group_alarm" class="form-control" maxlength=50
 												value="1"><input id="ke_group_alarms"
 												name="ke_group_alarms" type="hidden"> <label
 												for="inputError" class="control-label text-danger"><i
-												class="fa fa-info-circle"></i> Select the group you need to
-												alarm .</label>
+												class="fa fa-info-circle"></i> 选择一个你安置警报的主题组名.</label>
 										</div>
 										<div class="form-group">
-											<label>Topic Name (*)</label> <input id="ke_topic_alarm"
+											<label>主题名称 (*)</label> <input id="ke_topic_alarm"
 												name="ke_topic_alarm" class="form-control" maxlength=50
 												value="1"><input id="ke_topic_alarms"
 												name="ke_topic_alarms" type="hidden"> <label
 												for="inputError" class="control-label text-danger"><i
-												class="fa fa-info-circle"></i> Select the topic you need to
-												alarm .</label>
+												class="fa fa-info-circle"></i> 选择你想要添加警报的主题 .</label>
 										</div>
 										<div class="form-group">
-											<label>Lag Threshold (*)</label> <input id="ke_topic_lag"
+											<label>延迟阈值 (*)</label> <input id="ke_topic_lag"
 												name="ke_topic_lag" class="form-control" maxlength=50
 												value="1"> <label for="inputError"
 												class="control-label text-danger"><i
-												class="fa fa-info-circle"></i> Setting the blocking
-												threshold, Parameters must be numeric .</label>
+												class="fa fa-info-circle"></i>
+												设置消费者消费与最新消息的延迟阈值, 参数必须是数字.</label>
 										</div>
 										<div class="form-group">
-											<label>Owner Email (*)</label> <input id="ke_topic_email"
+											<label>报警邮箱 (*)</label> <input id="ke_topic_email"
 												name="ke_topic_email" class="form-control" maxlength=50
 												value="example1@email.com"><label for="inputError"
 												class="control-label text-danger"><i
-												class="fa fa-info-circle"></i> To whom the alarm topic
-												information, Such as 'example@email.com' .</label>
+												class="fa fa-info-circle"></i> 例如 'example@email.com' .</label>
 										</div>
 										<button type="submit" class="btn btn-success">Add</button>
 										<div id="alert_mssage" style="display: none"
 											class="alert alert-danger">
-											<label>Oops! Please make some changes . (*) is
-												required .</label>
+											<label>错误, 需要 (*) !.</label>
 										</div>
 									</form>
 								</div>

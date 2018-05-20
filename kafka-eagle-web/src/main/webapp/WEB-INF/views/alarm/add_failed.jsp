@@ -6,7 +6,7 @@
 <html lang="zh">
 
 <head>
-<title>Failed - KafkaEagle</title>
+<title>慢病大数据 - 失败</title>
 <jsp:include page="../public/css.jsp"></jsp:include>
 </head>
 
@@ -17,7 +17,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">
-						Alarm <small>create</small>
+						警报 <small>创建</small>
 					</h1>
 				</div>
 				<!-- /.col-lg-12 -->
@@ -30,7 +30,7 @@
 							aria-hidden="true">×</button>
 						<i class="fa fa-info-circle"></i> <strong>${Alarm_Submit_Status}</strong>
 						<a class="btn btn-large btn-primary" href="/ke/alarm/add">
-							<span class="ui-button-text">Create Again</span>
+							<span class="ui-button-text">再次创建</span>
 						</a>
 					</div>
 				</div>

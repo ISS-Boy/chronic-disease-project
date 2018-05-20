@@ -38,6 +38,11 @@ function handlerSelect(encounter_id) {
     * */
     var userId = $('.eventDetail_btn').val();
     console.log(userId);
+    if($('#medicationDetail').hasClass('dataTable')){
+        var medPre = $("#medicationDetail").dataTable()
+        medPre.fnClearTable()
+        medPre.fnDestroy()
+    }
     var medicationTable = $("#medicationDetail").DataTable({
         "ajax": "/ke/patient_analysis/history/getMedicationDetailById?encounter_id="+encounter_id+"&userId="+userId,
         "order": [[ 2, "desc" ]],
@@ -85,6 +90,11 @@ function handlerSelect(encounter_id) {
     * allergyTable
     *
     * */
+    if($('#allergyDetail').hasClass('dataTable')){
+        var medPre = $("#allergyDetail").dataTable()
+        medPre.fnClearTable()
+        medPre.fnDestroy()
+    }
     var allergyTable =  $("#allergyDetail").DataTable({
         "ajax": "/ke/patient_analysis/history/getAllergyDetailById?encounter_id="+encounter_id+"&userId="+userId
     });
@@ -93,6 +103,11 @@ function handlerSelect(encounter_id) {
     * carePlanTable
     *
     * */
+    if($('#carePlanDetail').hasClass('dataTable')){
+        var medPre = $("#carePlanDetail").dataTable()
+        medPre.fnClearTable()
+        medPre.fnDestroy()
+    }
     var carePlanTable = $("#carePlanDetail").DataTable({
         "ajax": "/ke/patient_analysis/history/getCarePlanDetailById?encounter_id="+encounter_id+"&userId="+userId,
         "order": [[ 2, "desc" ]],
@@ -134,6 +149,11 @@ function handlerSelect(encounter_id) {
     * conditonTable
     *
     * */
+    if($('#conditionDetail').hasClass('dataTable')){
+        var medPre = $("#conditionDetail").dataTable()
+        medPre.fnClearTable()
+        medPre.fnDestroy()
+    }
     var conditionTable = $("#conditionDetail").DataTable({
         "ajax": "/ke/patient_analysis/history/getConditionDetailById?encounter_id="+encounter_id+"&userId="+userId,
         "order": [[ 2, "desc" ]],
@@ -180,10 +200,20 @@ function handlerSelect(encounter_id) {
      *immunizationTable
      *
      * */
+    if($('#immunizationDetail').hasClass('dataTable')){
+        var medPre = $("#immunizationDetail").dataTable()
+        medPre.fnClearTable()
+        medPre.fnDestroy()
+    }
     var immunizationTable = $("#immunizationDetail").DataTable({
         "ajax": "/ke/patient_analysis/history/getImmunizationDetailById?encounter_id="+encounter_id+"&userId="+userId
     });
 
+    if($('#ObservationDetail').hasClass('dataTable')){
+        var medPre = $("#ObservationDetail").dataTable()
+        medPre.fnClearTable()
+        medPre.fnDestroy()
+    }
     $("#ObservationDetail").DataTable({
         "ajax": "/ke/patient_analysis/history/getObservationDetailById?encounter_id="+encounter_id+"&userId="+userId,
         "sScrollX":"100%",

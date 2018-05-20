@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Topic Message - KafkaEagle</title>
+<title>慢病大数据 - 主题消息查询</title>
 <jsp:include page="../public/css.jsp"></jsp:include>
 <jsp:include page="../public/tcss.jsp"></jsp:include>
 </head>
@@ -32,7 +32,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">
-						Topic <small>message</small>
+						主题 <small>消息查询</small>
 					</h1>
 				</div>
 				<!-- /.col-lg-12 -->
@@ -43,7 +43,7 @@
 					<div class="alert alert-info alert-dismissable">
 						<button type="button" class="close" data-dismiss="alert"
 							aria-hidden="true">×</button>
-						<i class="fa fa-info-circle"></i> Sample SQL query: <strong>SELECT "partition","offset","msg" FROM "KE_Test_Topic_NAME" WHERE "partition" IN (0,1,2) limit 10</strong> 
+						<i class="fa fa-info-circle"></i> 查询样例: <strong>SELECT "partition","offset","msg" FROM "KE_Test_Topic_NAME" WHERE "partition" IN (0,1,2) limit 10</strong>
 					</div>
 				</div>
 			</div>
@@ -52,7 +52,7 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<i class="fa fa-tasks fa-fw"></i> Kafka Query SQL
+							<i class="fa fa-tasks fa-fw"></i> Kafka查询Sql
 							<div class="pull-right"></div>
 						</div>
 						<!-- /.panel-heading -->
@@ -61,7 +61,7 @@
 								<form>
 									<textarea id="code" name="code"></textarea>
 								</form>
-								<a name="run_task" class="btn btn-success">Query</a>
+								<a name="run_task" class="btn btn-success">查询</a>
 							</div>
 
 						</div>
@@ -75,7 +75,7 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<i class="fa fa-comments fa-fw"></i> Tasks Job Info
+							<i class="fa fa-comments fa-fw"></i> 查询任务信息
 							<div class="pull-right"></div>
 						</div>
 						<!-- /.panel-heading -->
@@ -83,8 +83,8 @@
 							<div>
 								<ul id="result_tab" class="nav nav-tabs">
 									<li class="active"><a href="#log_textarea"
-										data-toggle="tab">Logs</a></li>
-									<li><a href="#result_textarea" data-toggle="tab">Result</a></li>
+										data-toggle="tab">日志信息</a></li>
+									<li><a href="#result_textarea" data-toggle="tab">查询结果</a></li>
 								</ul>
 							</div>
 							<div class="tab-content">

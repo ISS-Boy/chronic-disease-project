@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Trend - Hive Cube</title>
+<title>慢病大数据 - 消息趋势</title>
 <jsp:include page="../public/css.jsp">
 	<jsp:param value="plugins/datatimepicker/daterangepicker.css"
 		name="css" />
@@ -26,7 +26,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">
-						MBean Trend <small>details</small>
+						MBean 趋势 <small>详情</small>
 					</h1>
 					<div id="reportrange"
 						style="position: absolute; top: 46px; left: 964px; width: 230px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;">
@@ -42,10 +42,9 @@
 					<div class="alert alert-info alert-dismissable">
 						<button type="button" class="close" data-dismiss="alert"
 							aria-hidden="true">×</button>
-						<i class="fa fa-info-circle"></i> <strong>Through JMX to
-							obtain data, monitor the Kafka client, the production side, the
-							number of messages, the number of requests, processing time and
-							other data to visualize performance .</strong>
+						<i class="fa fa-info-circle"></i> <strong>
+						通过JMX监控去获取数据，监控Kafka客户端，生产者和消费者，请求数据
+						，处理数据性能参数问题.</strong>
 					</div>
 				</div>
 			</div>
@@ -56,7 +55,7 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<i class="fa fa-bar-chart-o fa-fw"></i> <strong>Kafka
-								Message In (per/sec)</strong>
+								消息生产(per/sec)</strong>
 							<div class="pull-right"></div>
 						</div>
 						<!-- /.panel-heading -->
@@ -71,7 +70,7 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<i class="fa fa-bar-chart-o fa-fw"></i> <strong>Kafka
-								Message In And Out</strong>
+								消息生产和消费</strong>
 							<div class="pull-right"></div>
 						</div>
 						<!-- /.panel-heading -->
@@ -86,7 +85,7 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<i class="fa fa-bar-chart-o fa-fw"></i> <strong> Kafka
-								Fetch And Produce Fails (per/sec) </strong>
+								消息生产和消费失败 (per/sec) </strong>
 							<div class="pull-right"></div>
 						</div>
 						<!-- /.panel-heading -->

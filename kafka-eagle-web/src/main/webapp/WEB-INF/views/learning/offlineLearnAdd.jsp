@@ -44,9 +44,9 @@
 									 -<input id="ageEnd" name="ageEnd" style="width: 42px" onblur="checkAge();" type="number" placeholder="68" value="${ageEnd}"/>
 								</div>
 							</div>
-							<div style="width: 80px;height:26px;float: left;overflow: hidden">性别
+							<div style="width: 100px;height:26px;float: left;overflow: hidden">性别
 								<select style="height: 26px" name="gender" id="gender" title="性别">
-									<option value=null></option>
+									<option value="all">全部</option>
 									<option value="F">女</option>
 									<option value="M">男</option>
 								</select>
@@ -54,7 +54,7 @@
 							<div style="width: 360px;height:26px;float: left;overflow: hidden">
 								病史
 								<select style="width: 300px;height: 26px" name="disease" id="disease" title="病史">
-									<option value=null></option>
+									<option value="all">============全选============</option>
 									<c:forEach items="${allDisease}" var="disease">
 										<option value="${disease.diseaseName }">${disease.diseaseName }</option>
 									</c:forEach>
@@ -65,12 +65,6 @@
 							</div>
 							<div style="width: 50px;height:36px;float: left;overflow: hidden">
 								<a class='btn btn-primary' id="nextStep" title="下一步" onclick="toNext();"><i class="fa fa-hand-o-right"></i></a>
-							</div>
-							<div style="width: 100px;height:36px;float: left;overflow: hidden">
-								<a class='btn btn-primary' id="whatever" title="实例开始" onclick="runDemo();">实例开始</a>
-							</div>
-							<div style="width: 50px;height:36px;float: left;overflow: hidden">
-								<a href="/ke/offlineLearning/newNextStep" class='btn btn-primary' ><i class="fa fa-hand-o-right"></i></a>
 							</div>
 						</form>
 					</div>

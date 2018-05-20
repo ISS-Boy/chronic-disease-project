@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Topic Meta - KafkaEagle</title>
+<title>慢病大数据 - 主题元数据</title>
 <jsp:include page="../public/css.jsp"></jsp:include>
 <jsp:include page="../public/tcss.jsp"></jsp:include>
 </head>
@@ -25,7 +25,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">
-						Topic <small>meta</small>
+						主题 <small>元数据</small>
 					</h1>
 				</div>
 				<!-- /.col-lg-12 -->
@@ -36,9 +36,7 @@
 					<div class="alert alert-info alert-dismissable">
 						<button type="button" class="close" data-dismiss="alert"
 							aria-hidden="true">×</button>
-						<i class="fa fa-info-circle"></i> <strong>List all topic
-							meta information. Here -1 indicates that the result is not
-							available or is empty.</strong>
+						<i class="fa fa-info-circle"></i> <strong>列出所有的主题，以及一些主题中的元数据展示.</strong>
 					</div>
 				</div>
 			</div>
@@ -47,7 +45,7 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<i class="fa fa-tasks fa-fw"></i> Topic Meta Info
+							<i class="fa fa-tasks fa-fw"></i> 主题元数据信息
 							<div class="pull-right"></div>
 						</div>
 						<!-- /.panel-heading -->
@@ -56,11 +54,11 @@
 								width="100%">
 								<thead>
 									<tr>
-										<th>Topic</th>
-										<th>Partition</th>
-										<th>Leader</th>
-										<th>Replicas</th>
-										<th>Isr</th>
+										<th>主题</th>
+										<th>分区</th>
+										<th>领导者</th>
+										<th>副本</th>
+										<th>同步副本</th>
 									</tr>
 								</thead>
 							</table>

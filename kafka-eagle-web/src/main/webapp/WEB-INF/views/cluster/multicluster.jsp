@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Multi-Cluster - KafkaEagle</title>
+<title>慢病大数据 - 多集群管理</title>
 <jsp:include page="../public/css.jsp"></jsp:include>
 <jsp:include page="../public/tcss.jsp"></jsp:include>
 </head>
@@ -25,7 +25,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">
-						Kafka Multi-Cluster <small>overview</small>
+						Kafka 多集群管理 <small>总览</small>
 					</h1>
 				</div>
 				<!-- /.col-lg-12 -->
@@ -36,10 +36,9 @@
 					<div class="alert alert-info alert-dismissable">
 						<button type="button" class="close" data-dismiss="alert"
 							aria-hidden="true">×</button>
-						<i class="fa fa-info-circle"></i> Cluster Support
-							multiple Zookeeper under the Kafka cluster display, select
-							different Zookeeper to monitor their corresponding Kafka cluster
-							state. 
+						<i class="fa fa-info-circle"></i>
+						多集群管理支持Kafka集群显示下的多个Zookeeper，
+						可以选择不同的Zookeeper来监视其对应的Kafka集群状态。
 					</div>
 				</div>
 			</div>
@@ -48,7 +47,7 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<i class="fa fa-tasks fa-fw"></i> Kafka Multi-Cluster list
+							<i class="fa fa-tasks fa-fw"></i> Kafka 多集群列表
 							<div class="pull-right"></div>
 						</div>
 						<!-- /.panel-heading -->
@@ -58,9 +57,9 @@
 									<thead>
 										<tr>
 											<th>ID</th>
-											<th>Cluster Alias</th>
-											<th>ZK Host</th>
-											<th>Operate</th>
+											<th>集群别名</th>
+											<th>Zookeeper主机</th>
+											<th>操作</th>
 										</tr>
 									</thead>
 								</table>

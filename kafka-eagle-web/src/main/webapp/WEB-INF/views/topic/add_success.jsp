@@ -6,7 +6,7 @@
 <html lang="zh">
 
 <head>
-<title>Success - KafkaEagle</title>
+<title>成功</title>
 <jsp:include page="../public/css.jsp"></jsp:include>
 </head>
 
@@ -17,7 +17,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">
-						Topic <small>create</small>
+						主题 <small>创建</small>
 					</h1>
 				</div>
 				<!-- /.col-lg-12 -->
@@ -30,7 +30,7 @@
 							aria-hidden="true">×</button>
 						<i class="fa fa-info-circle"></i> <strong>${Submit_Status}</strong>
 						<a class="btn btn-large btn-primary" href="/ke/topic/list">
-							<span class="ui-button-text">View Details</span>
+							<span class="ui-button-text">查看详情</span>
 						</a>
 					</div>
 				</div>

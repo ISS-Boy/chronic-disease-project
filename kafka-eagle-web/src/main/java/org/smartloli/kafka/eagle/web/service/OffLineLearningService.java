@@ -6,14 +6,12 @@ import com.iss.bigdata.health.elasticsearch.entity.UserBasic;
 import com.iss.bigdata.health.elasticsearch.service.ElasticSearchServiceImpl;
 import com.iss.bigdata.health.patternrecognition.entity.*;
 import com.iss.bigdata.health.patternrecognition.service.OfflineLearningTask;
-import com.iss.bigdata.health.patternrecognition.service.OfflineMiningTask;
 import la.matrix.DenseMatrix;
 import la.matrix.Matrix;
 import org.smartloli.kafka.eagle.web.dao.OffLineLearningDao;
 import org.smartloli.kafka.eagle.web.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -143,17 +141,17 @@ public class OffLineLearningService {
 
     /***
      * 根据条件筛选用户
-     * @param startDate
-     * @param endDate
+     * @param ageStart
+     * @param ageEnd
      * @param gender
      * @param conditions
      * @return
      */
-    public List<PatientInfo> searchPatientByConditions(String startDate, String endDate, String gender, List<String> conditions){
+    public List<PatientInfo> searchPatientByConditions(String ageStart, String ageEnd, String gender, List<String> conditions){
         List<PatientInfo> patientInfos = new ArrayList<>();
         ArrayList<Condition> conditionArrayList = new ElasticSearchServiceImpl().searchCondition(conditions);
         System.out.println(conditionArrayList.size());
-        ArrayList<UserBasic> userBasicArrayList = new ElasticSearchServiceImpl().searchUserByConditions(startDate, endDate, gender);
+        ArrayList<UserBasic> userBasicArrayList = new ElasticSearchServiceImpl().searchUserByConditions(ageStart, ageEnd, gender);
         System.out.println(userBasicArrayList.size());
         for (Condition condition : conditionArrayList) {
             for (UserBasic userBasic : userBasicArrayList) {

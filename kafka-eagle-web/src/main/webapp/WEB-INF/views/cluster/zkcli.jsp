@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Zookeeper Cli - KafkaEagle</title>
+<title>慢病大数据 - Zookeeper Cli</title>
 <jsp:include page="../public/css.jsp"></jsp:include>
 </head>
 
@@ -24,7 +24,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">
-						Zookeeper Client <small>overview</small>
+						Zookeeper 客户端 <small>总览</small>
 					</h1>
 				</div>
 				<!-- /.col-lg-12 -->
@@ -35,11 +35,13 @@
 					<div class="alert alert-info alert-dismissable">
 						<button type="button" class="close" data-dismiss="alert"
 							aria-hidden="true">×</button>
-						<i class="fa fa-info-circle"></i> <strong>Use the zookeeper client command to operate the zookeeper cluster.</strong> If you
-						don't know the usage of Zookeeper, you can visit the
-						website of <a
+						<i class="fa fa-info-circle"></i>
+						<strong>
+							此部分提供了简单的Zookeeper cli，
+						</strong>
+						如果不了解这些信息，请通过访问<a
 							href="http://zookeeper.apache.org/" target="_blank"
-							class="alert-link">Zookeeper</a> to view the relevant usage.
+							class="alert-link">Zookeeper</a> 去了解相关概念.
 					</div>
 				</div>
 			</div>
@@ -48,7 +50,7 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<i class="fa fa-code fa-fw"></i> Zookeeper Client Info
+							<i class="fa fa-code fa-fw"></i> Zookeeper客户端
 							<div class="pull-right"></div>
 						</div>
 						<!-- /.panel-heading -->

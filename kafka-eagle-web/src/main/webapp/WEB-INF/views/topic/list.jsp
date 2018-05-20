@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Topic List - KafkaEagle</title>
+<title>慢病大数据 - 主题展示</title>
 <jsp:include page="../public/css.jsp"></jsp:include>
 <jsp:include page="../public/tcss.jsp"></jsp:include>
 </head>
@@ -25,7 +25,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">
-						Topic <small>list</small>
+						主题 <small>展示</small>
 					</h1>
 				</div>
 				<!-- /.col-lg-12 -->
@@ -36,8 +36,7 @@
 					<div class="alert alert-info alert-dismissable">
 						<button type="button" class="close" data-dismiss="alert"
 							aria-hidden="true">×</button>
-						<i class="fa fa-info-circle"></i> <strong>List all topic
-							information.</strong>
+						<i class="fa fa-info-circle"></i> <strong>列出所有主题信息.</strong>
 					</div>
 				</div>
 			</div>
@@ -46,7 +45,7 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<i class="fa fa-tasks fa-fw"></i> Topic List Info
+							<i class="fa fa-tasks fa-fw"></i> 主题列表
 							<div class="pull-right"></div>
 						</div>
 						<!-- /.panel-heading -->
@@ -56,12 +55,12 @@
 								<thead>
 									<tr>
 										<th>ID</th>
-										<th>Topic Name</th>
-										<th>Partition Indexes</th>
-										<th>Partition Numbers</th>
-										<th>Created</th>
-										<th>Modify</th>
-										<th>Operate</th>
+										<th>主题名称</th>
+										<th>分区下标</th>
+										<th>分区总数</th>
+										<th>创建时间</th>
+										<th>修改时间</th>
+										<th>操作</th>
 									</tr>
 								</thead>
 							</table>
@@ -82,7 +81,7 @@
 						</div>
 						<!-- /.row -->
 						<div class="modal-body">
-							<p>Are you sure you want to delete it? Admin Token : <input id="ke_admin_token" name="ke_admin_token" style="width: 100px;float: right;margin-right:150px;margin-top:-5px" class="form-control" placeholder="Enter Token" />
+							<p>你确定要删除它嘛? Admin Token : <input id="ke_admin_token" name="ke_admin_token" style="width: 100px;float: right;margin-right:150px;margin-top:-5px" class="form-control" placeholder="Enter Token" />
 							<p>
 						</div>
 						<div id="remove_div" class="modal-footer"></div>

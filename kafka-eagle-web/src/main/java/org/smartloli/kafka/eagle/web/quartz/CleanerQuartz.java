@@ -18,9 +18,9 @@ public class CleanerQuartz {
         // 测试用
 //        logger.info(monitorGroupService.getAllMonitorGroups());
 
-            // 定时清理无用资源
-        monitorGroupService.cleanUselessResources();
-
+        // 定时清理无用资源
+        // 暂时还不需要, 主要是定期地去检查是否有资源和数据库记录对不上了，并进行自动化的清除
+//        monitorGroupService.cleanUselessResources();
 
     }
 }
