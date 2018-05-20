@@ -91,36 +91,14 @@
                             <iframe src="http://192.168.222.232:3000/dashboard-solo/db/bodymetric?refresh=30s&orgId=1&panelId=2&from=now-3h&to=now&theme=light" width="100%" height="300" frameborder="0"></iframe>
                         </div>
                         <div class="col-lg-6" id="p_stepCount">
-                            <iframe src="http://192.168.222.232:3000/dashboard-solo/db/bodymetric?orgId=1&from=1484325665000&to=1484412065000&panelId=3&theme=light" width="100%" height="300" frameborder="0"></iframe>
+                            <iframe src="http://192.168.222.232:3000/dashboard-solo/db/bodymetric?orgId=1&from=now-3h&to=now&panelId=3&theme=light" width="100%" height="300" frameborder="0"></iframe>
                         </div>
                         <div class="col-lg-6" id="p_bodyTemperature">
-                            <iframe src="http://192.168.222.232:3000/dashboard-solo/db/bodymetric?orgId=1&refresh=1m&from=1521673396153&to=1521684196153&panelId=5&theme=light" width="100%" height="200" frameborder="0"></iframe>
+                            <iframe src="http://192.168.222.232:3000/dashboard-solo/db/bodymetric?orgId=1&refresh=1m&from=now-3h&to=now&panelId=5&theme=light" width="100%" height="350" frameborder="0"></iframe>
                         </div>
 
                     </div>
                 </div>
-
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="fa fa-cogs fa-fw"></i> 个人轨迹信息
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-
-                        <div id="main" style="height:800px;"></div>
-                        <%--<img style="margin:20px" width="280" height="140"
-                             src="http://api.map.baidu.com/staticimage/v2?ak=etLBbgQqfQQE3Cb25G29FjDKZtQnzVCp&width=680&height=640&zoom=11"/>--%>
-                        <script src="/ke/media/js/track/echarts/echarts.js"></script>
-                        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ogQzr2weGLe00PmSAZWf1eZ912ldWp1s"></script>
-                        <script src="/ke/media/js/track/t_js/jquery.min.js"></script>
-                        <script src="/ke/media/js/track/t_js/require.js"></script>
-                        <script src="/ke/media/js/track/t_js/example3.js"></script>
-
-                    </div>
-                </div>
-
-                <!-- /.col-lg-4 -->
             </div>
             <!-- /.row -->
         </div>
