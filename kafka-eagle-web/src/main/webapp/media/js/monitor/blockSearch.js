@@ -300,10 +300,12 @@
                             //生成base64图片数据
                             var url = canvas.toDataURL();
                             urls.push(url)
+
+                            // 如果生成完成则进行提交
                             if(urls.length == block_size){
                                 $('#hideCopy').children().remove()
-                                for(var i in urls){
-                                    blockGroups.blockValues[i].imgUrl = urls[i]
+                                for(var i = 0; i < urls.length; i++){
+                                    blockGroups.blockValues[block_size - i - 1].imgUrl = urls[i]
                                 }
 
                                 $.ajax({
