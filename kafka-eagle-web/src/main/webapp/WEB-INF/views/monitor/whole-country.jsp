@@ -76,25 +76,6 @@
                         <div id="main" style="height:600px;border:1px solid #ccc;padding:10px">
                         </div>
                     </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-                        <div class="panel-heading">
-                            <i class="fa fa-cogs fa-fw"></i>详细数据
-                        </div>
-                        <table id="result" class="table table-bordered table-condensed"
-                               width="100%">
-                            <thead>
-                            <tr>
-                                <th>省市</th>
-                                <th>用户数量</th>
-                                <th>高血压患病人数</th>
-                                <th>体重超标人数</th>
-                                <th>XXX</th>
-                                <th>详细情况</th>
-                            </tr>
-                            </thead>
-                        </table>
-                    </div>
                 </div>
                 <!-- /.col-lg-4 -->
             </div>

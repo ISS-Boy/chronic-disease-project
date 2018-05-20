@@ -70,7 +70,6 @@
             <groupId>io.confluent</groupId>
             <artifactId>kafka-avro-serializer</artifactId>
             <version>${confluent.version}</version>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>io.confluent</groupId>

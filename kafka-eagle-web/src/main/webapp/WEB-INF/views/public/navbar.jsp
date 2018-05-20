@@ -190,8 +190,6 @@
                             class="fa fa-map-marker fa-fw"></i> 实时定位 </a></li>
                     <li><a href="/ke/monitor/disease_history_mon"><i
                             class="fa fa-map-marker fa-fw"></i> 历史数据分析 </a></li>
-                    <li><a href="/ke/monitor/disease_history_per"><i
-                            class="fa fa-map-marker fa-fw"></i> 病种数据分析 </a></li>
                     <li><a href="/ke/monitor/disease_history_timeline"><i
                             class="fa fa-map-marker fa-fw"></i> 地域数据分析 </a></li>
                 </ul>
