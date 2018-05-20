@@ -137,13 +137,22 @@ function setdata(){
                                 ],
                             }
                         ],
-                        yAxis: [
-                            {
-                                type: 'value',
-                                name: '患者人数',
-                                max: 30
-                            }
-                        ],
+                        yAxis: [{
+                            "name":"患者人数",
+                            "type": "value",
+                            "axisLine": {
+                                lineStyle: {
+                                    color: '#90979c'
+                                }
+                            },
+                            "axisLabel": {
+                                "interval": 0,
+                            },
+                            "splitArea": {
+                                "show": true
+                            },
+
+                        }],
                         series: [
 
                             {name: '高血压', type: 'bar'},
@@ -207,7 +216,6 @@ function setdata(){
 
         },
         error : function(errorMsg) {
-            alert("获取数据失败")
             myChart.hideLoading();
         }
     });

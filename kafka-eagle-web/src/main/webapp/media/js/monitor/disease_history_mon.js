@@ -2,18 +2,20 @@
 var myChart = echarts.init(document.getElementById('main'));
 myChart.showLoading();
 setData()
- function setData(){
-     var initData = [];
+function setData(){
+    var value1 = $('#year').val();
+    var value2 = $('#disease').val();
+    var initData = [];
     $.ajax({
         type : "get",
         async : true,
-        url : "/ke/monitor/disease_history_mon/setData",
+        url : "/ke/monitor/disease_history_mon/setData?value1="+value1+"&value2="+value2,
         data : {},
         dataType : "json", //返回数据形式为json
-
         success : function(result) {
             if (result) {
-
+                console.log("获取数据")
+                console.log(result)
                 var month;
                 var valueM
                 var valueF;
@@ -23,13 +25,11 @@ setData()
                     valueM = result[i].split(":")[2];
                     initData.push(valueF+":"+valueM)
                 }
-
                 var fData = function() {
                     var data = [];
                     for (var i = 0; i < initData.length; i++) {
                         data.push(parseInt(initData[i].split(":")[0]));
                     }
-
                     return data;
                 }();
                 var mData = function() {
@@ -44,7 +44,6 @@ setData()
                     for (var i = 0; i < initData.length; i++) {
                         data.push(parseInt(initData[i].split(":")[0])+parseInt(initData[i].split(":")[1]));
                     }
-
                     return data;
                 }();
                 var NumData = function() {
@@ -53,7 +52,6 @@ setData()
                     for (var i = 0; i < initData.length; i++) {
                         data = data+parseInt(initData[i].split(":")[0])+parseInt(initData[i].split(":")[1]);
                     }
-
                     return data;
                 }();
                 var xData = function() {
@@ -63,14 +61,11 @@ setData()
                     }
                     return data;
                 }();
-
                 myChart.hideLoading();
                 myChart.setOption({  backgroundColor: "#344b58",
                     "title": {
-                        "text": "本年患者人数总计"+NumData+"人",
-
+                        "text": value1+value2+"患者人数总计"+NumData+"人",
                         x: "4%",
-
                         textStyle: {
                             color: '#fff',
                             fontSize: '22'
@@ -93,8 +88,8 @@ setData()
                     },
                     "grid": {
                         "borderWidth": 0,
-                        "top": 110,
-                        "bottom": 95,
+                        "top": 100,
+                        "bottom": 90,
                         textStyle: {
                             color: "#fff"
                         }
@@ -108,8 +103,7 @@ setData()
                         "data": ['女', '男', '平均']
                     },
 
-
-                    "calculable": true,
+                    "calculable": false,
                     "xAxis": [{
                         "type": "category",
                         "axisLine": {
@@ -150,7 +144,7 @@ setData()
 
                         },
                         "splitArea": {
-                            "show": false
+                            "show": true
                         },
 
                     }],
@@ -164,7 +158,7 @@ setData()
                         "start": 10,
                         "end": 80,
                         handleIcon: 'path://M306.1,413c0,2.2-1.8,4-4,4h-59.8c-2.2,0-4-1.8-4-4V200.8c0-2.2,1.8-4,4-4h59.8c2.2,0,4,1.8,4,4V413z',
-                        handleSize: '110%',
+                        handleSize: '50%',
                         handleStyle:{
                             color:"#d3dee5",
 
@@ -172,7 +166,6 @@ setData()
                         textStyle:{
                             color:"#fff"},
                         borderColor:"#90979c"
-
 
                     }, {
                         "type": "inside",
@@ -204,7 +197,6 @@ setData()
                         },
                         "data": fData,
                     },
-
                         {
                             "name": "男",
                             "type": "bar",
@@ -231,7 +223,6 @@ setData()
                             "stack": "总量",
                             symbolSize:10,
                             symbol:'circle',
-
                             "itemStyle": {
                                 "normal": {
                                     "color": "rgba(252,230,48,1)",
@@ -252,8 +243,8 @@ setData()
             }
         },
         error : function(errorMsg) {
-            alert("获取数据失败")
-            console.log(errorMsg)
+            console.log("获取数据失败!")
+            myChart.hideLoading();
 
         }
 

@@ -223,92 +223,87 @@ public class MonitorController {
         return map;
     }
 
-    //通过ajax请求数据 将请求的数据返回到页面进行地图区域的显示
+    /**whole-country Viewer* */
+    @RequestMapping(value = "/monitor/whole_country", method = RequestMethod.GET)
+    public ModelAndView whole_countryView(HttpSession session){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("/monitor/whole_country");
+        return mav;
+    }
     @ResponseBody
-    @RequestMapping(value = "/monitor/countryFM", method = RequestMethod.GET)
-    public JSONArray getDiseaseUserFM(HttpServletResponse response) throws IOException {
+    @RequestMapping(value = "/monitor/whole_country/setData",method = RequestMethod.GET)
+    public JSONArray whole_country_setData(@RequestParam("value1") String value1,@RequestParam("value2") String value2,HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=utf-8");
-        List<String> list = new ArrayList<String>();
-        list = monitorService.getDireaseUserFM(diseases_area, years_area);
-        JSONArray jsonArray = JSONArray.fromObject(list);//转化成json对象
+        List<String > list=new ArrayList<String>();
+        list = monitorService.getDireaseUserFM(value2,value1);
+        JSONArray jsonArray = JSONArray.fromObject( list );//转化成json对象
+        return jsonArray;
+    }
+    @ResponseBody
+    @RequestMapping(value = "/monitor/whole_country/selected",method = RequestMethod.GET)
+    public JSONArray whole_country_selected(@RequestParam("value1") String value1,@RequestParam("value2") String value2,HttpServletResponse response){
+        response.setContentType("text/html;charset=utf-8");
+        ArrayList arrayList = new ArrayList();
+        arrayList.add("success");
+        JSONArray jsonArray = JSONArray.fromObject(arrayList);
         return jsonArray;
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/monitor/whole_country/getData", method = RequestMethod.GET)
-    public String getData(@RequestParam("value1") String value1, @RequestParam("value2") String value2) {
-        years_area = value1;
-        diseases_area = value2;
-        return "success";
-    }
-
-//将请求的数据返回到页面进行月份的显示
-
-    @RequestMapping(value = "/monitor/disease_history_mon", method = RequestMethod.GET)
-    public ModelAndView diseaseView(HttpSession session) {
+    /**disease_history_mon Viewer* */
+    @RequestMapping(value = "/monitor/disease_history_mon",method = RequestMethod.GET)
+    public ModelAndView monView(HttpSession session){
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/monitor/disease_history_mon");
         return mav;
     }
-
     @ResponseBody
-    @RequestMapping(value = "/monitor/disease_history_mon/getData", method = RequestMethod.GET)
-    public String getData_mon(@RequestParam("value1") String value1, @RequestParam("value2") String value2, HttpSession session) {
-        years_mon = value1.toString();
-        diseases_mon = value2.toString();
-        System.out.println("-----" + years_mon + diseases_mon);
-        return "success";
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/monitor/disease_history_mon/setData", method = RequestMethod.GET)
-    public JSONArray getDiseaseUserNum(HttpServletResponse response) throws IOException {
-
+    @RequestMapping(value = "/monitor/disease_history_mon/setData",method = RequestMethod.GET)
+    public JSONArray  mon_setData(@RequestParam("value1") String value1,@RequestParam("value2") String value2,HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=utf-8");
-        ArrayList returnArraylist = monitorService.getDiseaseUserNum_mon(diseases_mon, years_mon);
-        JSONArray jsonArray = JSONArray.fromObject(returnArraylist);//转化成json对象
+        ArrayList returnArraylist = monitorService.getDiseaseUserNum_mon(  value2,value1);
+        JSONArray jsonArray = JSONArray.fromObject( returnArraylist );//转化成json对象
+        return jsonArray;
+    }
+    @ResponseBody
+    @RequestMapping(value = "/monitor/disease_history_mon/selected",method = RequestMethod.GET)
+    public JSONArray mon_selected(@RequestParam("value1") String value1,@RequestParam("value2") String value2,HttpSession session){
+        ArrayList arrayList = new ArrayList();
+        arrayList.add("success");
+        JSONArray jsonArray = JSONArray.fromObject(arrayList);
         return jsonArray;
     }
 
-
-    @RequestMapping(value = "/monitor/disease_history_per", method = RequestMethod.GET)
-    public ModelAndView returnhisory_per(HttpSession session) {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("/monitor/disease_history_per");
-        return mav;
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/monitor/disease_history_per/getData", method = RequestMethod.GET)
-    public String getData_per(@RequestParam("value1") String value1, @RequestParam("value2") String value2) {
-        years_per = value1.toString();
-        return "success";
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/monitor/disease_history_per/setData", method = RequestMethod.GET)
-    public JSONArray getDiseaseUserNum_per(HttpServletResponse response) throws IOException {
-
-        response.setContentType("text/html;charset=utf-8");
-        ArrayList returnArraylist = monitorService.getDiseaseUserNum_per(years_per);
-        JSONArray jsonArray = JSONArray.fromObject(returnArraylist);//转化成json对象
-        return jsonArray;
-    }
-
-    @RequestMapping(value = "/monitor/disease_history_timeline", method = RequestMethod.GET)
-    public ModelAndView returnhisory_timeline(HttpSession session) {
+    /**disease_history_timeline Viewer* */
+    @RequestMapping(value = "/monitor/disease_history_timeline",method = RequestMethod.GET)
+    public ModelAndView timelineView(HttpSession session){
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/monitor/disease_history_timeline");
         return mav;
     }
-
     @ResponseBody
-    @RequestMapping(value = "/monitor/disease_history_timeline/setData", method = RequestMethod.GET)
-    public JSONArray getDiseaseUserNum_disease_timeline(HttpServletResponse response) throws IOException {
-
+    @RequestMapping(value = "/monitor/disease_history_timeline/setData",method = RequestMethod.GET)
+    public JSONArray  timeline_setdata(HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=utf-8");
         Map returnArraylist = monitorService.getDiseaseUserNum_timeline();
-        JSONArray jsonArray = JSONArray.fromObject(returnArraylist);//转化成json对象
+        JSONArray jsonArray = JSONArray.fromObject( returnArraylist );//转化成json对象
+        return jsonArray;
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/monitor/longtitude/setData",method = RequestMethod.GET)
+    public JSONArray  longtitude_setData(@RequestParam("value1") String value1,HttpServletResponse response) throws IOException {
+        response.setContentType("text/html;charset=utf-8");
+        ArrayList returnArraylist = monitorService.getLongtitude(value1);
+        JSONArray jsonArray = JSONArray.fromObject( returnArraylist );//转化成json对象
+        return jsonArray;
+    }
+    @ResponseBody
+    @RequestMapping(value = "/monitor/longtitude/selected",method = RequestMethod.GET)
+    public JSONArray longtitude_selected(@RequestParam("value1") String value1){
+        ArrayList arrayList = new ArrayList();
+        arrayList.add("success");
+        JSONArray jsonArray = JSONArray.fromObject(arrayList);
         return jsonArray;
     }
 

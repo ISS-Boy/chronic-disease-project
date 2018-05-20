@@ -4,6 +4,8 @@ import com.iss.bigdata.health.elasticsearch.service.ElasticSearchService;
 import com.iss.bigdata.health.elasticsearch.service.ElasticSearchServiceImpl;
 import org.junit.Test;
 import org.smartloli.kafka.eagle.web.dao.MonitorDao;
+import org.smartloli.kafka.eagle.web.help.LimitQueue;
+import org.smartloli.kafka.eagle.web.kafkaservice.KafaServiceImpl;
 import org.smartloli.kafka.eagle.web.pojo.Monitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,12 +25,7 @@ public class MonitorServiceImpl implements org.smartloli.kafka.eagle.web.service
         ArrayList<String> returnArraylist = service.getDiseaseUserNum_area(disease,year);
         return returnArraylist;
     }
-    @Test
-    public void getDireaseUserFM1()  {
-        ElasticSearchService service = new ElasticSearchServiceImpl();
-        ArrayList<String> returnArraylist = service.getDiseaseUserNum_area("Hypertension","2018");
-        System.out.println();
-    }
+
 
 
     @Override
@@ -57,18 +54,7 @@ public class MonitorServiceImpl implements org.smartloli.kafka.eagle.web.service
         }
         return returnArraylist;
     }
-    @Override
-    public   ArrayList getDiseaseUserNum_per(String year){
-        ElasticSearchService service = new ElasticSearchServiceImpl();
-        ArrayList returnArraylist = new ArrayList();
-        int diseaseuser_hyp = service.getDiseaseUserNum_per(year,"Hypertension");
-        int diseaseuser_Pre = service.getDiseaseUserNum_per(year,"Prediabetes");
-        int diseaseuser_cor = service.getDiseaseUserNum_per(year,"Coronary Heart Disease");
-        returnArraylist.add(diseaseuser_hyp);
-        returnArraylist.add(diseaseuser_Pre);
-        returnArraylist.add(diseaseuser_cor);
-        return  returnArraylist;
-    }
+
     @Override
     public     Map<String,ArrayList> getDiseaseUserNum_timeline(){
         ElasticSearchService service = new ElasticSearchServiceImpl();
@@ -109,20 +95,21 @@ public class MonitorServiceImpl implements org.smartloli.kafka.eagle.web.service
     public int deleteMonitorsByGroupId(String monitorGroupId) {
         return monitorDao.deleteMonitorByGroupId(monitorGroupId);
     }
-
-    @Test
-    public void getDiseaseUserNum_timeline1(){
-        ElasticSearchService service = new ElasticSearchServiceImpl();
-        ArrayList arraylist_2018h= service.getDiseaseUserNum_timeline("Hypertension","2018");
-        ArrayList arraylist_2018p = service.getDiseaseUserNum_timeline("Prediabetes","2018");
-        ArrayList arraylist_2018c = service.getDiseaseUserNum_timeline("Coronary Heart Disease","2018");
-        ArrayList arraylist_2017h = service.getDiseaseUserNum_timeline("Hypertension","2017");
-        ArrayList arraylist_2017p = service.getDiseaseUserNum_timeline("Prediabetes","2017");
-        ArrayList arraylist_2017c = service.getDiseaseUserNum_timeline("Coronary Heart Disease","2017");
-        ArrayList arraylist_2016h = service.getDiseaseUserNum_timeline("Hypertension","2016");
-        ArrayList arraylist_2016p = service.getDiseaseUserNum_timeline("Prediabetes","2016");
-        ArrayList arraylist_2016c = service.getDiseaseUserNum_timeline("Coronary Heart Disease","2016");
-
-        System.out.println(arraylist_2018h);
+    @Override
+    public ArrayList getLongtitude(String userid) {
+        ArrayList<String> res = new ArrayList<>();
+        LimitQueue<String> queue =  KafaServiceImpl.getMap().get(userid);
+        synchronized (queue) {
+            for(String position: queue)
+                res.add(position);
+        }
+        if(res.size()<10){
+            String str = res.get(res.size()-1);
+            for(int i = res.size();i<10;i++){
+                res.add(i,str);
+            }
+        }
+        return res;
     }
+
 }
