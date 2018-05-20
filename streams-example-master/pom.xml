@@ -58,41 +58,50 @@
             <groupId>org.motif</groupId>
             <artifactId>FindPattern</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>io.confluent</groupId>
             <artifactId>kafka-streams-avro-serde</artifactId>
             <version>${confluent.version}</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>io.confluent</groupId>
             <artifactId>kafka-avro-serializer</artifactId>
             <version>${confluent.version}</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>io.confluent</groupId>
             <artifactId>kafka-schema-registry-client</artifactId>
             <version>${confluent.version}</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
             <version>${kafka.version}</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-streams</artifactId>
             <version>${kafka.version}</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.avro</groupId>
             <artifactId>avro</artifactId>
             <version>${avro.version}</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.avro</groupId>
             <artifactId>avro-maven-plugin</artifactId>
             <version>${avro.version}</version>
+            <optional>true</optional>
+
         </dependency>
         <dependency>
             <!-- This could be a test-only dependency, but we keep it a compile dependency so that
@@ -101,37 +110,46 @@
             <groupId>com.101tec</groupId>
             <artifactId>zkclient</artifactId>
             <version>0.9</version>
+            <optional>true</optional>
+
         </dependency>
 
         <dependency>
             <groupId>javax.ws.rs</groupId>
             <artifactId>javax.ws.rs-api</artifactId>
             <version>2.0.1</version>
+            <optional>true</optional>
+
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
             <version>${jetty.version}</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
             <version>${jetty.version}</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet-core</artifactId>
             <version>${jersey.version}</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
             <version>${jersey.version}</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
             <version>${jackson.version}</version>
+            <optional>true</optional>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/net.seninp/jmotif-sax -->
@@ -139,11 +157,13 @@
             <groupId>net.seninp</groupId>
             <artifactId>jmotif-sax</artifactId>
             <version>1.1.3</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.laml</groupId>
             <artifactId>laml</artifactId>
             <version>1.7.0-SNAPSHOT</version>
+            <optional>true</optional>
         </dependency>
 
         <!-- Test dependencies -->
@@ -152,30 +172,27 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>3.3.0</version>
             <scope>test</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>2.7.14</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka_${kafka.scala.version}</artifactId>
             <version>${kafka.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka_${kafka.scala.version}</artifactId>
-            <version>${kafka.version}</version>
-            <classifier>test</classifier>
-            <scope>test</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.kafka</groupId>
@@ -183,6 +200,7 @@
             <version>${kafka.version}</version>
             <classifier>test</classifier>
             <scope>test</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.kafka</groupId>
@@ -190,18 +208,14 @@
             <version>${kafka.version}</version>
             <classifier>test</classifier>
             <scope>test</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-test</artifactId>
             <version>2.9.0</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.confluent</groupId>
-            <artifactId>kafka-schema-registry</artifactId>
-            <version>${confluent.version}</version>
-            <scope>test</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>io.confluent</groupId>
@@ -210,26 +224,25 @@
             <!-- Required for e.g. schema registry's RestApp -->
             <classifier>tests</classifier>
             <scope>test</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-streams</artifactId>
             <version>0.11.0.0-cp1</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka_2.11</artifactId>
             <version>0.11.0.0-cp1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka_2.11</artifactId>
-            <version>0.11.0.0-cp1</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka_2.10</artifactId>
             <version>0.10.2.1-cp2</version>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
