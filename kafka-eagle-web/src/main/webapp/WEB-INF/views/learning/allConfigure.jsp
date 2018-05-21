@@ -71,6 +71,7 @@
 							<td class='center'>
 								<c:if test="${learningConfigure.gender == 'F'}">女</c:if>
 								<c:if test="${learningConfigure.gender == 'M'}">男</c:if>
+								<c:if test="${learningConfigure.gender == 'all'}">全部</c:if>
 							</td>
 							<td class='center'>${learningConfigure.disease }</td>
 							<td class="center" style="word-wrap:break-word;word-break:break-all;width: 12%;">${learningConfigure.metric}</td>
