@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import org.smartloli.kafka.eagle.common.util.SystemConfigUtils;
 import org.smartloli.kafka.eagle.core.ipc.KafkaOffsetGetter;
 import org.smartloli.kafka.eagle.plugin.mysql.MySqlRecordSchema;
+import org.smartloli.kafka.eagle.web.kafkaservice.KafaServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -49,6 +50,9 @@ public class StartupListener implements ApplicationContextAware {
 
 		RunTask task = new RunTask();
 		task.start();
+
+		// 启动Kafka获取经纬度信息线程
+		KafaServiceImpl.startKafkaLalo();
 	}
 
 	public static Object getBean(String beanName) {

@@ -67,7 +67,6 @@ public class AccountController {
 		Subject subject = SecurityUtils.getSubject();
 		if (subject.isAuthenticated()) {
 			setKafkaAlias(subject);
-			KafaServiceImpl.startKafkaLalo();
 			return "redirect:" + refUrl.replaceAll("/ke", "");
 		} else {
 			subject.getSession().setAttribute(KConstants.Login.ERROR_LOGIN, "<div class='alert alert-danger'>Account or password is error .</div>");

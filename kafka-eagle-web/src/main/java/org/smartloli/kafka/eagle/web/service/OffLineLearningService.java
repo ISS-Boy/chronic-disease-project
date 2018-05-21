@@ -88,7 +88,7 @@ public class OffLineLearningService {
                         metricName[i] = queryResult.getMetric();
                         List<Double> doubles = new ArrayList<>();
                         dataLengthArr[u] = queryResult.getDps().size();
-                        for (int key : queryResult.getDps().keySet()) {
+                        for (long key : queryResult.getDps().keySet()) {
                             doubles.add(queryResult.getDps().get(key).doubleValue());
                         }
                         dataPoint.add(doubles);

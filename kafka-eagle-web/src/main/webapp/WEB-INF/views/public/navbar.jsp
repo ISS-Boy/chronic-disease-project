@@ -109,9 +109,9 @@
                             <li id="navbar_list1"><a href="/ke/topic/list"><i
                                     class="fa fa-table fa-fw"></i> 展示主题 </a></li>
                             <li id="navbar_list2"><a href="/ke/topic/message"><i
-                                    class="fa fa-file-text fa-fw"></i> 发送消息 </a></li>
+                                    class="fa fa-file-text fa-fw"></i> 查询消息 </a></li>
                             <li id="navbar_list3"><a href="/ke/topic/mock"><i
-                                    class="fa fa-maxcdn fa-fw"></i> 伪客户端 </a></li>
+                                    class="fa fa-maxcdn fa-fw"></i> 发送消息 </a></li>
                         </ul>
                     </li>
 
@@ -128,7 +128,7 @@
                             <li id="navbar_cli3"><a href="/ke/metrics/brokers"><i
                                     class="fa fa-sitemap fa-fw"></i> Kafka服务器状态 </a></li>
                             <li id="navbar_cli4"><a href="/ke/metrics/trend"><i
-                                    class="fa fa-bar-chart-o fa-fw"></i> 趋势预判 </a></li>
+                                    class="fa fa-bar-chart-o fa-fw"></i> 趋势概览 </a></li>
                         </ul>
                     </li>
 

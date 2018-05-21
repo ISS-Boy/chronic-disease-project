@@ -59,7 +59,7 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
 
     }
 
-    HiTSDBConfig hiTSDBConfig = HiTSDBConfig.address("192.168.222.233", 4242).config();
+    HiTSDBConfig hiTSDBConfig = HiTSDBConfig.address("192.168.222.233", 4242).httpConnectTimeout(200).config();
 
     @Override
     public EventMap getAllTypeEventByUserId(String userId, Date start, Date end) {
@@ -1118,13 +1118,35 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
 //                .sub(SubQuery.metric("heart_rate").aggregator(Aggregator.FIRST).tag("userId", "the-user-0").build());
         if (metrics != null && metrics.size() > 0) {
             for (String metric : metrics) {
-                builder = builder.sub(SubQuery.metric(metric).aggregator(Aggregator.FIRST).tag("userId", userId).build());
+                builder = builder.sub(SubQuery.metric(metric).aggregator(Aggregator.LAST).tag("userId", userId).build());
             }
         }
+
         query = builder.build();
+        System.out.println(query.getQueries().get(0).toJSON());
         List<QueryResult> result = hiTSDB.query(query);
         System.out.println("==============" + result);
         System.out.println("==============" + result.size());
+        System.out.println(userId);
+        result.stream().forEach(q -> System.out.println(q.getMetric() + ":" + q.getDps().size()));
+
+        // 到这里你会遇到一个bug
+        // 这里暂时进行手动插值, 遍历所有数据，将空缺数据的值，插值为第一条数据的值（如果没有第一条，则顺序找到第一条）
+        insertValues(start, end, result);
         return result;
+    }
+
+    private static void insertValues(Long start, Long end, List<QueryResult> result) {
+        result.stream().forEach(q -> {
+            LinkedHashMap<Long, Number> dps = q.getDps();
+            long s = start;
+            Number defaultValue;
+            while((defaultValue = dps.get(s)) == null)
+                s += 30;
+            for(long cur = start; cur <= end; cur += 30){
+                if(!dps.containsKey(cur))
+                    dps.put(cur, defaultValue);
+            }
+        });
     }
 }
