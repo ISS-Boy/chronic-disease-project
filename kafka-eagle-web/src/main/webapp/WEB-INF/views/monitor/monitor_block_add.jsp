@@ -229,7 +229,7 @@
 											<%--<div style="float: left;margin-left: 20px;"><h6>聚集项</h6></div>--%>
 											<div class="aggregation_item col-md-11 col-md-offset-1">
 
-													<div class="aggregation_row col-xs-2">
+													<div class="aggregation_row col-xs-3">
 														<input type="text" name="a_name" class="form-control cal_interval" placeholder="name" required>
 													</div>
 													<div class="aggregation_row" >
@@ -334,18 +334,18 @@
 					<div class="row filter">
 						<div class="filter_templ">
 							<div class="filter_row">
-								<select class="selectpicker"  data-live-search="true" name="f_source" data-width="auto">
+								<select class="selectpicker"  data-live-search="true" name="f_source" data-width="150px">
 									<option>数据源</option>
 								</select>
 							</div>
 							<div class="filter_row">
-								<select class="selectpicker"  data-live-search="true" name="f_measure" data-width="auto">
+								<select class="selectpicker"  data-live-search="true" name="f_measure" data-width="150px">
 									<option>数据项</option>
 								</select>
 							</div>
 
 							<div class="filter_row">
-								<select class="selectpicker"  data-live-search="true" name="f_op" data-width="auto">
+								<select class="selectpicker"  data-live-search="true" name="f_op" data-width="150px">
 									<option>></option>
 									<option><</option>
 									<option>>=</option>
@@ -359,7 +359,7 @@
 							</div>
 
 							<div class="filter_row">
-								<select class="selectpicker"  data-live-search="true" name="f_boolExp" data-width="auto">
+								<select class="selectpicker"  data-live-search="true" name="f_boolExp" data-width="150px">
 									<option>且</option>
 									<option>或</option>
 								</select>
@@ -453,7 +453,7 @@
 			<%--<div style="float: left;margin-left: 20px;"><h6>聚集项</h6></div>--%>
 			<div class="aggregation_item col-md-11 col-md-offset-1">
 
-					<div class="aggregation_row col-xs-2">
+					<div class="aggregation_row col-xs-3">
 						<input type="text" name="a_name" class="form-control cal_interval" placeholder="name" required>
 					</div>
 					<div class="aggregation_row" >
@@ -587,18 +587,18 @@
     <script id="filterTempl" type="text/x-jquery-tmpl">
     <div class="filter_templ" >
         <div class="filter_row"> 
-            <select class="selectpicker"  data-live-search="true" name="f_source" data-width="auto">
+            <select class="selectpicker"  data-live-search="true" name="f_source" data-width="150px">
                 <option>数据源</option>
             </select>
         </div>
         <div class="filter_row"> 
-            <select class="selectpicker"  data-live-search="true" name="f_measure" data-width="auto">
+            <select class="selectpicker"  data-live-search="true" name="f_measure" data-width="150px">
                 <option>数据项</option>
             </select>
         </div>
        
         <div class="filter_row"> 
-            <select class="selectpicker" data-live-search="true" name="f_op" data-width="auto">
+            <select class="selectpicker" data-live-search="true" name="f_op" data-width="150px">
                 <option>></option>
                 <option><</option>
                 <option>>=</option>
@@ -612,7 +612,7 @@
         </div>
 
         <div class="filter_row"> 
-            <select class="selectpicker"  data-live-search="true" name="f_boolExp" data-width="auto">
+            <select class="selectpicker"  data-live-search="true" name="f_boolExp" data-width="150px">
                 <option>且</option>
                 <option>或</option>
             </select>
@@ -753,7 +753,7 @@
                                                          style="border: 1px solid #eee">
                                                         <%--<div style="float: left;margin-left: 20px;"><h6>聚集项</h6></div>--%>
                                                         <div class="aggregation_item col-md-11 col-md-offset-1">
-                                                            <div class="aggregation_row col-xs-2">
+                                                            <div class="aggregation_row col-xs-3">
                                                                 <input type="text" name="a_name"
                                                                        class="form-control cal_interval"
                                                                        placeholder="name" required>
@@ -884,20 +884,20 @@
                                             <div class="filter_templ">
                                                 <div class="filter_row">
                                                     <select class="selectpicker" data-live-search="true" name="f_source"
-                                                            data-width="auto">
+                                                            data-width="150px">
                                                         <option>数据源</option>
                                                     </select>
                                                 </div>
                                                 <div class="filter_row">
                                                     <select class="selectpicker" data-live-search="true"
-                                                            name="f_measure" data-width="auto">
+                                                            name="f_measure" data-width="150px">
                                                         <option>数据项</option>
                                                     </select>
                                                 </div>
 
                                                 <div class="filter_row">
                                                     <select class="selectpicker" data-live-search="true" name="f_op"
-                                                            data-width="auto">
+                                                            data-width="150px">
                                                         <option>></option>
                                                         <option><</option>
                                                         <option>>=</option>
@@ -914,7 +914,7 @@
 
                                                 <div class="filter_row">
                                                     <select class="selectpicker" data-live-search="true"
-                                                            name="f_boolExp" data-width="auto">
+                                                            name="f_boolExp" data-width="150px">
                                                         <option>且</option>
                                                         <option>或</option>
                                                     </select>
