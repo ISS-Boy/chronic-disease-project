@@ -22,6 +22,9 @@ public class LearningConfigure {
     private Integer rThreshold;
     private Integer k;
     private String isDone;
+    private String userIds;
+
+
 
     public String getConfigureId() {
         return configureId;
@@ -166,6 +169,14 @@ public class LearningConfigure {
         this.isDone = isDone;
     }
 
+    public String getUserIds() {
+        return userIds;
+    }
+
+    public void setUserIds(String userIds) {
+        this.userIds = userIds;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("LearningConfigure{");
@@ -184,7 +195,8 @@ public class LearningConfigure {
         sb.append(", frequencyThreshold=").append(frequencyThreshold);
         sb.append(", rThreshold=").append(rThreshold);
         sb.append(", k=").append(k);
-        sb.append(", isDone='").append(isDone).append('\'');
+        sb.append(", isDone='").append(isDone).append(isDone);
+        sb.append(", userIds='").append(userIds).append('\'');
         sb.append('}');
         return sb.toString();
     }

@@ -31,7 +31,8 @@
             analysisWindowStartSize,
             frequencyThreshold,
             rThreshold,
-            k
+            k,
+            userIds
         ) VALUE (
             #{configureId},
             #{configureName},
@@ -47,7 +48,8 @@
             #{analysisWindowStartSize},
             #{frequencyThreshold},
             #{rThreshold},
-            #{k}
+            #{k},
+            #{userIds}
         )
     </insert>
 

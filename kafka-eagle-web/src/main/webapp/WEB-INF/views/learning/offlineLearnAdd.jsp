@@ -261,6 +261,7 @@
         window.location.href="/ke/offlineLearning/nextStep?userIds=" + userIds + "&&ages=" + ages+ "&&gender=" + gender + "&&diseases=" + diseases;
     }
 
+
     var isCheckAll = false;
     function selectAll() {
         if (isCheckAll) {

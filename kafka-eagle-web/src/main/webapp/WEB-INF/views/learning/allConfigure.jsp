@@ -35,6 +35,7 @@
 				<div>
 					&nbsp;&nbsp;<a class="btn btn-small btn-success" onclick="addConfigure();">新增</a>
 				</div>
+				<%--<div id="userIds">${learningConfigures}</div>--%>
 			</div>
 		</div>
 	<div class="row">
@@ -64,6 +65,7 @@
 				<c:choose>
 					<c:when test="${not empty learningConfigures}">
 						<c:forEach items="${learningConfigures}" var="learningConfigure" varStatus="vs">
+
 						<tr id="tr${learningConfigure.configureId }">
 							<td class="center">${vs.index+1}</td>
 							<td class='center'>${learningConfigure.configureName }</td>
@@ -94,6 +96,9 @@
 								</c:if>
 								<c:if test="${learningConfigure.isDone == '已完成'}">
 									<a class='btn btn-success' title="查看结果"  onclick="showResult('${learningConfigure.configureId }')"><i class='fa fa-eye'></i></a>
+								</c:if>
+								<c:if test="${learningConfigure.isDone == '已完成'}">
+									<a class='btn btn-success matching' title="开始匹配"  onclick="toMatching('${learningConfigure.userIds }','${learningConfigure.configureId }')"><i class='fa fa-adjust'></i></a>
 								</c:if>
 							</td>
 						</tr>
@@ -173,6 +178,13 @@
         };
         diag.show();
     }
+    function toMatching(userIds,configureId) {
+        console.log(userIds,configureId);
+        if(userIds == ""){
+            return;
+		}
+        window.location.href="/ke/onlineLearning/toMatching?userIds=" + userIds + "&configureId=" + configureId;
 
+    }
 </script>
 </html>

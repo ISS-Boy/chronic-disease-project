@@ -21,9 +21,11 @@ import org.smartloli.kafka.eagle.web.service.StreamMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Control user login, logout, reset password and other operations.
@@ -33,7 +35,7 @@ import java.util.Arrays;
  *         Created by May 26, 2017.
  */
 @Controller
-@RequestMapping("/test")
+@RequestMapping("/onlineLearning")
 public class StreamMasterController {
 
 	@Autowired
@@ -41,11 +43,13 @@ public class StreamMasterController {
 
 
 
-	@RequestMapping(value="/get")
+
 	@ResponseBody
-	public String info() throws Exception{
-		String config = "a";
-		streamMasterService.runStreamMaster(Arrays.asList("12", "23"), config);
+	@RequestMapping(value="/toMatching")
+	public String info(@RequestParam("userIds")List<String> users,@RequestParam("configureId")String configureId) throws Exception{
+		System.out.println(users + "," + configureId);
+		streamMasterService.runStreamMaster(users, configureId);
+
 		return "OK";
 	}
 

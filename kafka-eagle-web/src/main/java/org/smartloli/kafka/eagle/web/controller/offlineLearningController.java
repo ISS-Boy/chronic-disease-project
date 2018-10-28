@@ -3,6 +3,7 @@ package org.smartloli.kafka.eagle.web.controller;
 import org.smartloli.kafka.eagle.web.pojo.*;
 import org.smartloli.kafka.eagle.web.service.MenuService;
 import org.smartloli.kafka.eagle.web.service.OffLineLearningService;
+import org.smartloli.kafka.eagle.web.service.StreamMasterService;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +33,9 @@ public class offlineLearningController {
 
     @Resource(name="menuService")
     private MenuService menuService;
+
+    @Resource(name="streamMasterService")
+    private StreamMasterService streamMasterService;
 
     @Resource(name="offLineLearning")
     private OffLineLearningService offLineLearningService;
@@ -150,10 +154,11 @@ public class offlineLearningController {
         String msg = "success";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         LearningConfigure learningConfigure = new LearningConfigure();
+        String configureId = UUID.randomUUID().toString();
         learningConfigure.setAge(ages.replaceAll(",age,", "~"))
                 .setAlphabetSize(alphabetCount)
                 .setAnalysisWindowStartSize(windowSize)
-                .setConfigureId(UUID.randomUUID().toString())
+                .setConfigureId(configureId)
                 .setConfigureName(taskName)
                 .setDateBegin(String.valueOf(sdf.parse(startTime).getTime() / 1000))
                 .setDateEnd(String.valueOf(sdf.parse(endTime).getTime() / 1000))
@@ -165,12 +170,15 @@ public class offlineLearningController {
                 .setGender(gender)
                 .setK(patternCount)
                 .setMetric(metric.replaceAll(",", ",metrics,"));
+        learningConfigure.setUserIds(userIds);
 
 
         List<String> users = Stream.of(userIds.replaceAll("\\[|\\]| ", "")
                                     .split(",")).collect(Collectors.toList());
+        System.out.println("+++++++++++" + users);
         try {
             offLineLearningService.learning(learningConfigure, users);
+//            streamMasterService.runStreamMaster(users,configureId);
         } catch (Exception e) {
             throw e;
         }

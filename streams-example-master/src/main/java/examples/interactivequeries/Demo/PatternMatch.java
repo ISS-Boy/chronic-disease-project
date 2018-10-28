@@ -55,7 +55,6 @@ public class PatternMatch implements Runnable{
         this.symbolicPatterns = symbolicPatterns;
         this.windows = windows;
         this.users = users;
-        this.appId = UUID.randomUUID().toString();
     }
     public List<SymbolicPattern> getSymbolicPatterns() {
         return symbolicPatterns;
@@ -82,14 +81,15 @@ public class PatternMatch implements Runnable{
     }
 
     public void runKStream() {
+        System.out.println("hhhhhh" + "\n" + "lllllll");
         final Properties streamsConfiguration = new Properties();
-        streamsConfiguration.put(StreamsConfig.APPLICATION_ID_CONFIG, this.appId);//记得改这个，不然可能没数据
+        streamsConfiguration.put(StreamsConfig.APPLICATION_ID_CONFIG, UUID.randomUUID().toString());//记得改这个，不然可能没数据
         streamsConfiguration.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, ParaConfig.bootstrapServers);
         streamsConfiguration.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, ParaConfig.schemaRegistryUrl);
         streamsConfiguration.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
         streamsConfiguration.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
         streamsConfiguration.put(StreamsConfig.NUM_STREAM_THREADS_CONFIG, 5);
-        streamsConfiguration.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
+        streamsConfiguration.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         streamsConfiguration.put(StreamsConfig.COMMIT_INTERVAL_MS_CONFIG, 10 * 1000);
 
         final SpecificAvroSerde<MEvent> mEventSerde = new SpecificAvroSerde<>();
@@ -357,7 +357,7 @@ public class PatternMatch implements Runnable{
                         TimeWindows.of(60 * 1000), //等时间到了处理指定时间长度内的数据
                         mPatternSerde);
         matchPatternKTable.print();
-        matchPatternKTable.to(windowedStringSerde, mPatternSerde, "matchpattern5");
+        //matchPatternKTable.to(windowedStringSerde, mPatternSerde, "matchpattern5");
 
 
         streams = new KafkaStreams(builder, streamsConfiguration);
