@@ -32,6 +32,8 @@ public class StreamMasterService {
     @Autowired
     private KeSymbolicPatternMapper keSymbolicPatternMapper;
 
+    public PatternMatch patternMatch;
+
     /**
      * 根据用户 加载的数据库创建线程离线学习
      *
@@ -71,27 +73,17 @@ public class StreamMasterService {
         System.out.println("users: " + users.toString());   //[the-user-9844, the-user-4557, the-user-4608]
         System.out.println("symbolicPatterns长度: " + symbolicPatterns.size()); //10
         for(String measure : symbolicPatterns.get(0).getMeasures().keySet())
-            System.out.println("measure: " + measure + ", value" + symbolicPatterns.get(0).getMeasures().get(measure));
+            System.out.println("measure: " + measure + ", value: " + symbolicPatterns.get(0).getMeasures().get(measure));
 
-        PatternMatch patternMatch = new PatternMatch(symbolicPatterns, saxaw, users);
-        System.out.println("hello world");
+        patternMatch = new PatternMatch(symbolicPatterns, saxaw, users);
         patternMatch.runKStream();
     }
+
     /**
-     * 根据用户 匹配模式
-     *
-     * @param users
-     * @param
+     * 关闭stream程序
      */
-
-    public void runStreamMasterNew(List<String> users, int windowSize,int paasize,int alphabetsize) {
-
-        SAXAnalysisWindow saxaw = new SAXAnalysisWindow();
-        saxaw.setnLength(windowSize);
-        saxaw.setwSegment(paasize);
-        saxaw.setaAlphabet(alphabetsize);
-//        PatternMatch patternMatch = new PatternMatch(symbolicPatterns, saxaw, users);
-
+    public void stopStreamMaster() {
+        patternMatch.shutDown();
     }
 
 }

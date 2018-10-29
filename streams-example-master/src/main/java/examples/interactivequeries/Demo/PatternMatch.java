@@ -81,6 +81,7 @@ public class PatternMatch implements Runnable{
     }
 
     public void runKStream() {
+        System.setProperty("java.io.tmpdir", "E:\\rocksdb");
         final Properties streamsConfiguration = new Properties();
         streamsConfiguration.put(StreamsConfig.APPLICATION_ID_CONFIG, UUID.randomUUID().toString());//记得改这个，不然可能没数据
         streamsConfiguration.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, ParaConfig.bootstrapServers);
