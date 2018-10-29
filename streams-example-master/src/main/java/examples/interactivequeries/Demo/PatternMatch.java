@@ -88,7 +88,7 @@ public class PatternMatch implements Runnable{
         streamsConfiguration.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
         streamsConfiguration.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
         streamsConfiguration.put(StreamsConfig.NUM_STREAM_THREADS_CONFIG, 5);
-        streamsConfiguration.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        streamsConfiguration.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
         streamsConfiguration.put(StreamsConfig.COMMIT_INTERVAL_MS_CONFIG, 10 * 1000);
 
         final SpecificAvroSerde<MEvent> mEventSerde = new SpecificAvroSerde<>();
@@ -355,8 +355,8 @@ public class PatternMatch implements Runnable{
                         },
                         TimeWindows.of(60 * 1000), //等时间到了处理指定时间长度内的数据
                         mPatternSerde);
-        matchPatternKTable.print();
-        //matchPatternKTable.to(windowedStringSerde, mPatternSerde, "matchpattern5");
+        //matchPatternKTable.print();
+        matchPatternKTable.to(windowedStringSerde, mPatternSerde, "pattern-match-test2");
 
 
         streams = new KafkaStreams(builder, streamsConfiguration);
