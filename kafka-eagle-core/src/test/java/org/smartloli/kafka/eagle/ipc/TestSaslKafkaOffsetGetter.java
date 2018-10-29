@@ -38,10 +38,10 @@ import org.smartloli.kafka.eagle.core.factory.KafkaFactory;
 import org.smartloli.kafka.eagle.core.factory.KafkaService;
 
 import kafka.common.OffsetAndMetadata;
-import kafka.common.Topic;
-import kafka.coordinator.GroupMetadataManager;
-import kafka.coordinator.GroupTopicPartition;
-import kafka.coordinator.OffsetKey;
+import org.apache.kafka.common.internals.Topic;
+import kafka.coordinator.group.GroupMetadataManager;
+import kafka.coordinator.group.GroupTopicPartition;
+import kafka.coordinator.group.OffsetKey;
 
 /**
  * New offset storage formats: kafka
@@ -118,7 +118,7 @@ public class TestSaslKafkaOffsetGetter extends Thread {
 			}
 
 			KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
-			consumer.subscribe(Arrays.asList(Topic.GroupMetadataTopicName()));
+			consumer.subscribe(Arrays.asList(Topic.GROUP_METADATA_TOPIC_NAME));
 
 			startOffsetListener(clusterAlias, consumer);
 		}

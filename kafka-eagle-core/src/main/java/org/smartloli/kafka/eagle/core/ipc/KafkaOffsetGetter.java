@@ -48,13 +48,13 @@ import org.smartloli.kafka.eagle.core.factory.KafkaService;
 
 import kafka.common.OffsetAndMetadata;
 import kafka.common.OffsetMetadata;
-import kafka.common.Topic;
+import org.apache.kafka.common.internals.Topic;
 import kafka.consumer.Consumer;
 import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
-import kafka.coordinator.GroupMetadataManager;
-import kafka.coordinator.GroupTopicPartition;
-import kafka.coordinator.OffsetKey;
+import kafka.coordinator.group.GroupMetadataManager;
+import kafka.coordinator.group.GroupTopicPartition;
+import kafka.coordinator.group.OffsetKey;
 import kafka.javaapi.consumer.ConsumerConnector;
 import kafka.message.MessageAndMetadata;
 import kafka.server.KafkaConfig;
@@ -148,7 +148,7 @@ public class KafkaOffsetGetter extends Thread {
 
 	/** Listening offset thread method with sasl. */
 	private static synchronized void startOffsetSaslListener(String clusterAlias, KafkaConsumer<String, String> consumer) {
-		consumer.subscribe(Arrays.asList(Topic.GroupMetadataTopicName()));
+		consumer.subscribe(Arrays.asList(Topic.GROUP_METADATA_TOPIC_NAME));
 		boolean flag = true;
 		while (flag) {
 			ConsumerRecords<String, String> records = consumer.poll(1000);
@@ -157,7 +157,7 @@ public class KafkaOffsetGetter extends Thread {
 					Object offsetKey = GroupMetadataManager.readMessageKey(ByteBuffer.wrap(record.key().getBytes()));
 					if (offsetKey instanceof OffsetKey) {
 						GroupTopicPartition commitKey = ((OffsetKey) offsetKey).key();
-						if (commitKey.topicPartition().topic().equals(Topic.GroupMetadataTopicName())) {
+						if (commitKey.topicPartition().topic().equals(Topic.GROUP_METADATA_TOPIC_NAME)) {
 							continue;
 						}
 

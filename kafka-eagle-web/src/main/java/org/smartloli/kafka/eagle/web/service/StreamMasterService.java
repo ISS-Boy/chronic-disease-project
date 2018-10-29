@@ -4,6 +4,7 @@ import com.iss.bigdata.health.patternrecognition.entity.SAXAnalysisWindow;
 import com.iss.bigdata.health.patternrecognition.entity.SymbolicPattern;
 import examples.interactivequeries.Demo.PatternMatch;
 import org.apache.commons.lang.StringUtils;
+import org.mhealth.open.data.avro.Measure;
 import org.smartloli.kafka.eagle.web.dao.KeConfigureMapper;
 import org.smartloli.kafka.eagle.web.dao.KePatternDetailMapper;
 import org.smartloli.kafka.eagle.web.dao.KeSymbolicPatternMapper;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -63,8 +65,16 @@ public class StreamMasterService {
         saxaw.setwSegment(keConfigure.getPaasize());
         saxaw.setaAlphabet(keConfigure.getAlphabetsize());
 
-        PatternMatch patternMatch = new PatternMatch(symbolicPatterns, saxaw, users);
+        System.out.println("Slidingwindowsize: " + keConfigure.getSlidingwindowsize()); //64
+        System.out.println("Paasize: " + keConfigure.getPaasize()); //8
+        System.out.println("Alphabetsize: " + keConfigure.getAlphabetsize());   //4
+        System.out.println("users: " + users.toString());   //[the-user-9844, the-user-4557, the-user-4608]
+        System.out.println("symbolicPatterns长度: " + symbolicPatterns.size()); //10
+        for(String measure : symbolicPatterns.get(0).getMeasures().keySet())
+            System.out.println("measure: " + measure + ", value" + symbolicPatterns.get(0).getMeasures().get(measure));
 
+        PatternMatch patternMatch = new PatternMatch(symbolicPatterns, saxaw, users);
+        System.out.println("hello world");
         patternMatch.runKStream();
     }
     /**

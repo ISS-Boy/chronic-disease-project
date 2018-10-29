@@ -72,8 +72,8 @@ import kafka.cluster.BrokerEndPoint;
 import kafka.common.OffsetAndMetadata;
 import kafka.common.TopicAndPartition;
 import kafka.consumer.ConsumerThreadId;
-import kafka.coordinator.GroupOverview;
-import kafka.coordinator.GroupTopicPartition;
+import kafka.coordinator.group.GroupOverview;
+import kafka.coordinator.group.GroupTopicPartition;
 import kafka.javaapi.OffsetResponse;
 import kafka.javaapi.PartitionMetadata;
 import kafka.javaapi.TopicMetadata;
@@ -454,8 +454,6 @@ public class KafkaServiceImpl implements KafkaService {
 	 * @param partition
 	 *            Filter partition.
 	 * @return OffsetZkInfo.
-	 * 
-	 * @see org.smartloli.kafka.eagle.domain.OffsetZkInfo
 	 */
 	public OffsetZkInfo getOffset(String clusterAlias, String topic, String group, int partition) {
 		ZkClient zkc = zkPool.getZkClientSerializer(clusterAlias);
@@ -620,7 +618,6 @@ public class KafkaServiceImpl implements KafkaService {
 	 * 
 	 * @param topic
 	 * @return List
-	 * @see org.smartloli.kafka.eagle.domain.MetadataInfo
 	 */
 	@Deprecated
 	public List<MetadataInfo> findLeader(String clusterAlias, String topic) {
@@ -819,7 +816,7 @@ public class KafkaServiceImpl implements KafkaService {
 		JSONArray consumerGroups = new JSONArray();
 		try {
 			AdminClient adminClient = AdminClient.create(prop);
-			ConsumerGroupSummary cgs = adminClient.describeConsumerGroup(group);
+			ConsumerGroupSummary cgs = adminClient.describeConsumerGroup(group, 0);
 			Option<scala.collection.immutable.List<ConsumerSummary>> opts = cgs.consumers();
 			Iterator<ConsumerSummary> consumerSummarys = opts.get().iterator();
 			while (consumerSummarys.hasNext()) {

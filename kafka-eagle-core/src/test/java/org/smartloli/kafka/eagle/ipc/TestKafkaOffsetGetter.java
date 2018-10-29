@@ -44,12 +44,12 @@ import org.smartloli.kafka.eagle.core.factory.KafkaService;
 
 import kafka.common.OffsetAndMetadata;
 import kafka.common.OffsetMetadata;
-import kafka.common.Topic;
+import org.apache.kafka.common.internals.Topic;
 import kafka.consumer.Consumer;
 import kafka.consumer.ConsumerConfig;
 import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
-import kafka.coordinator.GroupTopicPartition;
+import kafka.coordinator.group.GroupTopicPartition;
 import kafka.javaapi.consumer.ConsumerConnector;
 import kafka.message.MessageAndMetadata;
 
@@ -256,7 +256,7 @@ public class TestKafkaOffsetGetter extends Thread {
 				props.put("sasl.mechanism", "PLAIN");
 				
 				KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
-				consumer.subscribe(Arrays.asList(Topic.GroupMetadataTopicName()));
+				consumer.subscribe(Arrays.asList(Topic.GROUP_METADATA_TOPIC_NAME));
 				startOffsetSASLListener(clusterAlias, consumer);
 			} else {
 				String zk = SystemConfigUtils.getProperty(clusterAlias + ".zk.list");

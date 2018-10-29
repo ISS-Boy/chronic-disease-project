@@ -81,7 +81,6 @@ public class PatternMatch implements Runnable{
     }
 
     public void runKStream() {
-        System.out.println("hhhhhh" + "\n" + "lllllll");
         final Properties streamsConfiguration = new Properties();
         streamsConfiguration.put(StreamsConfig.APPLICATION_ID_CONFIG, UUID.randomUUID().toString());//记得改这个，不然可能没数据
         streamsConfiguration.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, ParaConfig.bootstrapServers);
@@ -174,7 +173,7 @@ public class PatternMatch implements Runnable{
                                         for (String mkey : leftValue.getMeasures().keySet()) {
                                             Measure m = new Measure();
                                             m.put("unit", judgeUnit(mkey));
-                                            m.put("value", rightValue.getMeasures().get(mkey).getValue());
+                                            m.put("value", leftValue.getMeasures().get(mkey).getValue());
                                             map.put(mkey,m);
                                         }
                                         Measure m2 = new Measure();
@@ -219,7 +218,7 @@ public class PatternMatch implements Runnable{
                                         for (String mkey : leftValue.getMeasures().keySet()) {
                                             Measure m = new Measure();
                                             m.put("unit", judgeUnit(mkey));
-                                            m.put("value", rightValue.getMeasures().get(mkey).getValue());
+                                            m.put("value", leftValue.getMeasures().get(mkey).getValue());
                                             map.put(mkey,m);
                                         }
                                         Measure m2 = new Measure();
