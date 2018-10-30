@@ -357,8 +357,9 @@ public class PatternMatch implements Runnable{
                         TimeWindows.of(60 * 1000), //等时间到了处理指定时间长度内的数据
                         mPatternSerde);
         //matchPatternKTable.print();
-        matchPatternKTable.to(windowedStringSerde, mPatternSerde, "pattern-match-test2");
-
+        //matchPatternKTable.to(windowedStringSerde, mPatternSerde, "pattern-match-test4");
+        matchPatternKTable.toStream()
+                .map((k, v) -> KeyValue.pair(k.key(), v)).to("pattern-match-test3");
 
         streams = new KafkaStreams(builder, streamsConfiguration);
 
