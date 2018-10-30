@@ -17,13 +17,17 @@
  */
 package org.smartloli.kafka.eagle.web.controller;
 
+import org.smartloli.kafka.eagle.web.pojo.FirstInfo;
 import org.smartloli.kafka.eagle.web.service.StreamMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,16 +45,20 @@ public class StreamMasterController {
 	@Autowired
 	private StreamMasterService streamMasterService;
 
-
-
-
 	@ResponseBody
 	@RequestMapping(value="/toMatching")
-	public String info(@RequestParam("userIds")List<String> users,@RequestParam("configureId")String configureId) throws Exception{
+	public void info(@RequestParam("userIds")List<String> users, @RequestParam("configureId")String configureId, HttpServletResponse response) throws Exception{
 		System.out.println(users + "," + configureId);
 		streamMasterService.runStreamMaster(users, configureId);
+		response.sendRedirect("/ke/onlineLearning/macthingViewPage");
+	}
 
-		return "OK";
+	@RequestMapping(value="/macthingViewPage")
+	public ModelAndView MatchingViewPage(HttpServletRequest request)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("1--------------------");
+		mv.setViewName("/learning/macthingViewPage");
+		return mv;
 	}
 
 }
