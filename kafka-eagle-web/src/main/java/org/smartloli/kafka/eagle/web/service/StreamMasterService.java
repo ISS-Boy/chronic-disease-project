@@ -72,8 +72,9 @@ public class StreamMasterService {
         System.out.println("Alphabetsize: " + keConfigure.getAlphabetsize());   //4
         System.out.println("users: " + users.toString());   //[the-user-9844, the-user-4557, the-user-4608]
         System.out.println("symbolicPatterns长度: " + symbolicPatterns.size()); //10
-        for(String measure : symbolicPatterns.get(0).getMeasures().keySet())
-            System.out.println("measure: " + measure + ", value: " + symbolicPatterns.get(0).getMeasures().get(measure));
+        for(int patternId = 0;patternId < symbolicPatterns.size();patternId++)
+            for(String measure : symbolicPatterns.get(patternId).getMeasures().keySet())
+                System.out.println("measure: " + measure + ", value: " + symbolicPatterns.get(patternId).getMeasures().get(measure));
 
         patternMatch = new PatternMatch(symbolicPatterns, saxaw, users);
         patternMatch.runKStream();
