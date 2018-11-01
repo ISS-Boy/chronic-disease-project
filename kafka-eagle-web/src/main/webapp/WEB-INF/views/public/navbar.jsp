@@ -158,7 +158,7 @@
                             class="fa fa-fw fa-bar-chart"></i> 管理学习任务</a></li>
                     <li><a href="/ke/onlineLearning/macthingViewPage"><i
                             class="fa fa-fw fa-bar-chart"></i> 在线模式匹配</a></li>
-                    <li><a href="#"><i
+                    <li><a href="/ke/onlineLearning/managePattern"><i
                             class="fa fa-fw fa-bar-chart"></i> 在线模式管理</a></li>
                 </ul>
             </li>

@@ -68,7 +68,7 @@
 
 						<tr id="tr${learningConfigure.configureId }">
 							<td class="center">${vs.index+1}</td>
-							<td class='center'>${learningConfigure.configureName }</td>
+								<td class='center'>${learningConfigure.configureName }</td>
 							<td>${learningConfigure.age}</td>
 							<td class='center'>
 								<c:if test="${learningConfigure.gender == 'F'}">女</c:if>
@@ -98,7 +98,7 @@
 									<a class='btn btn-success' title="查看结果"  onclick="showResult('${learningConfigure.configureId }')"><i class='fa fa-eye'></i></a>
 								</c:if>
 								<c:if test="${learningConfigure.isDone == '已完成'}">
-									<a class='btn btn-success matching' title="开始匹配"  onclick="toMatching('${learningConfigure.userIds }','${learningConfigure.configureId }')"><i class='fa fa-adjust'></i></a>
+									<a class='btn btn-success matching' title="开始匹配"  onclick="toMatching('${learningConfigure.userIds }','${learningConfigure.configureId }','${learningConfigure.configureName }')"><i class='fa fa-adjust'></i></a>
 								</c:if>
 							</td>
 						</tr>
@@ -178,12 +178,13 @@
         };
         diag.show();
     }
-    function toMatching(userIds,configureId) {
-        console.log(userIds,configureId);
-        if(userIds == ""){
+    function toMatching(userIds,configureId,configureName) {
+        console.log(userIds,configureId,configureName);
+        console.log(configureName);
+        if(userIds == ""||configureName == ""){
             return;
 		}
-        window.location.href="/ke/onlineLearning/toMatching?userIds=" + userIds + "&configureId=" + configureId;
+        window.location.href="/ke/onlineLearning/toMatching?userIds=" + userIds + "&configureId=" + configureId +"&configureName=" + configureName;
 
     }
 </script>

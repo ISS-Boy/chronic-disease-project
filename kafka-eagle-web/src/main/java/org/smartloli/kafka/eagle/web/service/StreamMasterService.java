@@ -8,11 +8,14 @@ import org.mhealth.open.data.avro.Measure;
 import org.smartloli.kafka.eagle.web.dao.KeConfigureMapper;
 import org.smartloli.kafka.eagle.web.dao.KePatternDetailMapper;
 import org.smartloli.kafka.eagle.web.dao.KeSymbolicPatternMapper;
+import org.smartloli.kafka.eagle.web.dao.KeonlineDao;
 import org.smartloli.kafka.eagle.web.pojo.KeConfigure;
 import org.smartloli.kafka.eagle.web.pojo.KePatternDetail;
 import org.smartloli.kafka.eagle.web.pojo.KeSymbolicPattern;
+import org.smartloli.kafka.eagle.web.pojo.Keonline;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +28,9 @@ public class StreamMasterService {
 
     @Autowired
     private KeConfigureMapper keConfigureMapper;
+
+    @Autowired
+    private KeonlineDao keonlineDao;
 
     @Autowired
     private KePatternDetailMapper kePatternDetailMapper;
@@ -40,7 +46,7 @@ public class StreamMasterService {
      * @param users
      * @param configId
      */
-    public void runStreamMaster(List<String> users, String configId) {
+    public void runStreamMaster(List<String> users, String configId, String configureName) {
 
         KeConfigure keConfigure = keConfigureMapper.selectByPrimaryKey(configId);
         if (keConfigure == null) {
@@ -77,15 +83,36 @@ public class StreamMasterService {
                 System.out.println("measure: " + measure + ", value: " + symbolicPatterns.get(patternId).getMeasures().get(measure));
 
         patternMatch = new PatternMatch(symbolicPatterns, saxaw, users);
+        String status = "正在匹配";
+        keonlineDao.insertKeonline(configureName,configId,status);
         patternMatch.runKStream();
     }
 
     /**
      * 关闭stream程序
      */
-    public void stopStreamMaster() {
+    public String stopStreamMaster() {
         patternMatch.shutDown();
+        return "ok";
     }
 
+    public List<Keonline> getAllKeonlines() {
+        return keonlineDao.getallKeonlines();
+
+    }
+//keonlineOf
+
+    public int updateStatus(String id , String statusstr) {
+//        List<Keonline> keonlineList = keonlineDao.keonlineOf(id);
+//        System.out.println("==============哈哈哈哈哈哈" + keonlineList);
+           int flag = 0;
+//        if (CollectionUtils.isEmpty(keonlineList)||(keonlineList.size()==1 && keonlineList.get(0).getId().equals(id))){
+
+          return keonlineDao.updateKeonline(id,statusstr);
+
+//        }
+//        return flag;
+
+    }
 }
 
