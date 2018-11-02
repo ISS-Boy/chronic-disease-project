@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.smartloli.kafka.eagle.web.dao.KeonlineDao">
+    <resultMap type="org.smartloli.kafka.eagle.web.pojo.Keonline" id="keonline">
+        <result property="id" column="id" />
+        <result property="configureName" column="configureName" />
+        <result property="configureId" column="configureId" />
+        <result property="status" column="status" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,configureName,configureId,status
+    </sql>
+
+    <select id="keonlineOf" resultMap="keonline">
+        select
+        <include refid="Base_Column_List"/>
+        from ke_online
+        <where>
+            id = #{id}
+        </where>
+    </select>
+
+    <select id="getallKeonlines" resultMap="keonline">
+        select
+        <include refid="Base_Column_List"/>
+        from ke_online
+    </select>
+
+    <insert id="insertKeonline" parameterType="org.smartloli.kafka.eagle.web.pojo.Keonline" >
+        insert into
+        ke_online(configureName,configureId,status)
+        values(#{configureName},#{configId},#{status})
+    </insert>
+
+    <update id="updateKeonline" >
+        update ke_online set
+        status=#{statusstr} where id=#{id}
+    </update>
+</mapper>
