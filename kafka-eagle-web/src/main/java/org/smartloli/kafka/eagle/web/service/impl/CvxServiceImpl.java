@@ -42,7 +42,7 @@ public class CvxServiceImpl implements CvxService {
     @Override
     public int modifyCvx(Cvx cvx) {
         List<Cvx> cvxList = cvxDao.cvxof(cvx);
-        int flag = 0;
+            int flag = 0;
         if (CollectionUtils.isEmpty(cvxList)||(cvxList.size()==1 && cvxList.get(0).getId().equals(cvx.getId()))){
             flag = cvxDao.updateCvx(cvx);
             return flag;

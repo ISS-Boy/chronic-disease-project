@@ -54,7 +54,7 @@
                             <c:forEach items="${keonlines}" var="keonlines" varStatus="vs">
 
                                 <tr id="tr${keonlines.configureId }">
-                                    <td class="center">${keonlines.id}</td>
+                                    <td class="center">${vs.index+1}</td>
                                     <td class='center'>${keonlines.configureName}</td>
                                     <td class='center'>${keonlines.status}</td>
                                     <td style="width: 10%">
